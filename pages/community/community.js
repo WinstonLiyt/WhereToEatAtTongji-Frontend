@@ -1,4 +1,4 @@
-// pages/posting/posting.js
+// pages/community/community.js
 Page({
 
   /**

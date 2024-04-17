@@ -1,34 +1,35 @@
 {
   "pages": [
     "pages/browse/browse",
-    "pages/posting/posting",
+    "pages/community/community",
     "pages/recommend/recommend",
     "pages/personal/personal"
   ],
   "tabBar": {
     "color": "#f6cc7a",
     "selectedColor": "#e5bb69",
+    "borderStyle": "white",
     "list": [{
       "pagePath": "pages/browse/browse",
-      "text": "浏览",
+      "text": "美食浏览",
       "iconPath":"/statics/browse.png",
       "selectedIconPath": "/statics/browse_selected.png"
     }, 
     {
-      "pagePath": "pages/posting/posting",
-      "text": "帖子",
-      "iconPath":"/statics/post.png",
-      "selectedIconPath": "/statics/post_selected.png"
+      "pagePath": "pages/community/community",
+      "text": "社区交流",
+      "iconPath":"/statics/community.png",
+      "selectedIconPath": "/statics/community_selected.png"
     },
     {
       "pagePath": "pages/recommend/recommend",
-      "text": "推荐",
+      "text": "菜品推荐",
       "iconPath":"/statics/recommend.png",
       "selectedIconPath": "/statics/recommend_selected.png"
     },
     {
       "pagePath": "pages/personal/personal",
-      "text": "我的",
+      "text": "个人信息",
       "iconPath":"/statics/personal.png",
       "selectedIconPath": "/statics/personal_selected.png"
     }
