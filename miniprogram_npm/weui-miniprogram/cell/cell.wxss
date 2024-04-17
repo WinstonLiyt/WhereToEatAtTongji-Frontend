@@ -1,0 +1,8 @@
+.weui-cell_wxss.weui-cell_wxss::before {
+  display: flex;
+}
+.weui-cell::before {
+  display: flex !important;
+}
+
+

@@ -1,51 +1,50 @@
 {
   "pages": [
-    "pages/community/index",
-    "pages/search/index",
-    "pages/user/index",
-    "pages/recommendation/index",
-    "pages/index/index",
-    "pages/logs/logs"
+    "pages/browse/browse",
+    "pages/community/community",
+    "pages/recommend/recommend",
+    "pages/personal/personal"
   ],
-  "window": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "TJ What to Eat",
-    "navigationBarBackgroundColor": "#ffffff"
-  },
   "tabBar": {
-    "color": "#e5bb69",
+    "color": "#f6cc7a",
     "selectedColor": "#e5bb69",
     "borderStyle": "white",
-    "list": [
-        {
-            "selectedIconPath": "images/foods_selected.png",
-            "iconPath": "images/foods.png",
-            "pagePath": "pages/index/index",
-            "text": "美食浏览"
-        },
-        {
-            "selectedIconPath": "images/community_selected.png",
-            "iconPath": "images/community.png",
-            "pagePath": "pages/community/index",
-            "text": "社区浏览"
-        },
-        {
-            "selectedIconPath": "images/recommendation_selected.png",
-            "iconPath": "images/recommendation.png",
-            "pagePath": "pages/recommendation/index",
-            "text": "美食推荐"
-        },
-        {
-            "selectedIconPath": "images/user_selected.png",
-            "iconPath": "images/user.png",
-            "pagePath": "pages/user/index",
-            "text": "个人中心"
-        }
-    ]
+    "list": [{
+      "pagePath": "pages/browse/browse",
+      "text": "美食浏览",
+      "iconPath":"/statics/imgs/tabBar/browse.png",
+      "selectedIconPath": "/statics/imgs/tabBar/browse_selected.png"
+    }, 
+    {
+      "pagePath": "pages/community/community",
+      "text": "社区交流",
+      "iconPath":"/statics/imgs/tabBar/community.png",
+      "selectedIconPath": "/statics/imgs/tabBar/community_selected.png"
+    },
+    {
+      "pagePath": "pages/recommend/recommend",
+      "text": "菜品推荐",
+      "iconPath":"/statics/imgs/tabBar/recommend.png",
+      "selectedIconPath": "/statics/imgs/tabBar/recommend_selected.png"
+    },
+    {
+      "pagePath": "pages/personal/personal",
+      "text": "个人信息",
+      "iconPath":"/statics/imgs/tabBar/personal.png",
+      "selectedIconPath": "/statics/imgs/tabBar/personal_selected.png"
+    }
+  ]
+  },
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "usingComponents": {
+    "myPackage": "weui-miniprogram"
   },
   "style": "v2",
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents"
-
 }
