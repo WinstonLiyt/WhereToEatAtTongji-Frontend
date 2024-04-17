@@ -1,15 +1,51 @@
 {
   "pages": [
+    "pages/community/index",
+    "pages/search/index",
+    "pages/user/index",
+    "pages/recommendation/index",
     "pages/index/index",
     "pages/logs/logs"
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "Weixin",
+    "navigationBarTitleText": "TJ What to Eat",
     "navigationBarBackgroundColor": "#ffffff"
+  },
+  "tabBar": {
+    "color": "#e5bb69",
+    "selectedColor": "#e5bb69",
+    "borderStyle": "white",
+    "list": [
+        {
+            "selectedIconPath": "images/foods_selected.png",
+            "iconPath": "images/foods.png",
+            "pagePath": "pages/index/index",
+            "text": "美食浏览"
+        },
+        {
+            "selectedIconPath": "images/community_selected.png",
+            "iconPath": "images/community.png",
+            "pagePath": "pages/community/index",
+            "text": "社区浏览"
+        },
+        {
+            "selectedIconPath": "images/recommendation_selected.png",
+            "iconPath": "images/recommendation.png",
+            "pagePath": "pages/recommendation/index",
+            "text": "美食推荐"
+        },
+        {
+            "selectedIconPath": "images/user_selected.png",
+            "iconPath": "images/user.png",
+            "pagePath": "pages/user/index",
+            "text": "个人中心"
+        }
+    ]
   },
   "style": "v2",
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents"
+
 }

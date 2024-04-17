@@ -1,0 +1,8 @@
+<!--pages/community/index.wxml-->
+<!-- home.wxml -->
+
+<scroll-view class="scrollarea" scroll-y type="list">
+  <view class="container">
+
+  </view>
+</scroll-view>
