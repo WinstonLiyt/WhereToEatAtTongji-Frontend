@@ -1,4 +1,10 @@
 /**app.wxss**/
+:root {
+  --primary-color: #ffe6b5; /* 主题色 */
+  --secondary-color: #b6855d; /* 辅助颜色 */
+  --tertiary-color: #fff2d9; /* 次要颜色 */
+}
+
 .container {
   height: 100%;
   display: flex;
@@ -8,3 +14,5 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+
+
