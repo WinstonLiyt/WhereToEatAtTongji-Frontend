@@ -6,7 +6,7 @@ page {
   --secondary-color: #b61055d; /* 辅助颜色 */
   --tertiary-color: #fff2d9; /* 次要颜色 */
 
-  font-family:‘Franklin Gothic Medium’, ‘Arial Narrow’, Arial, sans-serif;
+  font-family: sans-serif;
   --fontsize-h1: 65rpx;
   --fontsize-h2: 55rpx;
   --fontsize-h3: 45rpx;
