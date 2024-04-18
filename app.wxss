@@ -3,8 +3,19 @@
 /**app.wxss**/
 page {
   --primary-color: #ffe6b5; /* 主题色 */
-  --secondary-color: #b6855d; /* 辅助颜色 */
+  --secondary-color: #b61055d; /* 辅助颜色 */
   --tertiary-color: #fff2d9; /* 次要颜色 */
+
+  font-family:‘Franklin Gothic Medium’, ‘Arial Narrow’, Arial, sans-serif;
+  --fontsize-h1: 65rpx;
+  --fontsize-h2: 55rpx;
+  --fontsize-h3: 45rpx;
+  --fontsize-h4: 40rpx;
+  --fontsize-h5: 35rpx;
+  --fontsize-h6: 32rpx;
+  --fontsize-text: 30rpx;
+  --fontsize-text-small: 23rpx;
+
 }
 
 .container {
@@ -16,5 +27,66 @@ page {
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+
+.mt-min {
+    margin-top: 10rpx !important;
+}
+
+.mt-med {
+    margin-top: 20rpx !important;
+}
+
+.mt-max {
+    margin-top: 30rpx !important;
+}
+
+
+.mb-min {
+    margin-bottom: 10rpx !important;
+}
+
+.mb-med {
+    margin-bottom: 20rpx !important;
+}
+
+.mb-max {
+    margin-bottom: 30rpx !important;
+}
+
+.mr-min {
+    margin-right: 10rpx !important;
+}
+
+.mr-med {
+    margin-right: 20rpx !important;
+}
+
+.mr-max {
+    margin-right: 30rpx !important;
+}
+
+.ml-min {
+    margin-left: 10rpx !important;
+}
+
+.ml-med {
+    margin-left: 20rpx !important;
+}
+
+.ml-max {
+    margin-left: 30rpx !important;
+}
+
+.bdr-min {
+    border-radius: 8rpx !important;
+}
+
+.bdr-med {
+    border-radius: 16rpx !important;
+}
+
+.bdr-max {
+    border-radius: 24rpx !important;
+}
 
 
