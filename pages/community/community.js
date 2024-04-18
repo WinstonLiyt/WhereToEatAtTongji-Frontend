@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    
   },
 
   /**
@@ -62,5 +62,12 @@ Page({
    */
   onShareAppMessage() {
 
-  }
+  },
+
+  /*
+  * Milestone1 演示 js
+  */
+
+
+
 })

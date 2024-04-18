@@ -1,13 +1,150 @@
 <!--pages/index/index.wxml-->
 <view class="main">
-  <view class="top">
-    <view class="search">
-      <view class="search_in">
-        <input type="text" placeholder="请输入搜索内容"/>
-        <view class="search_btn">
-            <image src="../../statics/imgs/community/search.png"></image>
+    <view class="top mb-med">
+        <view class="search">
+            <view class="search_in">
+                <input type="text" placeholder="请输入搜索内容"/>
+                <view class="search_btn" bindtap="tap">
+                    <image src="../../statics/imgs/community/search.png"></image>
+                </view>
+            </view>
         </view>
-      </view>
     </view>
-  </view>
+
+    <view class="posts ml-med mr-med mb-max mt-max">
+        <view class="post-item bdr-max ">
+            <view class="head-box ml-med mr-med mt-med mb-med">
+                <image src="../../statics/imgs/community/avatar.jpg" class="avatar"></image>
+                <text class="username"> 傘木 希美</text>
+                <view class="post-time">
+                    2024-12-03
+                </view>
+            </view>
+
+            <view class="title-box ml-med mr-med mb-med">
+                <text class="title">「リズと青い鳥」ってさ、私とみぞれに何か似てるなって思ってた。</text>
+            </view>
+
+            <view class="image-box ml-med mr-med mb-med">
+                <image src="../../statics/imgs/community/NozomiScarf.jpg" class=".bdr-med" mode="widthFix"></image>
+                <image src="../../statics/imgs/community/NozomiScarf.jpg" class=".bdr-med" mode="widthFix"></image>
+            </view>
+
+            <view class="bottom-box ml-med mr-med mb-med">
+                <view class="label-box">
+                    <view class="label">
+                        <text>#ユーフォ</text>
+                    </view>
+                    <view class="label">
+                        <text>#フルート</text>
+                    </view>
+                </view>
+                <view class="reaction-box mr-min">
+                    <view class="reaction-item upvotes">
+                        <image src="../../statics/imgs/community/post/upvote_selected.png" mode="widthFix"></image>
+                        <text>100</text>
+                    </view>
+                    <view class="reaction-item comments">
+                        <image src="../../statics/imgs/community/post/comment.png" mode="widthFix"></image>
+                        <text>10</text>
+                    </view>
+                    <view class="reaction-item stars">
+                        <image src="../../statics/imgs/community/post/star.png" mode="widthFix"></image>
+                        <text>60</text>
+                    </view>
+                </view>
+                
+            </view>
+        </view>
+
+        <view class="post-item bdr-max ">
+            <view class="head-box ml-med mr-med mt-med mb-med">
+                <image src="../../statics/imgs/community/avatar1.png" class="avatar"></image>
+                <text class="username"> 吉川 優子 </text>
+                <view class="post-time">
+                    2024-12-04
+                </view>
+            </view>
+
+            <view class="title-box ml-med mr-med mb-med">
+                <text class="title">あんたってほんとバカ?</text>
+            </view>
+
+            <view class="image-box ml-med mr-med mb-med">
+                <image src="../../statics/imgs/community/NozomiScarf.jpg" class=".bdr-med" mode="widthFix"></image>
+            </view>
+
+            <view class="bottom-box ml-med mr-med mb-med">
+                <view class="label-box">
+                    <view class="label">
+                        <text>#ユーフォ</text>
+                    </view>
+                    <view class="label">
+                        <text>#フルート</text>
+                    </view>
+                </view>
+                <view class="reaction-box mr-min">
+                    <view class="reaction-item upvotes">
+                        <image src="../../statics/imgs/community/post/upvote_selected.png" mode="widthFix"></image>
+                        <text>100</text>
+                    </view>
+                    <view class="reaction-item comments">
+                        <image src="../../statics/imgs/community/post/comment.png" mode="widthFix"></image>
+                        <text>10</text>
+                    </view>
+                    <view class="reaction-item stars">
+                        <image src="../../statics/imgs/community/post/star.png" mode="widthFix"></image>
+                        <text>60</text>
+                    </view>
+                </view>
+                
+            </view>
+        </view>
+
+        <view class="post-item bdr-max ">
+            <view class="head-box ml-med mr-med mt-med mb-med">
+                <image src="../../statics/imgs/community/avatar2.jpg" class="avatar"></image>
+                <text class="username"> 中川 夏纪 </text>
+                <view class="post-time">
+                    2024-12-04
+                </view>
+            </view>
+
+            <view class="title-box ml-med mr-med mb-med">
+                <text class="title">飛び立つ君の背を見上げる...</text>
+            </view>
+
+            <view class="image-box ml-med mr-med mb-med">
+               
+            </view>
+
+            <view class="bottom-box ml-med mr-med mb-med">
+                <view class="label-box">
+                    <view class="label">
+                        <text>#ユーフォ</text>
+                    </view>
+                    <view class="label">
+                        <text>#フルート</text>
+                    </view>
+                </view>
+                <view class="reaction-box mr-min">
+                    <view class="reaction-item upvotes">
+                        <image src="../../statics/imgs/community/post/upvote_selected.png" mode="widthFix"></image>
+                        <text>100</text>
+                    </view>
+                    <view class="reaction-item comments">
+                        <image src="../../statics/imgs/community/post/comment.png" mode="widthFix"></image>
+                        <text>10</text>
+                    </view>
+                    <view class="reaction-item stars">
+                        <image src="../../statics/imgs/community/post/star.png" mode="widthFix"></image>
+                        <text>60</text>
+                    </view>
+                </view>
+                
+            </view>
+        </view>
+        
+    </view>
+
 </view>

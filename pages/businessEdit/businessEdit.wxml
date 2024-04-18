@@ -2,7 +2,7 @@
   <image class="bg" src="../../statics/imgs/personal/NEWTOM.svg"></image>
   <view  class="avatar">
 		<image class="userinfo-avatar" src=" ../../statics/imgs/business/store_kfc.png" background-size="cover"></image>
-		<text class="userinfo-nickname">{{ '肯德基（同济大学嘉定校区店）' }}</text>
+		<text class="userinfo-nickname">{{ name }}</text>
 	</view>
 </view>
 <view class="account">
@@ -24,31 +24,36 @@
 <view class="userinfo-header">
     <text>店铺信息</text>
   </view>
-<view class="userinfo-card">
+  <view class="userinfo-card">
   <view class="userinfo-content">
     <view class="userinfo-row">
       <text class="userinfo-label">名称:</text>
-      <text class="userinfo-value">肯德基（同济大学嘉定校区店）</text>
+      <input class="userinfo-input" value="{{name}}" placeholder="请输入店铺名称"/>
     </view>
     <view class="userinfo-row">
       <text class="userinfo-label">地址:</text>
-      <text class="userinfo-value">曹安公路4800号5幢1区A100室</text>
+      <input class="userinfo-input" value="{{address}}" placeholder="请输入店铺地址"/>
     </view>
     <view class="userinfo-row">
       <text class="userinfo-label">联系方式:</text>
-      <text class="userinfo-value">13651962636</text>
+      <input class="userinfo-input" value="{{telephone}}" placeholder="请输入联系方式"/>
     </view>
     <view class="userinfo-row">
       <text class="userinfo-label">营业时间:</text>
-      <text class="userinfo-value">06:00-22:00</text>
+      <input class="userinfo-input" value="{{business_time}}" placeholder="请输入营业时间"/>
     </view>
     <view class="userinfo-row">
       <text class="userinfo-label">备注:</text>
-      <text class="userinfo-value">疯狂星期四，V我50</text>
+      <input class="userinfo-input" value="{{remark}}" placeholder="请输入备注信息"/>
     </view>
   </view>
 </view>
 
+<view class="button-group">
+      <button formType="submit" class="submit-button">保存信息</button>
+      <button bindtap="navigateToHome" class="cancel-button">取消</button>
+</view>
+<!-- 
 <view class="edit_info">
   <navigator url="../businessEdit/businessEdit">
     <view class="menu">
@@ -89,4 +94,4 @@
       <image class="icon2" src="../../statics/imgs/personal/next.svg"></image>
     </view>
   </navigator>
-</view>
+</view> -->

@@ -1,41 +1,44 @@
 {
   "pages": [
+    "pages/community/community",
     "pages/browse/store_list/store_list",
     "pages/browse/store_page/store_page",
     "pages/browse/food_page/food_page",
-    "pages/community/community",
     "pages/recommend/recommend",
-    "pages/personal/personal"
+    "pages/personal/personal",
+    "pages/businessEdit/businessEdit"
   ],
   "tabBar": {
     "color": "#f6cc7a",
+    "backgroundColor": "#fff2d9",
     "selectedColor": "#e5bb69",
     "borderStyle": "white",
-    "list": [{
-      "pagePath": "pages/browse/store_list/store_list",
-      "text": "美食浏览",
-      "iconPath":"/statics/imgs/tabBar/browse.png",
-      "selectedIconPath": "/statics/imgs/tabBar/browse_selected.png"
-    }, 
-    {
-      "pagePath": "pages/community/community",
-      "text": "社区交流",
-      "iconPath":"/statics/imgs/tabBar/community.png",
-      "selectedIconPath": "/statics/imgs/tabBar/community_selected.png"
-    },
-    {
-      "pagePath": "pages/recommend/recommend",
-      "text": "菜品推荐",
-      "iconPath":"/statics/imgs/tabBar/recommend.png",
-      "selectedIconPath": "/statics/imgs/tabBar/recommend_selected.png"
-    },
-    {
-      "pagePath": "pages/personal/personal",
-      "text": "个人信息",
-      "iconPath":"/statics/imgs/tabBar/personal.png",
-      "selectedIconPath": "/statics/imgs/tabBar/personal_selected.png"
-    }
-  ]
+
+  "list": [{
+        "pagePath": "pages/browse/store_list/store_list",
+        "text": "美食浏览",
+        "iconPath":"/statics/imgs/tabBar/browse.png",
+        "selectedIconPath": "/statics/imgs/tabBar/browse_selected.png"
+      }, 
+      {
+        "pagePath": "pages/community/community",
+        "text": "社区交流",
+        "iconPath": "/statics/imgs/tabBar/community.png",
+        "selectedIconPath": "/statics/imgs/tabBar/community_selected.png"
+      },
+      {
+        "pagePath": "pages/recommend/recommend",
+        "text": "菜品推荐",
+        "iconPath": "/statics/imgs/tabBar/recommend.png",
+        "selectedIconPath": "/statics/imgs/tabBar/recommend_selected.png"
+      },
+      {
+        "pagePath": "pages/personal/personal",
+        "text": "个人信息",
+        "iconPath": "/statics/imgs/tabBar/personal.png",
+        "selectedIconPath": "/statics/imgs/tabBar/personal_selected.png"
+      }
+    ]
   },
   "window": {
     "navigationBarTextStyle": "black",
