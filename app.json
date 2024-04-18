@@ -1,6 +1,8 @@
 {
   "pages": [
-    "pages/browse/browse",
+    "pages/browse/store_list/store_list",
+    "pages/browse/store_page/store_page",
+    "pages/browse/food_page/food_page",
     "pages/community/community",
     "pages/recommend/recommend",
     "pages/personal/personal"
@@ -10,7 +12,7 @@
     "selectedColor": "#e5bb69",
     "borderStyle": "white",
     "list": [{
-      "pagePath": "pages/browse/browse",
+      "pagePath": "pages/browse/store_list/store_list",
       "text": "美食浏览",
       "iconPath":"/statics/imgs/tabBar/browse.png",
       "selectedIconPath": "/statics/imgs/tabBar/browse_selected.png"
@@ -37,11 +39,10 @@
   },
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarBackgroundColor": "#ffffff"
+    "navigationBarTitleText": "",
+    "navigationBarBackgroundColor": "#fff2d9"
   },
   "usingComponents": {
-    "myPackage": "weui-miniprogram"
   },
   "style": "v2",
   "componentFramework": "glass-easel",

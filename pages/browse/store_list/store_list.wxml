@@ -1,0 +1,131 @@
+<!--store_list.wxml-->
+<view class="search">
+      <view class="search_in">
+        <input type="text" placeholder="请输入搜索内容"/>
+        <view class="search_btn">
+            <image src="../../../statics/imgs/community/search.png"></image>
+        </view>
+      </view>
+    </view>
+<view class="choose_bar">
+    <view class="food_type">
+      <image class="type_image" src="/statics/pic_tag/all2.png" mode="scaleToFill"></image>
+      <text>全部</text>
+    </view>
+    <view class="food_type">
+      <image class="type_image" src="/statics/pic_tag/bbq.png" mode="scaleToFill"></image>
+      <text>烧烤</text>
+    </view>
+    <view class="food_type">
+      <image class="type_image" src="/statics/pic_tag/cake.png" mode="scaleToFill"></image>
+      <text>甜点</text>
+    </view>
+    <view class="food_type">
+      <image class="type_image" src="/statics/pic_tag/drink.png" mode="scaleToFill"></image>
+      <text>饮品</text>
+    </view>
+    <view class="food_type">
+      <image class="type_image" src="/statics/pic_tag/fruit.png" mode="scaleToFill"></image>
+      <text>水果</text>
+    </view>
+    <view class="food_type">
+      <image class="type_image" src="/statics/pic_tag/hotpot.png" mode="scaleToFill"></image>
+      <text>火锅</text>
+    </view>
+    <view class="food_type">
+      <image class="type_image" src="/statics/pic_tag/noddles.png" mode="scaleToFill"></image>
+      <text>面食</text>
+    </view>
+    <view class="food_type">
+      <image class="type_image" src="/statics/pic_tag/rice.png" mode="scaleToFill"></image>
+      <text>炒菜</text>
+    </view>
+    <view class="food_type">
+      <image class="type_image" src="/statics/pic_tag/soop.png" mode="scaleToFill"></image>
+      <text>早点</text>
+    </view>
+    <view class="food_type">
+      <image class="type_image" src="/statics/pic_tag/western.png" mode="scaleToFill"></image>
+      <text>西餐</text>
+    </view>
+</view>
+<view class="list_bar">
+    <view class="title">
+      <view class="title_pic">
+        <image src="/statics/pic_tag/cheese.png " mode="aspectFill"></image>
+      </view>
+      <view class="title_name">
+        <text>店铺筛选结果</text>
+      </view>
+    </view>
+    <view class="store" bindtap="next_calculator">
+      <view class="store_image">
+        <image src="/statics/pic_food/food1.jpg" mode="aspectFill"></image>
+      </view>
+      <view class="store_name">
+        <text>店铺名称</text>
+      </view>
+      <view class="other">
+        <text decode="true">餐厅类型&emsp;&emsp;餐厅地址</text>
+      </view>
+      <view class="turn">
+        <image src="/statics/pic_tool/turn.png"></image>
+      </view>
+    </view>
+    <view class="store" bindtap="next_calculator">
+      <view class="store_image">
+        <image src="/statics/pic_food/food2.jpg" mode="aspectFill"></image>
+      </view>
+      <view class="store_name">
+        <text>店铺名称</text>
+      </view>
+      <view class="other">
+        <text decode="true">餐厅类型&emsp;&emsp;餐厅地址</text>
+      </view>
+      <view class="turn">
+        <image src="/statics/pic_tool/turn.png"></image>
+      </view>
+    </view>
+    <view class="store" bindtap="next_calculator">
+      <view class="store_image">
+        <image src="/statics/pic_food/food3.jpg" mode="aspectFill"></image>
+      </view>
+      <view class="store_name">
+        <text>店铺名称</text>
+      </view>
+      <view class="other">
+        <text decode="true">餐厅类型&emsp;&emsp;餐厅地址</text>
+      </view>
+      <view class="turn">
+        <image src="/statics/pic_tool/turn.png"></image>
+      </view>
+    </view>
+    <view class="store" bindtap="next_calculator">
+      <view class="store_image">
+        <image src="/statics/pic_food/food5.jpg" mode="aspectFill"></image>
+      </view>
+      <view class="store_name">
+        <text>店铺名称</text>
+      </view>
+      <view class="other">
+        <text decode="true">餐厅类型&emsp;&emsp;餐厅地址</text>
+      </view>
+      <view class="turn">
+        <image src="/statics/pic_tool/turn.png"></image>
+      </view>
+    </view>
+    <view class="store" bindtap="next_calculator">
+      <view class="store_image">
+        <image src="/statics/pic_food/food4.jpg" mode="aspectFill"></image>
+      </view>
+      <view class="store_name">
+        <text>店铺名称</text>
+      </view>
+      <view class="other">
+        <text decode="true">餐厅类型&emsp;&emsp;餐厅地址</text>
+      </view>
+      <view class="turn">
+        <image src="/statics/pic_tool/turn.png"></image>
+      </view>
+    </view>
+</view>
