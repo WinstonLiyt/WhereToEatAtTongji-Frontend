@@ -1,0 +1,9 @@
+.weui-dialog__root {
+  position: relative;
+  z-index: 1000;
+}
+.weui-dialog__title:focus {
+  outline: none;
+}
+
+

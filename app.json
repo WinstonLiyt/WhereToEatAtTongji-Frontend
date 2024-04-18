@@ -12,26 +12,26 @@
     "list": [{
       "pagePath": "pages/browse/browse",
       "text": "美食浏览",
-      "iconPath":"/statics/browse.png",
-      "selectedIconPath": "/statics/browse_selected.png"
+      "iconPath":"/statics/imgs/tabBar/browse.png",
+      "selectedIconPath": "/statics/imgs/tabBar/browse_selected.png"
     }, 
     {
       "pagePath": "pages/community/community",
       "text": "社区交流",
-      "iconPath":"/statics/community.png",
-      "selectedIconPath": "/statics/community_selected.png"
+      "iconPath":"/statics/imgs/tabBar/community.png",
+      "selectedIconPath": "/statics/imgs/tabBar/community_selected.png"
     },
     {
       "pagePath": "pages/recommend/recommend",
       "text": "菜品推荐",
-      "iconPath":"/statics/recommend.png",
-      "selectedIconPath": "/statics/recommend_selected.png"
+      "iconPath":"/statics/imgs/tabBar/recommend.png",
+      "selectedIconPath": "/statics/imgs/tabBar/recommend_selected.png"
     },
     {
       "pagePath": "pages/personal/personal",
       "text": "个人信息",
-      "iconPath":"/statics/personal.png",
-      "selectedIconPath": "/statics/personal_selected.png"
+      "iconPath":"/statics/imgs/tabBar/personal.png",
+      "selectedIconPath": "/statics/imgs/tabBar/personal_selected.png"
     }
   ]
   },
@@ -39,6 +39,9 @@
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "Weixin",
     "navigationBarBackgroundColor": "#ffffff"
+  },
+  "usingComponents": {
+    "myPackage": "weui-miniprogram"
   },
   "style": "v2",
   "componentFramework": "glass-easel",

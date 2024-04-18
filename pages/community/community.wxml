@@ -1,0 +1,13 @@
+<!--pages/index/index.wxml-->
+<view class="main">
+  <view class="top">
+    <view class="search">
+      <view class="search_in">
+        <input type="text" placeholder="请输入搜索内容"/>
+        <view class="search_btn">
+            <image src="../../statics/imgs/community/search.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

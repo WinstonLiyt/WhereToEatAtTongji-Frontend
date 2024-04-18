@@ -1,5 +1,7 @@
+@import './miniprogram_npm/weui-miniprogram/weui-wxss/dist/style/weui.wxss';
+
 /**app.wxss**/
-:root {
+page {
   --primary-color: #ffe6b5; /* 主题色 */
   --secondary-color: #b6855d; /* 辅助颜色 */
   --tertiary-color: #fff2d9; /* 次要颜色 */

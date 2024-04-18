@@ -1,1 +1,49 @@
 /* pages/community/community.wxss */
+
+/* Global setting */
+page {
+    background-color: var(--tertiary-color);
+}
+
+/* Search bar*/
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 120rpx;
+    background-color: var(--tertiary-color);
+  }
+  .search .search_in {
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    padding: 0 10rpx;
+    box-sizing: border-box;
+    height: 90rpx;
+    width: 710rpx;
+    background-color: #ffffff;
+    border-radius: 100rpx;
+  }
+  .search_in image {
+    height: 45rpx;
+    width: 45rpx;
+  }
+  .search input {
+    margin-left: 25rpx;
+    width: 80%;
+  }
+  .search_in .search_btn {
+    height: 80rpx;
+    width: 80rpx;
+    border-radius: 100%;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 55rpx;
+    cursor: pointer;
+  }
+
+
+  /* Posts */
