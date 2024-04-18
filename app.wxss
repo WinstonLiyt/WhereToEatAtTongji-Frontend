@@ -3,7 +3,7 @@
 /**app.wxss**/
 page {
   --primary-color: #ffe6b5; /* 主题色 */
-  --secondary-color: #b61055d; /* 辅助颜色 */
+  --secondary-color: #b6855d; /* 辅助颜色 */
   --tertiary-color: #fff2d9; /* 次要颜色 */
 
   font-family: sans-serif;
@@ -14,7 +14,12 @@ page {
   --fontsize-h5: 35rpx;
   --fontsize-h6: 32rpx;
   --fontsize-text: 30rpx;
-  --fontsize-text-small: 23rpx;
+  --fontsize-text-sm: 25rpx;
+  --fontsize-text-smsm: 23rpx;
+  --fontweight-bold: 700;
+  --fontweight-normal: 500;
+  --fontweight-light: 400;
+
 
 }
 

@@ -3,6 +3,11 @@
 /* Global setting */
 page {
     background-color: var(--tertiary-color);
+    height: 100%;
+}
+
+.main {
+    height: 100%;
 }
 
 /* Search bar*/
@@ -10,7 +15,7 @@ page {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 120rpx;
+    /* height: 120rpx; */
     background-color: var(--tertiary-color);
   }
   .search .search_in {
@@ -46,4 +51,110 @@ page {
   }
 
 
-  /* Posts */
+/* Posts */
+
+.posts {
+    display: flex;
+    flex-direction: column;
+    gap: 40rpx;
+    height: 100%;
+    background-color: var(--tertiary-color);
+
+}
+
+.posts .post-item {
+    background-color: var(--primary-color);
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.post-item .head-box {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 70% 30%;
+    align-items: center;
+
+}
+
+.post-item .head-box .avatar {
+    height: 100rpx;
+    width: 100rpx;
+    border-radius: 100rpx;
+
+    grid-row-start: span 2
+}
+
+.post-item .head-box .username {
+    font-size: var(--fontsize-h6);
+    color: var(--secondary-color);
+    font-weight: var(--fontweight-bold);
+    align-items: center;
+}
+
+.post-item .head-box .post-time {
+    font-size: var(--fontsize-text-smsm);
+    color: var(--secondary-color);
+}
+
+.post-item .title-box .title {
+    font-size: var(--fontsize-text);
+    
+}
+
+
+.post-item .image-box {
+    display: flex;
+    gap: 20rpx;
+}
+
+.post-item .image-box image {
+    max-width: 60%;
+}
+
+.post-item .bottom-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-item .bottom-box .label-box {
+    display: flex;
+    gap: 15rpx;
+}
+
+.post-item .bottom-box .label-box .label {
+    font-size: var(--fontsize-text-smsm);
+    color: var(--secondary-color);
+    font-weight: var(--fontweight-bold);
+    background-color: var(--tertiary-color);
+    border-radius: 100rpx;
+    padding: 0 15rpx 0 15rpx;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.post-item .bottom-box .reaction-box {
+    display: flex;
+    gap: 30rpx;
+}
+
+.post-item .bottom-box .reaction-box .reaction-item {
+    display: flex;
+    gap: 10rpx;
+    align-items: center;
+    color: var(--secondary-color);
+    font-weight: var(--fontweight-normal);
+}
+
+.post-item .bottom-box .reaction-box .reaction-item text{
+    font-size: var(--fontsize-text-sm);
+}
+
+.post-item .bottom-box .reaction-box image {
+    width: 45rpx !important;
+}

@@ -1,12 +1,13 @@
 {
   "pages": [
-    "pages/browse/browse",
     "pages/community/community",
+    "pages/browse/browse",
     "pages/recommend/recommend",
     "pages/personal/personal"
   ],
   "tabBar": {
     "color": "#f6cc7a",
+    "backgroundColor": "#fff2d9",
     "selectedColor": "#e5bb69",
     "borderStyle": "white",
     "list": [{
@@ -38,7 +39,7 @@
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "Weixin",
-    "navigationBarBackgroundColor": "#ffffff"
+    "navigationBarBackgroundColor": "#fff2d9"
   },
   "usingComponents": {
     "myPackage": "weui-miniprogram"
