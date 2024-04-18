@@ -1,1 +1,16 @@
-/* pages/recommend/recommend.wxss */
+/**index.wxss**/
+.scroll-container{
+  width: 750rpx;
+  height: 300rpx;
+  text-align: center;
+  background: #DDD;
+  overflow: hidden;
+}
+.scroll-text{
+  line-height: 300rpx;
+  font-size: 50rpx;
+  font-weight: bold;
+}
+button{
+  margin-top: 20rpx;
+}

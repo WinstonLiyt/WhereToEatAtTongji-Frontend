@@ -1,0 +1,13 @@
+<view class="container">
+  <!-- 滚动区域 -->
+  <view class="scroll-container">
+    <view class="transform-container" animation="{{animationData}}">
+      <view wx:for="{{scrollText}}" wx:key="*this" class="scroll-text">
+        {{item}}
+      </view>
+    </view>
+  </view>
+  <!-- 按钮 -->
+  <button type="primary" bindtap="startScroll">开启</button>
+  <button bindtap="reset">重置</button>
+</view>
