@@ -1,7 +1,9 @@
 {
   "pages": [
     "pages/community/community",
-    "pages/browse/browse",
+    "pages/browse/store_list/store_list",
+    "pages/browse/store_page/store_page",
+    "pages/browse/food_page/food_page",
     "pages/recommend/recommend",
     "pages/personal/personal",
     "pages/businessEdit/businessEdit"
@@ -11,13 +13,13 @@
     "backgroundColor": "#fff2d9",
     "selectedColor": "#e5bb69",
     "borderStyle": "white",
-    "list": [
-      {
-        "pagePath": "pages/browse/browse",
+
+  "list": [{
+        "pagePath": "pages/browse/store_list/store_list",
         "text": "美食浏览",
-        "iconPath": "/statics/imgs/tabBar/browse.png",
+        "iconPath":"/statics/imgs/tabBar/browse.png",
         "selectedIconPath": "/statics/imgs/tabBar/browse_selected.png"
-      },
+      }, 
       {
         "pagePath": "pages/community/community",
         "text": "社区交流",
@@ -40,11 +42,10 @@
   },
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "Weixin",
+    "navigationBarTitleText": "",
     "navigationBarBackgroundColor": "#fff2d9"
   },
   "usingComponents": {
-    "myPackage": "weui-miniprogram"
   },
   "style": "v2",
   "componentFramework": "glass-easel",
