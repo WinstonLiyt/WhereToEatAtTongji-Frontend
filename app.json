@@ -7,6 +7,7 @@
     "pages/browse/food_page/food_page",
     "pages/recommend/recommend",
     "pages/personal/personal",
+    "pages/personal-student/personal-student",
     "pages/business_edit/business_edit",
     "pages/business_menu/business_menu",
     "pages/business_show/business_show"
@@ -36,7 +37,7 @@
             "selectedIconPath": "/statics/imgs/tabBar/recommend_selected.png"
         },
         {
-            "pagePath": "pages/personal/personal",
+            "pagePath": "pages/personal-student/personal-student",
             "text": "个人信息",
             "iconPath": "/statics/imgs/tabBar/personal.png",
             "selectedIconPath": "/statics/imgs/tabBar/personal_selected.png"

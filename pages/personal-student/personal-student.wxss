@@ -1,0 +1,112 @@
+page {
+  background-color: #FCF9E8;
+}
+
+.userinfo {
+  width: 100%;
+  height: 180rpx;
+  display: flex;
+  padding: 50rpx;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 150rpx;
+  height: 150rpx;
+  margin-right: 30rpx;
+  border-radius: 50%;
+}
+
+.userinfo-text{
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.userinfo-nickname{
+  font-weight: var(--fontweight-bold);
+  font-size: 40rpx;
+  margin-bottom: 10rpx;
+}
+
+.userinfo-signature{
+  color: var(--secondary-color);
+}
+
+/* -------------------------------------------- */
+.account {
+  width: 100%;
+  height: 160rpx;
+  display:flex;
+  align-items: center;
+  display: flex;
+}
+
+.account .line {
+  background: #e6e6e6;
+  width: 2rpx;
+  height: 112rpx;
+  margin-top: 24rpx;
+}
+
+.account .item {
+  width: 374rpx;
+  height: 160rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.account .item .num {
+  font-size: 52rpx;
+  font-weight: var(--fontweight-bold);
+  color: var(--secondary-color);
+  letter-spacing: 0;
+  line-height: 52rpx;
+}
+
+.account .item .unit {
+  margin-top: 18rpx;
+  font-size: 25rpx;
+  color: #666;
+  letter-spacing: 0;
+  line-height: 20rpx;
+}
+
+
+.experience-card{
+  margin: 30rpx;
+  background-color:rgb(153, 230, 182);
+  height: 250rpx;
+  padding: 50rpx;
+  border-radius: 40rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.experience-upper-box{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.experience-title-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.experience-title{
+  font-size: 60rpx;
+  line-height: 60rpx;
+  margin-bottom: 15rpx;
+  color: rgb(50, 109, 74);
+  font-weight: var(--fontweight-bold);
+}
+
+.experience-progress{
+  margin: 10px 0;
+}
