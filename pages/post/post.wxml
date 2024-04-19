@@ -1,0 +1,296 @@
+<!--pages/post/post.wxml-->
+<view class="main">
+    <view class="img-swiper">
+      <swiper class="swiper-body" indicator-dots="true" autoplay="false" duration="500">
+          <swiper-item>
+            <view class="swiper-item">
+                <image src="../../statics/imgs/community/post/food.jpg" mode="widthFix"></image>
+            </view>
+          </swiper-item>
+          <swiper-item>
+            <view class="swiper-item">
+                <image src="../../statics/imgs/community/post/food.jpg" mode="widthFix"></image>
+            </view>
+          </swiper-item>
+          <swiper-item>
+            <view class="swiper-item">
+                <image src="../../statics/imgs/community/post/food.jpg" mode="widthFix"></image>
+            </view>
+          </swiper-item>
+      </swiper>
+    </view>
+
+    <view class="main-body">
+        <view class="user-info mb-med mr-max">
+            <view class="user-image">
+                <image src="../../statics/imgs/community/avatar.jpg" mode="widthFix"></image>
+            </view>
+
+            <view class="username">
+                <text>傘木 希美</text>
+            </view>
+
+            <view class="post-time">
+                <text>2024-4-19</text>
+            </view>
+        </view>
+
+        <view class="content ml-max mr-max mb-max">
+            <view class="title mb-med"> 希食东的番茄牛肉拉面很不错 </view>
+            <view class="content mb-med">
+                <text>（GPT4）希食东的番茄牛肉拉面真的是让人难以忘怀的美味！🍜 大块的牛肉，鲜嫩多汁，完美吸收了浓郁的番茄汤底，每一口都是满满的幸福感。拉面则是恰到好处的软硬,与汤汁完美结合，让人每一口都想再来一碗。在忙碌的一天后，来一碗这样的拉面，疲惫似乎都消失了。不知道你们有没有试过这样一碗让人心动的美味？如果还没有，一定要去尝一尝！🌟 </text>
+            </view>
+            
+            <view class="other-info">
+                <view class="label-box">
+                    <view class="label">
+                        <text>#美食探店</text>
+                    </view>
+                    <view class="label">
+                        <text>#拉面爱好者</text>
+                    </view>
+                    <view class="label">
+                        <text>#番茄牛肉拉面</text>
+                    </view>
+                </view>
+
+                <view class="location-box mr-max">
+                    <view class="location">
+                        <image src="../../statics/imgs/community/post/location.png" mode="widthFix"></image>
+                        <text>小吃街二楼</text>
+                    </view>
+                </view>
+            </view>
+            
+        </view>
+
+        <view class="make-comment ml-med mr-med mb-max">
+            <view class="search">
+                <view class="search_in">
+                    <image src="../../statics/imgs/community/avatar2.jpg" mode="widthFix"></image>
+
+                    <input type="text" placeholder="发表评论"  placeholder-class="mid-make-comment"/>
+                </view>
+            </view>
+        </view>
+
+        <view class="comments ml-med mr-med mb-med">
+            <view class="comment">
+                <view class="parent-comment">
+                    <view class="comment-avatar">
+                        <image src="../../statics/imgs/community/avatar.jpg" mode="widthFix"></image>
+                    </view>
+
+                    <view class="comment-user-info">
+                        <view class="comment-username">
+                            <text>傘木 希美</text>
+                        </view>
+                        <view class="comment-upvotes mr-min">
+                            <image src="../../statics/imgs/community/post/upvote_selected.png" mode="widthFix"></image>
+                            <text>100</text>
+                        </view>
+                    </view>
+
+                    <view class="comment-content mb-min">
+                        <text>是真的，我去过了，至少比食堂好吃多了。配蔬菜汤也不错，还有套餐。</text>
+                    </view>
+
+                    <view class="comment-bottom">
+                        <view class="comment-time">
+                            <text>2024-4-19 13:16</text>
+                        </view>
+                        <view class="comment-reply">
+                            <text>Reply</text>
+                        </view>
+                    </view>
+                </view>
+
+                <view class="child-comments">
+                    <view class="child-comment">
+                        <view class="comment-avatar">
+                            <image src="../../statics/imgs/community/avatar.jpg" mode="widthFix"></image>
+                        </view>
+
+                        <view class="comment-user-info">
+                            <view class="comment-username">
+                                <text>傘木 希美</text>
+                            </view>
+                            <view class="comment-upvotes mr-min">
+                                <image src="../../statics/imgs/community/post/upvote_selected.png" mode="widthFix"></image>
+                                <text>100</text>
+                            </view>
+                        </view>
+
+                        <view class="comment-content mb-min">
+                            <text>好好好，我今天去看一下。</text>
+                        </view>
+
+                        <view class="comment-bottom">
+                            <view class="comment-time">
+                                <text>2024-4-19 13:16</text>
+                            </view>
+                            <view class="comment-reply">
+                                <text>Reply</text>
+                            </view>
+                        </view>
+                    </view>
+
+                    <view class="child-comment">
+                        <view class="comment-avatar">
+                            <image src="../../statics/imgs/community/avatar.jpg" mode="widthFix"></image>
+                        </view>
+
+                        <view class="comment-user-info">
+                            <view class="comment-username">
+                                <text>傘木 希美</text>
+                            </view>
+                            <view class="comment-upvotes mr-min">
+                                <image src="../../statics/imgs/community/post/upvote_selected.png" mode="widthFix"></image>
+                                <text>999</text>
+                            </view>
+                        </view>
+
+                        <view class="comment-content mb-min">
+                            <text>完了今天 GRE 还没做。</text>
+                        </view>
+
+                        <view class="comment-bottom">
+                            <view class="comment-time">
+                                <text>2024-4-19 13:16</text>
+                            </view>
+                            <view class="comment-reply">
+                                <text>Reply</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <view class="comments ml-med mr-med mb-max">
+            <view class="comment">
+                <view class="parent-comment">
+                    <view class="comment-avatar">
+                        <image src="../../statics/imgs/community/avatar2.jpg" mode="widthFix"></image>
+                    </view>
+
+                    <view class="comment-user-info">
+                        <view class="comment-username">
+                            <text>中川 夏纪</text>
+                        </view>
+                        <view class="comment-upvotes mr-min">
+                            <image src="../../statics/imgs/community/post/upvote_selected.png" mode="widthFix"></image>
+                            <text>55</text>
+                        </view>
+                    </view>
+
+                    <view class="comment-content mb-min">
+                        <text>确实还行</text>
+                    </view>
+
+                    <view class="comment-bottom">
+                        <view class="comment-time">
+                            <text>2024-4-19 13:16</text>
+                        </view>
+                        <view class="comment-reply">
+                            <text>Reply</text>
+                        </view>
+                    </view>
+                </view>
+
+                <view class="child-comments">
+                    <view class="child-comment">
+                        <view class="comment-avatar">
+                            <image src="../../statics/imgs/community/avatar.jpg" mode="widthFix"></image>
+                        </view>
+
+                        <view class="comment-user-info">
+                            <view class="comment-username">
+                                <text>傘木 希美</text>
+                            </view>
+                            <view class="comment-upvotes mr-min">
+                                <image src="../../statics/imgs/community/post/upvote_selected.png" mode="widthFix"></image>
+                                <text>10</text>
+                            </view>
+                        </view>
+
+                        <view class="comment-content mb-min">
+                            <text>可以可以。</text>
+                        </view>
+
+                        <view class="comment-bottom">
+                            <view class="comment-time">
+                                <text>2024-4-19 13:16</text>
+                            </view>
+                            <view class="comment-reply">
+                                <text>Reply</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <view class="comments ml-med mr-med mb-max">
+            <view class="comment mb-max">
+                <view class="parent-comment">
+                    <view class="comment-avatar">
+                        <image src="../../statics/imgs/community/avatar1.PNG" mode="widthFix"></image>
+                    </view>
+
+                    <view class="comment-user-info">
+                        <view class="comment-username">
+                            <text>Ryan Ming</text>
+                        </view>
+                        <view class="comment-upvotes mr-min">
+                            <image src="../../statics/imgs/community/post/upvote_selected.png" mode="widthFix"></image>
+                            <text>55</text>
+                        </view>
+                    </view>
+
+                    <view class="comment-content mb-min">
+                        <text>回来做GRE.</text>
+                    </view>
+
+                    <view class="comment-bottom">
+                        <view class="comment-time">
+                            <text>2024-4-19 13:16</text>
+                        </view>
+                        <view class="comment-reply">
+                            <text>Reply</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <view class="main-body-padding"></view>
+
+    </view>
+
+    <view class="tabbar_box" style="background-color:{{tabbar.backgroundColor}}">
+        <view class="tabbar_nav ml-med mr-med" hover-class="none" open-type="switchTab">
+            <view class="tabbar-comment">
+                <view class="tabbar-comment_in">
+                    <input type="text" placeholder="发表评论" placeholder-class="tabbar-make-comment"/>
+                </view>
+            </view>
+
+            <view class="tabbar-reaction-box">
+                <view class="tabbar-reaction-item ">
+                    <image src="../../statics/imgs/community/post/upvote_selected.png" mode="widthFix"></image>
+                    <text>100</text>
+                </view>
+                <view class="tabbar-reaction-item">
+                    <image src="../../statics/imgs/community/post/comment.png" mode="widthFix"></image>
+                    <text>10</text>
+                </view>
+                <view class="tabbar-reaction-item">
+                    <image src="../../statics/imgs/community/post/star.png" mode="widthFix"></image>
+                    <text>60</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    
+</view>

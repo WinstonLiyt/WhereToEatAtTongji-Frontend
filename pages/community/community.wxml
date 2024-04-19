@@ -17,17 +17,17 @@
                 <image src="../../statics/imgs/community/avatar.jpg" class="avatar"></image>
                 <text class="username"> 傘木 希美</text>
                 <view class="post-time">
-                    2024-12-03
+                    2024-4-19
                 </view>
             </view>
 
-            <view class="title-box ml-med mr-med mb-med">
-                <text class="title">「リズと青い鳥」ってさ、私とみぞれに何か似てるなって思ってた。</text>
+            <view class="title-box ml-med mr-med mb-med" bindtap="onTapPostDetail">
+                <text class="title">希食东的番茄牛肉拉面很不错</text>
             </view>
 
             <view class="image-box ml-med mr-med mb-med">
-                <image src="../../statics/imgs/community/NozomiScarf.jpg" class=".bdr-med" mode="widthFix"></image>
-                <image src="../../statics/imgs/community/NozomiScarf.jpg" class=".bdr-med" mode="widthFix"></image>
+                <image src="../../statics/imgs/community/post/food.jpg" class=".bdr-med" mode="widthFix"></image>
+                <image src="../../statics/imgs/community/post/food.jpg" class=".bdr-med" mode="widthFix"></image>
             </view>
 
             <view class="bottom-box ml-med mr-med mb-med">
@@ -62,16 +62,16 @@
                 <image src="../../statics/imgs/community/avatar1.png" class="avatar"></image>
                 <text class="username"> 吉川 優子 </text>
                 <view class="post-time">
-                    2024-12-04
+                    2024-4-04
                 </view>
             </view>
 
             <view class="title-box ml-med mr-med mb-med">
-                <text class="title">あんたってほんとバカ?</text>
+                <text class="title">其实食堂的份饭也挺好吃的</text>
             </view>
 
             <view class="image-box ml-med mr-med mb-med">
-                <image src="../../statics/imgs/community/NozomiScarf.jpg" class=".bdr-med" mode="widthFix"></image>
+                <image src="../../statics/imgs/community/post/food.jpg" class=".bdr-med" mode="widthFix"></image>
             </view>
 
             <view class="bottom-box ml-med mr-med mb-med">
@@ -106,12 +106,12 @@
                 <image src="../../statics/imgs/community/avatar2.jpg" class="avatar"></image>
                 <text class="username"> 中川 夏纪 </text>
                 <view class="post-time">
-                    2024-12-04
+                    2024-04-19
                 </view>
             </view>
 
             <view class="title-box ml-med mr-med mb-med">
-                <text class="title">飛び立つ君の背を見上げる...</text>
+                <text class="title">今天是疯狂星期四三十九时零分零秒。V我50</text>
             </view>
 
             <view class="image-box ml-med mr-med mb-med">
