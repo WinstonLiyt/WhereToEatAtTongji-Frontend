@@ -1,0 +1,5 @@
+<view class="tabbar_box" style="background-color:{{tabbar.backgroundColor}}">
+    <view class="tabbar_nav" hover-class="none" open-type="switchTab">
+      <image class="tabbar_icon" src="{{item.selected ? item.selectedIconPath : item.iconPath}}"></image>
+    </view>
+</view>

@@ -68,6 +68,10 @@ Page({
   * Milestone1 演示 js
   */
 
-
+  onTapPostDetail() {
+      wx.navigateTo({
+        url: '/pages/post/post'
+      })
+  }
 
 })

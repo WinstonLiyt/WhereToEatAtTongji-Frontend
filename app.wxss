@@ -14,9 +14,10 @@ page {
   --fontsize-h5: 35rpx;
   --fontsize-h6: 32rpx;
   --fontsize-text: 30rpx;
+  --fontsize-text-md: 27rpx;
   --fontsize-text-sm: 25rpx;
   --fontsize-text-smsm: 23rpx;
-  --fontweight-bold: 700;
+  --fontweight-bold: 600;
   --fontweight-normal: 500;
   --fontweight-light: 400;
 
