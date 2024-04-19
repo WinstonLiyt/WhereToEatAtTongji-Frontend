@@ -1,0 +1,414 @@
+page{
+  background-color: #fcf9e9;
+}
+
+.top_pic{
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  height: 350px;
+}
+
+.top_pic image{
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  object-position: center top; /* 图片在容器中水平居中，垂直顶部对齐 */
+}
+
+.store_block{
+  width: 100%;
+  height:max-content;
+  background-color: #fcf9e9;
+  position:relative;
+  top:-25px;
+  border-radius:30px 30px 0 0;
+}
+
+.store_block .title{
+  width: fit-content;
+  height: 90rpx;
+  border-radius: 30px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px #a5a5a5;
+  position: absolute;
+  top:-20px;
+  left:5%;
+  display:flex;
+}
+
+.title .title_pic{
+  aspect-ratio: 1 / 1;
+  height: 75%;
+  border-radius: 100%;
+  border: 2px solid rgb(199, 199, 199);
+  position:relative;
+  top:7.5%;
+  left:3%; 
+  display:flex;
+  overflow: hidden;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+}
+.title_pic image{
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.store_block .title_name{
+  position: relative;
+  top:20%;
+  margin-left: 8%;
+  width: calc(100% - 30%);
+  overflow: hidden;
+}
+.store_block .title_name text{
+  font-size:18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  white-space: nowrap; /* 不换行 */
+  overflow: hidden; /* 隐藏超出部分 */
+}
+
+.store_block .title_name .scrollable-text {
+  white-space: nowrap;
+  overflow: hidden; /* 确保CSS与小程序的行为一致 */
+  width: 100%;
+}
+
+.store_block .description_title{
+  width:max-content;
+  height:max-content;
+  position:relative;
+  top:50px;
+  left:8%;
+}
+.store_block .description_title text{
+  font-size:19px;
+  letter-spacing: 0.5px;
+}
+
+.store_block .description{
+  width:fit-content;
+  height:max-content;
+  position:relative;
+  margin-left: 8%;
+  margin-right: 8%;
+  top:60px;
+}
+.store_block .description text{
+  font-size:15px;
+  letter-spacing: 0.5px;
+  color:#a5a5a5;
+}
+.food_list{
+  width:90%;
+  padding-left: 5%;
+  padding-right: 5%;
+  position:relative;
+  height:max-content;
+  top:50px;
+  background-color: #fcf9e9;
+  padding-bottom:50px;
+  margin-bottom: 40px;
+}
+.place{
+  position:relative;
+  top:60px;
+  height:80rpx;
+  margin-top:10rpx;
+  width:90%;
+  margin-left: 8%;
+  margin-right: 8%;
+  display: flex;
+  overflow: hidden;
+  align-items: center; /* 垂直居中 */
+}
+.place text{
+  font-size: 13px;
+  letter-spacing: 1px;
+  color:rgb(49, 49, 49);
+  padding-left: 10px;
+}
+.place image{
+  max-width:5%;
+  max-height:40%;
+}
+
+.add_button {
+  position:relative;
+  top:60px;
+  height:80rpx;
+  margin-top:10rpx;
+  width:90%;
+  margin-left: 5%;
+  margin-right: 8%;
+  display: flex;
+  overflow: hidden;
+  align-items: center; /* 垂直居中 */
+}
+
+.add_button button {
+  background-color: var(--primary-color);
+  color: black;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  width:fit-content;
+  padding: 8px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s; /* 过渡动画 */
+  cursor: pointer; /* 鼠标手形 */
+  border-radius: 5px; /* 圆角边框 */
+}
+
+.add_button button:hover {
+  background-color: white;
+  color: black;
+}
+
+.food{
+  position:relative;
+  margin-top:20px;
+  width:100%;
+  height:90px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 15px;
+  display: flex;
+  overflow: visible; /* 允许子元素溢出显示 */
+}
+
+.food_image{
+  display: flex;
+  border-radius: 10px;
+  position:absolute;
+  top:7.5%;
+  left:3%;
+  height:85%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  margin-right: 5px;
+}
+
+.food_image image{
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: center top; /* 图片在容器中水平居中，垂直顶部对齐 */
+}
+
+.food_name{
+  position: absolute;
+  margin-left: 10px;
+  top:20%;
+  left:90px;
+}
+.food_name text{
+  font-size: 17px;
+  letter-spacing: 1px;
+  font-weight:bold;
+}
+.food_price{
+  position:absolute;
+  top:20%;
+  left:75%;
+}z
+.food_price text{
+  font-size: 17px;
+  letter-spacing: 1px;
+  font-weight:bold;
+}
+.other{
+  position:absolute;
+  top:60%;
+  left:90px;
+  margin-left: 10px;
+  display: flex;
+}
+.other text{
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-weight:100;
+  color:rgb(148, 148, 148);
+}
+.turn{
+  position:absolute;
+  top:40px;
+  left:90%;
+  width:20px;
+  height: 20px;
+}
+.turn image{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.telephone{
+  position: relative;
+  display:flex;
+  overflow: hidden;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  height:50px;
+}
+.telephone text{
+  font-size: 11px;
+  color:#747474;
+  letter-spacing: 1px;
+}
+
+.delete_btn {
+  position: absolute;
+  top: 15%;
+  right: -20px;
+  transform: translateY(-50%); /* 确保垂直居中 */
+  background-color: #ff4444;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 30%;
+  font-size: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6); /* 半透明黑色背景 */
+  z-index: 1000; /* 确保在顶层 */
+}
+
+.modal-content {
+  background-color: #fff;
+  width: 90%; /* 适配屏幕宽度 */
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 20px;
+  color: var(--secondary-color);
+  background-color: #fcf9e9;
+}
+
+.modal-header {
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.modal-header text {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.modal-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-icon {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+  padding: 5px;
+  margin-bottom: 15px;
+}
+
+.input-icon-meal {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+.modal-name {
+  display: flex;
+}
+
+.modal-price {
+  display: flex;
+}
+
+.modal-description {
+  display: flex;
+}
+
+input[type='text'], textarea {
+  margin-bottom: 15px;
+  padding: 5px;
+  margin-left: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width:100%;
+}
+
+textarea {
+  height: 60px;
+}
+
+button {
+  margin-top: 10px;
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 10px;
+}
+
+.modal-footer button {
+  flex-grow: 1;
+  margin: 0 5px;
+}
+
+.modal-submit button {
+  background-color: var(--secondary-color);
+  color: #f8f8f8;
+}
+
+.modal-close button {
+  background-color: #f8f8f8;
+  color: var(--secondary-color);
+}
+
+.add_menu {
+  width: 80px;
+  border-radius: 30px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px #a5a5a5;
+}
+
+.upload-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  border: 2px dashed #ccc;
+  height: 100px;
+  width:100%;
+}
+
+.uploaded-image {
+  object-fit: contain;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.image-upload-btn {
+  display: flex;
+  margin-bottom: 10px;
+  width:100%;
+  border-radius: 5px;
+}

@@ -1,0 +1,98 @@
+<view class="top_pic">
+  <image src="/statics/pic_food/food2.jpg" mode="aspectFill"></image>
+</view>
+<view class="store_block">
+  <view class="title">
+    <view class="title_pic">
+      <image src="../../statics/imgs/business/store_kfc.png" mode="aspectFill"></image>
+    </view>
+    <view class="title_name">
+      <scroll-view scroll-x="true" class="scrollable-text">
+        <text>肯德基（同济大学嘉定校区店）</text>
+      </scroll-view>
+    </view>
+  </view>
+  <view class="description_title">
+    <text>Description</text>
+  </view>
+  <view class="description">
+    <text>疯狂星期四，V我50！！！</text>
+  </view>
+  <view class="place">
+    <image src="/statics/pic_tool/place.png" mode="aspectFill"></image>
+    <text>曹安公路4800号5幢1区A100室</text>
+  </view>
+
+  <view class="add_button">
+    <button bindtap="addFood">新增菜品</button>
+  </view>
+
+  <view class="food_list">
+    <block wx:for="{{foods}}" wx:key="id">
+      <view class="food" bindtap="next_calculator">
+        <view class="food_image">
+          <image src="{{item.image}}" mode="aspectFill"></image>
+        </view>
+        <view class="food_name">
+          <text>{{item.name}}</text>
+        </view>
+        <view class="food_price">
+          <text>￥{{item.price}}</text>
+        </view>
+        <view class="other">
+          <text decode="true">{{item.description}}</text>
+        </view>
+        <!-- <view class="delete_btn" bindtap="deleteFood" data-id="{{item.id}}" catchtap="stopPropagation">
+          <text>删除</text>
+        </view> -->
+        <view class="delete_btn" catchtap="deleteFood" data-id="{{item.id}}">
+          <text>删除</text>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class="telephone">
+    <text>联系方式：13651962636</text>
+  </view>
+</view>
+
+<!-- 在页面的WXML中添加一个模态弹窗 -->
+<view class="modal" hidden="{{!modalVisible}}">
+  <view class="modal-content">
+    <view class="modal-header">
+      <text>新增菜品</text>
+      <image src="../../statics/imgs/business/meal.png" class="input-icon-meal"></image>
+    </view>
+    <view class="modal-body">
+    <view class="modal-name">
+      <image src="../../statics/imgs/business/name.png" class="input-icon"></image>
+      <input type="text" placeholder="输入菜品名称" bindinput="inputName" />
+    </view>
+    <view class="modal-price">
+      <image src="../../statics/imgs/business/price.png" class="input-icon"></image>
+      <input type="text" placeholder="输入菜品价格" bindinput="inputPrice" />
+    </view>
+    <view class="modal-description">
+      <image src="../../statics/imgs/business/description.png" class="input-icon"></image>
+      <textarea placeholder="输入菜品描述" bindinput="inputDescription" />
+    </view>
+      <!-- <button bindtap="uploadImage">上传菜品图片</button> -->
+      <view class="image-upload-btn" bindtap="uploadImage">
+        <image src="../../statics/imgs/business/pic.png" class="input-icon"></image>
+        <view class="upload-btn" hidden="{{image}}">
+          <text>上传菜品图片</text>
+        </view>
+        <image src="{{image}}" class="uploaded-image" hidden="{{!image}}"></image>
+      </view>
+    </view>
+    <view class="modal-footer">
+      <view class="modal-submit">
+        <button bindtap="submitFood">确定新增菜品</button>
+      </view>
+      <view class="modal-close">
+        <button bindtap="closeModal">取消新增菜品</button>
+      </view>
+    </view>
+  </view>
+</view>

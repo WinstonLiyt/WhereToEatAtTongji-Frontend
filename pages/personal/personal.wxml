@@ -44,13 +44,13 @@
     </view>
     <view class="userinfo-row">
       <text class="userinfo-label">备注:</text>
-      <text class="userinfo-value">疯狂星期四，V我50</text>
+      <text class="userinfo-value">疯狂星期四，V我50！！！</text>
     </view>
   </view>
 </view>
 
 <view class="edit_info">
-  <navigator url="../businessEdit/businessEdit">
+  <navigator url="../business_edit/business_edit">
     <view class="menu">
       <view class="title">
         <image class="icon1" src="../../statics/imgs/personal/edit.png"></image>
@@ -60,7 +60,7 @@
     </view>
   </navigator>
   <view class="line"></view>
-  <navigator url="../businessEdit">
+  <navigator url="../business_show/business_show">
     <view class="menu">
       <view class="title">
         <image class="icon1" src="../../statics/imgs/personal/recipe.png"></image>
@@ -70,7 +70,7 @@
     </view>
   </navigator>
   <view class="line"></view>
-  <navigator url="">
+  <navigator url="../business_menu/business_menu">
     <view class="menu">
       <view class="title">
         <image class="icon1" src="../../statics/imgs/personal/add.png"></image>

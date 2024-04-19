@@ -9,4 +9,16 @@ Page({
     follow: "1",
     fan: 520,
   },
+
+  navigateToHome: function() {
+    console.log('Attempting to navigate to personal page');
+    wx.switchTab({
+      url: '../personal/personal',
+      fail: function(error) {
+        console.error('Redirect failed', error);
+      }
+    });
+  },
+  
+
 });

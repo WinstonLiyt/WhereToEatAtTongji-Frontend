@@ -1,0 +1,213 @@
+page{
+  background-color: #fcf9e9;
+}
+
+.top_pic{
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  height: 350px;
+}
+
+.top_pic image{
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  object-position: center top; /* 图片在容器中水平居中，垂直顶部对齐 */
+}
+
+.store_block{
+  width: 100%;
+  height:max-content;
+  background-color: #fcf9e9;
+  position:relative;
+  top:-25px;
+  border-radius:30px 30px 0 0;
+}
+
+.store_block .title{
+  width:65%;
+  height: 90rpx;
+  border-radius: 30px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px #a5a5a5;
+  position: absolute;
+  top:-20px;
+  left:5%;
+  display:flex;
+}
+
+.title .title_pic{
+  aspect-ratio: 1 / 1;
+  height: 75%;
+  border-radius: 100%;
+  border: 2px solid rgb(199, 199, 199);
+  position:relative;
+  top:7.5%;
+  left:3%; 
+  display:flex;
+  overflow: hidden;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+}
+.title_pic image{
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.title_name{
+  position: relative;
+  top:20%;
+  margin-left: 8%;
+}
+.title_name text{
+  font-size:18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.store_block .description_title{
+  width:max-content;
+  height:max-content;
+  position:relative;
+  top:50px;
+  left:8%;
+}
+.store_block .description_title text{
+  font-size:19px;
+  letter-spacing: 0.5px;
+}
+
+.store_block .description{
+  width:fit-content;
+  height:max-content;
+  position:relative;
+  margin-left: 8%;
+  margin-right: 8%;
+  top:60px;
+}
+.store_block .description text{
+  font-size:15px;
+  letter-spacing: 0.5px;
+  color:#a5a5a5;
+}
+.food_list{
+  width:90%;
+  padding-left: 5%;
+  padding-right: 5%;
+  position:relative;
+  height:max-content;
+  top:50px;
+  background-color: #fcf9e9;
+  padding-bottom:50px;
+  margin-bottom: 40px;
+}
+.place{
+  position:relative;
+  top:60px;
+  height:80rpx;
+  margin-top:10rpx;
+  width:90%;
+  margin-left: 8%;
+  margin-right: 8%;
+  display: flex;
+  overflow: hidden;
+  align-items: center; /* 垂直居中 */
+}
+.place text{
+  font-size: 13px;
+  letter-spacing: 1px;
+  color:rgb(49, 49, 49);
+}
+.place image{
+  max-width:5%;
+  max-height:40%;
+}
+.food{
+  position:relative;
+  margin-top:20px;
+  width:100%;
+  height:90px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 15px;
+  display: flex;
+  overflow: hidden;
+}
+
+.food_image{
+  display: flex;
+  border-radius: 10px;
+  position:absolute;
+  top:7.5%;
+  left:3%;
+  height:85%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  margin-right: 5px;
+}
+
+.food_image image{
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: center top; /* 图片在容器中水平居中，垂直顶部对齐 */
+}
+
+.food_name{
+  position: absolute;
+  margin-left: 10px;
+  top:20%;
+  left:90px;
+}
+.food_name text{
+  font-size: 17px;
+  letter-spacing: 1px;
+  font-weight:bold;
+}
+.food_price{
+  position:absolute;
+  top:20%;
+  left:75%;
+}z
+.food_price text{
+  font-size: 17px;
+  letter-spacing: 1px;
+  font-weight:bold;
+}
+.other{
+  position:absolute;
+  top:60%;
+  left:90px;
+  margin-left: 10px;
+  display: flex;
+}
+.other text{
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-weight:100;
+  color:rgb(148, 148, 148);
+}
+.turn{
+  position:absolute;
+  top:40px;
+  left:90%;
+  width:20px;
+  height: 20px;
+}
+.turn image{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.telephone{
+  position: relative;
+  display:flex;
+  overflow: hidden;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  height:50px;
+}
+.telephone text{
+  font-size: 11px;
+  color:#747474;
+  letter-spacing: 1px;
+}
