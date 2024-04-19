@@ -45,6 +45,9 @@
         <!-- <view class="delete_btn" bindtap="deleteFood" data-id="{{item.id}}" catchtap="stopPropagation">
           <text>删除</text>
         </view> -->
+        <view class="edit_btn" catchtap="editFood" data-id="{{item.id}}">
+          <text>编辑</text>
+        </view>
         <view class="delete_btn" catchtap="deleteFood" data-id="{{item.id}}">
           <text>删除</text>
         </view>
@@ -61,21 +64,21 @@
 <view class="modal" hidden="{{!modalVisible}}">
   <view class="modal-content">
     <view class="modal-header">
-      <text>新增菜品</text>
+      <text>{{isEditing ? '编辑菜品' : '新增菜品'}}</text>
       <image src="../../statics/imgs/business/meal.png" class="input-icon-meal"></image>
     </view>
     <view class="modal-body">
     <view class="modal-name">
       <image src="../../statics/imgs/business/name.png" class="input-icon"></image>
-      <input type="text" placeholder="输入菜品名称" bindinput="inputName" />
+      <input type="text" value="{{name}}" placeholder="输入菜品名称" bindinput="inputName" />
     </view>
     <view class="modal-price">
       <image src="../../statics/imgs/business/price.png" class="input-icon"></image>
-      <input type="text" placeholder="输入菜品价格" bindinput="inputPrice" />
+      <input type="text" value="{{price}}" placeholder="输入菜品价格" bindinput="inputPrice" />
     </view>
     <view class="modal-description">
       <image src="../../statics/imgs/business/description.png" class="input-icon"></image>
-      <textarea placeholder="输入菜品描述" bindinput="inputDescription" />
+      <textarea value="{{description}}" placeholder="输入菜品描述" bindinput="inputDescription" />
     </view>
       <!-- <button bindtap="uploadImage">上传菜品图片</button> -->
       <view class="image-upload-btn" bindtap="uploadImage">
@@ -88,10 +91,10 @@
     </view>
     <view class="modal-footer">
       <view class="modal-submit">
-        <button bindtap="submitFood">确定新增菜品</button>
+        <button bindtap="submitFood">{{isEditing ? '确定更新菜品' : '确定新增菜品'}}</button>
       </view>
       <view class="modal-close">
-        <button bindtap="closeModal">取消新增菜品</button>
+        <button bindtap="closeModal">{{isEditing ? '取消更新菜品' : '取消新增菜品'}}</button>
       </view>
     </view>
   </view>

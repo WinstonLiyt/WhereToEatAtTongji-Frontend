@@ -13,7 +13,8 @@ Page({
     name: '',
     price: '',
     description: '',
-    image: null
+    image: null,
+    isEditing: false,
     },   
 
     next_calculator(){
@@ -60,7 +61,12 @@ Page({
   // 打开新增菜品弹窗
   addFood: function() {
     this.setData({
-      modalVisible: true
+      modalVisible: true,
+      isEditing: false,
+      name: '',
+      price: '',
+      description: '',
+      image: null
     });
   },
 
@@ -98,27 +104,112 @@ Page({
 
   // 提交新增菜品
   submitFood: function() {
-    const { name, price, description, image } = this.data;
-    this.data.foods.push({ name, price, description, image });
+    const { name, price, description, image, editingId, isEditing } = this.data;
+    if (editingId) {
+        // 更新现有的食品信息
+        this.data.foods = this.data.foods.map(food => {
+            if (food.id === editingId) {
+                return { ...food, name, price, description, image };
+            }
+            return food;
+        });
+    } else {
+        // 添加新的食品
+        this.data.foods.push({ id: this.data.foods.length + 1, name, price, description, image });
+    }
+
+    // 更新视图并重置表单
     this.setData({
-      foods: this.data.foods,
-      modalVisible: false,
-      name: '',
-      price: '',
-      description: '',
-      image: null
+        foods: this.data.foods,
+        modalVisible: false,
+        name: '',
+        price: '',
+        description: '',
+        image: null,
+        editingId: null, // 重置编辑状态
+        isEditing: false  // 重置编辑状态
     });
+
     wx.showToast({
-      title: '菜品添加成功',
-      icon: 'success',
-      duration: 2000
+        title: isEditing ? '菜品更新成功' : '菜品添加成功',
+        icon: 'success',
+        duration: 2000
     });
   },
+
 
   // 关闭弹窗
   closeModal: function() {
     this.setData({
       modalVisible: false
     });
+  },
+
+  editFood: function(e) {
+    const id = e.currentTarget.dataset.id;
+    const food = this.data.foods.find(food => food.id === id);
+    if (!food) {
+      wx.showToast({
+        title: '食品未找到',
+        icon: 'error',
+        duration: 2000
+      });
+      return;
+    }
+  
+    // 设置数据到模态框
+    this.setData({
+      modalVisible: true,
+      isEditing: true,
+      name: food.name,
+      price: food.price,
+      description: food.description,
+      image: food.image,
+      editingId: id // 新增属性，用于追踪正在编辑的食品
+    });
+  },
+
+  submitFood: function() {
+    // First, retrieve `isEditing` from `this.data` to ensure it is in scope
+    const { name, price, description, image, editingId, isEditing } = this.data;
+
+    if (editingId) {
+        // Update existing food information
+        const updatedFoods = this.data.foods.map(food => {
+            if (food.id === editingId) {
+                return { ...food, name, price, description, image };
+            }
+            return food;
+        });
+        this.setData({
+            foods: updatedFoods
+        });
+    } else {
+        // Add new food item
+        this.data.foods.push({ id: this.data.foods.length + 1, name, price, description, image });
+        this.setData({
+            foods: this.data.foods
+        });
+    }
+
+    // Reset the form and update the view
+    this.setData({
+        modalVisible: false,
+        name: '',
+        price: '',
+        description: '',
+        image: null,
+        editingId: null,  // Reset editing status
+        isEditing: false  // Make sure to reset isEditing to false
+    });
+
+    // Show toast message
+    wx.showToast({
+        title: isEditing ? '菜品更新成功' : '菜品添加成功',
+        icon: 'success',
+        duration: 2000
+    });
   }
+
+  
 });

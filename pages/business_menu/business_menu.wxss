@@ -259,9 +259,22 @@ page{
   letter-spacing: 1px;
 }
 
+.edit_btn {
+  position: absolute;
+  top: 10%;
+  right: -20px;
+  transform: translateY(-50%); /* 确保垂直居中 */
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 30%;
+  font-size: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
 .delete_btn {
   position: absolute;
-  top: 15%;
+  top: 50%;
   right: -20px;
   transform: translateY(-50%); /* 确保垂直居中 */
   background-color: #ff4444;
