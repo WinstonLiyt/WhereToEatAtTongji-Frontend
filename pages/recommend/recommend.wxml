@@ -1,20 +1,62 @@
 <view class="container">
-  <!-- 滚动区域 -->
-  <view class="scroll-container">
-    <view class="transform-container" animation="{{animationData}}">
-      <view wx:for="{{stores}}" wx:key="*this" class="scroll-text">
-        {{item}}
+  <view class="tab-container">
+  <view
+      class="tab-item {{page_type=='personalized'? 'tab-item-active':''}}"
+      bindtap="changePageType"
+      data-type="personalized"
+      >个性推荐</view
+    >
+    <view
+      class="tab-item {{page_type=='randomized'? 'tab-item-active': ''}}"
+      bindtap="changePageType"
+      data-type="randomized"
+      >随机推荐</view
+    >
+  </view>
+  <!-- 以下是随机推荐界面 -->
+  <view wx:if="{{page_type=='randomized'}}" style="height:100%;">
+    <view  style="margin-top: 60rpx;" class="scroll-container">
+      <view class="transform-container" animation="{{storeAnimationData}}">
+        <view wx:for="{{scroll_stores}}" wx:key="*this" class="scroll-text">
+          {{item}}
+        </view>
+      </view>
+    </view>
+    <view class="scroll-container" style="margin-top: 50rpx;">
+      <view class="transform-container" animation="{{dishAnimationData}}" >
+        <view wx:for="{{scroll_dishes}}" wx:key="*this" class="scroll-text">
+          {{item}}
+        </view>
+      </view>
+    </view>
+    <!-- 按钮 -->
+    <button style="width:600rpx;" bindtap="getRandomRecommend">试试看</button>
+  </view>
+  <!-- 以下是个性推荐界面 -->
+  <view wx:else style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
+    <view class="card-container">
+      <view class="card card-front" catchtap="revealCard" style="{{styleFront}}">
+        <view>
+          <view style="font-size: 80rpx; font-weight:var(--fontweight-bold);">{{curMonth}}</view>
+          <view style="font-size: 55rpx; font-weight:var(--fontweight-bold);">{{curDate}}</view>
+        </view>
+        <image class="card-icon" src="/statics/recommend_selected.png" mode="aspectFit">
+        </image>  
+        <view>
+          <view style="font-size:60rpx; font-weight:var(--fontweight-bold); color:#6b5a46">
+          今天吃什么？
+          </view>
+          <view style="color:#6b5a468f">
+          翻转卡片，我们为你量身推荐！
+          </view>
+        </view>
+      </view>
+      <view class="card card-back"style="{{styleBack}}">
+        <view style="font-size: 60rpx; font-weight: var(--fontweight-bold);">{{demo.dish}}</view>
+        <image class="card-img" src="{{demo.img}}" mode="aspectFill"></image>  
+        <view>店家：{{demo.store}}</view>
+        <button style="width: 100%;" catchtap="concealCard"  class="dont-eat-button">不想吃这个</button>
       </view>
     </view>
   </view>
-  <view class="scroll-container" style="margin-top: 50rpx;">
-    <view class="transform-container" animation="{{animationData}}">
-      <view wx:for="{{dishes}}" wx:key="*this" class="scroll-text">
-        {{item}}
-      </view>
-    </view>
-  </view>
-  <!-- 按钮 -->
-  <button type="primary" bindtap="startScroll">开启</button>
-  <button bindtap="reset">重置</button>
 </view>

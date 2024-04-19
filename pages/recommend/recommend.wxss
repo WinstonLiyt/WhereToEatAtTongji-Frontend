@@ -1,12 +1,44 @@
 /**index.wxss**/
 page{
   background-color: var(--primary-color);
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  box-sizing: border-box;
+} 
+
+.tab-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30rpx 0;
+}
+
+.tab-item{
+  font-size: 35rpx;
+  margin: 0 40rpx;
+  color: #be8f5183;
+}
+
+.tab-item-active{
+  color: var(--secondary-color);
+  border-bottom: 2px solid var(--secondary-color);
+  font-weight: var(--fontweight-bold);
 }
 
 .scroll-container{
   width: 550rpx;
   height: 250rpx;
   text-align: center;
+  margin: 60rpx 0;
   background: var(--tertiary-color);
   border-radius: 50rpx;
   border-style: solid;
@@ -14,12 +46,67 @@ page{
   border-color: #be8f5183;
   overflow: hidden;
 }
+
 .scroll-text{
   line-height: 250rpx;
   font-size: 55rpx;
   color: var(--secondary-color);
   font-weight: bold;
 }
+
 button{
   margin-top: 50rpx;
+  border-radius: 25rpx;
+  height: 100rpx;
+  padding: 0px;
+  line-height: 100rpx;
+  font-size: 35rpx;
+  background-color: #be8f5183;
+  color: white;
+}
+
+.card-container{
+  position: relative;
+  width: 610rpx;
+  height: 820rpx;
+}
+
+.card {
+  width: 470rpx;
+  height: 680rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  transition: all 1s;
+  backface-visibility: hidden;
+  border-radius: 70rpx;
+  padding: 70rpx;
+  overflow: hidden;
+  color: var(--secondary-color);
+  box-shadow: 20rpx 20rpx 30rpx 2rpx #b6855d2d;
+}
+
+.card-front {
+  background: var(--tertiary-color);
+}
+
+.card-back {
+  background: var(--tertiary-color);
+  transform: rotateY(-180deg);
+}
+
+.card-icon{
+  transform: translate(60rpx, -50rpx);
+  opacity: 0.5;
+}
+
+.card-img{
+  width: 100%;
+  height: 350rpx;
+  border-radius: 40rpx;
+}
+
+.dont-eat-button{
+  margin: 0;
 }
