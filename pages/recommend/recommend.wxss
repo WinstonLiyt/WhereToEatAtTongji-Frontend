@@ -1,16 +1,25 @@
 /**index.wxss**/
+page{
+  background-color: var(--primary-color);
+}
+
 .scroll-container{
-  width: 750rpx;
-  height: 300rpx;
+  width: 550rpx;
+  height: 250rpx;
   text-align: center;
-  background: #DDD;
+  background: var(--tertiary-color);
+  border-radius: 50rpx;
+  border-style: solid;
+  border-width: 20rpx;
+  border-color: #be8f5183;
   overflow: hidden;
 }
 .scroll-text{
-  line-height: 300rpx;
-  font-size: 50rpx;
+  line-height: 250rpx;
+  font-size: 55rpx;
+  color: var(--secondary-color);
   font-weight: bold;
 }
 button{
-  margin-top: 20rpx;
+  margin-top: 50rpx;
 }

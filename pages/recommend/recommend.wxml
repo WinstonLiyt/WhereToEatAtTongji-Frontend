@@ -2,7 +2,14 @@
   <!-- 滚动区域 -->
   <view class="scroll-container">
     <view class="transform-container" animation="{{animationData}}">
-      <view wx:for="{{scrollText}}" wx:key="*this" class="scroll-text">
+      <view wx:for="{{stores}}" wx:key="*this" class="scroll-text">
+        {{item}}
+      </view>
+    </view>
+  </view>
+  <view class="scroll-container" style="margin-top: 50rpx;">
+    <view class="transform-container" animation="{{animationData}}">
+      <view wx:for="{{dishes}}" wx:key="*this" class="scroll-text">
         {{item}}
       </view>
     </view>

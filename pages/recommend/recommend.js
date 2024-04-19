@@ -1,6 +1,7 @@
 Page({
   data: {
-    scrollText: ['黄骨鱼粉', '酸菜鱼粉', '鱼肉粉', '霸气鱼头粉', '辣椒炒肉干拌粉', '永州麻鸭干拌粉', '一碗冰粉', '一碗冰豆花'], // 滚动的文字
+    stores: ['渔小仙', '面霸', '御秦轩', '肯德基', '豪大大鸡排', '萨莉亚', '麦当劳', '吉祥馄饨'],
+    dishes: ['黄骨鱼粉', '酸菜鱼粉', '鱼肉粉', '霸气鱼头粉', '辣椒炒肉干拌粉', '永州麻鸭干拌粉', '一碗冰粉', '一碗冰豆花'], // 滚动的文字
     animationData: null // 绑定的动画效果
   },
   // 开始滚动
@@ -11,8 +12,8 @@ Page({
       timingFunction: 'ease'
     })
     // 获取元素总高度
-    let height =  (this.data.scrollText.length - 1) * 300
-    var random = Math.floor(Math.random()*this.data.scrollText.length) * 300;
+    let height =  (this.data.dishes.length - 1) * 250
+    var random = Math.floor(Math.random()*this.data.dishes.length) * 250;
     // 向上移动
     animation.translateY(-random + 'rpx').step()
     // 将动画效果赋值
