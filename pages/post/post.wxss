@@ -284,8 +284,13 @@ page {
     grid-column-end: 3;
     grid-row-start: 2;
     grid-row-end: 3;
-
+    max-width: 300rpx;
     font-size: var(--fontsize-text-md);
+}
+
+.parent-comment .comment-content text,
+.child-comment .comment-content text {
+    max-width: 50px;
 }
 
 .parent-comment .comment-bottom,

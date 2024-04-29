@@ -1,5 +1,5 @@
 page {
-  background-color: #FCF9E8;
+  background-color: var(--tertiary-color);
 }
 
 .userinfo {

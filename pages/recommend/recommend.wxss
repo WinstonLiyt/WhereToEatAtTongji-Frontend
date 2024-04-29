@@ -1,6 +1,6 @@
 /**index.wxss**/
 page{
-  background-color: var(--primary-color);
+  background-color: var(--tertiary-color);
   height: 100%;
 }
 
@@ -39,7 +39,7 @@ page{
   height: 250rpx;
   text-align: center;
   margin: 60rpx 0;
-  background: var(--tertiary-color);
+  background: var(--tentiary-ligter);
   border-radius: 50rpx;
   border-style: solid;
   border-width: 20rpx;
@@ -62,7 +62,7 @@ button{
   line-height: 100rpx;
   font-size: 35rpx;
   background-color: #be8f5183;
-  color: white;
+  color: var(--tertiary-color);
 }
 
 .card-container{

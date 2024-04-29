@@ -1,10 +1,18 @@
 @import './miniprogram_npm/weui-miniprogram/weui-wxss/dist/style/weui.wxss';
 
+/*
+    https://maketintsandshades.com/
+*/
+
+
 /**app.wxss**/
 page {
   --primary-color: #ffe6b5; /* 主题色 */
   --secondary-color: #b6855d; /* 辅助颜色 */
   --tertiary-color: #fff2d9; /* 次要颜色 */
+  --tentiary-ligter: #fff5e1;
+  --card-background: #fff6e4; /* 卡片背景颜色 */
+
 
   font-family: sans-serif;
   --fontsize-h1: 65rpx;

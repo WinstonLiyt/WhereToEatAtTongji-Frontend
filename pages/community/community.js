@@ -5,14 +5,57 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    "message": "string",
+    "posts": []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-
+  onLoad: function () {
+    // 模拟从服务器获取数据
+    const postData = [
+      {
+        id: 1,
+        title: "希食东的番茄牛肉拉面很不错",
+        user_name: "傘木 希美",
+        user_avatar: "../../statics/imgs/community/avatar.jpg",
+        images: ["../../statics/imgs/community/post/food.jpg", "../../statics/imgs/community/post/food.jpg"],
+        label: ["ユーフォ"],
+        num_upvotes: 114,
+        num_comments: 514,
+        num_stars: 55,
+        time: "2024-4-19"
+      },
+      {
+        id: 2,
+        title: "其实食堂的份饭也挺好吃的",
+        user_name: "吉川 優子",
+        user_avatar: "../../statics/imgs/community/avatar1.png",
+        images: ["../../statics/imgs/community/post/food.jpg"],
+        label: ["ユーフォ", "フルート"],
+        num_upvotes: 52,
+        num_comments: 10,
+        num_stars: 680,
+        time: "2024-4-04"
+      },
+      {
+        id: 3,
+        title: "今天是疯狂星期四三十九时零分零秒。V我50",
+        user_name: "中川 夏纪",
+        user_avatar: "../../statics/imgs/community/avatar2.jpg",
+        images: [],
+        label: ["ユーフォ", "yummy"],
+        num_upvotes: 100,
+        num_comments: 18,
+        num_stars: 682,
+        time: "2024-04-19"
+      }
+    ];
+    // 更新数据
+    this.setData({
+      posts: postData
+    });
   },
 
   /**
@@ -33,7 +76,6 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-
   },
 
   /**
@@ -68,10 +110,22 @@ Page({
   * Milestone1 演示 js
   */
 
-  onTapPostDetail() {
-      wx.navigateTo({
-        url: '/pages/post/post'
-      })
+  onTapPostDetail(event) {
+    // const postId = event.currentTarget.dataset.postId;
+    // const postData = this.data.posts.find(post => post.id === postId);
+    // wx.navigateTo({
+    //   url: '/pages/post/post?id=' + postId,
+    //   success: function (res) {
+    //     // 通过eventChannel向被打开页面传送数据
+    //     res.eventChannel.emit('postDetail', { data: postData })
+    //   }
+    // })
+    wx.navigateTo({
+        url: '/pages/post/post',
+        fail: function(error) {
+            console.error('rfailed', error);
+        }
+    })
   }
 
 })
