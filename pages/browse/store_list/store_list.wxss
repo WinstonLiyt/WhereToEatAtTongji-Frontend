@@ -54,7 +54,7 @@ page {
   left:2.5%;
   width:92%;
   height:max-content;
-  background-color: var(--card-background);
+  background-color: #ffffff;
   border-radius: 15px;
   display: flex;
   flex-wrap: wrap;
@@ -167,7 +167,7 @@ page {
   margin-bottom:40rpx;
   width:95%;
   height:90px;
-  background-color: var(--card-background);
+  background-color: #ffffff;
   border-radius: 15px;
   display: flex;
   border-bottom: 5rpx solid var(--primary-color);
