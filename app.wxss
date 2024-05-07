@@ -12,8 +12,6 @@ page {
   --tertiary-color: #fff2d9; /* 次要颜色 */
   --tentiary-ligter: #fff5e1;
   --card-background: #fff6e4; /* 卡片背景颜色 */
-
-
   font-family: sans-serif;
   --fontsize-h1: 65rpx;
   --fontsize-h2: 55rpx;

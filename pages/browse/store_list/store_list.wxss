@@ -49,7 +49,7 @@ page {
 
 .choose_bar{
   position: relative;
-  top:10rpx;
+  top:20rpx;
   padding: 10rpx 10rpx 10rpx 10rpx;
   left:2.5%;
   width:92%;
@@ -64,11 +64,11 @@ page {
 }
 
 .food_type{
-  margin-top:35rpx;
-  margin-bottom: 35rpx;
-  margin-left:30rpx;
-  margin-right: 30rpx;
-  width: 70rpx;
+  margin-top:22rpx;
+  margin-bottom: 22rpx;
+  margin-left:38rpx;
+  margin-right: 38rpx;
+  width: 95rpx;
   height:max-content;
   display: flex;
   flex-wrap: wrap;
@@ -76,12 +76,36 @@ page {
   justify-content: center;
 }
 .food_type image{
-  width:60rpx;
-  height:60rpx;
+  width:80rpx;
+  height:80rpx;
 }
 .food_type text{
   font-size: 12px;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
+}
+.type_click{
+  margin-top:22rpx;
+  margin-bottom: 22rpx;
+  margin-left:38rpx;
+  margin-right: 38rpx;
+  width: 95rpx;
+  height:max-content;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  /* box-shadow: 0 2px 4px #a5a5a5; */
+  border-radius: 10px;
+  border:1px dashed;
+  border-color:#c4bba5;
+}
+.type_click image{
+  width:80rpx;
+  height:80rpx;
+}
+.type_click text{
+  font-size: 12px;
+  letter-spacing: 3px;
 }
 .list_bar{
   position: relative;
@@ -98,8 +122,10 @@ page {
   width:65%;
   height: 90rpx;
   border-radius: 30px;
+  /* background-color: #ffffff;
+  box-shadow: 0 2px 4px #a5a5a5; */
   background-color: var(--card-background);
-  box-shadow: 0 2px 4px var(--primary-color);
+  box-shadow: 0 2px 4px #c7c7c7;
   position: relative;
   top:-25px;
   left:2%;
