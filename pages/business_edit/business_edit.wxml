@@ -46,6 +46,12 @@
       <text class="userinfo-label">备注:</text>
       <input class="userinfo-input" value="{{remark}}" placeholder="请输入备注信息"/>
     </view>
+    <view class="userinfo-row">
+      <text class="userinfo-label">标签:</text>
+      <picker mode="multiSelector" bindchange="handleTagChange" value="{{tagIndex}}" range="{{tagOptions}}">
+    <input class="userinfo-input" value="{{selectedTags}}" placeholder="请选择店铺标签" disabled/>
+  </picker>
+    </view>
   </view>
 </view>
 

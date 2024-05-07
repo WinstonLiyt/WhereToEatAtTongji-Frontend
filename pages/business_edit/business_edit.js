@@ -8,6 +8,16 @@ Page({
     post: "25",
     follow: "1",
     fan: 520,
+    tagOptions: ["汉堡", "快餐", "中餐", "火锅", "披萨", "饮品", "水果"],
+    tagIndex: [], // 用户选择的标签索引
+    selectedTags: [] // 用户选择的标签
+  },
+
+  handleTagChange: function (e) {
+    this.setData({
+      tagIndex: e.detail.value,
+      selectedTags: e.detail.value.map(index => this.data.tagOptions[index])
+    });
   },
 
   navigateToHome: function() {
