@@ -1,21 +1,41 @@
 // pages/community/community.js
-Page({
 
+
+Page({
   /**
    * 页面的初始数据
    */
   data: {
     "message": "string",
     "posts": [],
-    "search_value": ""
+    "search_value": "",
+    btnHidden: false
+  },
+
+  getData(url) {
+    wx.request({
+      url: url,
+      header: {
+        "content-type": "application/json;charset=UTF-8"
+      },
+      method: 'GET',
+      success: function (res) {
+        console.log(res.data);
+      },
+      fail: function () {
+        console.log("Failed.");
+      },
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+    this.getData('http://1.92.154.154:80/tjeatwhatApp/hello');
+
     // 模拟从服务器获取数据
-    const postData = [
+    var postData = [
       {
         id: 1,
         title: "希食东的番茄牛肉拉面很不错",
@@ -53,6 +73,14 @@ Page({
         time: "2024-04-19"
       }
     ];
+
+    var posData = postData.map(item => {
+        return {
+          ...item,
+          upvoted: false,
+          stared: false
+        };
+      });
     // 更新数据
     this.setData({
       posts: postData
@@ -97,7 +125,25 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
+    this.setData({
+        btnHidden: true // 滚动到底部时隐藏按钮
+    });
+  },
 
+  onPageScroll(e) {
+    const currentScrollTop = e.scrollTop; // 当前滚动位置
+    const lastScrollTop = this.data.lastScrollTop; // 上一个滚动位置
+
+    if (currentScrollTop < lastScrollTop) {
+      this.setData({
+            btnHidden: false
+        });
+    }
+
+    // 更新上一个滚动位置为当前滚动位置
+    this.setData({
+      lastScrollTop: currentScrollTop
+    });
   },
 
   /**
@@ -142,6 +188,72 @@ Page({
 
   onTapSearchBtn(event) {
       console.log(this.data.search_value);
-  }
+  },
 
+  // 监听页面滚动到底部事件
+  scrollToLower() {
+    this.setData({
+      btnHidden: true // 滚动到底部时隐藏按钮
+    });
+  },
+  // 监听页面滚动到非底部事件
+  scrollToUpper() {
+    this.setData({
+      btnHidden: false // 滚动到非底部时显示按钮
+    });
+  },
+
+  addPost() {
+    wx.navigateTo({
+        url: '/pages/add_post/add_post',
+        fail: function(error) {
+            console.error('rfailed', error);
+        }
+    })
+  },
+  onTapReaction(e) {
+    var item = this.data.posts[e.currentTarget.dataset.itemid];
+    var reaction_name = e.currentTarget.id;
+    if (reaction_name == "num_comments") {
+        // wx.navigateTo({
+        //     url: '/pages/post/post?id=' + item.id,
+        //     success: function (res) {
+        //         // res.eventChannel.emit('postDetail', { data: postData })
+        //     }
+        // })
+
+        wx.navigateTo({
+            url: '/pages/post/post',
+            fail: function(error) {
+                console.error('rfailed', error);
+            }
+        })
+    }
+    else {
+        var change = false;
+        if (reaction_name == "num_upvotes") {
+            item.upvoted = (item.upvoted)? false: true;
+            item.num_upvotes += (item.upvoted)? 1 : -1;
+            change = item.num_upvotes;
+        }
+        else {
+            item.stared = (item.stared)? false: true;
+            item.num_stars += (item.stared)? 1 : -1;
+            change = item.num_stars;
+        }
+
+        var update_msg = {
+            field: reaction_name,
+            change: change
+        }
+
+        // 后端检查是否更改成功
+        let posts = this.data.posts.slice();
+        posts[e.currentTarget.dataset.itemid] = item;
+        this.setData({
+            posts: posts
+        });
+
+    }
+  }
 })
