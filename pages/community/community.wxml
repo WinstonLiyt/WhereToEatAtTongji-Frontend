@@ -3,27 +3,27 @@
     <view class="top mb-med">
         <view class="search">
             <view class="search_in">
-                <input type="text" placeholder="请输入搜索内容"/>
-                <view class="search_btn" bindtap="tap">
+                <input type="text" placeholder="请输入搜索内容" bindinput="onInputSearch"  bindconfirm="onConfirmSearch" search_value="{{search_value}}"/>
+                <view class="search_btn" bindtap="onTapSearchBtn">
                     <image src="../../statics/imgs/community/search.png"></image>
                 </view>
             </view>
         </view>
     </view>
     <view class="posts ml-med mr-med mb-max mt-max">
-    <view class="post-item bdr-max" wx:for="{{posts}}" wx:key="id" data-post-id="{{item.id}}" bindtap="onTapPostDetail">
+    <view class="post-item bdr-max" wx:for="{{posts}}" wx:key="id" data-post-id="{{item.id}}" >
         <view class="head-box ml-med mr-med mt-med mb-med">
         <image src="{{item.user_avatar}}" class="avatar"></image>
         <text class="username">{{item.user_name}}</text>
         <view class="post-time">{{item.time}}</view>
         </view>
 
-        <view class="title-box ml-med mr-med mb-med">
-        <text class="title">{{item.title}}</text>
+        <view class="title-box ml-med mr-med mb-med" bindtap="onTapPostDetail">
+            <text class="title">{{item.title}}</text>
         </view>
 
         <view class="image-box ml-med mr-med mb-med" wx:if="{{item.images.length > 0}}">
-        <image wx:for="{{item.images}}" src="{{item}}" wx:key="url" class="bdr-med" mode="widthFix"></image>
+            <image wx:for="{{item.images}}" src="{{item}}" wx:key="url" class="bdr-med" mode="widthFix"></image>
         </view>
 
         <view class="bottom-box ml-med mr-med mb-med">
@@ -34,7 +34,7 @@
             </view>
             <view class="reaction-box mr-min">
                 <view class="reaction-item upvotes">
-                    <image src="../../statics/imgs/community/post/upvote_selected.png" mode="widthFix"></image>
+                    <image src="../../statics/imgs/community/post/upvote.png" mode="widthFix" bindtap="onTapReaction"></image>
                     <text>{{item.num_upvotes}}</text>
                 </view>
                 <view class="reaction-item comments">

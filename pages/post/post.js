@@ -147,8 +147,6 @@ Component({
                 });
             }
 
-            console.log(comments);
-
             return comments;
        },
 

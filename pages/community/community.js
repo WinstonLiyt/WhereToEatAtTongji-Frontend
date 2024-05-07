@@ -6,7 +6,8 @@ Page({
    */
   data: {
     "message": "string",
-    "posts": []
+    "posts": [],
+    "search_value": ""
   },
 
   /**
@@ -126,6 +127,21 @@ Page({
             console.error('rfailed', error);
         }
     })
+  },
+
+  onInputSearch(event) {
+    console.log(event.detail.value)
+    this.setData({
+      search_value: event.detail.value
+    })
+  },
+
+  onConfirmSearch(event) {
+      console.log(event.detail.value);
+  },
+
+  onTapSearchBtn(event) {
+      console.log(this.data.search_value);
   }
 
 })
