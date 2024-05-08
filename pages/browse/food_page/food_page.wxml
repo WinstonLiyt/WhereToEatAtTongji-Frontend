@@ -66,6 +66,9 @@
         <view class="comment_content">
           <text>{{item.content}}</text>
         </view>
+        <view class="reply" wx:if="{{item.reply != null}}">
+          <text>商家回复：{{item.reply}}</text>
+        </view>
       </view>
     </view>
   </view>

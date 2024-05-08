@@ -318,6 +318,19 @@ page{
   margin-bottom:20px;
   width:fit-content;
 }
+.reply{
+  position: relative;
+  margin-left:60rpx;
+  margin-right:30rpx;
+  margin-top:5px;
+  margin-bottom:20px;
+  width:fit-content;
+}
+.reply text{
+  font-size: 14px;
+  letter-spacing: 1px;
+  color:rgb(104, 104, 104);
+}
 .see_more{
   position: relative;
   top:35px;
