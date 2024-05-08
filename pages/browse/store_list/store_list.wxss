@@ -6,6 +6,13 @@ page {
   /* background-color: #fff2d9; */
   background-color:var(--tertiary-color);
 }
+
+.main{
+  height: calc(100% - 60px - const(safe-area-inset-bottom));
+  height: calc(100% - 60px - env(safe-area-inset-bottom));
+  overflow: scroll;
+}
+
 .search {
   display: flex;
   align-items: center;

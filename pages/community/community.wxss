@@ -7,7 +7,9 @@ page {
 }
 
 .main {
-    height: 100%;
+  height: calc(100% - 60px - const(safe-area-inset-bottom));
+  height: calc(100% - 60px - env(safe-area-inset-bottom));
+  overflow: scroll;
 }
 
 /* Search bar*/

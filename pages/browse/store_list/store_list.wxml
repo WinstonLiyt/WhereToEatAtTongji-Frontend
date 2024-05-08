@@ -1,69 +1,71 @@
 <!--store_list.wxml-->
-<view class="search">
-      <view class="search_in">
-        <input type="text" placeholder="请输入搜索内容" name="value" bindinput="user_content"/>
-        <view class="search_btn" bindtap="confirm_content">
-            <image src="../../../statics/imgs/community/search.png"></image>
+<view class="main" style="width: 750rpx; height: 1289rpx; display: block; box-sizing: border-box">
+  <view class="search">
+        <view class="search_in">
+          <input type="text" placeholder="请输入搜索内容" name="value" bindinput="user_content"/>
+          <view class="search_btn" bindtap="confirm_content">
+              <image src="../../../statics/imgs/community/search.png"></image>
+          </view>
+        </view>
+  </view>
+  <view class="choose_bar">
+      <view class="{{noodle_filter == 1?'type_click':'food_type'}}" bindtap="noodlesfilter">
+        <image class="type_image" src="/statics/pic_tag/noodles.png" mode="scaleToFill"></image>
+        <text>面食</text>
+      </view>
+      <view class="{{cake_filter == 1?'type_click':'food_type'}}" bindtap="cakefilter">
+        <image class="type_image" src="/statics/pic_tag/hotpot.png" mode="scaleToFill"></image>
+        <text>甜点</text>
+      </view>  
+      <view class="{{drink_filter == 1?'type_click':'food_type'}}" bindtap="drinkfilter">
+        <image class="type_image" src="/statics/pic_tag/drink.png" mode="scaleToFill"></image>
+        <text>饮品</text>
+      </view> 
+      <view class="{{breakfast_filter == 1?'type_click':'food_type'}}" bindtap="breakfastfilter">
+        <image class="type_image" src="/statics/pic_tag/soop.png" mode="scaleToFill"></image>
+        <text>早点</text>
+      </view>         
+      <view class="{{fruit_filter == 1?'type_click':'food_type'}}" bindtap="fruitfilter">
+        <image class="type_image" src="/statics/pic_tag/fruit.png" mode="scaleToFill"></image>
+        <text>水果</text>
+      </view>    
+      <view class="{{bbq_filter == 1?'type_click':'food_type'}}" bindtap="bbqfilter">
+        <image class="type_image" src="/statics/pic_tag/bbq.png" mode="scaleToFill"></image>
+        <text>烧烤</text>
+      </view>
+      <view class="{{western_filter == 1?'type_click':'food_type'}}" bindtap="westernfilter">
+        <image class="type_image" src="/statics/pic_tag/cake.png" mode="scaleToFill"></image>
+        <text>西餐</text>
+      </view>
+      <view class="{{rice_filter == 1?'type_click':'food_type'}}" bindtap="ricefilter">
+        <image class="type_image" src="/statics/pic_tag/rice.png" mode="scaleToFill"></image>
+        <text>炒菜</text>
+      </view>
+  </view>
+  <view class="list_bar">
+      <view class="title">
+        <view class="title_pic">
+          <image src="/statics/pic_tag/cheese.png " mode="aspectFill"></image>
+        </view>
+        <view class="title_name">
+          <text>店铺筛选结果</text>
         </view>
       </view>
-</view>
-<view class="choose_bar">
-    <view class="{{noodle_filter == 1?'type_click':'food_type'}}" bindtap="noodlesfilter">
-      <image class="type_image" src="/statics/pic_tag/noodles.png" mode="scaleToFill"></image>
-      <text>面食</text>
-    </view>
-    <view class="{{cake_filter == 1?'type_click':'food_type'}}" bindtap="cakefilter">
-      <image class="type_image" src="/statics/pic_tag/hotpot.png" mode="scaleToFill"></image>
-      <text>甜点</text>
-    </view>  
-    <view class="{{drink_filter == 1?'type_click':'food_type'}}" bindtap="drinkfilter">
-      <image class="type_image" src="/statics/pic_tag/drink.png" mode="scaleToFill"></image>
-      <text>饮品</text>
-    </view> 
-    <view class="{{breakfast_filter == 1?'type_click':'food_type'}}" bindtap="breakfastfilter">
-      <image class="type_image" src="/statics/pic_tag/soop.png" mode="scaleToFill"></image>
-      <text>早点</text>
-    </view>         
-    <view class="{{fruit_filter == 1?'type_click':'food_type'}}" bindtap="fruitfilter">
-      <image class="type_image" src="/statics/pic_tag/fruit.png" mode="scaleToFill"></image>
-      <text>水果</text>
-    </view>    
-    <view class="{{bbq_filter == 1?'type_click':'food_type'}}" bindtap="bbqfilter">
-      <image class="type_image" src="/statics/pic_tag/bbq.png" mode="scaleToFill"></image>
-      <text>烧烤</text>
-    </view>
-    <view class="{{western_filter == 1?'type_click':'food_type'}}" bindtap="westernfilter">
-      <image class="type_image" src="/statics/pic_tag/cake.png" mode="scaleToFill"></image>
-      <text>西餐</text>
-    </view>
-    <view class="{{rice_filter == 1?'type_click':'food_type'}}" bindtap="ricefilter">
-      <image class="type_image" src="/statics/pic_tag/rice.png" mode="scaleToFill"></image>
-      <text>炒菜</text>
-    </view>
-</view>
-<view class="list_bar">
-    <view class="title">
-      <view class="title_pic">
-        <image src="/statics/pic_tag/cheese.png " mode="aspectFill"></image>
+      <block class="" wx:for="{{storelist}}" wx:key="key">
+      <view class="store" mark:storeid="{{item.id}}" bindtap="next_calculator" id="{{item.id}}">
+        <view class="store_image">
+          <image src="{{item.imgSrc}}" mode="aspectFill"></image>
+        </view>
+        <view class="store_name">
+          <text>{{item.name}}</text>
+        </view>
+        <view class="other">
+          <text decode="true">{{item.type}}&emsp;&emsp;{{item.location}}</text>
+        </view>
+        <view class="turn">
+          <image src="/statics/pic_tool/turn.png"></image>
+        </view>
       </view>
-      <view class="title_name">
-        <text>店铺筛选结果</text>
-      </view>
-    </view>
-    <block class="" wx:for="{{storelist}}" wx:key="key">
-    <view class="store" mark:storeid="{{item.id}}" bindtap="next_calculator" id="{{item.id}}">
-      <view class="store_image">
-        <image src="{{item.imgSrc}}" mode="aspectFill"></image>
-      </view>
-      <view class="store_name">
-        <text>{{item.name}}</text>
-      </view>
-      <view class="other">
-        <text decode="true">{{item.type}}&emsp;&emsp;{{item.location}}</text>
-      </view>
-      <view class="turn">
-        <image src="/statics/pic_tool/turn.png"></image>
-      </view>
-    </view>
-  </block>
+    </block>
+  </view>
 </view>
