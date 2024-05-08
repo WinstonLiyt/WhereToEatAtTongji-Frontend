@@ -47,11 +47,64 @@
       <input class="userinfo-input" value="{{remark}}" placeholder="请输入备注信息"/>
     </view>
     <view class="userinfo-row">
-      <text class="userinfo-label">标签:</text>
-      <picker mode="multiSelector" bindchange="handleTagChange" value="{{tagIndex}}" range="{{tagOptions}}">
-    <input class="userinfo-input" value="{{selectedTags}}" placeholder="请选择店铺标签" disabled/>
-  </picker>
+  <text class="userinfo-label">标签:</text>
+  <!-- <checkbox-group bindchange="handleTagChange" value="{{selectedTags}}">
+    <view class="checkbox-group-wrapper">
+      <view wx:for="{{tagOptions.slice(0, 3)}}" wx:key="item">
+        <checkbox value="{{item}}" checked="{{selectedTags.indexOf(item) > -1}}">{{item}}</checkbox>
+      </view>
+      <view class="dropdown-arrow" wx:if="{{tagOptions.length > 3}}" bindtap="toggleDropdown">
+        <text>▼</text>
+      </view>
     </view>
+    <view wx:if="{{showDropdown}}" class="dropdown-menu">
+      <view wx:for="{{tagOptions.slice(3)}}" wx:key="item">
+        <checkbox value="{{item}}" checked="{{selectedTags.indexOf(item) > -1}}">{{item}}</checkbox>
+      </view>
+    </view>
+  </checkbox-group> -->
+  <!-- <checkbox-group bindchange="handleTagChange" value="{{selectedTags}}">
+    <view wx:for="{{tagOptions}}" wx:key="{{index}}">
+      <checkbox value="{{item.value}}">{{item.label}}</checkbox>
+    </view>
+  </checkbox-group> -->
+  <!-- <checkbox-group bindchange="handleTagChange" value="{{selectedTags}}">
+  <view wx:for="{{tagOptions}}" wx:key="index" wx:if="{{index < 3}}">
+    <checkbox value="{{item.value}}">{{item.label}}</checkbox>  
+  </view>
+  <view class="dropdown-wrapper" wx:if="{{tagOptions.length > 3 && !showDropdown}}">
+  <text class="dropdown-arrow" bindtap="toggleDropdown">▼</text>
+</view>
+<view class="dropdown-menu" wx:if="{{showDropdown}}">
+  <view wx:for="{{tagOptions}}" wx:key="index">
+    <checkbox value="{{item.value}}">{{item.label}}</checkbox>
+  </view>
+  <text class="dropdown-arrow" bindtap="toggleDropdown">▲</text>
+</view>
+
+</checkbox-group> -->
+<checkbox-group bindchange="handleTagChange" value="{{selectedTags}}">  
+  <!-- 当 showDropdown 为 false 时显示前三个选项 -->  
+  <view wx:for="{{tagOptions}}" wx:key="index" wx:if="{{index < 3 && !showDropdown}}">  
+    <checkbox value="{{item.value}}">{{item.label}}</checkbox>  
+  </view>  
+  
+  <!-- 当存在更多选项且 showDropdown 为 false 时显示下拉箭头 -->  
+  <view class="dropdown-wrapper" wx:if="{{tagOptions.length > 3 && !showDropdown}}">  
+    <text class="dropdown-arrow" bindtap="toggleDropdown">▼</text>  
+  </view>  
+  
+  <!-- 当 showDropdown 为 true 时显示全部选项 -->  
+  <view class="dropdown-menu" wx:if="{{showDropdown}}">  
+    <view wx:for="{{tagOptions}}" wx:key="index">  
+      <checkbox value="{{item.value}}">{{item.label}}</checkbox>  
+    </view>  
+    <text class="dropdown-arrow" bindtap="toggleDropdown">▲</text>  
+  </view>  
+</checkbox-group>
+
+</view>
+
   </view>
 </view>
 
