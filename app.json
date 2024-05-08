@@ -1,6 +1,9 @@
 {
   "pages": [
     "pages/launch/launch",
+    "pages/login/store_signup/store_signup",
+    "pages/login/student_signup/student_signup",
+    "pages/login/user_role_choice/user_role_choice",
     "pages/community/community",
     "pages/post/post",
     "pages/add_post/add_post",
@@ -15,6 +18,7 @@
     "pages/business_show/business_show"
   ],
   "tabBar": {
+    "custom": true,
     "color": "#f6cc7a",
     "backgroundColor": "#fff2d9",
     "selectedColor": "#e5bb69",
@@ -25,6 +29,12 @@
             "text": "美食浏览",
             "iconPath":"/statics/imgs/tabBar/browse.png",
             "selectedIconPath": "/statics/imgs/tabBar/browse_selected.png"
+        }, 
+        {
+          "pagePath": "pages/business_edit/business_edit",
+          "text": "菜品管理",
+          "iconPath":"/statics/imgs/tabBar/browse.png",
+          "selectedIconPath": "/statics/imgs/tabBar/browse_selected.png"
         }, 
         {
             "pagePath": "pages/community/community",
@@ -39,11 +49,17 @@
             "selectedIconPath": "/statics/imgs/tabBar/recommend_selected.png"
         },
         {
-           "pagePath": "pages/personal/personal",
-            "text": "个人信息",
+           "pagePath": "pages/personal-student/personal-student",
+            "text": "个人信息（学生）",
             "iconPath": "/statics/imgs/tabBar/personal.png",
             "selectedIconPath": "/statics/imgs/tabBar/personal_selected.png"
-        }
+        },
+        {
+          "pagePath": "pages/personal/personal",
+           "text": "个人信息（商家）",
+           "iconPath": "/statics/imgs/tabBar/personal.png",
+           "selectedIconPath": "/statics/imgs/tabBar/personal_selected.png"
+       }
         ]
   },
   "window": {

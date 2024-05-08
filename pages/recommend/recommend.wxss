@@ -88,11 +88,11 @@ button{
 }
 
 .card-front {
-  background: var(--tertiary-color);
+  background: var(--primary-color);
 }
 
 .card-back {
-  background: var(--tertiary-color);
+  background: var(--primary-color);
   transform: rotateY(-180deg);
 }
 

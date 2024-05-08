@@ -170,3 +170,24 @@ page {
   border: 1px solid #ccc;
   border-radius:  0 8px 8px 0;
 }
+
+/* added */
+
+.checkbox-group-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-arrow {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  margin-top: -1px;
+  max-height: 100px; /* Adjust height as needed */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
