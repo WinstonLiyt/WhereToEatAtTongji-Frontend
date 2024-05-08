@@ -40,7 +40,7 @@
           <view style="font-size: 80rpx; font-weight:var(--fontweight-bold);">{{curMonth}}</view>
           <view style="font-size: 55rpx; font-weight:var(--fontweight-bold);">{{curDate}}</view>
         </view>
-        <image class="card-icon" src="/statics/recommend_selected.png" mode="aspectFit">
+        <image class="card-icon" src="/statics/imgs/tabBar/recommend_selected.png" mode="aspectFit">
         </image>  
         <view>
           <view style="font-size:60rpx; font-weight:var(--fontweight-bold); color:#6b5a46">

@@ -51,6 +51,15 @@ Page({
       storelist: this.data.testData.data,
     });
   },
+  onShow: function () {
+    if (typeof this.getTabBar === 'function' &&
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 0
+      })
+      this.getTabBar().setList();
+    }
+  },
   user_content:function(e){
     //这个地方还可以改成表单提交进行优化
     this.setData({

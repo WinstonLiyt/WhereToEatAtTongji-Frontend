@@ -7,6 +7,17 @@ Page({
     backgroundImages: ['../../statics/pic_food/food5.jpg'], // 存储背景图的数组
     showPopup: false
   },
+
+  onShow: function () {
+    if (typeof this.getTabBar === 'function' &&
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 2
+      })
+      this.getTabBar().setList();
+    }
+  },
+
 // 打开弹窗
 openPopup() {
   this.setData({

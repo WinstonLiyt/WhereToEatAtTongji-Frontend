@@ -1,0 +1,19 @@
+<!--pages/user_role_choice/user_role_choice.wxml-->
+<view class="main">
+  <view class="text-container">
+    <h1>请选择您的身份</h1>
+    <p>Please choose your role.</p> 
+  </view>
+  <view class="card">
+    <h2>我是学生</h2>
+    <image class="card-icon" src="/statics/user_role/student.png" mode="aspectFit"/>
+  </view>
+  <view class="card">
+    <h2>我是商家</h2>
+    <image class="card-icon" src="/statics/user_role/store.png" mode="aspectFit"/>
+  </view>
+  <view class="card">
+    <h2>游客浏览</h2>
+    <image class="card-icon" src="/statics/user_role/visitor.png" mode="aspectFit"/>
+  </view>
+</view>

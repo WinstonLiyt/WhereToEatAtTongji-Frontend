@@ -1,0 +1,14 @@
+<!--index.wxml-->
+<view class="main">
+  <h1>学生用户注册</h1>
+  <button class="avatar-wrapper" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+    <image class="avatar" src="{{avatarUrl}}"></image>
+  </button> 
+  <form catchsubmit="formSubmit">
+    <view class="row">
+      <view class="text1">昵称：</view>
+        <input type="nickname" class="weui-input" name="nickname" placeholder="请输入昵称"/>
+    </view>
+    <button class="submit" form-type="submit" style="width: 500rpx;">注 册</button>
+  </form>
+</view>
