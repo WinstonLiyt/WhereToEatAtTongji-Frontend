@@ -1,7 +1,9 @@
 {
   "pages": [
+    "pages/launch/launch",
     "pages/community/community",
     "pages/post/post",
+    "pages/add_post/add_post",
     "pages/browse/store_list/store_list",
     "pages/browse/store_page/store_page",
     "pages/browse/food_page/food_page",

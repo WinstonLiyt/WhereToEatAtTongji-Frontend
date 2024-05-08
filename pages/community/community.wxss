@@ -158,3 +158,25 @@ page {
 .post-item .bottom-box .reaction-box image {
     width: 45rpx !important;
 }
+
+
+/* 悬浮：添加帖子*/
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+  }
+  
+  .floating-btn {
+    position: fixed;
+    bottom: 3%; /* 距离底部的距离 */
+    right: 5%; /* 距离右侧的距离 */
+    width: 120rpx; /* 圆的直径 */
+    height: 120rpx; /* 圆的直径 */
+    background-color: var(--primary-color); /* 悬浮圆的背景色 */
+    border-radius: 50%; /* 圆形 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

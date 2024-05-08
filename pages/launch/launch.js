@@ -1,4 +1,4 @@
-// pages/index/index.js
+// pages/launch/launch.js
 Page({
 
   /**
@@ -12,7 +12,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    let timer = setTimeout(() => {
+      clearTimeout(timer)
+      wx.switchTab({url:'/pages/browse/store_list/store_list'})
+    }, 2000)
   },
 
   /**

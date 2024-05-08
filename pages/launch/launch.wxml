@@ -1,0 +1,5 @@
+<view class="main">
+  <image class="card-icon" src="/statics/logo.png" mode="aspectFit"/>
+  <h1>同济今天吃什么</h1>
+  <p>TJ What to Eat Today</p>
+</view>
