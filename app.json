@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/launch/launch",
     "pages/community/community",
     "pages/post/post",
     "pages/add_post/add_post",
