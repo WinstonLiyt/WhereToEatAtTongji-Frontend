@@ -2,10 +2,12 @@
 page{
   background-color: var(--tertiary-color);
   height: 100%;
+
 }
 
 .container {
-  height: 100%;
+  height: calc(100% - 60px - const(safe-area-inset-bottom));
+  height: calc(100% - 60px - env(safe-area-inset-bottom));
   width: 100%;
   display: flex;
   flex-direction: column;

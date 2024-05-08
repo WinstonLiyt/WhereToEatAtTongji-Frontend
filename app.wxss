@@ -26,9 +26,8 @@ page {
   --fontweight-bold: 600;
   --fontweight-normal: 500;
   --fontweight-light: 400;
-
-
 }
+
 
 .container {
   height: 100%;
