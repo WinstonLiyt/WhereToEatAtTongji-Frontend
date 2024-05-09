@@ -3,9 +3,11 @@ const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia0
 
 Page({
   data: {
+    storeid:0,
   testdata:[
     {
       store:{
+        "id":0,
         imgSrc:"/statics/pic_food/food4.jpg",
         name:"五味小面",
         location:"满天星广场1f",
@@ -38,6 +40,7 @@ Page({
     },
     {
       store:{
+        "id":1,
         imgSrc:"/statics/pic_food/food2.jpg",
         name:"希食东",
         location:"满天星广场2f",
@@ -73,7 +76,7 @@ Page({
   },
   next_calculator:function(options){
     wx.navigateTo({
-      url: '/pages/browse/food_page/food_page?id=' + options.mark.foodid
+      url: '/pages/browse/food_page/food_page?storeid=' + this.data.storeid +'&foodid=' + options.mark.foodid
     })
   },
   onLoad:function(options){
@@ -81,6 +84,7 @@ Page({
     // console.log(secondId);
     this.setData({
       store: this.data.testdata[secondId],
+      storeid:secondId,
     });
   }
 }

@@ -10,6 +10,7 @@ Page({
     key: 0,//评分
     user_input:"",
     date:"",
+    storeId:null,
     testdata:[
       {
         foodmessage:{
@@ -147,11 +148,14 @@ Page({
     }
   },
   onLoad:function(options){
-    var secondId = options.id;
-    // console.log(secondId);
+    var storeId = options.storeid;
+    var foodId = options.foodid;
+    // console.log(storeId);
+    // console.log(foodId);
     this.setData({
-      foodId:secondId,
-      food: this.data.testdata[secondId],
+      foodId:foodId,
+      storeId:storeId,
+      food: this.data.testdata[foodId],
     });
   }
 },

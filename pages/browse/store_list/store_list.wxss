@@ -51,7 +51,7 @@ page {
   align-items: center;
   justify-content: center;
   line-height: 55rpx;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .choose_bar{
@@ -122,6 +122,7 @@ page {
   height:max-content;
   background-color: #fcf9e9;
   border-radius:40px 40px 0 0;
+  padding-bottom: 20rpx;
   /* border-top: 6rpx dashed rgb(230, 220, 205);  */
 }
 

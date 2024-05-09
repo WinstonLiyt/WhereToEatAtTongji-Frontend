@@ -84,23 +84,16 @@ Page({
   },
   confirm_content:function(e){
     if(this.data.search_input == ""){
-      this.setData({
-        storelist: this.data.testData.data
-      });      
+      wx.showToast({
+        title: '搜索内容不能为空',
+        icon: 'none',
+        duration: 1000
+      })
     }
     else{
-      var list = [];
-      var list0 = this.data.storelist;
-      for(var i=0;i<list0.length;i++){
-        var string = list0[i].name;
-        //查询json里的name是否包含搜索的关键词，如果有就把他装进list2数组
-        if(string.indexOf(this.data.search_input) >= 0){
-          list.push(list0[i]);
-        }
-      }
-      this.setData({
-        storelist: list
-      });      
+      wx.navigateTo({
+        url: '/pages/browse/search/search?name=' + this.data.search_input
+      })     
     }
   },
   next_calculator:function(options){

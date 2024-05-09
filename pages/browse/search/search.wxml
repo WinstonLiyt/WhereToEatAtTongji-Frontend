@@ -1,0 +1,74 @@
+<!--pages/browse/food_page/search.wxml-->
+<view class = "fail" wx:if="{{fail}}" style="display: flex; justify-content: center; align-items: center;">
+ <image src="../../../statics/pic_tool/fail2.png"  mode="aspectFit"></image>
+ <h1>暂无搜索结果</h1>
+</view>
+
+<view class="store_dishes" wx:if="{{!fail}}">
+      <view class="{{store == 1?'btn_click':'store_btn'}}" bindtap="storebtn">
+        <view class="btn_pic">
+          <image src="/statics/pic_tool/store.png " mode="aspectFill"></image>
+        </view>
+        <view class="btn_name">
+          <text>只看店铺</text>
+        </view>
+      </view>
+      <view class="{{store == 0?'btn_click':'dishes_btn'}}" bindtap="dishesbtn">
+        <view class="btn_pic">
+          <image src="/statics/pic_tool/dishes.png " mode="aspectFill"></image>
+        </view>
+        <view class="btn_name">
+          <text>只看菜品</text>
+        </view>
+      </view>
+</view>
+
+<view class = "success" wx:if="{{!fail}}">
+  <view class="list_bar">
+      <view class="title">
+        <view class="title_pic">
+          <image src="/statics/pic_tool/search.png " mode="aspectFill"></image>
+        </view>
+        <view class="title_name">
+          <text>搜索结果</text>
+        </view>
+      </view>
+
+      <block class="" wx:if="{{store}}" wx:for="{{storelist}}" wx:key="key">
+      <view class="store" mark:storeid="{{item.id}}" bindtap="next_store" id="{{item.id}}">
+        <view class="store_image">
+          <image src="{{item.imgSrc}}" mode="aspectFill"></image>
+        </view>
+        <view class="store_name">
+          <text>{{item.name}}</text>
+        </view>
+        <view class="other">
+          <text decode="true">{{item.type}}&emsp;&emsp;{{item.location}}</text>
+        </view>
+        <view class="turn">
+          <image src="/statics/pic_tool/turn.png"></image>
+        </view>
+      </view>
+      </block>
+
+      <block class="" wx:if="{{!store}}" wx:for="{{foodlist}}" wx:key="key">
+        <view class="food" mark:foodid="{{item.id}}" mark:storeid="{{item.restaurant.id}}" bindtap="next_dishes" id="{{item.id}}"> 
+          <view class="food_image">
+            <image src="{{item.imgSrc}}" mode="aspectFill"></image>
+          </view>
+          <view class="food_name">
+            <text >{{item.name}}({{item.restaurant.name}})</text>
+          </view>
+          <view class="food_price">
+            <text >￥{{item.price}}</text>
+          </view>
+          <view class="other">
+            <text decode="true">{{item.description}}</text>
+          </view>
+          <view class="turn">
+            <image src="/statics/pic_tool/turn.png"></image>
+          </view>
+        </view>
+      </block>
+  </view>
+</view>

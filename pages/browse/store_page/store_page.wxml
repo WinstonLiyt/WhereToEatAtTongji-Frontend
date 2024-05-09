@@ -4,7 +4,7 @@
 <view class="store_block">
   <view class="title">
     <view class="title_pic">
-      <image src="/statics/pic_tag/western.png " mode="aspectFill"></image>
+      <image src="/statics/pic_tool/store.png " mode="aspectFill"></image>
     </view>
     <view class="title_name">
       <scroll-view scroll-x="true" class="scrollable-text">
@@ -23,7 +23,8 @@
     <text>{{store.store.location}}</text>
   </view>
   <view class="food_list">
-    <view class="food"  wx:for="{{store.foodlist}}" wx:key="key" mark:foodid="{{item.id}}" bindtap="next_calculator" id="{{item.id}}"> 
+    <view class="food"  wx:for="{{store.foodlist}}" wx:key="key" mark:foodid="{{item.id}}" 
+    mark:storeid="{{item.id}}"  bindtap="next_calculator" id="{{item.id}}"> 
       <view class="food_image">
         <image src="{{item.imgSrc}}" mode="aspectFill"></image>
       </view>

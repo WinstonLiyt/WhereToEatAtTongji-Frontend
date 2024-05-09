@@ -4,7 +4,7 @@
 <view class="food_block">
   <view class="title">
     <view class="title_pic">
-      <image src="/statics/pic_tag/soop.png" mode="aspectFill"></image>
+      <image src="/statics/pic_tool/dishes.png" mode="aspectFill"></image>
     </view>
     <view class="title_name">
       <scroll-view scroll-x="true" class="scrollable-text">
