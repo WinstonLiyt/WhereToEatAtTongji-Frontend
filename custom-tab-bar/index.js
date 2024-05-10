@@ -32,7 +32,7 @@ Component({
       ],
 
       [{
-        "pagePath": "/pages/business_edit/business_edit",
+        "pagePath": "/pages/business_menu/business_menu",
         "text": "菜品管理",
         "iconPath":"/statics/imgs/tabBar/browse.png",
         "selectedIconPath": "/statics/imgs/tabBar/browse_selected.png"

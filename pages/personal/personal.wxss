@@ -1,5 +1,12 @@
 page {
   background-color: var(--tertiary-color);
+  height: 100%;
+}
+
+.main{
+  height: calc(100% - 60px - const(safe-area-inset-bottom));
+  height: calc(100% - 60px - env(safe-area-inset-bottom));
+  overflow: scroll;
 }
 .userinfo {
   width: 750rpx;

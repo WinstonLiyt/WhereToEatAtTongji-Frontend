@@ -32,7 +32,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    this.getData('http://1.92.154.154:80/tjeatwhatApp/hello');
+    this.getData('http://1.92.154.154:80/media/images/test2.jpg');
 
     // 模拟从服务器获取数据
     var postData = [
