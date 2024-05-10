@@ -1,4 +1,4 @@
-// pages/index/index.js
+// pages/login/store_signup/store_signup.js
 Page({
 
   /**

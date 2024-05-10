@@ -149,9 +149,16 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
+  onShow: function () {
     this.reset('storeAnimationData');
     this.reset('dishAnimationData');
+    if (typeof this.getTabBar === 'function' &&
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 2
+      })
+      this.getTabBar().setList();
+    }
   },
 
   /**

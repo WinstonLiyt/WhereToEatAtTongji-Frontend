@@ -1,0 +1,31 @@
+/* pages/launch/launch.wxss */
+
+page {
+  background-color: var(--tertiary-color);
+  height: 100%;
+}
+
+.main{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+image{
+  margin-top: -30%;
+  margin-bottom: -10px;
+}
+
+h1{
+  font-size: 30px;
+  font-weight: var(--fontweight-bold);
+  color: var(--secondary-color);
+}
+
+p{
+  font-size: 20px;
+  font-weight: var(--fontweight-normal);
+  color: #b6855d79; 
+}

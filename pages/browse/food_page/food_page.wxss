@@ -26,7 +26,7 @@ page{
 }
 
 .food_block .title{
-  width:65%;
+  width: 65%;
   height: 90rpx;
   border-radius: 30px;
   background-color: #ffffff;
@@ -36,7 +36,6 @@ page{
   left:5%;
   display:flex;
 }
-
 .title .title_pic{
   aspect-ratio: 1 / 1;
   height: 75%;
@@ -54,16 +53,24 @@ page{
   max-width: 90%;
   max-height: 90%;
 }
-
 .title_name{
   position: relative;
   top:20%;
   margin-left: 8%;
+  width: calc(100% - 30%);
+  overflow: hidden;
 }
 .title_name text{
   font-size:18px;
   font-weight: bold;
   letter-spacing: 1px;
+  white-space: nowrap; /* 不换行 */
+  overflow: hidden; /* 隐藏超出部分 */
+}
+.title_name .scrollable-text {
+  white-space: nowrap;
+  overflow: hidden; /* 确保CSS与小程序的行为一致 */
+  width: 100%;
 }
 .food_block .description_title{
   width:max-content;
@@ -76,7 +83,6 @@ page{
   font-size:19px;
   letter-spacing: 0.5px;
 }
-
 .food_block .description{
   width:fit-content;
   height:max-content;
@@ -140,7 +146,7 @@ page{
   height:max-content;
   top:90px;
   background-color:#ffffff;
-  padding-bottom:50px;
+  padding-bottom:70px;
   margin-bottom: 40px;
 }
 .comment_title{
@@ -174,7 +180,62 @@ page{
   border-radius: 15px;
   padding-top: 10px;
 }
-
+.mycomment{
+  width: 100%;
+  position:relative;
+  height:250rpx;
+  border-bottom: 1px dashed rgb(235, 217, 185);
+  margin-bottom: 30rpx;
+  top:80rpx;
+  left:20rpx;
+}
+.mycomment .startbox{
+  width: 100%;
+  display: flex;
+}
+.startbox text{
+  font-size: 15px;
+  letter-spacing: 1px;
+  color:rgb(102, 102, 102);
+}
+.star_box{
+  height:80rpx;
+  width:5%;
+}
+.star_box image{
+  max-width:100%;
+  max-height:40%;
+}
+.comment_bar {
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+  padding: 0 15rpx;
+  box-sizing: border-box;
+  height: 90rpx;
+  width: 650rpx;
+  background-color: #ffffff;
+  border-radius: 30rpx;
+  border: 1px solid rgb(204, 199, 188);
+}
+.comment_bar input {
+  margin-left: 25rpx;
+  width: 80%;
+}
+.comment_bar .search_btn {
+  height: 65rpx;
+  width: 60rpx;
+  border-radius: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 55rpx;
+  /* cursor: pointer; */
+}
+.search_btn image{
+  max-width:100%;
+  max-height:80%;
+}
 .comment{
   position:relative;
   margin-top:10px;
@@ -226,6 +287,7 @@ page{
   display: flex;
   overflow: hidden;
   align-items: center; /* 垂直居中 */
+  flex-wrap: nowrap;
 }
 .comment_score text{
   font-size: 13px;
@@ -255,6 +317,19 @@ page{
   margin-top:5px;
   margin-bottom:20px;
   width:fit-content;
+}
+.reply{
+  position: relative;
+  margin-left:60rpx;
+  margin-right:30rpx;
+  margin-top:5px;
+  margin-bottom:20px;
+  width:fit-content;
+}
+.reply text{
+  font-size: 14px;
+  letter-spacing: 1px;
+  color:rgb(104, 104, 104);
 }
 .see_more{
   position: relative;

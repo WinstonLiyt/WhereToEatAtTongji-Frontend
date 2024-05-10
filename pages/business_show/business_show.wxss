@@ -26,7 +26,7 @@ page{
 }
 
 .store_block .title{
-  width: fit-content;
+  width: 65%;
   height: 90rpx;
   border-radius: 30px;
   background-color: #ffffff;

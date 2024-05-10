@@ -1,11 +1,13 @@
 /**index.wxss**/
 page{
-  background-color: var(--primary-color);
+  background-color: var(--tertiary-color);
   height: 100%;
+
 }
 
 .container {
-  height: 100%;
+  height: calc(100% - 60px - const(safe-area-inset-bottom));
+  height: calc(100% - 60px - env(safe-area-inset-bottom));
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -39,7 +41,7 @@ page{
   height: 250rpx;
   text-align: center;
   margin: 60rpx 0;
-  background: var(--tertiary-color);
+  background: var(--tentiary-ligter);
   border-radius: 50rpx;
   border-style: solid;
   border-width: 20rpx;
@@ -62,7 +64,7 @@ button{
   line-height: 100rpx;
   font-size: 35rpx;
   background-color: #be8f5183;
-  color: white;
+  color: var(--tertiary-color);
 }
 
 .card-container{
@@ -88,11 +90,11 @@ button{
 }
 
 .card-front {
-  background: var(--tertiary-color);
+  background: var(--primary-color);
 }
 
 .card-back {
-  background: var(--tertiary-color);
+  background: var(--primary-color);
   transform: rotateY(-180deg);
 }
 

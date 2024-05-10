@@ -22,6 +22,49 @@ Page({
     showDropdown: false // 控制下拉展开状态
   },
 
+  submitData: function() {
+    const { name, address, telephone, business_time, selectedTags } = this.data;
+
+    wx.request({
+        url: 'http://1.92.154.154:80/restaurant/1/create/', // Update with your actual backend URL
+        method: 'POST',
+        data: {
+            name: name,
+            location: address,
+            phone_number: telephone,
+            description: business_time,
+            tags: selectedTags.map(index => this.data.tagOptions.find(option => option.value === index).label),
+            images: [] // Add images if you handle image upload
+        },
+        header: {
+            'content-type': 'application/json' // Assuming your server expects JSON
+        },
+        success: function(res) {
+            if (res.statusCode === 200) {
+                console.log('Success:', res.data);
+                wx.showToast({
+                    title: 'Restaurant created!',
+                    icon: 'success'
+                });
+            } else {
+                wx.showToast({
+                    title: 'Failed to create restaurant',
+                    icon: 'error'
+                });
+                console.error('Backend error:', res);
+            }
+        },
+        fail: function(error) {
+            console.error('Request failed:', error);
+            wx.showToast({
+                title: 'Network error',
+                icon: 'none'
+            });
+        }
+    });
+},
+
+
   onLoad: function() {  
     // 在页面加载时，从第三个元素开始切片数组  
     this.setData({  

@@ -59,11 +59,20 @@ page{
   position: relative;
   top:20%;
   margin-left: 8%;
+  width: calc(100% - 30%);
+  overflow: hidden;
 }
 .title_name text{
   font-size:18px;
   font-weight: bold;
   letter-spacing: 1px;
+  white-space: nowrap; /* 不换行 */
+  overflow: hidden; /* 隐藏超出部分 */
+}
+.title_name .scrollable-text {
+  white-space: nowrap;
+  overflow: hidden; /* 确保CSS与小程序的行为一致 */
+  width: 100%;
 }
 .store_block .description_title{
   width:max-content;

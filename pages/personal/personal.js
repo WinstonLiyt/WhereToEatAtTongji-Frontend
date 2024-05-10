@@ -4,9 +4,56 @@ Page({
     post: "25",
     follow: "1",
     fan: 520,
+    name: "默认名称",  // 肯德基（同济大学嘉定校区店）
+    location: "默认地址", // 曹安公路4800号5幢1区A100室
     backgroundImages: ['../../statics/pic_food/food5.jpg'], // 存储背景图的数组
     showPopup: false
   },
+
+  getData(url) {
+    wx.request({
+      url: url,
+      header: {
+        "content-type": "application/json;charset=UTF-8"
+      },
+      method: 'GET',
+      success: (res) => {  // Changed here
+        console.log(res);
+        console.log(res.data);
+        if (res.data) {
+          const restaurantData = res.data;
+          console.log(restaurantData);
+          this.setData({
+            name: restaurantData.name,
+            location: restaurantData.location
+          });
+        } else {
+          console.error("Failed to retrieve name from backend.");
+        }
+      },
+      fail: function() {
+        console.log("Failed to fetch data from backend.");
+      },
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function () {
+    this.getData('http://1.92.154.154:80/restaurant/1/');},
+
+
+  onShow: function () {
+    if (typeof this.getTabBar === 'function' &&
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 2
+      })
+      this.getTabBar().setList();
+    }
+  },
+
 // 打开弹窗
 openPopup() {
   this.setData({

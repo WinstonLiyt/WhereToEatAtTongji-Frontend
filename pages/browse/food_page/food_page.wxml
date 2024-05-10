@@ -1,29 +1,31 @@
 <view class="top_pic">
-  <image src="/statics/pic_food/food1.jpg" mode="aspectFill"></image>
+  <image src="{{food.foodmessage.imgSrc}}" mode="aspectFill"></image>
 </view>
 <view class="food_block">
   <view class="title">
     <view class="title_pic">
-      <image src="/statics/pic_tag/soop.png " mode="aspectFill"></image>
+      <image src="/statics/pic_tool/dishes.png" mode="aspectFill"></image>
     </view>
     <view class="title_name">
-      <text>食物名称</text>
+      <scroll-view scroll-x="true" class="scrollable-text">
+        <text>{{food.foodmessage.name}}</text>
+      </scroll-view>
     </view>
   </view>
   <view class="description_title">
     <text>Description</text>
   </view>
   <view class="description">
-    <text>该冰淇淋由新鲜奶油制作，以哈密瓜为点缀，口味清新，口感绵密。</text>
+    <text>{{food.foodmessage.description}}</text>
   </view>
   <view class="score">
     <text>评分：</text>
-    <text>4.5</text>
+    <text>{{food.foodmessage.score}}</text>
     <image src="/statics/pic_tool/star.png" mode="aspectFill"></image>
   </view>
   <view class="price">
     <text>价格：</text>
-    <text>￥32</text>
+    <text>￥{{food.foodmessage.price}}</text>
     <image src="/statics/pic_tool/price.png" mode="aspectFill"></image>
   </view>
   <view class="comment_board">
@@ -31,54 +33,43 @@
       <text>食物评价</text>
       <image src="/statics/pic_tool/comment.png" mode="aspectFill"></image>
     </view>
-    <view class="comment_list">
-      <view class="comment">
-        <view class="user">
-          <view class="user_image">
-            <image src="/statics/pic_tag/cake.png" mode="aspectFill"></image>
-          </view>
-          <text>匿名用户蛋糕</text>       
-        </view>
-        <view class="comment_score">
-          <text>评分：</text>
-          <image src="/statics/pic_tool/star.png" mode="aspectFill"></image>
-          <image src="/statics/pic_tool/star.png" mode="aspectFill"></image>
-          <image src="/statics/pic_tool/star.png" mode="aspectFill"></image>
-          <image src="/statics/pic_tool/star.png" mode="aspectFill"></image>
-          <image src="/statics/pic_tool/star.png" mode="aspectFill"></image>
-        </view>
-        <view class="comment_time">
-          <text>2024-4-18</text>
-        </view>
-        <view class="comment_content">
-          <text>店家服务态度很好，冰淇淋口感不错。</text>
+    <view class="mycomment">
+      <view class="startbox">
+        <text>评分：</text>
+        <view class="star_box" wx:for="{{stars}}" wx:key='this'>
+          <image class="star-image" style="left: {{item*10}}rpx" src="{{key>item?selectedSrc:normalSrc}}" data-key="{{item+1}}" bindtap="selectServer">
+          </image>
         </view>
       </view>
-      <view class="comment">
-        <view class="user">
-          <view class="user_image">
-            <image src="/statics/pic_tag/rice.png" mode="aspectFill"></image>
-          </view>
-          <text>匿名用户米饭</text>       
-        </view>
-        <view class="comment_score">
-          <text>评分：</text>
-          <image src="/statics/pic_tool/star.png" mode="aspectFill"></image>
-          <image src="/statics/pic_tool/star.png" mode="aspectFill"></image>
-          <image src="/statics/pic_tool/star.png" mode="aspectFill"></image>
-          <image src="/statics/pic_tool/star.png" mode="aspectFill"></image>
-        </view>
-        <view class="comment_time">
-          <text>2024-4-17</text>
-        </view>
-        <view class="comment_content">
-          <text>上菜速度有点慢。</text>
+      <view class="comment_bar">
+        <input type="text" placeholder="请输入评价内容" name="value" bindinput="user_content"></input>
+        <view class="search_btn" bindtap="confirm_content">
+          <image src="/statics/pic_tool/confirm.png" mode="aspectFill"></image>
         </view>
       </view>
     </view>
-    <view class="see_more">
-      <text>查看更多评价</text>
-      <image src="/statics/pic_tool/more.png" mode="aspectFill"></image>
+    <view class="comment_list"  wx:for="{{food.comment}}" wx:key="key">
+      <view class="comment">
+        <view class="user">
+          <view class="user_image">
+            <image src="{{item.imgSrc}}" mode="aspectFill"></image>
+          </view>
+          <text>{{item.name}}</text>       
+        </view>
+        <view class="comment_score">
+          <text>评分：</text>
+          <image src="/statics/pic_tool/star.png" mode="aspectFill" wx:for="{{item.score}}" wx:key="key"></image>
+        </view>
+        <view class="comment_time">
+          <text>{{item.time}}</text>
+        </view>
+        <view class="comment_content">
+          <text>{{item.content}}</text>
+        </view>
+        <view class="reply" wx:if="{{item.reply != null}}">
+          <text>商家回复：{{item.reply}}</text>
+        </view>
+      </view>
     </view>
   </view>
 </view>

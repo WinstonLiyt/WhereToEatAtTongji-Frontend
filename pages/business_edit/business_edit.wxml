@@ -109,6 +109,7 @@
 </view>
 
 <view class="button-group">
-      <button formType="submit" class="submit-button">保存信息</button>
+  <button formType="submit" class="submit-button" bindtap="submitData">保存信息</button>
+
       <button bindtap="navigateToHome" class="cancel-button">取消</button>
 </view>

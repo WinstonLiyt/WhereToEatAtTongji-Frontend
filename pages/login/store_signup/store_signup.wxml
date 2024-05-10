@@ -1,0 +1,22 @@
+<!--index.wxml-->
+<view class="main">
+  <h1>商家用户注册</h1>
+  <button class="avatar-wrapper" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+    <image class="avatar" src="{{avatarUrl}}"></image>
+  </button> 
+  <form catchsubmit="formSubmit">
+    <view class="row">
+      <view class="text1">昵称：</view>
+        <input type="nickname" class="weui-input" name="nickname" placeholder="请输入昵称"/>
+    </view>
+    <view class="row">
+      <view class="text1">地址：</view>
+        <input class="weui-input" name="location" placeholder="请输入店铺地址"/>
+    </view>
+    <view class="row">
+      <view class="text1">电话：</view>
+        <input class="weui-input" name="telephone" placeholder="请输入联系方式"/>
+    </view>
+    <button class="submit" form-type="submit" style="width: 500rpx;">注 册</button>
+  </form>
+</view>

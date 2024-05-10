@@ -3,148 +3,56 @@
     <view class="top mb-med">
         <view class="search">
             <view class="search_in">
-                <input type="text" placeholder="请输入搜索内容"/>
-                <view class="search_btn" bindtap="tap">
+                <input type="text" placeholder="请输入搜索内容" bindinput="onInputSearch"  bindconfirm="onConfirmSearch" search_value="{{search_value}}"/>
+                <view class="search_btn" bindtap="onTapSearchBtn">
                     <image src="../../statics/imgs/community/search.png"></image>
                 </view>
             </view>
         </view>
     </view>
-
     <view class="posts ml-med mr-med mb-max mt-max">
-        <view class="post-item bdr-max ">
+        <view class="post-item bdr-max" wx:for="{{posts}}" wx:key="id" data-post-id="{{item.id}}" wx:for-index="index">
             <view class="head-box ml-med mr-med mt-med mb-med">
-                <image src="../../statics/imgs/community/avatar.jpg" class="avatar"></image>
-                <text class="username"> 傘木 希美</text>
-                <view class="post-time">
-                    2024-4-19
-                </view>
+            <image src="{{item.user_avatar}}" class="avatar"></image>
+            <text class="username">{{item.user_name}}</text>
+            <view class="post-time">{{item.time}}</view>
             </view>
 
             <view class="title-box ml-med mr-med mb-med" bindtap="onTapPostDetail">
-                <text class="title">希食东的番茄牛肉拉面很不错</text>
+                <text class="title">{{item.title}}</text>
             </view>
 
-            <view class="image-box ml-med mr-med mb-med">
-                <image src="../../statics/imgs/community/post/food.jpg" class=".bdr-med" mode="widthFix"></image>
-                <image src="../../statics/imgs/community/post/food.jpg" class=".bdr-med" mode="widthFix"></image>
-            </view>
-
-            <view class="bottom-box ml-med mr-med mb-med">
-                <view class="label-box">
-                    <view class="label">
-                        <text>#ユーフォ</text>
-                    </view>
-                    <view class="label">
-                        <text>#フルート</text>
-                    </view>
-                </view>
-                <view class="reaction-box mr-min">
-                    <view class="reaction-item upvotes">
-                        <image src="../../statics/imgs/community/post/upvote_selected.png" mode="widthFix"></image>
-                        <text>100</text>
-                    </view>
-                    <view class="reaction-item comments">
-                        <image src="../../statics/imgs/community/post/comment.png" mode="widthFix"></image>
-                        <text>10</text>
-                    </view>
-                    <view class="reaction-item stars">
-                        <image src="../../statics/imgs/community/post/star.png" mode="widthFix"></image>
-                        <text>60</text>
-                    </view>
-                </view>
-                
-            </view>
-        </view>
-
-        <view class="post-item bdr-max ">
-            <view class="head-box ml-med mr-med mt-med mb-med">
-                <image src="../../statics/imgs/community/avatar1.png" class="avatar"></image>
-                <text class="username"> 吉川 優子 </text>
-                <view class="post-time">
-                    2024-4-04
-                </view>
-            </view>
-
-            <view class="title-box ml-med mr-med mb-med">
-                <text class="title">其实食堂的份饭也挺好吃的</text>
-            </view>
-
-            <view class="image-box ml-med mr-med mb-med">
-                <image src="../../statics/imgs/community/post/food.jpg" class=".bdr-med" mode="widthFix"></image>
+            <view class="image-box ml-med mr-med mb-med" wx:if="{{item.images.length > 0}}">
+                <image wx:for="{{item.images}}" src="{{item}}" wx:key="url" class="bdr-med" mode="widthFix"></image>
             </view>
 
             <view class="bottom-box ml-med mr-med mb-med">
-                <view class="label-box">
-                    <view class="label">
-                        <text>#ユーフォ</text>
-                    </view>
-                    <view class="label">
-                        <text>#フルート</text>
-                    </view>
+            <view class="label-box">
+                <view wx:for="{{item.label}}"  wx:key="mlabel" class="label">
+                    <text>#{{item}}</text>
                 </view>
-                <view class="reaction-box mr-min">
-                    <view class="reaction-item upvotes">
-                        <image src="../../statics/imgs/community/post/upvote_selected.png" mode="widthFix"></image>
-                        <text>100</text>
-                    </view>
-                    <view class="reaction-item comments">
-                        <image src="../../statics/imgs/community/post/comment.png" mode="widthFix"></image>
-                        <text>10</text>
-                    </view>
-                    <view class="reaction-item stars">
-                        <image src="../../statics/imgs/community/post/star.png" mode="widthFix"></image>
-                        <text>60</text>
-                    </view>
+            </view>
+            <view class="reaction-box mr-min">
+                <view class="reaction-item upvotes">
+                    <image src="{{item.upvoted? '../../statics/imgs/community/post/upvote_selected.png' : '../../statics/imgs/community/post/upvote.png'}}" mode="widthFix" bindtap="onTapReaction" id="num_upvotes" data-itemid = '{{index}}' data-dt='{{ item.num_upvotes }}' data-postid='{{item.id}}'></image>
+                    <text>{{item.num_upvotes}}</text>
                 </view>
-                
+                <view class="reaction-item comments">
+                    <image src="../../statics/imgs/community/post/comment.png" mode="widthFix" bindtap="onTapReaction" id="num_comments" data-itemid = '{{index}}' data-dt='{{ item.num_comments }}' data-postid='{{item.id}}'></image>
+                    <text>{{item.num_comments}}</text>
+                </view>
+                <view class="reaction-item stars">
+                    <image src="{{ item.stared? '../../statics/imgs/community/post/star_selected.png': '../../statics/imgs/community/post/star.png' }}" mode="widthFix" bindtap="onTapReaction" id="num_stars" data-itemid = '{{index}}' data-dt='{{ item.num_stars }}' data-postid='{{item.id}}'></image>
+                    <text>{{item.num_stars}}</text>
+                </view>
             </view>
         </view>
-
-        <view class="post-item bdr-max ">
-            <view class="head-box ml-med mr-med mt-med mb-med">
-                <image src="../../statics/imgs/community/avatar2.jpg" class="avatar"></image>
-                <text class="username"> 中川 夏纪 </text>
-                <view class="post-time">
-                    2024-04-19
-                </view>
-            </view>
-
-            <view class="title-box ml-med mr-med mb-med">
-                <text class="title">今天是疯狂星期四三十九时零分零秒。V我50</text>
-            </view>
-
-            <view class="image-box ml-med mr-med mb-med">
-               
-            </view>
-
-            <view class="bottom-box ml-med mr-med mb-med">
-                <view class="label-box">
-                    <view class="label">
-                        <text>#ユーフォ</text>
-                    </view>
-                    <view class="label">
-                        <text>#フルート</text>
-                    </view>
-                </view>
-                <view class="reaction-box mr-min">
-                    <view class="reaction-item upvotes">
-                        <image src="../../statics/imgs/community/post/upvote_selected.png" mode="widthFix"></image>
-                        <text>100</text>
-                    </view>
-                    <view class="reaction-item comments">
-                        <image src="../../statics/imgs/community/post/comment.png" mode="widthFix"></image>
-                        <text>10</text>
-                    </view>
-                    <view class="reaction-item stars">
-                        <image src="../../statics/imgs/community/post/star.png" mode="widthFix"></image>
-                        <text>60</text>
-                    </view>
-                </view>
-                
-            </view>
-        </view>
-        
     </view>
+
+    <!-- 悬浮添加帖子 -->
+  <view class="floating-btn" bindtap="addPost" hidden="{{btnHidden}}">
+    <image src="../../statics/imgs/community/add_post.png" mode="widthFix" class="avatar"></image>
+  </view>
+</view>
 
 </view>

@@ -14,6 +14,23 @@ const formatNumber = n => {
   return n[1] ? n : `0${n}`
 }
 
+const base_url = "http://1.92.154.154:80"
+const tjRequest = (options) =>{
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: base_url + options.url,
+      method: options.method || 'get',
+      data: options.data || {},
+      header: options.header || {
+        'token': wx.getStorage('token') 
+      },
+      success: resolve,
+      fail: reject
+    })
+  })
+}
+
 module.exports = {
-  formatTime
+  formatTime,
+  tjRequest
 }
