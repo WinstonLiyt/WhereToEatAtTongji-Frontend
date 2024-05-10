@@ -49,20 +49,23 @@ Page({
     storelist:null
   },
   onLoad: function(){
-    // const options = {
-    //   url: '', // 用户个人信息接口的路径
-    //   method: 'get', // 请求方法，默认为 'get'
-    // };
-    // // 调用 tjRequest 函数发起请求
-    // tjRequest(options)
-    //   .then(response => {
-    //     // 请求成功的处理逻辑
-    //     console.log('用户个人信息：', response.data);
-    //   })
-    //   .catch(error => {
-    //     // 请求失败的处理逻辑
-    //     console.error('请求用户个人信息失败：', error);
-    //   });
+    const options = {
+      url: '/restaurant/all/', // 用户个人信息接口的路径
+      method: 'get', // 请求方法，默认为 'get'
+      header: {
+           "content-type": "application/json;charset=UTF-8"
+      },
+    };
+    // 调用 tjRequest 函数发起请求
+    tjRequest(options)
+      .then(response => {
+        // 请求成功的处理逻辑
+        console.log('用户个人信息：', response.data);
+      })
+      .catch(error => {
+        // 请求失败的处理逻辑
+        console.error('请求用户个人信息失败：', error);
+      });
     this.setData({
       storelist: this.data.testData.data,
     });
