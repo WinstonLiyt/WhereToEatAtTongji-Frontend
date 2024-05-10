@@ -7,7 +7,7 @@ App({
         console.log(res)
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         
-        wx.setStorage({key:'role', data:'student'})
+        wx.setStorage({key:'role', data:'store'})
       }
     })
   },
