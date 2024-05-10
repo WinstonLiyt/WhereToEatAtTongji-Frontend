@@ -26,7 +26,7 @@ page {
   flex-direction: column;
   align-items: center;
   position: absolute;
-  width: 700rpx;
+  width: 100%;
   top: 80rpx;
 }
 
@@ -38,7 +38,7 @@ page {
 
 .userinfo .avatar .userinfo-nickname {
   margin-top: 20rpx;
-  margin-left: 60px;
+  /* margin-left: 60px; */
   font-size: 22px;
   align-items: center;
   color:black;
@@ -230,7 +230,7 @@ page {
 }
 
 .background-container {
-  background: white;
+  background:var(--tertiary-color);
   padding: 20px;
   height: 100%;
   width: 90%; /* 控制宽度不超过屏幕宽度的90% */

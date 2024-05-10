@@ -1,40 +1,56 @@
 Page({
   data: {
+    image: '../../statics/imgs/business/store_kfc.png',
     name: '肯德基（同济大学嘉定校区店）',
     address: '曹安公路4800号5幢1区A100室',
     telephone: '13651962636',
     business_time: '06:00-22:00',
+    remark: '疯狂星期四，vivo50！', 
     wxlogin: true,
-    post: "25",
-    follow: "1",
-    fan: 520,
     tagOptions: [
-      {value: "1", label: "汉堡"},  
-      {value: "2", label: "快餐"},  
-      {value: "3", label: "中餐"},
-      {value: "4", label: "火锅"},
-      {value: "5", label: "披萨"},
-      {value: "6", label: "饮品"},
-      {value: "7", label: "水果"}
+      { value: 'noodles', label: '面食' },
+      { value: 'desserts', label: '甜点' },
+      { value: 'drinks', label: '饮品' },
+      { value: 'breakfast', label: '早点' },
+      { value: 'fruits', label: '水果' },
+      { value: 'bbq', label: '烧烤' },
+      { value: 'western', label: '西餐' },
+      { value: 'stir-fry', label: '炒菜' }
     ],
     slicedTagOptions: [], // 用于存储从第三个元素开始的切片数组  
     selectedTags: [], // 用户选择的标签
-    showDropdown: false // 控制下拉展开状态
+    showDropdown: false, // 控制下拉展开状态
+    tagRows: []
   },
 
-  submitData: function() {
-    const { name, address, telephone, business_time, selectedTags } = this.data;
+  /* 计算标签的行与列 */
+  processTagRows: function() {
+    const rows = [];
+    const { tagOptions } = this.data;
+    for (let i = 0; i < tagOptions.length; i += 4) {
+      rows.push(tagOptions.slice(i, i + 4));
+    }
+    this.setData({
+      tagRows: rows
+    });
+  },
 
+  /* 保存信息 */
+  submitData: function() {
+    const { name, address, telephone, business_time, remark, selectedTags, uploadedImageName } = this.data;
+  
     wx.request({
-        url: 'http://1.92.154.154:80/restaurant/1/create/', // Update with your actual backend URL
-        method: 'POST',
+        url: 'http://1.92.154.154:80/restaurant/14/update/', // Update with your actual backend URL
+        method: 'PUT',
         data: {
             name: name,
             location: address,
             phone_number: telephone,
-            description: business_time,
+            description: remark,
+            // business_hours: business_time,
+            time: business_time,
             tags: selectedTags.map(index => this.data.tagOptions.find(option => option.value === index).label),
-            images: [] // Add images if you handle image upload
+            images: [uploadedImageName]
         },
         header: {
             'content-type': 'application/json' // Assuming your server expects JSON
@@ -43,12 +59,12 @@ Page({
             if (res.statusCode === 200) {
                 console.log('Success:', res.data);
                 wx.showToast({
-                    title: 'Restaurant created!',
+                    title: 'Restaurant updated!',
                     icon: 'success'
                 });
             } else {
                 wx.showToast({
-                    title: 'Failed to create restaurant',
+                    title: 'Failed to update restaurant',
                     icon: 'error'
                 });
                 console.error('Backend error:', res);
@@ -62,7 +78,7 @@ Page({
             });
         }
     });
-},
+  },
 
 
   onLoad: function() {  
@@ -70,16 +86,21 @@ Page({
     this.setData({  
       slicedTagOptions: this.data.tagOptions.slice(2) // 索引从0开始，所以2表示第三个元素  
     });  
+    this.processTagRows();
   },  
   
+  /* 取标签的值 */
   handleTagChange: function (e) {
     const tagIndex = e.detail.value;
     const selectedTags = tagIndex.map(index => this.data.tagOptions[index]);
     this.setData({
       // tagIndex: tagIndex,
       // selectedTags: selectedTags
-      selectedTags: e.detail.value  
+      // selectedTags: e.detail.value  
+      // selectedTags: selectedIndexes.map(index => this.data.tagOptions[index].value)
+        selectedTags: e.detail.value
     });
+    console.log('Selected tags:', this.data.selectedTags);
   },
 
   toggleDropdown: function () {
@@ -88,6 +109,49 @@ Page({
     });
   },  
 
+  /* 更换照片 */
+  changeImage: function() {
+    var that = this;  // 获取当前页面的实例
+    wx.chooseImage({
+      count: 1,  // 允许用户选择的图片数量
+      sizeType: ['original', 'compressed'],  // 可选择原图或压缩图
+      sourceType: ['album', 'camera'],  // 可选择来源是相册还是相机
+      success: function(res) {
+        const newImage = res.tempFilePaths[0];  // 获取选中图片的临时文件路径
+        that.setData({
+          image: newImage  // 更新页面数据，从而更新图片
+        });
+
+        // 将新图像上传到后端
+        wx.uploadFile({
+          url: 'http://1.92.154.154:80/image/', // Update with your actual backend image upload endpoint
+          filePath: newImage,
+          name: 'file', // Name of the file parameter expected by the backend
+          header: {
+              'content-type': 'multipart/form-data' // Ensure the correct content type for file upload
+          },
+          formData: {}, // Any additional form data required by the backend
+          success: function(uploadRes) {
+            let data = JSON.parse(uploadRes.data); // Assuming the response is in JSON format
+            that.setData({
+                uploadedImageName: data.new_name // Assuming 'new_name' is the key in the response containing the new image name
+            });
+            console.log('Image uploaded successfully:', data.new_name);
+          },
+          fail: function(error) {
+              // Handle failed upload
+              console.error('Image upload failed:', error);
+              wx.showToast({
+                  title: 'Failed to upload image',
+                  icon: 'error'
+              });
+          }
+      });
+      }
+    });
+  },
+
+  /* 返回主页 */
   navigateToHome: function() {
     console.log('Attempting to navigate to personal page');
     wx.switchTab({
