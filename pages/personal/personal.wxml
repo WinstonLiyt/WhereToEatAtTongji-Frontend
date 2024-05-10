@@ -115,11 +115,15 @@
     <view class="background-container">
       <!-- 循环展示现有背景图 -->
       <view wx:for="{{backgroundImages}}" wx:key="index" class="background-item">
-        <image src="{{item}}" class="background-image"></image>
+        <image src="{{'http://1.92.154.154:80/media/' + item}}" class="background-image"></image>
         <view class="delete-btn" bindtap="deleteBackground" data-index="{{index}}">删除</view>
       </view>
       <!-- 上传背景图按钮 -->
-      <button class="upload-btn" bindtap="uploadBackground">上传背景图</button>
+      <view class="button-container">
+        <button class="upload-btn" bindtap="uploadBackground">上传背景图</button>
+        <button class="upload-btn" bindtap="updateBackgroundImages">确认更新</button>
+      </view>
+
     </view>
     <view class="modal-close-btn" bindtap="closePopup">关闭</view>
   </view>
