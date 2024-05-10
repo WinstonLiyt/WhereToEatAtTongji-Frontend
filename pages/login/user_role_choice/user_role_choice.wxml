@@ -4,15 +4,15 @@
     <h1>请选择您的身份</h1>
     <p>Please choose your role.</p> 
   </view>
-  <view class="card">
+  <view class="card" bindtap="toStudent">
     <h2>我是学生</h2>
     <image class="card-icon" src="/statics/user_role/student.png" mode="aspectFit"/>
   </view>
-  <view class="card">
+  <view class="card" bindtap="toStore">
     <h2>我是商家</h2>
     <image class="card-icon" src="/statics/user_role/store.png" mode="aspectFit"/>
   </view>
-  <view class="card">
+  <view class="card" bindtap="toVisitor">
     <h2>游客浏览</h2>
     <image class="card-icon" src="/statics/user_role/visitor.png" mode="aspectFit"/>
   </view>

@@ -1,1 +1,67 @@
-/* pages/login/store_signup/store_signup.wxss */
+/* pages/login/student_signup/student_signup.wxss */
+
+/* index.wxss  参考 */ 
+page{
+  height: 100%;
+  background-color: var(--tertiary-color);
+}
+
+.main{
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar-wrapper {
+  padding: 0;
+  width: 80px !important;
+  border-radius: 40px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  background-color: #fff;
+}
+
+.avatar {
+  display: block;
+  width: 80px;
+  height: 80px;
+}
+
+.container {
+  display: flex;
+}
+.row{
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  height: 80rpx;
+  padding-left: 20rpx;
+  font-size: 30rpx;
+}
+
+.text1{
+  flex: 2;
+  font-weight: var(--fontweight-bold);
+  color: var(--secondary-color);
+}
+
+.weui-input{
+  flex: 6;
+}
+
+.submit{
+  margin-top: 50rpx; 
+  height: 100rpx;
+  line-height: 100rpx;
+  border-radius: 50rpx;
+  padding: 0;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+h1{
+  font-weight: var(--fontweight-bold);
+  color: var(--secondary-color);
+  font-size: 60rpx;
+}

@@ -11,11 +11,12 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-    let timer = setTimeout(() => {
-      clearTimeout(timer)
-      wx.switchTab({url:'/pages/browse/store_list/store_list'})
-    }, 2000)
+  onLoad(options) {  
+    this.setData({
+      myTimer: setInterval(() => {
+        wx.switchTab({url:'/pages/browse/store_list/store_list'})
+      }, 2000)
+    })
   },
 
   /**
@@ -28,22 +29,22 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-
+  onShow(){
+    wx.hideHomeButton()
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-
+    clearInterval(this.data.myTimer)
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-
+    clearInterval(this.data.myTimer)
   },
 
   /**

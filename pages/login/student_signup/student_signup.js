@@ -1,19 +1,55 @@
 // index.js
 const app = getApp()
-const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
+const util = require('../../../utils/util.js')
+const defaultAvatarUrl = util.base_url + '/media/avatar/default.jpg'
 Page({
   data: {
     avatarUrl: defaultAvatarUrl
   },
   onLoad() {
   },
+  onShow(){
+  },
   onChooseAvatar(e) {
     const { avatarUrl } = e.detail 
     this.setData({
       avatarUrl,
     })
+
+    util.tjFileUpLoad({
+      url:"/user/uploadAvatar",
+      filePath: avatarUrl,
+    }).then(res=>{
+      this.setData({
+        avatarUrl: res.new_name
+      })
+    }).catch(err=>{
+    })
   },
   formSubmit(e){
-      console.log('昵称：',e.detail.value.nickname)
+    let avatarUrl = null
+    if(this.data.avatarUrl !== defaultAvatarUrl)
+      avatarUrl = this.data.avatarUrl
+
+    wx.login({
+      success: (res) => {
+        util.tjRequest({
+          url:'/user/studentRegister',
+          method:'post',
+          data:{
+            code: res.code,
+            name: e.detail.value.nickname,
+            avatar_url: avatarUrl
+          }
+        }).then(res=>{
+          console.log(res)
+          wx.switchTab({
+            url: '/pages/browse/store_list/store_list',
+          })
+        }).catch(err=>{
+          console.log(err)
+        })
+      },
+    })
   }
 })

@@ -1,10 +1,12 @@
+const util = require('../../utils/util')
+
 Page({
   data: {
     page_type: "randomized",
-    stores: ['渔小仙', '面霸', '御秦轩', '肯德基', '豪大大鸡排', '萨莉亚', '麦当劳', '吉祥馄饨'],
-    dishes: ['黄骨鱼粉', '酸菜鱼粉', '鱼肉粉', '霸气鱼头粉', '辣椒炒肉干拌粉', '永州麻鸭干拌粉', '一碗冰粉', '一碗冰豆花'],
-    scroll_stores: ['今天吃哪家？'],
-    scroll_dishes: ['今天吃什么？'],
+    stores: [],
+    dish_chosen: null,
+    scroll_stores: [{name: '今天吃哪家？'}],
+    scroll_dishes: [{name: '今天吃什么？'}],
     demos:[
       {
         dish:'哈密瓜绵绵冰',
@@ -44,7 +46,7 @@ Page({
     setTimeout(()=>{
       this.reset('dishAnimationData');
       var shuffle = this.shuffleArray(this.data.stores)
-      var first = ['今天吃哪家？']
+      var first = [{name: '今天吃哪家？'}]
       var stores = this.appendShuffledList(first, shuffle)
       console.log(stores)
       this.setData({
@@ -52,14 +54,30 @@ Page({
       })
       this.startScroll('storeAnimationData');
       setTimeout(()=>{
-        var shuffle = this.shuffleArray(this.data.dishes)
-        var first = ['今天吃什么？']
-        var dishes = this.appendShuffledList(first, shuffle)
-        console.log(dishes)
-        this.setData({
-          scroll_dishes: dishes
+        let store_id = stores[8].id
+        util.tjRequest({
+          url:'/recommend/getAllDishesByStoreID/',
+          method:'get',
+          data: {'store_id': store_id}
+        }).then(res=>{
+          let orgdishes = res.data.dishes
+          while (orgdishes.length < 10) {
+            const additional = orgdishes.slice();
+            orgdishes.push(...additional);
+          }
+
+          var shuffle = this.shuffleArray(orgdishes)
+          var first = [{name: '今天吃什么？'}]
+          var dishes = this.appendShuffledList(first, shuffle)
+          console.log(dishes)
+          this.setData({
+            scroll_dishes: dishes,
+            dish_chosen: dishes[8]
+          })
+          this.startScroll('dishAnimationData');
+        }).catch(err=>{
+          console.log(err)
         })
-        this.startScroll('dishAnimationData');
       }, 3000)
     }, 10)
   },
@@ -71,7 +89,7 @@ Page({
       timingFunction: 'ease'
     })
     // 获取元素总高度
-    let height =  (this.data.dishes.length) * 250
+    let height =  8 * 250
     // 向上移动
     animation.translateY(-height + 'rpx').step()
     // 将动画效果赋值
@@ -97,8 +115,14 @@ Page({
     });
   },
   revealCard() {
-    const randomIndex = Math.floor(Math.random() * this.data.demos.length);
-    var choice = this.data.demos[randomIndex]
+    util.tjRequest({
+      url:'/recommend/getPersonalDish',
+      method:'get',
+    }).then(res=>{
+      console.log(res)
+    }).catch(err=>{
+      console.log(err)
+    })
     this.setData({
       styleFront: 'transform:rotateY(180deg)',
       styleBack: 'transform:rotateY(0deg)',
@@ -136,6 +160,21 @@ Page({
     this.setData({
       curMonth: monthFullNames[date.getMonth()],
       curDate: dateString
+    })
+
+    util.tjRequest({
+      url:'/recommend/getAllStore',
+      method:'get',
+    }).then(res=>{
+      let stores = res.data.stores
+
+      while (stores.length < 10) {
+        const additionalStores = stores.slice();
+        stores.push(...additionalStores);
+      }
+
+      this.setData({stores: stores})
+    }).catch(err=>{
     })
   },
 
