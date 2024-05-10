@@ -1,7 +1,6 @@
 page {
   background-color: var(--tertiary-color);
 }
-
 .userinfo {
   width: 750rpx;
   height: 404rpx;
