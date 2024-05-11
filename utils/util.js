@@ -15,6 +15,7 @@ const formatNumber = n => {
 }
 
 const base_url = "http://1.92.154.154:80"
+const base_image_url = 'http://1.92.154.154:80/media/'
 const tjRequest = (options) =>{
   return new Promise((resolve, reject) => {
     wx.request({

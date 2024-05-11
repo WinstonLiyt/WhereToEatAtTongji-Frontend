@@ -31,7 +31,7 @@
     <block wx:for="{{foods}}" wx:key="id">
       <view class="food" bindtap="next_calculator">
         <view class="food_image">
-          <image src="{{item.image}}" mode="aspectFill"></image>
+          <image src="{{'http://1.92.154.154:80/media/' + item.image}}" mode="aspectFill"></image>
         </view>
         <view class="food_name">
           <text>{{item.name}}</text>
@@ -42,9 +42,6 @@
         <view class="other">
           <text decode="true">{{item.description}}</text>
         </view>
-        <!-- <view class="delete_btn" bindtap="deleteFood" data-id="{{item.id}}" catchtap="stopPropagation">
-          <text>删除</text>
-        </view> -->
         <view class="edit_btn" catchtap="editFood" data-id="{{item.id}}">
           <text>编辑</text>
         </view>
@@ -60,7 +57,7 @@
   </view>
 </view>
 
-<!-- 在页面的WXML中添加一个模态弹窗 -->
+<!-- 在页面的WXML中添加一个模态弹窗【新增菜品】 -->
 <view class="modal" hidden="{{!modalVisible}}">
   <view class="modal-content">
     <view class="modal-header">
@@ -86,7 +83,7 @@
         <view class="upload-btn" hidden="{{image}}">
           <text>上传菜品图片</text>
         </view>
-        <image src="{{image}}" class="uploaded-image" hidden="{{!image}}"></image>
+        <image src="{{'http://1.92.154.154:80/media/' + image}}" class="uploaded-image" hidden="{{!image}}"></image>
       </view>
     </view>
     <view class="modal-footer">

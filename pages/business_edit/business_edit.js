@@ -1,7 +1,7 @@
 Page({
   data: {
     image: '../../statics/imgs/business/store_kfc.png',
-    name: '肯德基（同济大学嘉定校区店）',
+    name: '肯德基',
     address: '曹安公路4800号5幢1区A100室',
     telephone: '13651962636',
     business_time: '06:00-22:00',
@@ -80,6 +80,15 @@ Page({
     });
   },
 
+  inputChange: function(e) {
+    var field = e.currentTarget.dataset.field;  // 获取绑定的数据字段名称
+    var value = e.detail.value;  // 获取输入的新值
+    var change = {};
+    change[field] = value;  // 创建一个对象来存储新的字段值
+    this.setData(change);  // 更新数据
+  },
+  
+
 
   onLoad: function() {  
     // 在页面加载时，从第三个元素开始切片数组  
@@ -90,18 +99,32 @@ Page({
   },  
   
   /* 取标签的值 */
-  handleTagChange: function (e) {
-    const tagIndex = e.detail.value;
-    const selectedTags = tagIndex.map(index => this.data.tagOptions[index]);
+  handleTagChange: function(e) {
+    const currentSelectedTags = this.data.selectedTags; // 当前已选中的标签
+    const newSelectedTags = e.detail.value; // 获取当前复选框组的选中情况
+
+    // 如果用户尝试选中超过两个标签
+    if (newSelectedTags.length > 2) {
+        wx.showToast({
+            title: '最多只能选择两个标签',
+            icon: 'none',
+            duration: 2000
+        });
+
+        // 强制界面复选框回到最后有效的状态，不更新数据
+        this.setData({
+            selectedTags: currentSelectedTags // 保持原来的选择不变
+        });
+        return; // 阻止函数继续执行
+    }
+
+    // 用户选择的标签数不超过两个，更新selectedTags数据
     this.setData({
-      // tagIndex: tagIndex,
-      // selectedTags: selectedTags
-      // selectedTags: e.detail.value  
-      // selectedTags: selectedIndexes.map(index => this.data.tagOptions[index].value)
-        selectedTags: e.detail.value
+        selectedTags: newSelectedTags
     });
-    console.log('Selected tags:', this.data.selectedTags);
-  },
+},
+
+
 
   toggleDropdown: function () {
     this.setData({

@@ -15,35 +15,34 @@
   <view class="userinfo-content">
     <view class="userinfo-row">
       <text class="userinfo-label">店铺名称:</text>
-      <input class="userinfo-input" value="{{name}}" placeholder="请输入店铺名称"/>
+      <input class="userinfo-input" value="{{name}}" bindinput="inputChange" data-field="name" placeholder="请输入店铺名称"/>
     </view>
     <view class="userinfo-row">
       <text class="userinfo-label">店铺地址:</text>
-      <input class="userinfo-input" value="{{address}}" placeholder="请输入店铺地址"/>
+      <input class="userinfo-input" value="{{address}}" bindinput="inputChange" data-field="address" placeholder="请输入店铺地址"/>
     </view>
     <view class="userinfo-row">
       <text class="userinfo-label">联系方式:</text>
-      <input class="userinfo-input" value="{{telephone}}" placeholder="请输入联系方式"/>
+      <input class="userinfo-input" value="{{telephone}}" bindinput="inputChange" data-field="telephone" placeholder="请输入联系方式"/>
     </view>
     <view class="userinfo-row">
       <text class="userinfo-label">营业时间:</text>
-      <input class="userinfo-input" value="{{business_time}}" placeholder="请输入营业时间"/>
+      <input class="userinfo-input" value="{{business_time}}" bindinput="inputChange" data-field="business_time" placeholder="请输入营业时间"/>
     </view>
     <view class="userinfo-row">
       <text class="userinfo-label">店铺简介:</text>
-      <input class="userinfo-input" value="{{remark}}" placeholder="请输入备注信息"/>
+      <input class="userinfo-input" value="{{remark}}" bindinput="inputChange" data-field="remark" placeholder="请输入备注信息"/>
     </view>
     <view class="userinfo-row">
       <text class="userinfo-label">店铺标签:</text>
       <checkbox-group class="tags-container" bindchange="handleTagChange">
           <view class="tag-row" wx:for="{{tagRows}}" wx:key="index">
-              <view class="tag" wx:for="{{item}}" wx:key="index">
-                  <checkbox value="{{item.value}}">{{item.label}}</checkbox>
-              </view>
+            <view class="tag" wx:for="{{item}}" wx:key="index">
+              <checkbox value="{{item.value}}">{{item.label}}</checkbox>
+            </view>
           </view>
       </checkbox-group>
     </view>
-
   </view>
 </view>
 
