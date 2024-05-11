@@ -1,11 +1,9 @@
-.js
-901 B
 // app.js
 App({
   onLaunch() {
     var util = require('./utils/util.js')
     // 登录
-    wx.setStorage({key:'role', data:'store'})
+    wx.setStorage({key:'role', data:'student'})
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
