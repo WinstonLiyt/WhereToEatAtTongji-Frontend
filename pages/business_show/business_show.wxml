@@ -8,7 +8,7 @@
     </view>
     <view class="title_name">
       <scroll-view scroll-x="true" class="scrollable-text">
-        <text>肯德基（同济大学嘉定校区店）</text>
+        <text>{{store.name}}</text>
       </scroll-view>
     </view>
   </view>
@@ -16,18 +16,19 @@
     <text>Description</text>
   </view>
   <view class="description">
-    <text>疯狂星期四，V我50！！！</text>
+    <text>{{store.description}}</text>
   </view>
   <view class="place">
     <image src="/statics/pic_tool/place.png" mode="aspectFill"></image>
-    <text>曹安公路4800号5幢1区A100室</text>
+    <text>{{store.location}}</text>
   </view>
 
   <view class="food_list">
     <block wx:for="{{foods}}" wx:key="id">
-      <view class="food" bindtap="next_calculator">
+    <!-- <text>{{item.id}}</text> -->
+      <view class="food" bindtap="next_calculator" mark:foodid="{{item.id}}">
         <view class="food_image">
-          <image src="{{item.image}}" mode="aspectFill"></image>
+          <image src="{{'http://1.92.154.154:80/' + item.image}}" mode="aspectFill"></image>
         </view>
         <view class="food_name">
           <text>{{item.name}}</text>
@@ -38,11 +39,14 @@
         <view class="other">
           <text decode="true">{{item.description}}</text>
         </view>
+        <view class="turn">
+        <image src="../../statics/pic_tool/turn.png"></image>
+      </view>
       </view>
     </block>
   </view>
 
   <view class="telephone">
-    <text>联系方式：13651962636</text>
+    <text>联系方式：{{store.phone_number}}</text>
   </view>
 </view>

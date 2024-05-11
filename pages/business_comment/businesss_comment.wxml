@@ -1,0 +1,101 @@
+<view class="top_pic">
+  <image src="{{base_url}}{{food.image}}" mode="aspectFill"></image>
+</view>
+<view class="food_block">
+  <view class="title">
+    <view class="title_pic">
+      <image src="/statics/pic_tool/dishes.png" mode="aspectFill"></image>
+    </view>
+    <view class="title_name">
+      <scroll-view scroll-x="true" class="scrollable-text">
+        <text>{{food.name}}</text>
+      </scroll-view>
+    </view>
+  </view>
+  <view class="description_title">
+    <text>Description</text>
+  </view>
+  <view class="description">
+    <text>{{food.description}}</text>
+  </view>
+  <view class="score">
+    <text>评分：</text>
+    <text>{{comment.avg_score}}</text>
+    <image src="/statics/pic_tool/star.png" mode="aspectFill"></image>
+  </view>
+  <view class="price">
+    <text>价格：</text>
+    <text>￥{{food.price}}</text>
+    <image src="/statics/pic_tool/price.png" mode="aspectFill"></image>
+  </view>
+  <view class="comment_board">
+    <view class="comment_title">
+      <text>食物评价</text>
+      <image src="/statics/pic_tool/comment.png" mode="aspectFill"></image>
+    </view>
+    <!-- <view class="mycomment">
+      <view class="startbox">
+        <text>评分：</text>
+        <view class="star_box" wx:for="{{stars}}" wx:key='this'>
+          <image class="star-image" style="left: {{item*10}}rpx" src="{{key>item?selectedSrc:normalSrc}}" data-key="{{item+1}}" bindtap="selectServer">
+          </image>
+        </view>
+      </view>
+      <view class="comment_bar">
+        <input type="text" placeholder="请输入评价内容" name="value" bindinput="user_content"></input>
+        <view class="search_btn" bindtap="confirm_content">
+          <image src="/statics/pic_tool/confirm.png" mode="aspectFill"></image>
+        </view>
+      </view>
+    </view> -->
+    <!-- 评论列表 -->
+    <view class="comment_list"  wx:for="{{comment.data}}" wx:key="key">
+      <view class="comment">
+      <!-- 用户信息和评论 -->
+        <view class="user">
+          <view class="user_image">
+            <image src="{{base_url}}{{item.user.avatar_url}}" mode="aspectFill"></image>
+          </view>
+          <text>{{item.user.nickname}}</text>       
+        </view>
+        <view class="comment_score">
+          <text>评分：</text>
+          <image src="/statics/pic_tool/star.png" mode="aspectFill" wx:for="{{item.score}}" wx:key="key"></image>
+        </view>
+        <view class="comment_time">
+          <text>{{item.time}}</text>
+        </view>
+        <view class="comment_content">
+          <text>{{item.comment}}</text>
+        </view>
+        <!-- 商家回复展示 -->
+        <view class="reply" wx:if="{{item.reply}}">
+          <text>商家回复：{{item.reply}}</text>
+          <!-- <text>时间：{{item.reply_time}}</text> -->
+        </view>
+        <view class="comment_bar">
+        <input type="text" placeholder="请输入评价内容" name="value" bindinput="replyInput" data-id="{{item.id}}"></input>
+        <view class="search_btn" bindtap="sendReply" data-id="{{item.id}}">
+          <image src="/statics/pic_tool/confirm.png" mode="aspectFill"></image>
+        </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<!-- <view class="modal" hidden="{{!modalVisible}}">
+  <view class="modal-content">
+    <view class="modal-header">
+      <text>Reply to Comment</text>
+    </view>
+    <view class="modal-body">
+      <input type="text" placeholder="Enter your reply here..." bindinput="inputReplyContent" />
+    </view>
+    <view class="modal-footer">
+      <button bindtap="sendReply">Send Reply</button>
+      <button bindtap="closeModal">Close</button>
+    </view>
+  </view>
+</view> -->

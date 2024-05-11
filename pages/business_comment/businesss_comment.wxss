@@ -1,0 +1,375 @@
+page{
+  background-color: #fcf9e9;
+}
+.top_pic{
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  height: 350px;
+}
+
+.top_pic image{
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  object-position: center top; /* 图片在容器中水平居中，垂直顶部对齐 */
+}
+/*这里可以设置一个滑动特效，向下滑动可以看到图片全貌*/
+.food_block{
+  width: 100%;
+  height:max-content;
+  background-color: #fcf9e9;
+  position:relative;
+  top:-90px;
+  border-radius:30px 30px 0 0;
+  border-top: 6rpx dashed rgb(180, 168, 148); 
+}
+
+.food_block .title{
+  width: 65%;
+  height: 90rpx;
+  border-radius: 30px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px #a5a5a5;
+  position: absolute;
+  top:-20px;
+  left:5%;
+  display:flex;
+}
+.title .title_pic{
+  aspect-ratio: 1 / 1;
+  height: 75%;
+  border-radius: 100%;
+  border: 2px solid rgb(199, 199, 199);
+  position:relative;
+  top:7.5%;
+  left:3%; 
+  display:flex;
+  overflow: hidden;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+}
+.title_pic image{
+  max-width: 90%;
+  max-height: 90%;
+}
+.title_name{
+  position: relative;
+  top:20%;
+  margin-left: 8%;
+  width: calc(100% - 30%);
+  overflow: hidden;
+}
+.title_name text{
+  font-size:18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  white-space: nowrap; /* 不换行 */
+  overflow: hidden; /* 隐藏超出部分 */
+}
+.title_name .scrollable-text {
+  white-space: nowrap;
+  overflow: hidden; /* 确保CSS与小程序的行为一致 */
+  width: 100%;
+}
+.food_block .description_title{
+  width:max-content;
+  height:max-content;
+  position:relative;
+  top:50px;
+  left:8%;
+}
+.food_block .description_title text{
+  font-size:19px;
+  letter-spacing: 0.5px;
+}
+.food_block .description{
+  width:fit-content;
+  height:max-content;
+  position:relative;
+  margin-left: 8%;
+  margin-right: 8%;
+  top:60px;
+}
+.food_block .description text{
+  font-size:15px;
+  letter-spacing: 0.5px;
+  color:#a5a5a5;
+}
+.score{
+  position:relative;
+  top:70px;
+  height:80rpx;
+  margin-top:10rpx;
+  width:90%;
+  margin-left: 8%;
+  margin-right: 8%;
+  display: flex;
+  overflow: hidden;
+  align-items: center; /* 垂直居中 */
+}
+.score text{
+  font-size: 16px;
+  letter-spacing: 1px;
+  color:rgb(49, 49, 49);
+}
+.score image{
+  max-width:5%;
+  max-height:40%;
+}
+.price{
+  position:relative;
+  top:60px;
+  height:80rpx;
+  margin-top:10rpx;
+  width:90%;
+  margin-left: 8%;
+  margin-right: 8%;
+  display: flex;
+  overflow: hidden;
+  align-items: center; /* 垂直居中 */
+}
+.price text{
+  font-size: 16px;
+  letter-spacing: 1px;
+  color:rgb(49, 49, 49);
+}
+.price image{
+  max-width:5%;
+  max-height:40%;
+}
+.comment_board{
+  width:90%;
+  padding-left: 5%;
+  padding-right: 5%;
+  position:relative;
+  height:max-content;
+  top:90px;
+  background-color:#ffffff;
+  padding-bottom:70px;
+  margin-bottom: 40px;
+}
+.comment_title{
+  position:absolute;
+  top:-20px;
+  height:80rpx;
+  width:90%;
+  left:60rpx;
+  display: flex;
+  overflow: hidden;
+  align-items: center; /* 垂直居中 */
+  gap: 10rpx; /* 设置元素之间的间距 */
+}
+.comment_title text{
+  font-size:19px;
+  letter-spacing: 1px;
+  border-bottom: 2px dashed rgb(201, 186, 160);
+  padding: 3px;
+  font-weight: bold;
+}
+.comment_title image{
+  max-width:5%;
+  max-height:40%;
+}
+.comment_list{
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  height: max-content;
+  position: relative;
+  top:50px;
+  border-radius: 15px;
+  padding-top: 10px;
+}
+.mycomment{
+  width: 100%;
+  position:relative;
+  height:250rpx;
+  border-bottom: 1px dashed rgb(235, 217, 185);
+  margin-bottom: 30rpx;
+  top:80rpx;
+  left:20rpx;
+}
+.mycomment .startbox{
+  width: 100%;
+  display: flex;
+}
+.startbox text{
+  font-size: 15px;
+  letter-spacing: 1px;
+  color:rgb(102, 102, 102);
+}
+.star_box{
+  height:80rpx;
+  width:5%;
+}
+.star_box image{
+  max-width:100%;
+  max-height:40%;
+}
+.comment_bar {
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+  padding: 0 15rpx;
+  box-sizing: border-box;
+  height: 90rpx;
+  width: 650rpx;
+  background-color: #ffffff;
+  border-radius: 30rpx;
+  border: 1px solid rgb(204, 199, 188);
+}
+.comment_bar input {
+  margin-left: 25rpx;
+  width: 80%;
+}
+.comment_bar .search_btn {
+  height: 65rpx;
+  width: 60rpx;
+  border-radius: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 55rpx;
+  /* cursor: pointer; */
+}
+.search_btn image{
+  max-width:100%;
+  max-height:80%;
+}
+.comment{
+  position:relative;
+  margin-top:10px;
+  width:100%;
+  height:max-content;
+  /* background-color: rgb(255, 255, 255); */
+  overflow: hidden;
+  border-bottom: 1px dashed rgb(235, 217, 185);
+}
+.user{
+  position: relative;
+  height: 60px;
+  width: fit-content;
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+}
+.user .user_image{
+  /* height: 90%; */
+  width: 90rpx;
+  aspect-ratio: 1 / 1;
+  position:relative;
+  top:5%;
+  left:30rpx; 
+  display:flex;
+  overflow: hidden;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  border-radius: 100%;
+  border: 2px solid rgb(0, 0, 0);
+  margin-right: 60rpx;
+}
+.user_image image{
+  max-width: 90%;
+  max-height: 90%;
+}
+.user text{
+  font-size: 16px;
+  letter-spacing: 1px;
+  /* font-weight: bold; */
+}
+.comment_score
+{
+  position:relative;
+  height:80rpx;
+  width:90%;
+  top:-15px;
+  left: 155rpx;
+  display: flex;
+  overflow: hidden;
+  align-items: center; /* 垂直居中 */
+  flex-wrap: nowrap;
+}
+.comment_score text{
+  font-size: 13px;
+  letter-spacing: 1px;
+  color:rgb(104, 104, 104);
+}
+.comment_score image{
+  max-width:5%;
+  max-height:40%;
+}
+.comment_time{
+  position: absolute;
+  top:53px;
+  height: 60px;
+  width: fit-content;
+  right:50rpx;
+}
+.comment_time text{
+  font-size: 12px;
+  letter-spacing: 1px;
+  color:rgb(104, 104, 104);
+}
+.comment_content{
+  position: relative;
+  margin-left:30rpx;
+  margin-right:30rpx;
+  margin-top:5px;
+  margin-bottom:20px;
+  width:fit-content;
+}
+.reply{
+  position: relative;
+  margin-left:60rpx;
+  margin-right:30rpx;
+  margin-top:5px;
+  margin-bottom:20px;
+  width:fit-content;
+}
+.reply text{
+  font-size: 14px;
+  letter-spacing: 1px;
+  color:rgb(104, 104, 104);
+}
+.see_more{
+  position: relative;
+  top:35px;
+  height:80px;
+  width:90%;
+  left:20rpx;
+  display: flex;
+  overflow: hidden;
+  align-items: center; /* 垂直居中 */
+}
+.see_more text{
+  font-size:14px;
+  letter-spacing: 1px;
+  border-bottom: 2px dashed rgb(201, 186, 160);
+  padding: 3px;
+  font-weight: bold;
+}
+.see_more image{
+  max-width:6%;
+  max-height:25%;
+}
+
+.reply_input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reply_input input {
+  flex: 1;
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+}
+
+.reply_input button {
+  padding: 8px 16px;
+  background-color: #007aff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}

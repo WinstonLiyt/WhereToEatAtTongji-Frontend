@@ -1,5 +1,6 @@
 <view class="top_pic">
-  <image src="/statics/pic_food/food2.jpg" mode="aspectFill"></image>
+  <image src="{{'http://1.92.154.154:80/' + store.images[0].image}}" mode="aspectFill"></image>
+  <!-- <text> {{store.images[0].image}}></text> -->
 </view>
 <view class="store_block">
   <view class="title">
@@ -8,7 +9,7 @@
     </view>
     <view class="title_name">
       <scroll-view scroll-x="true" class="scrollable-text">
-        <text>肯德基（同济大学嘉定校区店）</text>
+        <text>{{store.name}}</text>
       </scroll-view>
     </view>
   </view>
@@ -16,11 +17,11 @@
     <text>Description</text>
   </view>
   <view class="description">
-    <text>疯狂星期四，V我50！！！</text>
+    <text>{{store.description}}</text>
   </view>
   <view class="place">
     <image src="/statics/pic_tool/place.png" mode="aspectFill"></image>
-    <text>曹安公路4800号5幢1区A100室</text>
+    <text>{{store.location}}</text>
   </view>
 
   <view class="add_button">
@@ -29,9 +30,11 @@
 
   <view class="food_list">
     <block wx:for="{{foods}}" wx:key="id">
+    <!-- <text>{{item.id}}</text> -->
       <view class="food" bindtap="next_calculator">
         <view class="food_image">
-          <image src="{{'http://1.92.154.154:80/media/' + item.image}}" mode="aspectFill"></image>
+        <!-- 没有image -->
+          <image src="{{'http://1.92.154.154:80/' + item.image}}" mode="aspectFill"></image>
         </view>
         <view class="food_name">
           <text>{{item.name}}</text>
@@ -84,6 +87,10 @@
           <text>上传菜品图片</text>
         </view>
         <image src="{{'http://1.92.154.154:80/media/' + image}}" class="uploaded-image" hidden="{{!image}}"></image>
+        <!-- <text>{{image.includes('media/')}}</text>
+        <image src="{{image.includes('media/') ? 'http://1.92.154.154:80/' + image : 'http://1.92.154.154:80/media/' + image}}" class="uploaded-image" hidden="{{!image}}"></image> -->
+
+        <!-- <text>{{image}}</text> -->
       </view>
     </view>
     <view class="modal-footer">
