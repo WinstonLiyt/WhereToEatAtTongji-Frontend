@@ -51,7 +51,11 @@
           <text>店铺筛选结果</text>
         </view>
       </view>
-      <block class="" wx:for="{{storelist}}" wx:key="key">
+      <view class = "store_fail" wx:if="{{storelist.length==0}}">
+        <image src="../../../statics/pic_tool/fail2.png"  mode="aspectFit"></image>
+        <h1>暂无筛选结果</h1>
+      </view> 
+      <block class="" wx:if="{{storelist.length !=0 }}" wx:for="{{storelist}}" wx:key="key">
       <view class="store" mark:storeid="{{item.id}}" bindtap="next_calculator" id="{{item.id}}">
         <view class="store_image">
           <image src="{{base_url}}{{item.images[0].image}}" mode="aspectFill"></image>
@@ -67,6 +71,6 @@
           <image src="/statics/pic_tool/turn.png"></image>
         </view>
       </view>
-    </block>
+      </block>
   </view>
 </view>

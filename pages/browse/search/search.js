@@ -3,7 +3,9 @@ const { tjRequest } = require('../../../utils/util');
 
 Page({
   data: {
-    fail:false,
+    fail:null,
+    store_fail:null,
+    food_fail:null,
     store:true,
     name:"",
     storelist:null,
@@ -43,16 +45,23 @@ Page({
     // 调用 tjRequest 函数发起请求
     tjRequest(option).then(
       res => {
-        console.log(res.data);
+        console.log(res.data['dishes'].length);
+        console.log(res.data['rests'].length);
         this.setData({
           name:name,
           storelist:res.data['rests'],
           foodlist:res.data['dishes'],
+          store_fail:res.data['rests'].length == 0,
+          food_fail:res.data['dishes'].length == 0,
+          fail:res.data['rests'].length == 0&&res.data['dishes'].length == 0
         })
+        console.log(this.data.store_fail);
+        console.log(this.data.food_fail);
       }).catch(error => {
         // 请求失败的处理逻辑
         console.error('请求用户个人信息失败：', error);
-    })
+    });
+
   },
 
   /**
@@ -104,48 +113,3 @@ Page({
 
   }
 })
-
-
-
-// {'dishes': 
-//         [{'id': 25, 
-//           'name': '可乐',
-//           'description': '牛', 
-//           'tags': [{'id': 52, 'name': '焦糖'}, {'id': 53, 'name': '快乐水'}], 
-//           'price': '5.20', 
-//           'image': '/media/images/test_iamge.jpg', 
-//           'restaurant': {'id': 25, 
-//                          'name': '饮料店', 
-//                          'location': 'B楼', 
-//                          'phone_number': '456789', 
-//                          'description': '太酷了', 
-//                          'images': [{'id': 51, 'image': '/media/images/test_iamge.jpg'}, {'id': 52, 'image': '/media/images/test_iamge1.jpg'}], 
-// 								         'tags': [{'id': 48, 'name': '火锅'}, {'id': 49, 'name': '小吃'}]
-// 								         }
-// 				  }, 
-//           {'id': 26, 
-//            'name': '可乐', 
-//            'description': '牛', 
-//            'tags': [{'id': 52, 'name': '焦糖'}, {'id': 53, 'name': '快乐水'}], 
-//            'price': '5.20', 
-//            'image': '/media/images/test_iamge.jpg', 
-//            'restaurant': {'id': 25, 
-//                           'name': '饮料店', 
-//                           'location': 'B楼', 
-//                           'phone_number': '456789', 
-//                           'description': '太酷了', 
-//                           'images': [{'id': 51, 'image': '/media/images/test_iamge.jpg'}, {'id': 52, 'image': '/media/images/test_iamge1.jpg'}], 
-//                           'tags': [{'id': 48, 'name': '火锅'}, {'id': 49, 'name': '小吃'}]
-//                           }
-//              }], 
-//    'rests': [{'id': 25, 
-//               'name': '饮料店', 
-//               'location': 'B楼', 
-//               'phone_number': '456789', 
-//               'description': '太酷了', 
-//               'images': [{'id': 51, 'image': '/media/images/test_iamge.jpg'}, 
-//                          {'id': 52, 'image': '/media/images/test_iamge1.jpg'}], 
-//                'tags': [{'id': 48, 'name': '火锅'}, {'id': 49, 'name': '小吃'}]
-//                }
-//               ]
-//    }

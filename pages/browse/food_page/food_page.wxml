@@ -52,7 +52,7 @@
       <view class="comment">
         <view class="user">
           <view class="user_image">
-            <image src="{{base_url}}{{item.user.avatar_url}}" mode="aspectFill"></image>
+            <image src="{{avatar_url}}{{item.user.avatar_url}}" mode="aspectFill"></image>
           </view>
           <text>{{item.user.nickname}}</text>       
         </view>

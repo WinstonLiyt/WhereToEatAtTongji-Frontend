@@ -4,6 +4,7 @@ const { tjRequest } = require('../../../utils/util');
 Page({
   data: {
     foodId:null,
+    userID:null,
     stars: [0, 1, 2, 3, 4],
     normalSrc: '/statics/pic_tool/star0.png',//未选中状态
     selectedSrc: '/statics/pic_tool/star.png',//选中状态
@@ -14,8 +15,8 @@ Page({
     food:null,
     comment:null,
     base_url:"http://1.92.154.154:80",
-  },
-
+    avatar_url:"http://1.92.154.154:80/media/avatar/",
+  },  
   selectServer: function (e) {//服务态度评分
     var key = e.currentTarget.dataset.key
     if (this.data.key == 1 && e.currentTarget.dataset.key == 1) {//当有一颗星的时候再次点击取消选中
@@ -50,7 +51,7 @@ Page({
     else{
       //提交菜品评价信息
       const option_2 = {
-        url: '/eval/1/'+ this.data.foodId + '/create/',
+        url: '/eval/'+ this.data.userID +'/' + this.data.foodId + '/create/',
         method: 'post', // 请求方法，默认为 'get'
         data: {
           score: this.data.key,
@@ -90,7 +91,23 @@ Page({
         // 请求失败的处理逻辑
         console.error('请求用户个人信息失败：', error);
     })
-    
+    //获取用户ID
+    const option_3 = {
+      url: '/user/getId',
+      method: 'get', // 请求方法，默认为 'get'
+    };
+    // 调用 tjRequest 函数发起请求
+    tjRequest(option_3).then(
+      res => {
+        console.log('Success:', res.data);
+        this.setData({
+          userID:res.data.id,
+        })
+      }).catch(error => {
+        // 请求失败的处理逻辑
+        console.error('请求用户个人信息失败：', error);
+    })
+
     //获取菜品评价信息
     const option_2 = {
       url: '/dish/'+ foodId + '/eval',
