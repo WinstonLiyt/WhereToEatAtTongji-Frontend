@@ -2,8 +2,8 @@
   <view class="userinfo">
     <image class="bg" src="../../statics/imgs/personal/NEWTOM.svg"></image>
     <view  class="avatar">
-      <image class="userinfo-avatar" src=" ../../statics/imgs/business/store_kfc.png" background-size="cover"></image>
-      <text class="userinfo-nickname">{{ '肯德基（同济大学嘉定校区店）' }}</text>
+      <image class="userinfo-avatar" src="{{user_image}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{ name }}</text>
     </view>
   </view>
   <!-- <view class="account">
@@ -37,15 +37,15 @@
       </view>
       <view class="userinfo-row">
         <text class="userinfo-label">联系方式:</text>
-        <text class="userinfo-value">13651962636</text>
+        <text class="userinfo-value">{{tele}}</text>
       </view>
       <view class="userinfo-row">
         <text class="userinfo-label">营业时间:</text>
-        <text class="userinfo-value">06:00-22:00</text>
+        <text class="userinfo-value">{{time}}</text>
       </view>
       <view class="userinfo-row">
-        <text class="userinfo-label">备注:</text>
-        <text class="userinfo-value">疯狂星期四，V我50！！！</text>
+        <text class="userinfo-label">店铺简介:</text>
+        <text class="userinfo-value">{{description}}</text>
       </view>
       <view class="userinfo-row">
         <text class="userinfo-label">标签:</text>
@@ -88,7 +88,7 @@
         <image class="icon2" src="../../statics/imgs/personal/next.svg"></image>
       </view>
     </navigator>
-    <view class="line"></view>
+    <!-- <view class="line"></view>
     <navigator url="../business_menu/business_menu">
       <view class="menu">
         <view class="title">
@@ -97,7 +97,7 @@
         </view>
         <image class="icon2" src="../../statics/imgs/personal/next.svg"></image>
       </view>
-    </navigator>
+    </navigator> -->
     <view class="line"></view>
     <navigator url="">
       <view class="menu">
@@ -115,11 +115,15 @@
     <view class="background-container">
       <!-- 循环展示现有背景图 -->
       <view wx:for="{{backgroundImages}}" wx:key="index" class="background-item">
-        <image src="{{item}}" class="background-image"></image>
+        <image src="{{'http://1.92.154.154:80/media/' + item}}" class="background-image"></image>
         <view class="delete-btn" bindtap="deleteBackground" data-index="{{index}}">删除</view>
       </view>
       <!-- 上传背景图按钮 -->
-      <button class="upload-btn" bindtap="uploadBackground">上传背景图</button>
+      <view class="button-container">
+        <button class="upload-btn" bindtap="uploadBackground">上传背景图</button>
+        <button class="upload-btn" bindtap="updateBackgroundImages">确认更新</button>
+      </view>
+
     </view>
     <view class="modal-close-btn" bindtap="closePopup">关闭</view>
   </view>

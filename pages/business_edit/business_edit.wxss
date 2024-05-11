@@ -2,6 +2,7 @@ page {
   background-color: #FCF9E8;
 }
 
+/* 用户卡 */
 .userinfo {
   width: 750rpx;
   height: 404rpx;
@@ -19,7 +20,7 @@ page {
   flex-direction: column;
   align-items: center;
   position: absolute;
-  width: 700rpx;
+  width: 100%;
   top: 80rpx;
 }
 
@@ -39,49 +40,8 @@ page {
   font-weight: bold;
   font-family: 'Arial', 'Helvetica', sans-serif;
 }
-/* -------------------------------------------- */
-.account {
-  width: 100vw;
-  height: 160rpx;
-  background-color: #FCF9E8;
-  display: flex;
-  border-radius: 10%;
-}
 
-.account .line {
-  background: #e6e6e6;
-  width: 2rpx;
-  height: 112rpx;
-  margin-top: 24rpx;
-}
-
-.account .item {
-  width: 374rpx;
-  height: 160rpx;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.account .item .num {
-  font-size: 52rpx;
-  /* color: #feb21c; */
-  color: var(--secondary-color);
-  letter-spacing: 0;
-  line-height: 52rpx;
-}
-
-.account .item .unit {
-  margin-top: 18rpx;
-  font-family: PingFangSC-Regular;
-  font-size: 25rpx;
-  font-weight: bold;
-  color: #666;
-  letter-spacing: 0;
-  line-height: 20rpx;
-}
-/* -------------------------------------------- */
+/* 店铺信息 */
 .userinfo-header {
   position: relative;
   background-color: var(--secondary-color);
@@ -142,7 +102,8 @@ page {
   font-size: 15px;
   color: #333;
 }
-/* -------------------------------------------- */
+
+/* 按钮 */
 .button-group {
   margin-left: 30px;
   display: flex;
@@ -171,8 +132,7 @@ page {
   border-radius:  0 8px 8px 0;
 }
 
-/* added */
-
+/* 多选框 */
 .checkbox-group-wrapper {
   display: flex;
   align-items: center;
@@ -191,3 +151,22 @@ page {
   overflow-y: auto; /* Enable vertical scrolling */
 }
 
+
+.userinfo-row {
+  display: flex;
+  align-items: center;
+}
+
+.tags-container {
+  width: 100%; /* 让滚动视图占满宽度 */
+  height: auto; /* 自动高度，根据内容撑开 */
+}
+
+.tag-row {
+  display: flex;
+}
+
+.tag {
+  flex: 1; /* 每个标签占据相同的空间 */
+  margin-right: 2px; /* 调整标签之间的间距 */
+}
