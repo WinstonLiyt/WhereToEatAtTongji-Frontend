@@ -28,11 +28,13 @@ page {
   width: 200rpx;
   height: 200rpx;
   border-radius: 50%;
+  max-width: 100%;         /* 确保图片不会超出容器 */
+  max-height: 100%;        /* 确保图片不会超出容器 */
+  object-fit: contain;     /* 确保图片保持其宽高比 */
 }
 
 .userinfo .avatar .userinfo-nickname {
   margin-top: 20rpx;
-  margin-left: 60px;
   font-size: 22px;
   align-items: center;
   color:black;
