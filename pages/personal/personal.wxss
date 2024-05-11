@@ -8,7 +8,6 @@ page {
   height: calc(100% - 60px - env(safe-area-inset-bottom));
   overflow: scroll;
 }
-
 .userinfo {
   width: 750rpx;
   height: 404rpx;

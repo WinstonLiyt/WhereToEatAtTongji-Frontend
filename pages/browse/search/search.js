@@ -1,71 +1,14 @@
 // pages/browse/food_page/search.js
-Page({
+const { tjRequest } = require('../../../utils/util');
 
-  /**
-   * 页面的初始数据
-   */
+Page({
   data: {
     fail:false,
     store:true,
     name:"",
-    testData:{
-      "data":[
-        {
-          "id":0,
-          "imgSrc":"/statics/pic_food/food1.jpg",
-          "name":"五味小面",
-          "type":"面食",
-          "location":"满天星广场2f"
-        },
-        {
-          "id":1,
-          "imgSrc":"/statics/pic_food/food2.jpg",
-          "name":"希食东",
-          "type":"西餐",
-          "location":"满天星广场2f"
-        },
-        {
-          "id":2,
-          "imgSrc":"/statics/pic_food/food3.jpg",
-          "name":"吉祥馄饨",
-          "type":"面食",
-          "location":"满天星广场1f"
-        },
-        {
-          "id":3,
-          "imgSrc":"/statics/pic_food/food4.jpg",
-          "name":"麦当劳",
-          "type":"西餐",
-          "location":"嘉实生活广场"
-        },
-      ]
-    },
-    foodtest:[
-        {
-          "id":0,
-          "imgSrc":"/statics/pic_food/food4.jpg",
-          "name":"小笼包",
-          "price":"12",
-          "description":"好吃的一个小笼包",
-          "restaurant": {
-            'id': 25, 
-            'name': '饮料店',
-          } 
-        },
-        {
-          "id":1,
-          "imgSrc":"/statics/pic_food/food2.jpg",
-          "name":"面面面",
-          "price":"22",
-          "description":"好吃的一碗面",
-          "restaurant": {
-            'id': 25, 
-            'name': '饮料店',
-          } 
-        },
-      ],
     storelist:null,
     foodlist:null,
+    base_url:"http://1.92.154.154:80",
   },
   storebtn:function(options){
     this.setData({
@@ -92,12 +35,24 @@ Page({
    */
   onLoad(options) {
     var name = options.name;
-    // console.log(name);
-    this.setData({
-      name:name,
-      storelist: this.data.testData.data,
-      foodlist:this.data.foodtest,
-    });
+    //获取筛选信息
+    const option = {
+      url: '/search/' + name,
+      method: 'get' // 请求方法，默认为 'get'
+    };
+    // 调用 tjRequest 函数发起请求
+    tjRequest(option).then(
+      res => {
+        console.log(res.data);
+        this.setData({
+          name:name,
+          storelist:res.data['rests'],
+          foodlist:res.data['dishes'],
+        })
+      }).catch(error => {
+        // 请求失败的处理逻辑
+        console.error('请求用户个人信息失败：', error);
+    })
   },
 
   /**

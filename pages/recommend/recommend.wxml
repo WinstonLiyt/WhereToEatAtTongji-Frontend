@@ -17,15 +17,15 @@
   <view wx:if="{{page_type=='randomized'}}" style="height:100%;">
     <view  style="margin-top: 60rpx;" class="scroll-container">
       <view class="transform-container" animation="{{storeAnimationData}}">
-        <view wx:for="{{scroll_stores}}" wx:key="*this" class="scroll-text">
-          {{item}}
+        <view wx:for="{{scroll_stores}}" class="scroll-text">
+          {{item.name}}
         </view>
       </view>
     </view>
     <view class="scroll-container" style="margin-top: 50rpx;">
       <view class="transform-container" animation="{{dishAnimationData}}" >
-        <view wx:for="{{scroll_dishes}}" wx:key="*this" class="scroll-text">
-          {{item}}
+        <view wx:for="{{scroll_dishes}}" class="scroll-text">
+          {{item.name}}
         </view>
       </view>
     </view>

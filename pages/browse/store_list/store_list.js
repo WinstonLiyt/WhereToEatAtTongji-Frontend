@@ -14,58 +14,27 @@ Page({
     bbq_filter:false,
     western_filter:false,
     rice_filter:false,
-    testData:{
-      "data":[
-        {
-          "id":0,
-          "imgSrc":"/statics/pic_food/food1.jpg",
-          "name":"五味小面",
-          "type":"面食",
-          "location":"满天星广场2f"
-        },
-        {
-          "id":1,
-          "imgSrc":"/statics/pic_food/food2.jpg",
-          "name":"希食东",
-          "type":"西餐",
-          "location":"满天星广场2f"
-        },
-        {
-          "id":2,
-          "imgSrc":"/statics/pic_food/food3.jpg",
-          "name":"吉祥馄饨",
-          "type":"面食",
-          "location":"满天星广场1f"
-        },
-        {
-          "id":3,
-          "imgSrc":"/statics/pic_food/food4.jpg",
-          "name":"麦当劳",
-          "type":"西餐",
-          "location":"嘉实生活广场"
-        },
-      ]
-    },
+    base_url:"http://1.92.154.154:80",
+    Data:null,
     storelist:null
   },
   onLoad: function(){
-    // const options = {
-    //   url: '', // 用户个人信息接口的路径
-    //   method: 'get', // 请求方法，默认为 'get'
-    // };
-    // // 调用 tjRequest 函数发起请求
-    // tjRequest(options)
-    //   .then(response => {
-    //     // 请求成功的处理逻辑
-    //     console.log('用户个人信息：', response.data);
-    //   })
-    //   .catch(error => {
-    //     // 请求失败的处理逻辑
-    //     console.error('请求用户个人信息失败：', error);
-    //   });
-    this.setData({
-      storelist: this.data.testData.data,
-    });
+    const options = {
+      url: '/restaurant/all/', // 用户个人信息接口的路径
+      method: 'get' // 请求方法，默认为 'get'
+    };
+    // 调用 tjRequest 函数发起请求
+    tjRequest(options).then(
+      res => {
+        console.log(res.data);
+        this.setData({
+              Data:res.data,
+              storelist:res.data,
+        })
+    }).catch(error => {
+      // 请求失败的处理逻辑
+      console.error('请求用户个人信息失败：', error);
+    })
   },
   onShow: function () {
     if (typeof this.getTabBar === 'function' &&
@@ -104,16 +73,18 @@ Page({
   noodlesfilter:function(options){
       if(this.data.noodle_filter){
         this.setData({
-          storelist: this.data.testData.data,
+          storelist: this.data.Data,
           noodle_filter:false,
         });
       }
       else {
         var storeList = [];
-        Object.keys(this.data.testData.data).forEach((item)=>{
-          if(this.data.testData.data[item].type=="面食"){
-            storeList.push(this.data.testData.data[item]);
-          }
+        Object.keys(this.data.Data).forEach((item)=>{
+          Object.keys(this.data.Data[item].tags).forEach((i)=>{
+            if(this.data.Data[item].tags[i].name=="面食"){
+              storeList.push(this.data.Data[item]);
+            }
+          });
         });
         this.setData({
           storelist: storeList,
@@ -131,16 +102,18 @@ Page({
   cakefilter:function(options){
     if(this.data.cake_filter){
       this.setData({
-        storelist: this.data.testData.data,
+        storelist: this.data.Data,
         cake_filter:false,
       });
     }
     else {
       var storeList = [];
-      Object.keys(this.data.testData.data).forEach((item)=>{
-        if(this.data.testData.data[item].type=="甜品"){
-          storeList.push(this.data.testData.data[item]);
-        }
+      Object.keys(this.data.Data).forEach((item)=>{
+        Object.keys(this.data.Data[item].tags).forEach((i)=>{
+          if(this.data.Data[item].tags[i].name=="甜点"){
+            storeList.push(this.data.Data[item]);
+          }
+        });
       });
       this.setData({
         storelist: storeList,
@@ -158,16 +131,18 @@ Page({
   drinkfilter:function(options){
     if(this.data.drink_filter){
       this.setData({
-        storelist: this.data.testData.data,
+        storelist: this.data.Data,
         drink_filter:false,
       });
     }
     else {
       var storeList = [];
-      Object.keys(this.data.testData.data).forEach((item)=>{
-        if(this.data.testData.data[item].type=="饮品"){
-          storeList.push(this.data.testData.data[item]);
-        }
+      Object.keys(this.data.Data).forEach((item)=>{
+        Object.keys(this.data.Data[item].tags).forEach((i)=>{
+          if(this.data.Data[item].tags[i].name=="饮品"){
+            storeList.push(this.data.Data[item]);
+          }
+        });
       });
       this.setData({
         storelist: storeList,
@@ -185,16 +160,18 @@ Page({
   breakfastfilter:function(options){
     if(this.data.breakfast_filter){
       this.setData({
-        storelist: this.data.testData.data,
+        storelist: this.data.Data,
         breakfast_filter:false,
       });
     }
     else {
       var storeList = [];
-      Object.keys(this.data.testData.data).forEach((item)=>{
-        if(this.data.testData.data[item].type=="早餐"){
-          storeList.push(this.data.testData.data[item]);
-        }
+      Object.keys(this.data.Data).forEach((item)=>{
+        Object.keys(this.data.Data[item].tags).forEach((i)=>{
+          if(this.data.Data[item].tags[i].name=="早点"){
+            storeList.push(this.data.Data[item]);
+          }
+        });
       });
       this.setData({
         storelist: storeList,
@@ -212,16 +189,18 @@ Page({
   fruitfilter:function(options){
     if(this.data.fruit_filter){
       this.setData({
-        storelist: this.data.testData.data,
+        storelist: this.data.Data,
         fruit_filter:false,
       });
     }
     else {
       var storeList = [];
-      Object.keys(this.data.testData.data).forEach((item)=>{
-        if(this.data.testData.data[item].type=="水果"){
-          storeList.push(this.data.testData.data[item]);
-        }
+      Object.keys(this.data.Data).forEach((item)=>{
+        Object.keys(this.data.Data[item].tags).forEach((i)=>{
+          if(this.data.Data[item].tags[i].name=="水果"){
+            storeList.push(this.data.Data[item]);
+          }
+        });
       });
       this.setData({
         storelist: storeList,
@@ -239,16 +218,18 @@ Page({
   bbqfilter:function(options){
     if(this.data.bbq_filter){
       this.setData({
-        storelist: this.data.testData.data,
+        storelist: this.data.Data,
         bbq_filter:false,
       });
     }
     else {
       var storeList = [];
-      Object.keys(this.data.testData.data).forEach((item)=>{
-        if(this.data.testData.data[item].type=="烧烤"){
-          storeList.push(this.data.testData.data[item]);
-        }
+      Object.keys(this.data.Data).forEach((item)=>{
+        Object.keys(this.data.Data[item].tags).forEach((i)=>{
+          if(this.data.Data[item].tags[i].name=="烧烤"){
+            storeList.push(this.data.Data[item]);
+          }
+        });
       });
       this.setData({
         storelist: storeList,
@@ -266,16 +247,18 @@ Page({
   westernfilter:function(options){
     if(this.data.western_filter){
       this.setData({
-        storelist: this.data.testData.data,
+        storelist: this.data.Data,
         western_filter:false,
       });
     }
     else {
       var storeList = [];
-      Object.keys(this.data.testData.data).forEach((item)=>{
-        if(this.data.testData.data[item].type=="西餐"){
-          storeList.push(this.data.testData.data[item]);
-        }
+      Object.keys(this.data.Data).forEach((item)=>{
+        Object.keys(this.data.Data[item].tags).forEach((i)=>{
+          if(this.data.Data[item].tags[i].name=="西餐"){
+            storeList.push(this.data.Data[item]);
+          }
+        });
       });
       this.setData({
         storelist: storeList,
@@ -293,16 +276,18 @@ Page({
   ricefilter:function(options){
     if(this.data.rice_filter){
       this.setData({
-        storelist: this.data.testData.data,
+        storelist: this.data.Data,
         rice_filter:false,
       });
     }
     else {
       var storeList = [];
-      Object.keys(this.data.testData.data).forEach((item)=>{
-        if(this.data.testData.data[item].type=="炒菜"){
-          storeList.push(this.data.testData.data[item]);
-        }
+      Object.keys(this.data.Data).forEach((item)=>{
+        Object.keys(this.data.Data[item].tags).forEach((i)=>{
+          if(this.data.Data[item].tags[i].name=="炒菜"){
+            storeList.push(this.data.Data[item]);
+          }
+        });
       });
       this.setData({
         storelist: storeList,

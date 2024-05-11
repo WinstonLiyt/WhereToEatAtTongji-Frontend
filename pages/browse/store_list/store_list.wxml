@@ -54,13 +54,14 @@
       <block class="" wx:for="{{storelist}}" wx:key="key">
       <view class="store" mark:storeid="{{item.id}}" bindtap="next_calculator" id="{{item.id}}">
         <view class="store_image">
-          <image src="{{item.imgSrc}}" mode="aspectFill"></image>
+          <image src="{{base_url}}{{item.images[0].image}}" mode="aspectFill"></image>
         </view>
         <view class="store_name">
           <text>{{item.name}}</text>
         </view>
         <view class="other">
-          <text decode="true">{{item.type}}&emsp;&emsp;{{item.location}}</text>
+          <text decode="true" wx:for="{{item.tags}}" wx:key="key">{{item.name}}&emsp;</text>
+          <text decode="true">&emsp;{{item.location}}</text>
         </view>
         <view class="turn">
           <image src="/statics/pic_tool/turn.png"></image>

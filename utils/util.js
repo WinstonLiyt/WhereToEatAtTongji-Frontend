@@ -18,14 +18,53 @@ const base_url = "http://1.92.154.154:80"
 const base_image_url = 'http://1.92.154.154:80/media/'
 const tjRequest = (options) =>{
   return new Promise((resolve, reject) => {
+    let token
+    try{
+      token = wx.getStorageSync('token')
+    } catch{
+      token = null
+    }
+    
     wx.request({
       url: base_url + options.url,
       method: options.method || 'get',
       data: options.data || {},
       header: options.header || {
-        'token': wx.getStorage('token') 
+        'token': token
       },
-      success: resolve,
+      success: res=>{
+        if(res.statusCode === 200)
+          resolve(res)
+        else
+          reject(res)
+      },
+      fail: reject
+    })
+  })
+}
+
+const tjFileUpLoad = (options) =>{
+  return new Promise((resolve, reject) => {
+    let token
+    try{
+      token = wx.getStorageSync('token')
+    } catch{
+      token = null
+    }
+    wx.uploadFile({
+      url: base_url + options.url,
+      filePath: options.filePath || '',
+      name: 'file',
+      header: options.header || {
+        'token': token
+      },
+      formData: options.formData || {},
+      success: res=>{
+        if(res.statusCode === 200)
+          resolve(res)
+        else
+          reject(res)
+      },
       fail: reject
     })
   })
@@ -33,5 +72,7 @@ const tjRequest = (options) =>{
 
 module.exports = {
   formatTime,
-  tjRequest
+  base_url,
+  tjRequest,
+  tjFileUpLoad
 }
