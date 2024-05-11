@@ -5,8 +5,8 @@ Page({
   data: {
     foods: [
       { id: 1, name: '食物名称1', price: 32, description: '描述1', image: '/statics/pic_food/food1.jpg' },
-      { id: 2, name: '食物名称2', price: 52, description: '描述2', image: '/statics/pic_food/food2.jpg' },
-      { id: 2, name: '食物名称3', price: 20, description: '描述3', image: '/statics/pic_food/food3.jpg' },
+      // { id: 2, name: '食物名称2', price: 52, description: '描述2', image: '/statics/pic_food/food2.jpg' },
+      // { id: 3, name: '食物名称3', price: 20, description: '描述3', image: '/statics/pic_food/food3.jpg' },
       // 更多菜品
     ],
     modalVisible: false,
@@ -90,53 +90,136 @@ Page({
   },
 
   // 图片上传
-  uploadImage: function() {
-    var that = this;
-    wx.chooseImage({
-      success: function(res) {
-        const imagePath = res.tempFilePaths[0];
-        that.setData({
-          image: imagePath  // 更新图片路径
-        });
-      }
-    });
-  },
+uploadImage: function() {
+  var that = this;
+  wx.chooseImage({
+    success: function(res) {
+      const imagePath = res.tempFilePaths[0];
+      // 上传图片到服务器
+      wx.uploadFile({
+        url: 'http://1.92.154.154:80/image/', // 后端接收图片的API地址
+        filePath: imagePath,
+        name: 'file', // 与后端约定的字段名
+        header: {
+          'content-type': 'multipart/form-data'
+        },
+        success: function(uploadRes) {
+          const data = JSON.parse(uploadRes.data);
+          console.log(data);
+          if (uploadRes.statusCode === 200 && data.new_name) {
+            // 更新图片URL
+            that.setData({
+              image: data.new_name
+            });
+            console.log(data.new_name);
+            wx.showToast({
+              title: '图片上传成功',
+              icon: 'success'
+            });
+          } else {
+            wx.showToast({
+              title: '图片上传失败',
+              icon: 'error'
+            });
+          }
+        },
+        fail: function(error) {
+          wx.showToast({
+            title: '上传错误',
+            icon: 'none'
+          });
+          console.error('Upload failed:', error);
+        }
+      });
+    }
+  });
+},
+  // uploadImage: function() {
+  //   var that = this;
+  //   wx.chooseImage({
+  //     success: function(res) {
+  //       const imagePath = res.tempFilePaths[0];
+  //       that.setData({
+  //         image: imagePath  // 更新图片路径
+  //       });
+  //     }
+  //   });
+  // },
 
   // 提交新增菜品
   submitFood: function() {
     const { name, price, description, image, editingId, isEditing } = this.data;
-    if (editingId) {
-        // 更新现有的食品信息
-        this.data.foods = this.data.foods.map(food => {
-            if (food.id === editingId) {
+
+    const url = isEditing ? 
+    `http://1.92.154.154:80/dish/14/update/` : // URL for updating an existing dish
+    'http://1.92.154.154:80/dish/14/create/'; // URL for creating a new dish
+
+    wx.request({
+      url: url,
+      method: 'POST',
+      data: {
+        name: name,
+        price: price,
+        description: description,
+        image: image
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function(res) {
+        if (res.statusCode === 200) {
+          wx.showToast({
+            title: isEditing ? '菜品更新成功' : '菜品添加成功',
+            icon: 'success'
+          });
+          console.log('1');
+          if (!isEditing) {
+            const newDish = { id: res.data.id, name, price, description, image };
+            console.log(newDish);
+            this.data.foods.push(newDish);
+            this.setData({
+              foods: this.data.foods
+            });
+          } 
+          else {
+            this.data.foods = this.data.foods.map(food => {
+              if (food.id === editingId) {
                 return { ...food, name, price, description, image };
-            }
-            return food;
+              }
+              return food;
+            });
+            this.setData({
+              foods: this.data.foods
+            });
+          }
+        } 
+        else {
+          wx.showToast({
+            title: '操作失败',
+            icon: 'error'
+          });
+        }
+      }.bind(this),
+      fail: function(error) {
+        wx.showToast({
+          title: '网络错误',
+          icon: 'none'
         });
-    } else {
-        // 添加新的食品
-        this.data.foods.push({ id: this.data.foods.length + 1, name, price, description, image });
-    }
-
-    // 更新视图并重置表单
-    this.setData({
-        foods: this.data.foods,
-        modalVisible: false,
-        name: '',
-        price: '',
-        description: '',
-        image: null,
-        editingId: null, // 重置编辑状态
-        isEditing: false  // 重置编辑状态
+        console.error('Request failed:', error);
+      }
     });
 
-    wx.showToast({
-        title: isEditing ? '菜品更新成功' : '菜品添加成功',
-        icon: 'success',
-        duration: 2000
-    });
-  },
-
+  // Reset the form and close the modal
+  this.setData({
+    modalVisible: false,
+    name: '',
+    price: '',
+    description: '',
+    image: null,
+    editingId: null,
+    isEditing: false
+  });
+},
 
   // 关闭弹窗
   closeModal: function() {
@@ -169,47 +252,47 @@ Page({
     });
   },
 
-  submitFood: function() {
-    // First, retrieve `isEditing` from `this.data` to ensure it is in scope
-    const { name, price, description, image, editingId, isEditing } = this.data;
+//   submitFood: function() {
+//     // First, retrieve `isEditing` from `this.data` to ensure it is in scope
+//     const { name, price, description, image, editingId, isEditing } = this.data;
 
-    if (editingId) {
-        // Update existing food information
-        const updatedFoods = this.data.foods.map(food => {
-            if (food.id === editingId) {
-                return { ...food, name, price, description, image };
-            }
-            return food;
-        });
-        this.setData({
-            foods: updatedFoods
-        });
-    } else {
-        // Add new food item
-        this.data.foods.push({ id: this.data.foods.length + 1, name, price, description, image });
-        this.setData({
-            foods: this.data.foods
-        });
-    }
+//     if (editingId) {
+//         // Update existing food information
+//         const updatedFoods = this.data.foods.map(food => {
+//             if (food.id === editingId) {
+//                 return { ...food, name, price, description, image };
+//             }
+//             return food;
+//         });
+//         this.setData({
+//             foods: updatedFoods
+//         });
+//     } else {
+//         // Add new food item
+//         this.data.foods.push({ id: this.data.foods.length + 1, name, price, description, image });
+//         this.setData({
+//             foods: this.data.foods
+//         });
+//     }
 
-    // Reset the form and update the view
-    this.setData({
-        modalVisible: false,
-        name: '',
-        price: '',
-        description: '',
-        image: null,
-        editingId: null,  // Reset editing status
-        isEditing: false  // Make sure to reset isEditing to false
-    });
+//     // Reset the form and update the view
+//     this.setData({
+//         modalVisible: false,
+//         name: '',
+//         price: '',
+//         description: '',
+//         image: null,
+//         editingId: null,  // Reset editing status
+//         isEditing: false  // Make sure to reset isEditing to false
+//     });
 
-    // Show toast message
-    wx.showToast({
-        title: isEditing ? '菜品更新成功' : '菜品添加成功',
-        icon: 'success',
-        duration: 2000
-    });
-  }
+//     // Show toast message
+//     wx.showToast({
+//         title: isEditing ? '菜品更新成功' : '菜品添加成功',
+//         icon: 'success',
+//         duration: 2000
+//     });
+//   }
 
   
 });

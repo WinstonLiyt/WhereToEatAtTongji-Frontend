@@ -6,22 +6,7 @@
       <text class="userinfo-nickname">{{ name }}</text>
     </view>
   </view>
-  <!-- <view class="account">
-    <view class='item'>
-      <view class="num">{{post}}</view>
-      <view class="unit">帖子</view>
-    </view>
-    <view class="line"></view>
-    <view class='item'>
-      <view class="num">{{follow}}</view>
-      <view class="unit">关注</view>
-    </view>
-    <view class="line"></view>
-    <view class='item'>
-      <view class="num">{{fan}}</view>
-      <view class="unit">粉丝</view>
-    </view>
-  </view> -->
+  
   <view class="userinfo-header">
       <text>店铺信息</text>
     </view>
@@ -50,8 +35,7 @@
       <view class="userinfo-row">
         <text class="userinfo-label">标签:</text>
         <view class="tag-container">
-          <text class="tag">快餐</text>
-          <text class="tag">汉堡</text>
+          <text class="tag" wx:for="{{tags}}" wx:key="{{item}}">{{item}}</text>
         </view>
       </view>
     </view>
@@ -83,7 +67,7 @@
       <view class="menu">
         <view class="title">
           <image class="icon1" src="../../statics/imgs/personal/recipe.png"></image>
-          <view class="name">查看菜品</view>
+          <view class="name">回复用户评论</view>
         </view>
         <image class="icon2" src="../../statics/imgs/personal/next.svg"></image>
       </view>
