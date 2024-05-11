@@ -1,5 +1,5 @@
 <view class="top_pic">
-  <image src="{{store.store.imgSrc}}" mode="aspectFill"></image>
+  <image src="{{store.images}}" mode="aspectFill"></image>
 </view>
 <view class="store_block">
   <view class="title">
@@ -8,7 +8,7 @@
     </view>
     <view class="title_name">
       <scroll-view scroll-x="true" class="scrollable-text">
-        <text>{{store.store.name}}</text>
+        <text>{{store.name}}</text>
       </scroll-view>
     </view>
   </view>
@@ -16,17 +16,17 @@
     <text>Description</text>
   </view>
   <view class="description">
-    <text>{{store.store.description}}</text>
+    <text>{{store.description}}</text>
   </view>
   <view class="place">
     <image src="/statics/pic_tool/place.png" mode="aspectFill"></image>
-    <text>{{store.store.location}}</text>
+    <text>{{store.location}}</text>
   </view>
   <view class="food_list">
-    <view class="food"  wx:for="{{store.foodlist}}" wx:key="key" mark:foodid="{{item.id}}" 
+    <view class="food"  wx:for="{{foodlist}}" wx:key="key" mark:foodid="{{item.id}}" 
     mark:storeid="{{item.id}}"  bindtap="next_calculator" id="{{item.id}}"> 
       <view class="food_image">
-        <image src="{{item.imgSrc}}" mode="aspectFill"></image>
+        <image src="{{item.image}}" mode="aspectFill"></image>
       </view>
       <view class="food_name">
         <text >{{item.name}}</text>
@@ -43,6 +43,6 @@
     </view>
   </view>
   <view class="telephone">
-    <text>联系方式：{{store.store.telephone}}</text>
+    <text>联系方式：{{store.phone_number}}</text>
   </view>
 </view>

@@ -7,8 +7,8 @@ Page({
   testdata:[
     {
       store:{
-        "id":0,
-        imgSrc:"/statics/pic_food/food4.jpg",
+        "id":1,
+        images:"/statics/pic_food/food4.jpg",
         name:"五味小面",
         location:"满天星广场1f",
         description:"中式面馆",
@@ -17,21 +17,21 @@ Page({
       foodlist:[
         {
           "id":0,
-          "imgSrc":"/statics/pic_food/food4.jpg",
+          "image":"/statics/pic_food/food4.jpg",
           "name":"小笼包",
           "price":"12",
           "description":"好吃的一个小笼包"
         },
         {
           "id":1,
-          "imgSrc":"/statics/pic_food/food2.jpg",
+          "image":"/statics/pic_food/food2.jpg",
           "name":"面面面",
           "price":"22",
           "description":"好吃的一碗面"
         },
         {
           "id":2,
-          "imgSrc":"/statics/pic_food/food3.jpg",
+          "image":"/statics/pic_food/food3.jpg",
           "name":"炸薯条套餐",
           "price":"25",
           "description":"好吃的一个炸薯条套餐"
@@ -41,7 +41,7 @@ Page({
     {
       store:{
         "id":1,
-        imgSrc:"/statics/pic_food/food2.jpg",
+        images:"/statics/pic_food/food2.jpg",
         name:"希食东",
         location:"满天星广场2f",
         description:"日式快餐店",
@@ -50,21 +50,21 @@ Page({
       foodlist:[
         {
           "id":0,
-          "imgSrc":"/statics/pic_food/food1.jpg",
+          "image":"/statics/pic_food/food1.jpg",
           "name":"青提冰沙",
           "price":"32",
           "description":"好吃的一个青提冰沙"
         },
         {
           "id":1,
-          "imgSrc":"/statics/pic_food/food2.jpg",
+          "image":"/statics/pic_food/food2.jpg",
           "name":"面面面",
           "price":"22",
           "description":"好吃的一碗面"
         },
         {
           "id":2,
-          "imgSrc":"/statics/pic_food/food3.jpg",
+          "image":"/statics/pic_food/food3.jpg",
           "name":"炸薯条套餐",
           "price":"25",
           "description":"好吃的一个炸薯条套餐"
@@ -73,6 +73,8 @@ Page({
     }
   ],
     store:null,
+    foodlist:null,
+    base_url:"http://1.92.154.154:80",
   },
   next_calculator:function(options){
     wx.navigateTo({
@@ -81,11 +83,52 @@ Page({
   },
   onLoad:function(options){
     var secondId = options.id;
-    // console.log(secondId);
-    this.setData({
-      store: this.data.testdata[secondId],
-      storeid:secondId,
+    wx.request({
+       url: 'http://1.92.154.154:80/restaurant/'+ secondId + '/all_dish',
+       header: {
+          "content-type": "application/json;charset=UTF-8"
+       },
+       method: 'GET',
+       success: (res) => {  // Changed here
+         if (res.data) {
+            const dishesData = res.data;
+            console.log(dishesData);
+            this.setData({
+               foodlist:dishesData
+            });
+         } else {
+            console.error("Failed to retrieve name from backend.");
+         }
+        },
+        fail: function() {
+            console.log("Failed to fetch data from backend.");
+        },
     });
+    wx.request({
+       url: 'http://1.92.154.154:80/restaurant/'+ secondId,
+       header: {
+          "content-type": "application/json;charset=UTF-8"
+       },
+       method: 'GET',
+       success: (res) => {  // Changed here
+         if (res.data) {
+            const storeData = res.data;
+            console.log(storeData);
+            this.setData({
+               store:storeData
+            });
+         } else {
+            console.error("Failed to retrieve name from backend.");
+         }
+        },
+        fail: function() {
+            console.log("Failed to fetch data from backend.");
+        },
+    });
+    // this.setData({
+    //   store: this.data.testdata[secondId],
+    //   storeid:secondId,
+    // });
   }
 }
 )

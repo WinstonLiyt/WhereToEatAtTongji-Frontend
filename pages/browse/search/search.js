@@ -66,6 +66,7 @@ Page({
       ],
     storelist:null,
     foodlist:null,
+    base_url:"http://1.92.154.154:80",
   },
   storebtn:function(options){
     this.setData({
@@ -93,11 +94,34 @@ Page({
   onLoad(options) {
     var name = options.name;
     // console.log(name);
-    this.setData({
-      name:name,
-      storelist: this.data.testData.data,
-      foodlist:this.data.foodtest,
+    wx.request({
+       url: 'http://1.92.154.154:80/search/' + name,
+       header: {
+          "content-type": "application/json;charset=UTF-8"
+       },
+       method: 'GET',
+       success: (res) => {  // Changed here
+         if (res.data) {
+            const Data = res.data;
+            console.log(Data);
+            this.setData({
+              name:name,
+              storelist:Data['rests'],
+              foodlist:Data['dishes'],
+            });
+         } else {
+            console.error("Failed to retrieve name from backend.");
+         }
+        },
+        fail: function() {
+            console.log("Failed to fetch data from backend.");
+        },
     });
+    // this.setData({
+    //   name:name,
+    //   storelist: this.data.testData.data,
+    //   foodlist:this.data.foodtest,
+    // });
   },
 
   /**

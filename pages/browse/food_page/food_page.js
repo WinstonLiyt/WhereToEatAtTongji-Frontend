@@ -61,7 +61,7 @@ Page({
             "id":1,
             "imgSrc":"/statics/pic_tag/cake1.png",
             "name":"小笼包",
-            "score":"4",
+            "score":4,
             "time":"2024-04-21",
             "content":"好吃的一个小笼包"
           },
@@ -69,7 +69,7 @@ Page({
             "id":2,
             "imgSrc":"/statics/pic_tag/cake.png",
             "name":"小笼包",
-            "score":"4",
+            "score":3,
             "time":"2024-04-21",
             "content":"好吃的一个小笼包"
           },
@@ -77,7 +77,7 @@ Page({
             "id":3,
             "imgSrc":"/statics/pic_tag/drink.png",
             "name":"小笼包",
-            "score":"4",
+            "score":4,
             "time":"2024-04-21",
             "content":"好吃的一个小笼包"
           },
@@ -85,6 +85,8 @@ Page({
       }
     ],
       food:null,
+      comment:null,
+      base_url:"http://1.92.154.154:80",
     },
 
   selectServer: function (e) {//服务态度评分
@@ -144,6 +146,42 @@ Page({
       this.setData({
          [t4]: newlist,
          food: this.data.testdata[this.data.foodId]
+      });
+      wx.request({
+         url: 'http://1.92.154.154:80/eval/1/'+ this.data.foodId + '/create/',
+         header: {
+            "content-type": "application/json;charset=UTF-8"
+         },
+         method: 'POST',
+         data: {
+          score: newcomment.score,
+          comment: newcomment.content,
+        },
+                success: function(res) {
+                      if (res.statusCode === 200) {
+                          console.log('Success:', res.data);
+                          wx.showToast({
+                              title: 'eval updated!',
+                              icon: 'success'
+                          });
+                      } else {
+                          wx.showToast({
+                              title: 'Failed to create eval',
+                              icon: 'error'
+                          });
+                          console.error('Backend error:', res);
+                      }
+                  },
+                  fail: function(error) {
+                      console.error('Request failed:', error);
+                      wx.showToast({
+                          title: 'Network error',
+                          icon: 'none'
+                      });
+                  }
+      });
+      wx.redirectTo({
+        url: '/pages/browse/food_page/food_page?storeid=' + this.data.storeId +'&foodid=' + this.data.foodId
       })
     }
   },
@@ -152,6 +190,48 @@ Page({
     var foodId = options.foodid;
     // console.log(storeId);
     // console.log(foodId);
+    wx.request({
+       url: 'http://1.92.154.154:80/dish/'+ foodId ,
+       header: {
+          "content-type": "application/json;charset=UTF-8"
+       },
+       method: 'GET',
+       success: (res) => {  // Changed here
+         if (res.data) {
+            const dishData = res.data;
+            console.log(dishData);
+            this.setData({
+              food:dishData,
+            });
+         } else {
+            console.error("Failed to retrieve name from backend.");
+         }
+        },
+        fail: function() {
+            console.log("Failed to fetch data from backend.");
+        },
+    });
+    wx.request({
+       url: 'http://1.92.154.154:80/dish/'+ foodId + '/eval',
+       header: {
+          "content-type": "application/json;charset=UTF-8"
+       },
+       method: 'GET',
+       success: (res) => {  // Changed here
+         if (res.data) {
+            const evaluation = res.data;
+            console.log(evaluation);
+            this.setData({
+              comment:evaluation,
+            });
+         } else {
+            console.error("Failed to retrieve name from backend.");
+         }
+        },
+        fail: function() {
+            console.log("Failed to fetch data from backend.");
+        },
+    });
     this.setData({
       foodId:foodId,
       storeId:storeId,
