@@ -33,7 +33,10 @@
       <text>食物评价</text>
       <image src="/statics/pic_tool/comment.png" mode="aspectFill"></image>
     </view>
-    <view class="mycomment">
+    <view class="if_mycomment" wx:if="{{!if_login}}" bindtap="if_mycomment">
+      <text>发表评论</text>
+    </view>
+    <view class="mycomment" wx:if="{{if_login}}">
       <view class="startbox">
         <text>评分：</text>
         <view class="star_box" wx:for="{{stars}}" wx:key='this'>

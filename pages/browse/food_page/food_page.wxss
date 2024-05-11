@@ -269,8 +269,8 @@ page{
   margin-right: 60rpx;
 }
 .user_image image{
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 100%;
+  max-height: 100%;
 }
 .user text{
   font-size: 16px;
@@ -361,4 +361,21 @@ page{
 .delete_comment image{
   max-width:100%;
   max-height:100%;
+}
+.if_mycomment{
+  position:absolute;
+  left:60%;
+  top:-10rpx;
+  width:30%;
+  background-color: #ffffff;
+  border-radius: 30px;
+  height:60rpx;
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+.if_mycomment text{
+  font-size:15px;
+  letter-spacing: 2px;
 }
