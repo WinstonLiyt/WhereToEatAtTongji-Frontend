@@ -24,7 +24,7 @@
   </view>
   <view class="food_list">
     <view class="food"  wx:for="{{foodlist}}" wx:key="key" mark:foodid="{{item.id}}" 
-    mark:storeid="{{item.id}}"  bindtap="next_calculator" id="{{item.id}}"> 
+    bindtap="next_calculator" id="{{item.id}}"> 
       <view class="food_image">
         <image src="{{base_url}}{{item.image}}" mode="aspectFill"></image>
       </view>

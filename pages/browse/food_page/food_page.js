@@ -71,6 +71,41 @@ Page({
       })
     }
   },
+  delete_content:function(e){
+    var evalID = e.mark.evalid;
+    var _delete_ = false;
+    var storeID = this.data.storeId;
+    var foodID = this.data.foodId;
+    wx.showModal({
+      title: '提示',
+      content: '删除该评论',
+      success: function (res) {
+          if (res.confirm) {
+              console.log('确定');
+                //删除菜品信息
+              _delete_ = true;
+              console.log(_delete_);
+              const option = {
+                url: '/eval/'+ evalID +'/delete/',
+                method: 'delete' // 请求方法，默认为 'get'
+              };
+              // 调用 tjRequest 函数发起请求
+              tjRequest(option).then(
+                res => {
+                  console.log(res.data);
+                }).catch(error => {
+                  // 请求失败的处理逻辑
+                  console.error('请求用户个人信息失败：', error);
+              })
+              wx.redirectTo({
+                url: '/pages/browse/food_page/food_page?storeid=' + storeID +'&foodid=' + foodID
+              })
+          }else{
+             console.log('取消')
+          }
+      }
+    })
+  },
   onLoad:function(options){
     var storeId = options.storeid;
     var foodId = options.foodid;
@@ -99,7 +134,7 @@ Page({
     // 调用 tjRequest 函数发起请求
     tjRequest(option_3).then(
       res => {
-        console.log('Success:', res.data);
+        // console.log('Success:', res.data);
         this.setData({
           userID:res.data.id,
         })

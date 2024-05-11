@@ -56,7 +56,7 @@
         <image src="../../../statics/pic_tool/fail2.png"  mode="aspectFit"></image>
         <h1>暂无搜索结果</h1>
       </view> 
-      <view class = "food_fail" wx:if="{{food_fail&&food}}">
+      <view class = "food_fail" wx:if="{{food_fail&&!store}}">
         <image src="../../../statics/pic_tool/fail2.png"  mode="aspectFit"></image>
         <h1>暂无搜索结果</h1>
       </view> 
