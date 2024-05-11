@@ -14,66 +14,11 @@ Page({
     bbq_filter:false,
     western_filter:false,
     rice_filter:false,
-    testData:{
-      "data":[
-        {
-          "id":1,
-          "images":"/statics/pic_food/food1.jpg",
-          "name":"五味小面",
-          "tags":"面食",
-          "location":"满天星广场2f"
-        },
-        {
-          "id":1,
-          "images":"/statics/pic_food/food2.jpg",
-          "name":"希食东",
-          "tags":"西餐",
-          "location":"满天星广场2f"
-        },
-        {
-          "id":2,
-          "images":"/statics/pic_food/food3.jpg",
-          "name":"吉祥馄饨",
-          "tag":"面食",
-          "location":"满天星广场1f"
-        },
-        {
-          "id":3,
-          "images":"/statics/pic_food/food4.jpg",
-          "name":"麦当劳",
-          "tag":"西餐",
-          "location":"嘉实生活广场"
-        },
-      ]
-    },
     base_url:"http://1.92.154.154:80",
     Data:null,
     storelist:null
   },
   onLoad: function(){
-  //   wx.request({
-  //      url: 'http://1.92.154.154:80/restaurant/all',
-  //      header: {
-  //         "content-type": "application/json;charset=UTF-8"
-  //      },
-  //      method: 'GET',
-  //      success: (res) => {  // Changed here
-  //        if (res.data) {
-  //           const restaurantData = res.data;
-  //           console.log(restaurantData);
-  //           this.setData({
-  //             Data:restaurantData,
-  //             storelist:restaurantData,
-  //           });
-  //        } else {
-  //           console.error("Failed to retrieve name from backend.");
-  //        }
-  //       },
-  //       fail: function() {
-  //           console.log("Failed to fetch data from backend.");
-  //       },
-  //   });
-
     const options = {
       url: '/restaurant/all/', // 用户个人信息接口的路径
       method: 'get' // 请求方法，默认为 'get'
