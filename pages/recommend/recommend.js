@@ -119,14 +119,16 @@ Page({
       url:'/recommend/getPersonalDish',
       method:'get',
     }).then(res=>{
-      console.log(res)
+      let demo = res.data
+      const util = require('../../utils/util')
+      demo['img_url'] = util.base_url + '/media/' + demo['img_url']
+      this.setData({
+        styleFront: 'transform:rotateY(180deg)',
+        styleBack: 'transform:rotateY(0deg)',
+        demo: demo
+      })
     }).catch(err=>{
       console.log(err)
-    })
-    this.setData({
-      styleFront: 'transform:rotateY(180deg)',
-      styleBack: 'transform:rotateY(0deg)',
-      demo: choice
     })
   },
   concealCard() {

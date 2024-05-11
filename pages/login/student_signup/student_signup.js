@@ -4,7 +4,8 @@ const util = require('../../../utils/util.js')
 const defaultAvatarUrl = util.base_url + '/media/avatar/default.jpg'
 Page({
   data: {
-    avatarUrl: defaultAvatarUrl
+    showUrl: defaultAvatarUrl,
+    avatarUrl: null
   },
   onLoad() {
   },
@@ -19,18 +20,16 @@ Page({
     util.tjFileUpLoad({
       url:"/user/uploadAvatar",
       filePath: avatarUrl,
+      method:"post"
     }).then(res=>{
       this.setData({
-        avatarUrl: res.new_name
+        avatarUrl: JSON.parse(res.data).newname,
+        showUrl: util.base_url + '/media/avatar/' + JSON.parse(res.data).newname,
       })
     }).catch(err=>{
     })
   },
   formSubmit(e){
-    let avatarUrl = null
-    if(this.data.avatarUrl !== defaultAvatarUrl)
-      avatarUrl = this.data.avatarUrl
-
     wx.login({
       success: (res) => {
         util.tjRequest({
@@ -39,10 +38,11 @@ Page({
           data:{
             code: res.code,
             name: e.detail.value.nickname,
-            avatar_url: avatarUrl
+            avatar_url: this.data.avatarUrl
           }
         }).then(res=>{
-          console.log(res)
+          wx.setStorage({key:'role', data:'student'})
+          wx.setStorage({key:'token', data:res.data.token})
           wx.switchTab({
             url: '/pages/browse/store_list/store_list',
           })

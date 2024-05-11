@@ -53,9 +53,9 @@
         </view>
       </view>
       <view class="card card-back"style="{{styleBack}}">
-        <view style="font-size: 60rpx; font-weight: var(--fontweight-bold);">{{demo.dish}}</view>
-        <image class="card-img" src="{{demo.img}}" mode="aspectFill"></image>  
-        <view>店家：{{demo.store}}</view>
+        <view style="font-size: 60rpx; font-weight: var(--fontweight-bold);">{{demo.name}}</view>
+        <image class="card-img" src="{{demo.img_url}}" mode="aspectFill"></image>  
+        <view>店家：{{demo.store_name}}</view>
         <button style="width: 100%;" catchtap="concealCard"  class="dont-eat-button">不想吃这个</button>
       </view>
     </view>

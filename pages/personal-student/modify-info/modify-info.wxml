@@ -1,0 +1,18 @@
+<!--index.wxml-->
+<view class="main">
+  <h1>个人信息</h1>
+  <button class="avatar-wrapper" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+    <image class="avatar" src="{{showUrl}}"></image>
+  </button> 
+  <form catchsubmit="formSubmit">
+    <view class="row">
+      <view class="text1">昵称</view>
+        <input type="nickname" class="weui-input" model:value="{{username}}" placeholder="请输入昵称"/>
+    </view>
+    <view class="row">
+      <view class="text1">签名</view>
+        <input class="weui-input" model:value="{{signature}}" placeholder="请输入个性签名"/>
+    </view>
+  </form>
+  <button class="submit" bindtap="submit" style="width: 600rpx;">保 存</button>
+</view>

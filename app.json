@@ -13,7 +13,8 @@
     "pages/browse/search/search",
     "pages/recommend/recommend",
     "pages/personal/personal",
-    "pages/personal-student/personal-student",
+    "pages/personal-student/personal-student/personal-student",
+    "pages/personal-student/modify-info/modify-info",
     "pages/business_edit/business_edit",
     "pages/business_menu/business_menu",
     "pages/business_show/business_show"
@@ -50,7 +51,7 @@
             "selectedIconPath": "/statics/imgs/tabBar/recommend_selected.png"
         },
         {
-           "pagePath": "pages/personal-student/personal-student",
+           "pagePath": "pages/personal-student/personal-student/personal-student",
             "text": "个人信息（学生）",
             "iconPath": "/statics/imgs/tabBar/personal.png",
             "selectedIconPath": "/statics/imgs/tabBar/personal_selected.png"

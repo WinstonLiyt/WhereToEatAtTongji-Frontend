@@ -2,7 +2,7 @@
 <view class="main">
   <h1>商家用户注册</h1>
   <button class="avatar-wrapper" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
-    <image class="avatar" src="{{avatarUrl}}"></image>
+    <image class="avatar" src="{{showUrl}}"></image>
   </button> 
   <form catchsubmit="formSubmit">
     <view class="row">
