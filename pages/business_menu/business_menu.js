@@ -17,6 +17,10 @@ Page({
     this.loadStoreAndFoods();
   },
 
+  onShow: function(options) {
+    this.loadStoreAndFoods();
+  },
+
   loadStoreAndFoods: function() {
     tjRequest({ url: '/restaurant/id/' }).then(res => {
       this.setData({
