@@ -46,7 +46,7 @@ Page({
           time: restaurantData.time,
           description: restaurantData.description,
           tags: tagNames,
-          backgroundImages: restaurantData.images
+          backgroundImages: restaurantData.images.slice(0, 1)
         })
         console.log('Background images set:', this.data.backgroundImages);
       }
@@ -92,11 +92,11 @@ Page({
       success (res) {
         if (res.confirm) {
           wx.chooseImage({
-            count: 9,  // 允许选择多张图片
+            count: 1,  // 允许选择多张图片
             success: function(res) {
-              const images = res.tempFilePaths;
+              const imagePath = res.tempFilePaths[0];
               // 处理每张图片
-              images.forEach((imagePath) => {
+              
                 // 上传图片到服务器
                 tjFileUpLoad({
                   url:'/image/',
@@ -109,7 +109,8 @@ Page({
                     oldImages = [];  // 如果当前只有默认图片，则清空数组
                   }
                   oldImages.push({ id: data.id || Date.now(), image: data.new_name });
-                that.setData({ backgroundImages: oldImages });
+                  that.setData({ backgroundImages: [{ id: data.id || Date.now(), image: data.new_name }] });
+                cachedImages = cachedImages;
               }).catch(err => {
                 wx.showToast({
                   title: '上传失败',
@@ -117,7 +118,7 @@ Page({
                 });
                 console.error('Upload failed', err);
               })
-            });
+           
           }
         });
       } else if (res.cancel) {
@@ -150,6 +151,7 @@ Page({
               // 更新本地数据
               that.setData({
                 backgroundImages: currentImages,
+                cachedImages: currentImages,
                 showPopup: false
               });
               wx.showToast({
@@ -186,6 +188,8 @@ Page({
     if (cachedImages.length > 1) {
       cachedImages.splice(index, 1);
       this.setData({ backgroundImages: cachedImages });
+      console.log('here');
+      console.log(cachedImages);
     } else {
       wx.showToast({
         title: '只有1张背景图了，不能删除！',
