@@ -583,13 +583,6 @@ Component({
                 // 请求失败时执行的操作
                 console.error("详细信息改变忒子点赞数量 fail");
             });
-            let post = this.data.post;
-            console.log(post)
-            this.setData({
-                post: post,
-                upvoted: this.data.upvoted,
-                stared: this.data.stared
-            });
         },
         makeComments(e) {
             console.log(e.currentTarget.dataset.id)
