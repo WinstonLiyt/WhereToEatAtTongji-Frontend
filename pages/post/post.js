@@ -561,6 +561,7 @@ Component({
             }
 
 
+
         // 后端检查是否更改成功
             utils.tjRequest({
                 url: "/posts/change_post_reaction/",
