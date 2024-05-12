@@ -179,7 +179,7 @@ page{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 30%;
+  width: 60%;
   height: 100%;
 }
 .food_name text{
