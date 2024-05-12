@@ -179,10 +179,10 @@ h1{
   display: flex;
   border-radius: 10px;
   position:absolute;
-  top:10%;
+  top:13%;
   left:3%;
-  height:140rpx;
-  width:140rpx;
+  height:130rpx;
+  width:130rpx;
   overflow: hidden;
   margin-right: 5px;
 }
@@ -247,10 +247,10 @@ h1{
   display: flex;
   border-radius: 10px;
   position:absolute;
-  top:10%;
+  top:13%;
   left:3%;
-  height:140rpx;
-  width:140rpx;
+  height:130rpx;
+  width:130rpx;
   overflow: hidden;
   margin-right: 5px;
 }

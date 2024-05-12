@@ -187,10 +187,10 @@ page {
   display: flex;
   border-radius: 10px;
   position:absolute;
-  top:10%;
+  top:13%;
   left:3%;
-  height:140rpx;
-  width:140rpx;
+  height:130rpx;
+  width:130rpx;
   /* height:80px; */
   /* aspect-ratio: 1 / 1; */
   overflow: hidden;
