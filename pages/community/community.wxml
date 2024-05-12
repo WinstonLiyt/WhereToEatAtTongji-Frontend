@@ -24,12 +24,12 @@
             </view>
 
             <view class="image-box ml-med mr-med mb-med" wx:if="{{item.images.length > 0}}" >
-                <image wx:for="{{item.imageDisplay}}" src="{{item}}" wx:key="url" class="bdr-med" mode="widthFix" bindtap="ViewImage" data-current="{{item}}"></image>
+                <image mode='aspectFit' wx:for="{{item.imageDisplay}}" src="{{item}}" wx:key="url" class="bdr-med" bindtap="ViewImage" data-current="{{item}}"></image>
             </view>
 
             <view class="bottom-box ml-med mr-med mb-med">
             <view class="label-box">
-                <view class="label">#{{item.label}}</view>
+                <view class="label" wx:if="{{ item.hasLabel }}">#{{item.label}}</view>
             </view>
             <view class="reaction-box mr-min">
                 <view class="reaction-item upvotes">

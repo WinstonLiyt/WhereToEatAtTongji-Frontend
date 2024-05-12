@@ -14,7 +14,11 @@ Page({
   onLoad(options) {  
     this.setData({
       myTimer: setInterval(() => {
-        wx.switchTab({url:'/pages/browse/store_list/store_list'})
+        let role = wx.getStorageSync('role')
+        if(role == "student")
+          wx.switchTab({url:'/pages/browse/store_list/store_list'})
+        else
+          wx.switchTab({url:'/pages/personal/personal'})
       }, 2000)
     })
   },

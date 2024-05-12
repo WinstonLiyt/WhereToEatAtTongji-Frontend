@@ -30,6 +30,14 @@ page {
     width: 100%;
 }
 
+.edit-main input {
+    width: 100%;
+}
+
+.placeholderInput {
+    color: var(--secondary-color);
+}
+
 .edit-text {
     /* min-height: 100rpx; */
     height: 450rpx;
@@ -70,7 +78,6 @@ page {
     flex-wrap: wrap;
     justify-content: flex-start;
     align-content: space-between;
-    
 }
 .edit-img  image.image-selected {
     width: 200rpx;

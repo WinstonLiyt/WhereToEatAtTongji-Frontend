@@ -72,16 +72,6 @@
         <image class="icon2" src="../../statics/imgs/personal/next.svg"></image>
       </view>
     </navigator>
-    <!-- <view class="line"></view>
-    <navigator url="../business_menu/business_menu">
-      <view class="menu">
-        <view class="title">
-          <image class="icon1" src="../../statics/imgs/personal/add.png"></image>
-          <view class="name">增删菜品</view>
-        </view>
-        <image class="icon2" src="../../statics/imgs/personal/next.svg"></image>
-      </view>
-    </navigator> -->
     <view class="line"></view>
     <navigator url="">
       <view class="menu">
@@ -101,7 +91,6 @@
       <view wx:for="{{backgroundImages}}" wx:key="index" class="background-item">
       <!-- <text>{{item.image}}</text> -->
         <image src="{{'http://1.92.154.154:80/' + item.image}}" class="background-image"></image>
-        <view class="delete-btn" bindtap="deleteBackground" data-index="{{index}}">删除</view>
       </view>
       <!-- 上传背景图按钮 -->
       <view class="button-container">

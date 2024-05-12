@@ -49,7 +49,7 @@ Page({
           wx.setStorage({key:'role', data:'store'})
           wx.setStorage({key:'token', data:res.data.token})
           wx.switchTab({
-            url: '/pages/business_menu/business_menu',
+            url: '/pages/personal/personal',
           })
         }).catch(err=>{
           console.log(err)
