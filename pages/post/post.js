@@ -613,7 +613,15 @@ Component({
 
             const formattedDate = `${year}-${month}-${day}`;
             return formattedDate
-        }
+        },
+        ViewImage(e) {
+            // 仅支持网络图片
+            console.log(e)
+            wx.previewImage({
+                urls: e.currentTarget.dataset.images,
+                current: e.currentTarget.dataset.current
+            });
+        },
     }
     
 })

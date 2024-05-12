@@ -2,9 +2,9 @@
 <view class="main">
     <view class="img-swiper" style="height: {{ noImage }};">
         <swiper class="swiper-body" indicator-dots="{{post.images.length >= 1}}" autoplay="false" duration="500">
-            <swiper-item wx:for="{{post.images}}" wx:key="url">
-                <view class="swiper-item">
-                    <image src="{{item}}" mode="widthFix"></image>
+            <swiper-item wx:for="{{post.images}}" wx:key="url"  wx:for-index="idx">
+                <view class="swiper-item" style="height: 100%; justify-content: center; align-items: center;">
+                    <image src="{{item}}" mode="widthFix" bind:tap="ViewImage" data-images="{{ post.images }}" data-current="{{ item }}"></image>
                 </view>
             </swiper-item>
         </swiper>
