@@ -278,6 +278,7 @@ Component({
         /* 对评论进行评论 */
         onTapReply(parentcommentid, replayusername, content, replyToParent) {
             var that = this;
+
             console.log(((replyToParent == 2)? '@' + replayusername + " ": "") + content)
             utils.tjRequest({
                 url: "/posts/reply_comment/",
@@ -420,9 +421,6 @@ Component({
                     
                     var temp = this.data.comments;
                     temp[i] = comment_block
-                    this.setData({
-                        comments: temp
-                    });
 
                     // 后端
                     utils.tjRequest({
