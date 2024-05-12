@@ -109,10 +109,12 @@ page {
 .post-item .image-box {
     display: flex;
     gap: 20rpx;
+    overflow: hidden;
 }
 
 .post-item .image-box image {
-    max-width: 60%;
+    height: 320rpx;
+    width: 320rpx;
 }
 
 .post-item .bottom-box {

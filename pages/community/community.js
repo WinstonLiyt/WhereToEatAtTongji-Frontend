@@ -39,35 +39,27 @@ Page({
                 response.data.posts[i].images[j] = utils.base_url + response.data.posts[i].images[j]
              }
              response.data.posts[i]["imageDisplay"] = response.data.posts[i].images.slice(0, Math.min(2, response.data.posts[i].images.length))
-            }
+             response.data.posts[i]["hasLabel"] = (response.data.posts[i].label === "")? false : true;
+             console.log(response.data.posts[i]["hasLabel"])
+        }
+        console.log(response.data.posts)
         this.setData({
             posts: response.data.posts
         })
         console.log(response.data.posts)
-      console.log("Search content success");
+        console.log("Search content success");
     }).catch(error => {
-      // 请求失败时执行的操作
-      console.error("Search content fail");
+        // 请求失败时执行的操作
+        console.error("Search content fail");
     });
 
     console.log(this.data.posts)
-
-   
-
-    //模拟从服务器获取数据
-
-
-    // 更新数据
-    // this.setData({
-    //   posts: postData
-    // });
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-
   },
 
   /**
@@ -96,6 +88,7 @@ Page({
                 response.data.posts[i].images[j] = utils.base_url + response.data.posts[i].images[j]
              }
              response.data.posts[i]["imageDisplay"] = response.data.posts[i].images.slice(0, Math.min(2, response.data.posts[i].images.length))
+             response.data.posts[i]["hasLabel"] = (response.data.posts[i].label === "")? false : true;
         }
         console.log(response.data.posts)
         this.setData({
@@ -216,6 +209,7 @@ Page({
                 response.data.posts[i].images[j] = utils.base_url + response.data.posts[i].images[j]
              }
              response.data.posts[i]["imageDisplay"] = response.data.posts[i].images.slice(0, Math.min(2, response.data.posts[i].images.length))
+             response.data.posts[i]["hasLabel"] = (response.data.posts[i].label === "")? false : true;
         }
         console.log(response.data.posts)
           this.setData({
@@ -245,6 +239,7 @@ Page({
             response.data.posts[i].images[j] = utils.base_url + response.data.posts[i].images[j]
          }
          response.data.posts[i]["imageDisplay"] = response.data.posts[i].images.slice(0, Math.min(2, response.data.posts[i].images.length))
+         response.data.posts[i]["hasLabel"] = (response.data.posts[i].label === "")? false : true;
       }
         this.setData({
             posts: response.data.posts
@@ -342,44 +337,46 @@ Page({
             // 请求失败时执行的操作
             console.error("改变忒子点赞数量 fail");
           });
-
-
-
-        //   let posts = this.data.posts.slice();
-        //     posts[e.currentTarget.dataset.itemid] = item;
-        //     this.setData({
-        //         posts: posts
-        //     });
     }
   },
 
   DelPost(e) {
     console.log(e)
     console.log(this.data.posts[e.currentTarget.dataset.index].id)
-    // 测试删除帖子
-    utils.tjRequest({
-        url: "/posts/delete/",
-        method: "delete",
-        data: {
-            post_id: this.data.posts[e.currentTarget.dataset.index].id
+
+    wx.showModal({
+      title: '确认删除',
+      content: '确认删除该帖子？',
+      complete: (res) => {
+        if (res.cancel) {
+          
         }
-    }).then(response => {
-        console.log(111)
-        var temp_posts = this.data.posts;
-        console.log(11222221)
 
-        temp_posts.splice(e.currentTarget.dataset.index, 1);
-        console.log(133331)
-
-        console.log(temp_posts)
-        this.setData({
-            posts: temp_posts
-        })
-        console.log("Delete post success");
-      }).catch(error => {
-        // 请求失败时执行的操作
-        console.error("Delete post fail");
-      });
+    
+        if (res.confirm) {
+            utils.tjRequest({
+                url: "/posts/delete/",
+                method: "delete",
+                data: {
+                    post_id: this.data.posts[e.currentTarget.dataset.index].id
+                }
+            }).then(response => {
+                var temp_posts = this.data.posts;
+                temp_posts.splice(e.currentTarget.dataset.index, 1);
+                console.log(temp_posts)
+                this.setData({
+                    posts: temp_posts
+                })
+                console.log("Delete post success");
+              }).catch(error => {
+                // 请求失败时执行的操作
+                console.error("Delete post fail");
+              });
+        }
+      }
+    })
+    // 测试删除帖子
+    
 
 
     //   var temp_posts = this.data.posts;

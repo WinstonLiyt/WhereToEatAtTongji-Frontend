@@ -50,7 +50,10 @@ Component({
     "tempCommentContent": "",
     "tempCommentType": -1,
     "tempOthers": {},
-    maskColor: "#fff2d9"
+    maskColor: "#fff2d9",
+    noImage: "50%",
+    hasLocation: true,
+    hasLabel: true
   },
 
   /**
@@ -79,6 +82,11 @@ Component({
             var upvoted = JSON.parse(options.post_id).upvoted;
             var stared = JSON.parse(options.post_id).stared;
 
+            this.setData({
+                upvoted: upvoted,
+                stared: stared
+            });
+
             var postData = {}
             utils.tjRequest({
                 url: "/posts/details/",
@@ -95,12 +103,40 @@ Component({
                     postData.images[j] = utils.base_url + postData.images[j]
                  }
 
+                 if (postData.images.length == 0) {
+                     this.setData({
+                        noImage: "5%"
+                     })
+                 }
+
+                 if (postData.label == "") {
+                    this.setData({
+                        hasLabel: false
+                     })
+                 }
+
+                 if (postData.ip == "") {
+                    this.setData({
+                        hasLocation: false
+                     })
+                 }
+
                 const commentData = this.getCommentData(postData);
                 commentData.then(res => {
                   this.setData({
                       comments: res,
                       post: postData
                   })
+
+                wx.hideLoading({
+                    success: () => {
+                        this.setData({
+                            inputBoxShow: false,
+                            commentShow: true,
+                            maskColor: "rgba(0, 0, 0, 0.5)"
+                        })
+                    }
+                })  
                   
                   console.log("浏览帖子详细信息 success");
                 })
@@ -111,24 +147,9 @@ Component({
                 console.error("浏览帖子详细信息  fail");
               });
 
-            this.setData({
-                upvoted: upvoted,
-                stared: stared
-            });
             
-            var that = this
-             setTimeout(function () {
-                wx.hideLoading({
-                    success: () => {
-                        that.setData({
-                            inputBoxShow: false,
-                            commentShow: true,
-                            maskColor: "rgba(0, 0, 0, 0.5)"
-                        })
-                    }
-                })
-                    
-              }, 1800)
+            
+            
 
         },
 
@@ -257,14 +278,14 @@ Component({
         /* 对评论进行评论 */
         onTapReply(parentcommentid, replayusername, content, replyToParent) {
             var that = this;
-            // console.log(((replyToParent == 2)? '@' + replayusername + " ": "") + content)
+            console.log(((replyToParent == 2)? '@' + replayusername + " ": "") + content)
             utils.tjRequest({
                 url: "/posts/reply_comment/",
                 method: "post",
                 data: {
                     parent_comment_id: parentcommentid,
-                    // content: ((replyToParent == 2)? '@' + replayusername + " ": "") + content
-                    content: '@' + replayusername + " " + content
+                    content: ((replyToParent == 2)? '@' + replayusername + " ": "") + content
+                    // content: '@' + replayusername + " " + content
                 }
             }).then(response => {
                 var tempComments = this.data.comments
@@ -576,7 +597,7 @@ Component({
             console.log(e.currentTarget.dataset.id)
             var others = {}
 
-            if (e.currentTarget.dataset.id == 1) {
+            if (e.currentTarget.dataset.id > 0) {
                 others["parentcommentid"] = e.currentTarget.dataset.parentcommentid
                 others["replayusername"] = e.currentTarget.dataset.replayusername
             }

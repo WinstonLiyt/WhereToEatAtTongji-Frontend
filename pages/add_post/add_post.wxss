@@ -70,7 +70,6 @@ page {
     flex-wrap: wrap;
     justify-content: flex-start;
     align-content: space-between;
-    
 }
 .edit-img  image.image-selected {
     width: 200rpx;
