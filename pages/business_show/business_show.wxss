@@ -132,61 +132,51 @@ page{
   max-height:40%;
 }
 .food{
-  position:relative;
   margin-top:20px;
   width:100%;
   height:90px;
   background-color: rgb(255, 255, 255);
   border-radius: 15px;
   display: flex;
-  overflow: hidden;
+  justify-content: space-between;
+  align-items: center;
+  overflow: visible; /* 允许子元素溢出显示 */
+}
+
+.food_left{
+  display: flex;
+  width: 60%;
+  height: 100%;
+  align-items: center;
 }
 
 .food_image{
-  display: flex;
-  border-radius: 10px;
-  position:absolute;
-  top:7.5%;
-  left:3%;
-  height:85%;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  margin-right: 5px;
+  padding-left: 35rpx;
+  padding-right: 35rpx;
+  border-radius: 100rpx;
+  height: 100rpx;
+  width: 100rpx;
 }
 
-.food_image image{
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover;
-  object-position: center top; /* 图片在容器中水平居中，垂直顶部对齐 */
+.food_text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30%;
+  height: 100%;
 }
 
 .food_name{
-  position: absolute;
-  margin-left: 10px;
-  top:20%;
-  left:90px;
+
 }
+
 .food_name text{
   font-size: 17px;
   letter-spacing: 1px;
   font-weight:bold;
 }
-.food_price{
-  position:absolute;
-  top:20%;
-  left:75%;
-}z
-.food_price text{
-  font-size: 17px;
-  letter-spacing: 1px;
-  font-weight:bold;
-}
+
 .other{
-  position:absolute;
-  top:60%;
-  left:90px;
-  margin-left: 10px;
   display: flex;
 }
 .other text{
@@ -195,8 +185,24 @@ page{
   font-weight:100;
   color:rgb(148, 148, 148);
 }
+
+.food_right{
+  width: 40%;
+  height: 100%;
+  padding-right: 25rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.food_price text{
+  font-size: 17px;
+  letter-spacing: 1px;
+  font-weight:bold;
+}
+
 .turn{
-  position:absolute;
   top:40px;
   left:90%;
   width:20px;

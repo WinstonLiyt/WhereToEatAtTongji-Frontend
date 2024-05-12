@@ -170,61 +170,51 @@ page{
 }
 
 .food{
-  position:relative;
   margin-top:20px;
   width:100%;
   height:90px;
   background-color: rgb(255, 255, 255);
   border-radius: 15px;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   overflow: visible; /* 允许子元素溢出显示 */
 }
 
-.food_image{
+.food_left{
   display: flex;
-  border-radius: 10px;
-  position:absolute;
-  top:7.5%;
-  left:3%;
-  height:85%;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  margin-right: 5px;
+  width: 60%;
+  height: 100%;
+  align-items: center;
 }
 
-.food_image image{
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover;
-  object-position: center top; /* 图片在容器中水平居中，垂直顶部对齐 */
+.food_image{
+  padding-left: 35rpx;
+  padding-right: 35rpx;
+  border-radius: 100rpx;
+  height: 100rpx;
+  width: 100rpx;
+}
+
+.food_text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30%;
+  height: 100%;
 }
 
 .food_name{
-  position: absolute;
-  margin-left: 10px;
-  top:20%;
-  left:90px;
+
 }
+
 .food_name text{
   font-size: 17px;
   letter-spacing: 1px;
   font-weight:bold;
 }
-.food_price{
-  position:absolute;
-  top:20%;
-  left:75%;
-}z
-.food_price text{
-  font-size: 17px;
-  letter-spacing: 1px;
-  font-weight:bold;
-}
+
 .other{
-  position:absolute;
-  top:60%;
-  left:90px;
-  margin-left: 10px;
   display: flex;
 }
 .other text{
@@ -233,6 +223,27 @@ page{
   font-weight:100;
   color:rgb(148, 148, 148);
 }
+
+.food_right{
+  width: 40%;
+  height: 100%;
+  padding-right: 25rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.food_price{
+
+}
+
+.food_price text{
+  font-size: 17px;
+  letter-spacing: 1px;
+  font-weight:bold;
+}
+
 .turn{
   position:absolute;
   top:40px;
@@ -259,28 +270,36 @@ page{
   letter-spacing: 1px;
 }
 
+.food_button{
+  display: flex;
+  flex-direction: column;
+  margin-left: 25rpx;
+  justify-content: space-evenly;
+  height: 100%;
+}
+
 .edit_btn {
-  position: absolute;
-  top: 10%;
-  right: -20px;
-  transform: translateY(-50%); /* 确保垂直居中 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--secondary-color);
   color: white;
-  padding: 5px 10px;
-  border-radius: 30%;
+  width: 80rpx;
+  height: 45rpx;
+  border-radius: 15rpx;
   font-size: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .delete_btn {
-  position: absolute;
-  top: 50%;
-  right: -20px;
-  transform: translateY(-50%); /* 确保垂直居中 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #ff4444;
   color: white;
-  padding: 5px 10px;
-  border-radius: 30%;
+  width: 80rpx;
+  height: 45rpx;
+  border-radius: 15rpx;
   font-size: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
@@ -300,10 +319,11 @@ page{
 
 .modal-content {
   background-color: #fff;
-  width: 90%; /* 适配屏幕宽度 */
+  width: 80%; /* 适配屏幕宽度 */
+  height: 60%;
   border-radius: 10px;
-  overflow: hidden;
-  padding: 20px;
+  padding: 30rpx;
+  overflow-y: scroll;
   color: var(--secondary-color);
   background-color: #fcf9e9;
 }
@@ -384,14 +404,15 @@ button {
 .modal-footer button {
   flex-grow: 1;
   margin: 0 5px;
+  width: 100%;
 }
 
-.modal-submit button {
+.modal-submit{
   background-color: var(--secondary-color);
   color: #f8f8f8;
 }
 
-.modal-close button {
+.modal-close{
   background-color: #f8f8f8;
   color: var(--secondary-color);
 }

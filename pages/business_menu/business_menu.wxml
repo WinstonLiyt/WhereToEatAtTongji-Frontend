@@ -32,25 +32,29 @@
     <block wx:for="{{foods}}" wx:key="id" mark:foodid="{{item.id}}">
     <!-- <text>{{item.id}}</text> -->
       <view class="food" bindtap="next_calculator">
-        <view class="food_image">
-        <!-- 没有image -->
-        <!-- <text>{{item.image}}</text> -->
-          <image src="{{'http://1.92.154.154:80/' + item.image}}" mode="aspectFill"></image>
+        <view class="food_left">
+          <image class="food_image"  mode='aspectFit' src="{{'http://1.92.154.154:80/' + item.image}}" mode="aspectFill"></image>
+          <view class="food_text">
+            <view class="food_name">
+              <text>{{item.name}}</text>
+            </view>
+            <view class="other">
+              <text decode="true">{{item.description}}</text>
+            </view>
+          </view>
         </view>
-        <view class="food_name">
-          <text>{{item.name}}</text>
-        </view>
-        <view class="food_price">
-          <text>￥{{item.price}}</text>
-        </view>
-        <view class="other">
-          <text decode="true">{{item.description}}</text>
-        </view>
-        <view class="edit_btn" catchtap="editFood" data-id="{{item.id}}">
-          <text>编辑</text>
-        </view>
-        <view class="delete_btn" catchtap="deleteFood" data-id="{{item.id}}">
-          <text>删除</text>
+        <view class="food_right">
+          <view class="food_price">
+            <text>￥{{item.price}}</text>
+          </view>
+          <view class ="food_button">
+            <view class="edit_btn" catchtap="editFood" data-id="{{item.id}}">
+              <text>编辑</text>
+            </view>
+            <view class="delete_btn" catchtap="deleteFood" data-id="{{item.id}}">
+             <text>删除</text>
+            </view>
+        </view>  
         </view>
       </view>
     </block>
@@ -96,12 +100,8 @@
       </view>
     </view>
     <view class="modal-footer">
-      <view class="modal-submit">
-        <button bindtap="submitFood">{{isEditing ? '确定更新菜品' : '确定新增菜品'}}</button>
-      </view>
-      <view class="modal-close">
-        <button bindtap="closeModal">{{isEditing ? '取消更新菜品' : '取消新增菜品'}}</button>
-      </view>
+      <button class="modal-submit" bindtap="submitFood">{{isEditing ? '确定更新菜品' : '确定新增菜品'}}</button>
+      <button class="modal-close" bindtap="closeModal">{{isEditing ? '取消更新菜品' : '取消新增菜品'}}</button>
     </view>
   </view>
 </view>

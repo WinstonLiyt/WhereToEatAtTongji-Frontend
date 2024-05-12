@@ -23,25 +23,55 @@
     <text>{{store.location}}</text>
   </view>
 
-  <view class="food_list">
+  <!-- <view class="food_list">
     <block wx:for="{{foods}}" wx:key="id">
-    <!-- <text>{{item.id}}</text> -->
       <view class="food" bindtap="next_calculator" mark:foodid="{{item.id}}">
-        <view class="food_image">
-          <image src="{{'http://1.92.154.154:80/' + item.image}}" mode="aspectFill"></image>
+        <view class="food_left">
+          <view class="food_image">
+            <image src="{{'http://1.92.154.154:80/' + item.image}}" mode="aspectFill"></image>
+          </view>
+          <view class="food_desc">
+            <view class="food_name">
+              <text>{{item.name}}</text>
+            </view>
+            <view class="other">
+              <text decode="true">{{item.description}}</text>
+            </view>
+          </view>
         </view>
-        <view class="food_name">
-          <text>{{item.name}}</text>
-        </view>
-        <view class="food_price">
-          <text>￥{{item.price}}</text>
-        </view>
-        <view class="other">
-          <text decode="true">{{item.description}}</text>
-        </view>
+        <view class="food_right">
+          <view class="food_price">
+            <text>￥{{item.price}}</text>
+          </view>
+        </view>  
         <view class="turn">
         <image src="../../statics/pic_tool/turn.png"></image>
       </view>
+      </view>
+    </block>
+  </view> -->
+  <view class="food_list">
+    <block wx:for="{{foods}}" wx:key="id">
+      <view class="food" bindtap="next_calculator" mark:foodid="{{item.id}}">
+        <view class="food_left">
+          <image class="food_image"  mode='aspectFit' src="{{'http://1.92.154.154:80/' + item.image}}" mode="aspectFill"></image>
+          <view class="food_text">
+            <view class="food_name">
+              <text>{{item.name}}</text>
+            </view>
+            <view class="other">
+              <text decode="true">{{item.description}}</text>
+            </view>
+          </view>
+        </view>
+        <view class="food_right">
+          <view class="food_price">
+            <text>￥{{item.price}}</text>
+          </view>
+          <view class="turn">
+            <image src="../../statics/pic_tool/turn.png"></image>
+          </view>
+        </view>
       </view>
     </block>
   </view>
