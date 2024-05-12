@@ -341,8 +341,6 @@ Page({
         if (res.cancel) {
           
         }
-
-    
         if (res.confirm) {
             utils.tjRequest({
                 url: "/posts/delete/",
