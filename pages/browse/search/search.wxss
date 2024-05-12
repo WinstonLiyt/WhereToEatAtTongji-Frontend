@@ -166,7 +166,7 @@ h1{
   margin-top:20rpx;
   margin-bottom:40rpx;
   width:95%;
-  height:90px;
+  height:170rpx;
   background-color: var(--card-background);
   border-radius: 15px;
   display: flex;
@@ -179,11 +179,10 @@ h1{
   display: flex;
   border-radius: 10px;
   position:absolute;
-  top:7.5%;
+  top:10%;
   left:3%;
-  height:85%;
-  /* height:80px; */
-  aspect-ratio: 1 / 1;
+  height:140rpx;
+  width:140rpx;
   overflow: hidden;
   margin-right: 5px;
 }
@@ -235,7 +234,7 @@ h1{
   margin-top:20rpx;
   margin-bottom:40rpx;
   width:95%;
-  height:90px;
+  height:170rpx;
   background-color: var(--card-background);
   border-radius: 15px;
   display: flex;
@@ -248,10 +247,10 @@ h1{
   display: flex;
   border-radius: 10px;
   position:absolute;
-  top:7.5%;
+  top:10%;
   left:3%;
-  height:85%;
-  aspect-ratio: 1 / 1;
+  height:140rpx;
+  width:140rpx;
   overflow: hidden;
   margin-right: 5px;
 }
