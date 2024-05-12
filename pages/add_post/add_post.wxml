@@ -8,13 +8,13 @@
         </view>
         <view class='edit-main' style="padding: 0rpx 60rpx 75rpx 60rpx;">
             <textarea class='edit-text mb-max' placeholder='这一刻的想法...'  placeholder-style="color: var(--secondary-color)" bindinput="getInputValue" value="{{content}}" id="thoughts"></textarea>
-            <textarea class='edit-label mb-max' placeholder='输入标签(以#开头)...' placeholder-style="color: var(--secondary-color)" bindinput="getInputValue" value="{{content}}" id="labels"></textarea>
+            <textarea class='edit-label mb-max' placeholder='输入一个标签(以#开头)...' placeholder-style="color: var(--secondary-color)" bindinput="getInputValue" value="{{content}}" id="label"></textarea>
             <textarea class='edit-label mb-max' placeholder='输入地址...' placeholder-style="color: var(--secondary-color)" bindinput="getInputValue" value="{{content}}" id="location"></textarea>
             <view class='edit-img mb-max'>
-                <view wx:for="{{images}}"  wx:key="index" bindtap="ViewImage" data-url="{{images[index]}}">
+                <view wx:for="{{images}}"  wx:key="index"  data-url="{{images[index]}}">
                     <view class="image-box" style="position: relative; max-width: 210rpx;">
-                        <image src='../../statics/imgs/community/close.png'style="position: absolute; width: 25rpx; top: -3%; right: 3%;" mode="widthFix" catchtap="DelImg" data-url="{{images[index]}}"></image>
-                        <image src='{{item}}' class="image-selected" mode='aspectFill' style="border-radius: 20rpx;"/>
+                        <image src='../../statics/imgs/community/close.png'style="position: absolute; width: 40rpx; top: -3%; right: 3%;" mode="widthFix"  data-url="{{images[index]}}" data-index="{{ index }}" catchtap="DelImg" ></image>
+                        <image src='{{item}}' class="image-selected" mode='aspectFill' style="border-radius: 20rpx;"  bindtap="ViewImage"/>
                     </view>
                 </view>
                 <view>

@@ -10,6 +10,7 @@ page {
     height: 100%;
     z-index: 5;
     position: absolute;
+    width: 100%;
 }
 
 .body {
@@ -284,13 +285,16 @@ page {
     grid-column-end: 3;
     grid-row-start: 2;
     grid-row-end: 3;
-    max-width: 300rpx;
+    max-width: 100%;
     font-size: var(--fontsize-text-md);
 }
 
-.parent-comment .comment-content text,
-.child-comment .comment-content text {
-    max-width: 50px;
+.parent-comment .comment-content .text {
+    max-width: 100% !important;
+}
+
+.child-comment .comment-content .text {
+    max-width: 96% !important;
 }
 
 .parent-comment .comment-bottom,
@@ -317,6 +321,16 @@ page {
 
 .parent-comment .comment-bottom .comment-reply,
 .child-comment .comment-bottom .comment-reply
+{
+    font-size: var(--fontsize-text-sm);
+    color: var(--secondary-color);
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.parent-comment .comment-bottom .comment-delete,
+.child-comment .comment-bottom .comment-delete
 {
     font-size: var(--fontsize-text-sm);
     color: var(--secondary-color);
@@ -411,7 +425,7 @@ page {
 
 .tabbar-comment {
     display: flex;
-    width: 50%;
+    width: 65%;
     align-items: center;
     justify-content: center;
     background-color: var(--tertiary-color);
@@ -456,4 +470,60 @@ page {
 
 .tabbar_nav .tabbar-reaction-box image {
     width: 45rpx !important;
+}
+
+
+/* 弹窗评论 */
+
+.model {  
+    position: fixed;  
+    width: 100vw;  
+    height: 100vh;  
+    top: 0;  
+    bottom: 0;  
+    background: 
+    rgba(0, 0, 0, 0.4);
+    z-index: 100;
+}
+
+.model .input-box {  
+    position: absolute; 
+    background-color: var(--tertiary-color);  
+     padding: 30rpx;  
+     padding-bottom: 8%;  
+     bottom: 0;  
+     left: 0;  
+     right: 0;  
+     z-index: 101;
+    border-top-left-radius: 20rpx;
+    border-top-right-radius: 20rpx;
+
+}
+
+.model .textarea {  
+    width: 100%;  
+    padding: 30rpx 20rpx 20rpx 20rpx;  
+    height: 500rpx;  
+    font-size: var(--fontsize-h5);  
+    position: static;
+}
+
+
+.model .submit-btn {
+    font-weight: var(--fontweight-bold);
+    color: var(--tertiary-color);
+    font-size: var(--fontsize-text-sm);
+    background-color: var(--secondary-color);
+    padding: 15rpx 30rpx 15rpx 30rpx;
+    border-radius: 20rpx;
+    float: right;  
+    position: static;
+}
+
+.model .invisible_model{  
+    position: fixed;  
+    width: 100vw;  
+    height: 100vh;  
+    top: 0;  
+    bottom: 0;
 }

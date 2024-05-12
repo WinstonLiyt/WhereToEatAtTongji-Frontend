@@ -1,4 +1,5 @@
 // pages/post/post.js
+var utils = require('../../utils/util');
 Component({
     /**
      * 组件的属性列表
@@ -39,7 +40,17 @@ Component({
   data: {
     "message": "strings",
     "post": {},
-    "comments": []
+    "comments": [],
+    "post_id": 0,
+    "is_user": false,
+    "upvoted": false,
+    "stared": false,
+    "inputBoxShow": false,
+    "commentShow": false,
+    "tempCommentContent": "",
+    "tempCommentType": -1,
+    "tempOthers": {},
+    maskColor: "#fff2d9"
   },
 
   /**
@@ -50,34 +61,75 @@ Component({
          * 生命周期函数--监听页面加载
          */
         onLoad(options) {
+            wx.showLoading({
+                title: '加载中',
+                mask: true,
+                success: () => {
+                    this.setData({
+                        inputBoxShow: true,
+                        commentShow: false,
+                        maskColor: "#fff2d9"
+                    })
+                }
+            })
+            console.log("loadinggggg")
             // const postId = options.id;
-            const postData = {
-                id: 1,
-                title: "希食东的番茄牛肉拉面很不错",
-                user_name: "傘木 希美",
-                user_avatar: "../../statics/imgs/community/avatar.jpg",
-                images: ["../../statics/imgs/community/post/food.jpg", 
-                "../../statics/imgs/community/post/food.jpg"],
-                label: ["美食探店", "拉面爱好者", "番茄牛肉拉面"],
-                num_upvotes: 114,
-                num_comments: 10,
-                num_stars: 60,
-                time: "2024-4-19",
-                content: "希食东的番茄牛肉拉面真的是让人难以忘怀的美味！🍜 大块的牛肉，鲜嫩多汁，完美吸收了浓郁的番茄汤底，每一口都是满满的幸福感。拉面则是恰到好处的软硬,与汤汁完美结合，让人每一口都想再来一碗。在忙碌的一天后，来一碗这样的拉面，疲惫似乎都消失了。不知道你们有没有试过这样一碗让人心动的美味？如果还没有，一定要去尝一尝！🌟",
-                comments: [
-                    5, 6, 7
-                ],
-                location: "您的梦里"
-            };
-            
-            const commentData = this.getCommentData(postData);
-            
-            // TODO: 评论过长且无\n会出现问题，主内容却不会，猜测是容器嵌套问题
+            this.data.post_id= JSON.parse(options.post_id).post_id;//解析得到对象 
+            this.data.is_user = JSON.parse(options.post_id).is_user;
+            var upvoted = JSON.parse(options.post_id).upvoted;
+            var stared = JSON.parse(options.post_id).stared;
+
+            var postData = {}
+            utils.tjRequest({
+                url: "/posts/details/",
+                method: "post",
+                data: {
+                    id: this.data.post_id
+                }
+            }).then(response => {
+                postData = response.data.post
+                postData.user_avatar = utils.base_image_url + "avatar/" + postData.user_avatar
+                postData.time = this.datetimeConverter(postData.time)
+
+                for (var j = 0; j < postData.images.length; j++) {
+                    postData.images[j] = utils.base_url + postData.images[j]
+                 }
+
+                const commentData = this.getCommentData(postData);
+                commentData.then(res => {
+                  this.setData({
+                      comments: res,
+                      post: postData
+                  })
+                  
+                  console.log("浏览帖子详细信息 success");
+                })
+                
+              }).catch(error => {
+                // 请求失败时执行的操作
+                console.log(error)
+                console.error("浏览帖子详细信息  fail");
+              });
 
             this.setData({
-                post: postData,
-                comments: commentData
+                upvoted: upvoted,
+                stared: stared
             });
+            
+            var that = this
+             setTimeout(function () {
+                wx.hideLoading({
+                    success: () => {
+                        that.setData({
+                            inputBoxShow: false,
+                            commentShow: true,
+                            maskColor: "rgba(0, 0, 0, 0.5)"
+                        })
+                    }
+                })
+                    
+              }, 1800)
+
         },
 
         /**
@@ -105,7 +157,23 @@ Component({
          * 生命周期函数--监听页面卸载
          */
         onUnload() {
-
+            //获取已经打开的页面的数组
+            var pages = getCurrentPages();
+            //获取上一个页面的所有的方法和data中的数据
+            var lastpage = pages[pages.length - 2]
+            //改变上一个页面中的data中的数据
+            for (var i  = 0; i < lastpage.data.posts.length; i++) {
+                if (lastpage.data.posts[i].id == this.data.post_id) {
+                    var temp = lastpage.data.posts
+                    temp[i].upvoted = this.data.upvoted
+                    temp[i].stared = this.data.stared
+                    temp[i].num_upvotes = this.data.post.num_upvotes
+                    temp[i].num_stars = this.data.post.num_stars
+                    lastpage.setData({  
+                        posts: temp
+                    })
+                }
+            }
         },
 
         /**
@@ -132,21 +200,22 @@ Component({
         /*
         * 初始化评论数据
         */
-       getCommentData(postData) {
+       async getCommentData(postData) {
             var comments = []
             for (var i = 0; i < postData.comments.length; i++) {
-                var parent= this.transformRenderJson(postData.comments[i]);
+                var parent= await this.transformRenderJson(postData.comments[i]);
                 var children = [];
                 for (var j = 0; j < parent.children_ids.length; j++) {
-                    var child = this.transformRenderJson(parent.children_ids[i]);
-                    children.push(child)
+                    var child = await this.transformRenderJson(parent.children_ids[j]);
+                    child['parentid'] = parent.id;
+                    children.push(child);
                 }
+            
                 comments.push({
                     parent: parent,
                     children: children
                 });
             }
-
             return comments;
        },
 
@@ -154,66 +223,390 @@ Component({
         * 工具函数-获取子评论
         */
        getComment(id) {
-           /* get pseudo data */
-            var comData = {
-                "message": "string",
-                "comments": {
-                  "id": 0,
-                  "user_name": "Default",
-                  "user_avatar": "../../statics/imgs/community/avatar.jpg",
-                  "children_ids": [
-                      0
-                  ],
-                  "content": "THIS IS REPLY",
-                  "time": "1970-1-1 00:00",
-                  "num_upvotes": 0
-                }
-              }
-            if (id == 5) {
-                comData.comments.id = 5;
-                comData.comments.user_name = "AAAA";
-                comData.comments.user_avatar = "../../statics/imgs/community/avatar.jpg";
-                comData.comments.children_ids = [51, 52];
-                comData.comments.content = "AAAAAAAAAAAAAAAAAAAA\nAAAAAAAAAAAAAAAAAAAAAAA\nAAAAAAAAAAAAAAAAAA\nAAAAAAAAAAAAAA";
-                comData.comments.time = "2024-4-19 12:22";
-                comData.comments.num_upvotes = 100;
-            }
-            else if (id == 6) {
-                comData.comments.id = 6;
-                comData.comments.user_name = "BBBB";
-                comData.comments.user_avatar = "../../statics/imgs/community/avatar1.png";
-                comData.comments.children_ids = [61];
-                comData.comments.content = "BBBBBBBBBBBBBB";
-                comData.comments.time = "2024-4-20 15:12";
-                comData.comments.num_upvotes = 15;
-            }
-            else if (id == 7) { 
-                comData.comments.id = 7;
-                comData.comments.user_name = "CCCC";
-                comData.comments.user_avatar = "../../statics/imgs/community/avatar1.png";
-                comData.comments.children_ids = [61];
-                comData.comments.content = "CCCCCCCCCCCCCCCCCCCCCCCCC";
-                comData.comments.time = "2024-4-21 12:03";
-                comData.comments.num_upvotes = 459;
-            }
-            return comData;
+           var comData = {}
+              return utils.tjRequest({
+                    url: "/posts/getcomments/",
+                    method: "post",
+                    data: {
+                        id: id,
+                    }
+                })
        },
 
        /*
        * 工具函数-转换为渲染的json格式
        */
-      transformRenderJson(ID) {
-        var rawComment = this.getComment(ID).comments;
+      async transformRenderJson(ID) {
+        var rawComment = await this.getComment(ID);
+        rawComment = rawComment.data.comments
+        const st_avatar = utils.base_image_url + "avatar/" + rawComment.user_avatar
+
         var std = {
-            user_avatar: rawComment.user_avatar,
+            id: rawComment.id,
+            is_upvoted: rawComment.upvoted,
+            user_avatar: st_avatar,
             user_name: rawComment.user_name,
             num_upvotes: rawComment.num_upvotes,
             content: rawComment.content,
-            time: rawComment.time,
-            children_ids: rawComment.children_ids
+            time: this.datetimeConverter(rawComment.time),
+            children_ids: rawComment.children_ids,
+            is_user: rawComment.is_user
         };
         return std;
-      }
+      },
+        /* 对评论进行评论 */
+        onTapReply(parentcommentid, replayusername, content, replyToParent) {
+            var that = this;
+            // console.log(((replyToParent == 2)? '@' + replayusername + " ": "") + content)
+            utils.tjRequest({
+                url: "/posts/reply_comment/",
+                method: "post",
+                data: {
+                    parent_comment_id: parentcommentid,
+                    // content: ((replyToParent == 2)? '@' + replayusername + " ": "") + content
+                    content: '@' + replayusername + " " + content
+                }
+            }).then(response => {
+                var tempComments = this.data.comments
+                console.log(tempComments)
+                for (var i = 0; i < tempComments.length; i++) {
+                    if (tempComments[i].parent.id == parentcommentid) {
+                        tempComments[i].parent.children_ids.push(response.data.comments.id)
+                        var st_avatar = utils.base_image_url + "avatar/" + response.data.comments.user_avatar
+                        tempComments[i].children.push({
+                            id: response.data.comments.id,
+                            is_upvoted: false,
+                            user_avatar: st_avatar,
+                            user_name: response.data.comments.user_name,
+                            num_upvotes: 0,
+                            content: response.data.comments.content,
+                            time: this.datetimeConverter(response.data.comments.time),
+                            children_ids: [],
+                            is_user: true,
+                            parentid: parentcommentid
+                        })
+                    }
+                }
+
+                console.log(555)
+
+                that.setData({
+                    comments: tempComments
+                })
+
+                console.log("回复评论 success");
+            }).catch(error => {
+                // 请求失败时执行的操作
+                console.error("回复评论 null fail");
+            });
+    
+        },
+      /* 对post发表评论 */
+      onConfirmMakeComments(e) {
+        console.log(this.data.tempCommentContent)
+        console.log(this.data.tempCommentType)
+        console.log(this.data.tempOthers)
+
+        if (this.data.tempCommentContent === "") {
+            wx.showToast({
+                title: '评论不能为空',
+                icon: 'error',
+                duration: 1500
+              })
+              this.setData({
+                inputBoxShow: false
+            })
+            return;
+        }
+
+          var content = this.data.tempCommentContent
+          if (this.data.tempCommentType > 0) {
+            // 对评论的评论
+            this.onTapReply(
+                this.data.tempOthers.parentcommentid,
+                this.data.tempOthers.replayusername,
+                content,
+                this.data.tempCommentType
+            )
+          }
+          else if (this.data.tempCommentType == 0) {
+             // 对post的评论
+             utils.tjRequest({
+                 url: "/posts/comment/",
+                 method: "post",
+                 data: {
+                     post_id: this.data.post_id,
+                     user_id: 1,
+                     content: content
+                 }
+             }).then(response => {
+                var tempComments = this.data.comments
+                console.log( response.data)
+                var st_avatar = utils.base_image_url + "avatar/" + response.data.comment.user_avatar
+
+                tempComments.push({
+                    parent: {
+                        id: response.data.comment.id,
+                        is_upvoted: false,
+                        user_avatar: st_avatar,
+                        user_name: response.data.comment.user_name,
+                        num_upvotes: 0,
+                        content: content,
+                        time: this.datetimeConverter(response.data.comment.time),
+                        children_ids: [],
+                        is_user: true
+                    },
+                    children: []
+                })
+
+                this.setData({
+                    comments: tempComments
+                })
+                
+                console.log("评论帖子 success");
+              }).catch(error => {
+                // 请求失败时执行的操作
+                console.log(error)
+                console.error("评论帖子 fail");
+              });
+          }
+
+          this.setData({
+              inputBoxShow: false
+          })
+      },
+      onTapCommentUpvote(e) {
+        console.log(e)
+
+        var parent_comment_id = e.currentTarget.dataset.pindex
+        var child_array_index = e.currentTarget.dataset.cindex
+
+        console.log(child_array_index)
+
+        // console.log(this.data.comments)
+
+        for (var i = 0; i < this.data.comments.length; i++) {
+            var comment_block = this.data.comments[i]
+            console.log(comment_block)
+            if (child_array_index === "") {
+                // 夫评论
+                if (comment_block.parent.id == parent_comment_id) {
+                    comment_block.parent.is_upvoted = (comment_block.parent.is_upvoted)? false: true;
+                    comment_block.parent.num_upvotes += (comment_block.parent.is_upvoted)? 1 : -1;
+                    var change = comment_block.parent.is_upvoted;
+                    console.log(comment_block)
+                    // console.log(comment_block.children[child_array_index].id)
+                    
+                    var temp = this.data.comments;
+                    temp[i] = comment_block
+                    this.setData({
+                        comments: temp
+                    });
+
+                    // 后端
+                    utils.tjRequest({
+                        url: "/posts/change_comment_reaction/",
+                        method: "put",
+                        data: {
+                            change: change,
+                            comment_id: parent_comment_id
+                        }
+                    }).then(response => {
+                        this.setData({
+                            comments: temp
+                        });
+                        console.log("改变评论点赞数量 success");
+                      }).catch(error => {
+                        // 请求失败时执行的操作
+                        console.log(error)
+                        console.error("改变评论点赞数量 fail");
+                      });
+                    break;
+                }
+                
+            }
+            else {
+                // 子评论
+                if (comment_block.parent.id == parent_comment_id) {
+                    var target_child_comment = comment_block.children[child_array_index];
+                    
+                    target_child_comment.is_upvoted = (target_child_comment.is_upvoted)? false: true;
+                    target_child_comment.num_upvotes += (target_child_comment.is_upvoted)? 1 : -1;
+                    var change = target_child_comment.is_upvoted;
+
+                    var temp = this.data.comments;
+                    comment_block[child_array_index] = target_child_comment
+                    temp[i] = comment_block
+
+                    this.setData({
+                        comments: temp
+                    });
+
+                    // 后端
+                    var that = this
+                    utils.tjRequest({
+                        url: "/posts/change_comment_reaction/",
+                        method: "put",
+                        data: {
+                            change: change,
+                            comment_id: comment_block.children[child_array_index].id
+                        }
+                    }).then(response => {
+                        that.setData({
+                            comments: temp
+                        });
+                        console.log("改变评论点赞数量 success");
+                      }).catch(error => {
+                        // 请求失败时执行的操作
+                        console.error("改变评论点赞数量 fail");
+                      });
+
+                    break;
+
+                }
+            }
+        }
+        
+        },
+        onTapDelete(e) {
+            console.log(e);
+            var that = this
+
+            var parent_comment_id = e.currentTarget.dataset.parentcommentid
+            console.log(parent_comment_id)
+            var parent_comment_index = -1
+            var child_array_index = e.currentTarget.dataset.childindex
+            var child_comment_id = -1
+
+            for (var i = 0; i < this.data.comments.length; i++) {
+                if (this.data.comments[i].parent.id == parent_comment_id) {
+                    parent_comment_index = i
+                    if (child_array_index !== "") {
+                        child_comment_id = this.data.comments[i].children[child_array_index].id
+                    }
+                }
+            }
+            console.log(parent_comment_index)
+            
+            
+            utils.tjRequest({
+                url: "/posts/delete_comment/",
+                method: "delete",
+                data: {
+                    id: (child_comment_id < 0)? parent_comment_id : child_comment_id
+                }
+            }).then(response => {
+                var tempComments = this.data.comments
+                if (child_comment_id < 0) {
+                    tempComments.splice(parent_comment_index, 1)
+                } else {
+                    tempComments[parent_comment_index].children.splice(child_array_index, 1)
+                }
+
+                this.setData({
+                    comments: tempComments
+                })
+              console.log("回复评论 success");
+            }).catch(error => {
+              // 请求失败时执行的操作
+              console.error("回复评论 null fail");
+            });
+
+            var tempComments = this.data.comments
+            if (child_comment_id < 0) {
+                tempComments.splice(parent_comment_index, 1)
+            } else {
+                tempComments[parent_comment_index].children.splice(child_array_index, 1)
+            }
+
+            this.setData({
+                comments: tempComments
+            })
+
+        },
+        onTapPostReaction(e) {
+
+            var reaction_name = e.currentTarget.id;
+            console.log(e)
+
+            var change = false;
+            if (reaction_name == "num_upvotes") {
+                this.data.upvoted = (this.data.upvoted)? false: true;
+                this.data.post.num_upvotes += (this.data.upvoted)? 1 : -1;
+                change = this.data.upvoted;
+            }
+            else {
+                this.data.stared = (this.data.stared)? false: true;
+                this.data.post.num_stars += (this.data.stared)? 1 : -1;
+                change = this.data.stared;
+            }
+
+
+        // 后端检查是否更改成功
+            utils.tjRequest({
+                url: "/posts/change_post_reaction/",
+                method: "put",
+                data: {
+                    field: reaction_name,
+                    change: change,
+                    user_id: 1,
+                    post_id: this.data.post_id
+                }
+            }).then(response => {
+                let post = this.data.post;
+                this.setData({
+                    post: post,
+                    upvoted: this.data.upvoted,
+                    stared: this.data.stared
+                });
+                console.log("详细信息改变忒子点赞数量 success");
+            }).catch(error => {
+                // 请求失败时执行的操作
+                console.error("详细信息改变忒子点赞数量 fail");
+            });
+            let post = this.data.post;
+            console.log(post)
+            this.setData({
+                post: post,
+                upvoted: this.data.upvoted,
+                stared: this.data.stared
+            });
+        },
+        makeComments(e) {
+            console.log(e.currentTarget.dataset.id)
+            var others = {}
+
+            if (e.currentTarget.dataset.id == 1) {
+                others["parentcommentid"] = e.currentTarget.dataset.parentcommentid
+                others["replayusername"] = e.currentTarget.dataset.replayusername
+            }
+            this.setData({
+                inputBoxShow: true,
+                tempCommentType: e.currentTarget.dataset.id,
+                tempOthers: others
+            })
+        },
+        invisible(e) {
+            this.setData({
+                inputBoxShow: false,
+            })
+        },
+        updateCommentContent(e) {
+            this.setData({
+                tempCommentContent: e.detail.value,
+            });
+        },
+        datetimeConverter(mySqlTime) {
+            const datetime = new Date(mySqlTime);
+
+            const year = datetime.getFullYear();
+            const month = String(datetime.getMonth() + 1).padStart(2, '0'); // 月份从0开始，需要加1，并确保两位数
+            const day = String(datetime.getDate()).padStart(2, '0'); // 确保两位数的日期 // 月份从0开始，需要加1，并确保两位数
+
+            const formattedDate = `${year}-${month}-${day}`;
+            return formattedDate
+        }
     }
+    
 })
 

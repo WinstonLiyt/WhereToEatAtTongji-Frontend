@@ -1,5 +1,5 @@
 // pages/community/community.js
-
+var utils = require('../../utils/util');
 
 Page({
   /**
@@ -12,79 +12,55 @@ Page({
     btnHidden: false
   },
 
-  getData(url) {
-    wx.request({
-      url: url,
-      header: {
-        "content-type": "application/json;charset=UTF-8"
-      },
-      method: 'GET',
-      success: function (res) {
-        console.log(res.data);
-      },
-      fail: function () {
-        console.log("Failed.");
-      },
-    })
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    this.getData('http://1.92.154.154:80/media/images/test2.jpg');
 
-    // 模拟从服务器获取数据
-    var postData = [
-      {
-        id: 1,
-        title: "希食东的番茄牛肉拉面很不错",
-        user_name: "傘木 希美",
-        user_avatar: "../../statics/imgs/community/avatar.jpg",
-        images: ["../../statics/imgs/community/post/food.jpg", "../../statics/imgs/community/post/food.jpg"],
-        label: ["ユーフォ"],
-        num_upvotes: 114,
-        num_comments: 514,
-        num_stars: 55,
-        time: "2024-4-19"
-      },
-      {
-        id: 2,
-        title: "其实食堂的份饭也挺好吃的",
-        user_name: "吉川 優子",
-        user_avatar: "../../statics/imgs/community/avatar1.png",
-        images: ["../../statics/imgs/community/post/food.jpg"],
-        label: ["ユーフォ", "フルート"],
-        num_upvotes: 52,
-        num_comments: 10,
-        num_stars: 680,
-        time: "2024-4-04"
-      },
-      {
-        id: 3,
-        title: "今天是疯狂星期四三十九时零分零秒。V我50",
-        user_name: "中川 夏纪",
-        user_avatar: "../../statics/imgs/community/avatar2.jpg",
-        images: [],
-        label: ["ユーフォ", "yummy"],
-        num_upvotes: 100,
-        num_comments: 18,
-        num_stars: 682,
-        time: "2024-04-19"
-      }
-    ];
+    // 发
+    /*
+    username
+    avatar
+    */
 
-    var posData = postData.map(item => {
-        return {
-          ...item,
-          upvoted: false,
-          stared: false
-        };
-      });
-    // 更新数据
-    this.setData({
-      posts: postData
+    utils.tjRequest({
+        url: "/posts/search/",
+        method: "post",
+        data: {
+            content: "",
+            user_id: 1
+        }
+    }).then(response => {
+        
+        for (var i = 0;i < response.data.posts.length; i++) {
+            response.data.posts[i].user_avatar = utils.base_image_url + "avatar/" + response.data.posts[i].user_avatar
+            response.data.posts[i].time = this.datetimeConverter(response.data.posts[i].time)
+            for (var j = 0; j < response.data.posts[i].images.length; j++) {
+                response.data.posts[i].images[j] = utils.base_url + response.data.posts[i].images[j]
+             }
+             response.data.posts[i]["imageDisplay"] = response.data.posts[i].images.slice(0, Math.min(2, response.data.posts[i].images.length))
+            }
+        this.setData({
+            posts: response.data.posts
+        })
+        console.log(response.data.posts)
+      console.log("Search content success");
+    }).catch(error => {
+      // 请求失败时执行的操作
+      console.error("Search content fail");
     });
+
+    console.log(this.data.posts)
+
+   
+
+    //模拟从服务器获取数据
+
+
+    // 更新数据
+    // this.setData({
+    //   posts: postData
+    // });
   },
 
   /**
@@ -105,6 +81,31 @@ Page({
       })
       this.getTabBar().setList();
     }
+
+    utils.tjRequest({
+        url: "/posts/search/",
+        method: "post",
+        data: {
+            content: ""
+        }
+    }).then(response => {
+        for (var i = 0;i < response.data.posts.length; i++) {
+            response.data.posts[i].user_avatar = utils.base_image_url + "avatar/" + response.data.posts[i].user_avatar
+            response.data.posts[i].time = this.datetimeConverter(response.data.posts[i].time)
+            for (var j = 0; j < response.data.posts[i].images.length; j++) {
+                response.data.posts[i].images[j] = utils.base_url + response.data.posts[i].images[j]
+             }
+             response.data.posts[i]["imageDisplay"] = response.data.posts[i].images.slice(0, Math.min(2, response.data.posts[i].images.length))
+        }
+        console.log(response.data.posts)
+        this.setData({
+            posts: response.data.posts
+        })
+      console.log("Search content success");
+    }).catch(error => {
+      // 请求失败时执行的操作
+      console.error("Search content fail");
+    });
   },
 
   /**
@@ -156,7 +157,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {
-
+    console.log("rerewrewrrwerwrwerwerwerwe")
   },
 
   /*
@@ -173,8 +174,18 @@ Page({
     //     res.eventChannel.emit('postDetail', { data: postData })
     //   }
     // })
+    console.log("这是点击详细信息之后")
+    console.log(event.currentTarget.dataset.postid)
+
     wx.navigateTo({
-        url: '/pages/post/post',
+        url: '/pages/post/post?post_id=' + JSON.stringify({
+            post_id: event.currentTarget.dataset.postid, 
+            is_user: event.currentTarget.dataset.isuser,
+            upvoted: event.currentTarget.dataset.upvoted,
+            stared: event.currentTarget.dataset.stared,
+            num_upvotes: event.currentTarget.dataset.numupvotes,
+            num_stars: event.currentTarget.dataset.numstars
+        }),
         fail: function(error) {
             console.error('rfailed', error);
         }
@@ -189,11 +200,60 @@ Page({
   },
 
   onConfirmSearch(event) {
-      console.log(event.detail.value);
+    console.log(event.detail.value);
+      utils.tjRequest({
+          url: "/posts/search/",
+          method: "post",
+          data:  {
+              user_id: 1,
+              content: event.detail.value
+          }
+      }).then(response => {
+        for (var i = 0;i < response.data.posts.length; i++) {
+            response.data.posts[i].user_avatar = utils.base_image_url + "avatar/" + response.data.posts[i].user_avatar
+            response.data.posts[i].time = this.datetimeConverter(response.data.posts[i].time)
+            for (var j = 0; j < response.data.posts[i].images.length; j++) {
+                response.data.posts[i].images[j] = utils.base_url + response.data.posts[i].images[j]
+             }
+             response.data.posts[i]["imageDisplay"] = response.data.posts[i].images.slice(0, Math.min(2, response.data.posts[i].images.length))
+        }
+        console.log(response.data.posts)
+          this.setData({
+              posts: response.data.posts
+          })
+        console.log("Search content success");
+      }).catch(error => {
+        // 请求失败时执行的操作
+        console.error("Search content fail");
+      });
   },
 
   onTapSearchBtn(event) {
-      console.log(this.data.search_value);
+      console.log(this.data.search_value)
+    utils.tjRequest({
+        url: "/posts/search/",
+        method: "post",
+        data:  {
+            content: this.data.search_value
+        }
+    }).then(response => {
+        console.log(response)
+      for (var i = 0;i < response.data.posts.length; i++) {
+          response.data.posts[i].user_avatar = utils.base_image_url + "avatar/" + response.data.posts[i].user_avatar
+          response.data.posts[i].time = this.datetimeConverter(response.data.posts[i].time)
+          for (var j = 0; j < response.data.posts[i].images.length; j++) {
+            response.data.posts[i].images[j] = utils.base_url + response.data.posts[i].images[j]
+         }
+         response.data.posts[i]["imageDisplay"] = response.data.posts[i].images.slice(0, Math.min(2, response.data.posts[i].images.length))
+      }
+        this.setData({
+            posts: response.data.posts
+        })
+      console.log("Search content success");
+    }).catch(error => {
+      // 请求失败时执行的操作
+      console.error("Search content fail");
+    });
   },
 
   // 监听页面滚动到底部事件
@@ -220,6 +280,7 @@ Page({
   onTapReaction(e) {
     var item = this.data.posts[e.currentTarget.dataset.itemid];
     var reaction_name = e.currentTarget.id;
+    console.log(e)
     if (reaction_name == "num_comments") {
         // wx.navigateTo({
         //     url: '/pages/post/post?id=' + item.id,
@@ -228,10 +289,20 @@ Page({
         //     }
         // })
 
+        //url: '/pages/test/test?dataObj='+JSON.stringify(this.data.dataObj) 
+
         wx.navigateTo({
-            url: '/pages/post/post',
+            url: '/pages/post/post?post_id=' + JSON.stringify({
+                post_id: e.currentTarget.dataset.postid, 
+                is_user: e.currentTarget.dataset.isuser,
+                upvoted: e.currentTarget.dataset.upvoted,
+                stared: e.currentTarget.dataset.stared,
+                num_upvotes: e.currentTarget.dataset.numupvotes,
+                num_stars: e.currentTarget.dataset.numstars
+            }),
             fail: function(error) {
                 console.error('rfailed', error);
+
             }
         })
     }
@@ -240,26 +311,98 @@ Page({
         if (reaction_name == "num_upvotes") {
             item.upvoted = (item.upvoted)? false: true;
             item.num_upvotes += (item.upvoted)? 1 : -1;
-            change = item.num_upvotes;
+            change = item.upvoted;
         }
         else {
             item.stared = (item.stared)? false: true;
             item.num_stars += (item.stared)? 1 : -1;
-            change = item.num_stars;
+            change = item.stared;
         }
 
-        var update_msg = {
-            field: reaction_name,
-            change: change
-        }
 
-        // 后端检查是否更改成功
-        let posts = this.data.posts.slice();
-        posts[e.currentTarget.dataset.itemid] = item;
-        this.setData({
-            posts: posts
-        });
+    // 后端检查是否更改成功
+    var that  = this
+        utils.tjRequest({
+            url: "/posts/change_post_reaction/",
+            method: "put",
+            data: {
+                field: reaction_name,
+                change: change,
+                user_id: 1,
+                post_id: e.currentTarget.dataset.postid
+            }
+        }).then(response => {
+            let posts = that.data.posts.slice();
+            posts[e.currentTarget.dataset.itemid] = item;
+            that.setData({
+                posts: posts
+            });
+            console.log("改变忒子点赞数量 success");
+          }).catch(error => {
+            // 请求失败时执行的操作
+            console.error("改变忒子点赞数量 fail");
+          });
 
+
+
+        //   let posts = this.data.posts.slice();
+        //     posts[e.currentTarget.dataset.itemid] = item;
+        //     this.setData({
+        //         posts: posts
+        //     });
     }
-  }
+  },
+
+  DelPost(e) {
+    console.log(e)
+    console.log(this.data.posts[e.currentTarget.dataset.index].id)
+    // 测试删除帖子
+    utils.tjRequest({
+        url: "/posts/delete/",
+        method: "delete",
+        data: {
+            post_id: this.data.posts[e.currentTarget.dataset.index].id
+        }
+    }).then(response => {
+        console.log(111)
+        var temp_posts = this.data.posts;
+        console.log(11222221)
+
+        temp_posts.splice(e.currentTarget.dataset.index, 1);
+        console.log(133331)
+
+        console.log(temp_posts)
+        this.setData({
+            posts: temp_posts
+        })
+        console.log("Delete post success");
+      }).catch(error => {
+        // 请求失败时执行的操作
+        console.error("Delete post fail");
+      });
+
+
+    //   var temp_posts = this.data.posts;
+    //     temp_posts.splice(e.currentTarget.dataset.index, 1);
+    //     this.setData({
+    //         posts: temp_posts
+    //     })
+  },
+  ViewImage(e) {
+      // 仅支持网络图片
+      console.log(e.currentTarget.dataset.current)
+    wx.previewImage({
+      urls: [e.currentTarget.dataset.current]
+    });
+  },
+  datetimeConverter(mySqlTime) {
+        const datetime = new Date(mySqlTime);
+
+        const year = datetime.getFullYear();
+        const month = String(datetime.getMonth() + 1).padStart(2, '0'); // 月份从0开始，需要加1，并确保两位数
+        const day = String(datetime.getDate()).padStart(2, '0'); // 确保两位数的日期 // 月份从0开始，需要加1，并确保两位数
+
+        const formattedDate = `${year}-${month}-${day}`;
+        return formattedDate
+    }
 })

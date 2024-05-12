@@ -1,10 +1,12 @@
 // pages/post/post.js
+
+var utils = require('../../utils/util');
 Component({
     /**
      * 组件的属性列表
      */
     properties: {
-  
+        
     },
   
     /**
@@ -15,9 +17,13 @@ Component({
       images: [],
       title: '', 
       thoughts: '',
-      labels: [], 
+      label: "", 
       imgid: 0,
       realList: [],
+      tempImageUrl: [],
+      tempContentJson: {},
+      tempImageUrlChanged:[],
+      labelLegal: true
     },
     /**
      * 组件生命周期
@@ -71,7 +77,8 @@ Component({
         console.log(e.currentTarget.dataset.url);
       },
       DelImg(e) {
-        this.data.images.splice(e.currentTarget.dataset.index, 1);
+        console.log(this.data.images.splice(e.currentTarget.dataset.index, 1));
+        console.log(e);
         this.setData({
           images: this.data.images
         })
@@ -80,12 +87,25 @@ Component({
         const { id } = e.currentTarget; // 获取当前输入框的 id
         const value = e.detail.value; // 获取输入框的内容
 
-        if (id === 'labels') {
+        if (id === 'label') {
             // 使用正则表达式匹配所有以#开头的标签
             let trimmedStr = value.trim();
+
+            if (trimmedStr[0] !== "#") {
+                wx.showToast({
+                  title: '请以 # 开头',
+                  icon: "error"
+                })
+                this.data.labelLegal = false;
+            }
+            else {
+                this.data.labelLegal = true;
+            }
+
             let splitStr = trimmedStr.split("#").filter(Boolean).map(s => s.trim());
+            console.log(splitStr)
             this.setData({
-                [id]: splitStr
+                [id]: splitStr[0]
             });
         } else {
             // 更新标题或想法
@@ -94,21 +114,67 @@ Component({
             });
         }
       },
-      onTapShare() {
-        const contentJson = {
-            images:this.data.images,
-            location: this.data.location,
+      async onTapShare() {
+        await this.updateImageNames(this.data.images)
+        console.log(this.data.tempImageUrlChanged)
+
+        if (this.data.title == "") {
+            wx.showToast({
+                title: '标题不能为空',
+                icon: "error"
+              })
+              return;
+        }
+        if (!this.data.labelLegal) {
+            wx.showToast({
+                title: '标签以 # 开头',
+                icon: "error"
+              })
+              return;
+        }
+
+        
+
+        var contentJson = {
+            images:this.data.tempImageUrlChanged,
+            ip: this.data.location,
             title: this.data.title,
-            thoughts: this.data.thoughts,
-            labels: this.data.labels,
+            content: this.data.thoughts,
+            label: this.data.label
           };
-      
-          // 后续处理
-          console.log('分享的内容:', contentJson);
 
-          wx.navigateBack({})
+          // 测试创造帖子！！！！！！！！
+          utils.tjRequest({
+              url: "/posts/create/",
+              method: "post",
+              data: contentJson,
+          }).then(response => {
+            console.log("Create post success");
+            wx.navigateBack({})
+          }).catch(error => {
+            // 请求失败时执行的操作
+            console.error("Create post fail");
+          });
+      },
+
+      async updateImageNames(imagePaths) {
+        let tempImageUrlChanged = [];
+        for (const src of imagePaths) {
+          try {
+            const response = await utils.tjFileUpLoad({
+              url: "/image/",
+              filePath: src,
+            });
+            const newName = JSON.parse(response.data).new_name;
+            tempImageUrlChanged.push(newName);
+          } catch (error) {
+            console.log("Upload File failed");
+          }
+        }
+        this.setData({
+          tempImageUrlChanged: tempImageUrlChanged,
+        });
       }
-
     }
   })
 

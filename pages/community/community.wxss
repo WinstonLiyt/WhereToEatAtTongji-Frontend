@@ -4,12 +4,14 @@
 page {
     background-color: var(--tertiary-color);
     height: 100%;
+    width: 100%;
 }
 
 .main {
   height: calc(100% - 60px - const(safe-area-inset-bottom));
   height: calc(100% - 60px - env(safe-area-inset-bottom));
   overflow: scroll;
+  width: 100%;
 }
 
 /* Search bar*/
@@ -61,9 +63,7 @@ page {
     gap: 40rpx;
     height: 100%;
     background-color: var(--tertiary-color);
-
 }
-
 .posts .post-item {
     background-color: var(--card-background);
     width: 100%;
@@ -172,7 +172,7 @@ page {
   
   .floating-btn {
     position: fixed;
-    bottom: 3%; /* 距离底部的距离 */
+    bottom: 16%; /* 距离底部的距离 */
     right: 5%; /* 距离右侧的距离 */
     width: 120rpx; /* 圆的直径 */
     height: 120rpx; /* 圆的直径 */

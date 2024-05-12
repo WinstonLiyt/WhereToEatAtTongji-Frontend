@@ -12,25 +12,24 @@
     </view>
     <view class="posts ml-med mr-med mb-max mt-max">
         <view class="post-item bdr-max" wx:for="{{posts}}" wx:key="id" data-post-id="{{item.id}}" wx:for-index="index">
-            <view class="head-box ml-med mr-med mt-med mb-med">
-            <image src="{{item.user_avatar}}" class="avatar"></image>
-            <text class="username">{{item.user_name}}</text>
-            <view class="post-time">{{item.time}}</view>
+            <view class="head-box ml-med mr-med mt-med mb-med" style="position: relative;" bindtap="onTapPostDetail" data-postid="{{ item.id }}" data-isuser="{{ item.is_user }}" data-upvoted="{{ item.upvoted }}" data-stared="{{ item.stared }}"  data-numupvotes="{{ item.num_upvotes }}" data-numstars = "{{ item.num_stars }}">
+                <image src="{{item.user_avatar}}" class="avatar"></image>
+                <text class="username">{{item.user_name}}</text>
+                <view class="post-time">{{item.time}}</view>
+                <image src='../../statics/imgs/community/close.png'style="position: absolute; width: 30rpx; top: 8%; right: 1%;" mode="widthFix" data-index="{{ index }}" catchtap="DelPost" wx:if="{{ item.is_user }}"></image>
             </view>
 
-            <view class="title-box ml-med mr-med mb-med" bindtap="onTapPostDetail">
+            <view class="title-box ml-max mr-med mb-med" bindtap="onTapPostDetail" data-postid="{{ item.id }}" data-isuser="{{ item.is_user }}" data-upvoted="{{ item.upvoted }}" data-stared="{{ item.stared }}"  data-numupvotes="{{ item.num_upvotes }}" data-numstars = "{{ item.num_stars }}">
                 <text class="title">{{item.title}}</text>
             </view>
 
-            <view class="image-box ml-med mr-med mb-med" wx:if="{{item.images.length > 0}}">
-                <image wx:for="{{item.images}}" src="{{item}}" wx:key="url" class="bdr-med" mode="widthFix"></image>
+            <view class="image-box ml-med mr-med mb-med" wx:if="{{item.images.length > 0}}" >
+                <image wx:for="{{item.imageDisplay}}" src="{{item}}" wx:key="url" class="bdr-med" mode="widthFix" bindtap="ViewImage" data-current="{{item}}"></image>
             </view>
 
             <view class="bottom-box ml-med mr-med mb-med">
             <view class="label-box">
-                <view wx:for="{{item.label}}"  wx:key="mlabel" class="label">
-                    <text>#{{item}}</text>
-                </view>
+                <view class="label">#{{item.label}}</view>
             </view>
             <view class="reaction-box mr-min">
                 <view class="reaction-item upvotes">
@@ -38,7 +37,7 @@
                     <text>{{item.num_upvotes}}</text>
                 </view>
                 <view class="reaction-item comments">
-                    <image src="../../statics/imgs/community/post/comment.png" mode="widthFix" bindtap="onTapReaction" id="num_comments" data-itemid = '{{index}}' data-dt='{{ item.num_comments }}' data-postid='{{item.id}}'></image>
+                    <image src="../../statics/imgs/community/post/comment.png" mode="widthFix" bindtap="onTapReaction" id="num_comments" data-postid="{{ item.id }}" data-itemid = '{{index}}' data-dt='{{ item.num_comments }}' data-postid='{{item.id}}' data-upvoted="{{ item.upvoted }}" data-stared="{{ item.stared }}" data-numupvotes="{{ item.num_upvotes }}" data-numstars = "{{ item.num_stars }}"></image>
                     <text>{{item.num_comments}}</text>
                 </view>
                 <view class="reaction-item stars">
@@ -47,6 +46,8 @@
                 </view>
             </view>
         </view>
+
+        <view class="height=500rpx; width: 100%;"></view>
     </view>
 
     <!-- 悬浮添加帖子 -->

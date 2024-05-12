@@ -33,7 +33,7 @@ const tjRequest = (options) =>{
         'token': token
       },
       success: res=>{
-        if(res.statusCode === 200)
+        if(res.statusCode === 200 || res.statusCode == 204)
           resolve(res)
         else{
           if(res.statusCode === 403){
@@ -76,7 +76,7 @@ const tjFileUpLoad = (options) =>{
       },
       formData: options.formData || {},
       success: res=>{
-        if(res.statusCode === 200)
+        if(res.statusCode === 200 || res.statusCode == 204)
           resolve(res)
         else
           reject(res)
@@ -89,6 +89,7 @@ const tjFileUpLoad = (options) =>{
 module.exports = {
   formatTime,
   base_url,
+  base_image_url,
   tjRequest,
   tjFileUpLoad
 }

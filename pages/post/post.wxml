@@ -34,14 +34,12 @@
             <view class="other-info">
                 <!-- 标签 -->
                 <view class="label-box">
-                    <view class="label" wx:for="{{post.label}}" wx:key="index">
-                        <text>{{item}}</text>
-                    </view>
+                    <view class="label">#{{post.label}}</view>
                 </view>
                 <view class="location-box mr-max">
                     <view class="location">
                         <image src="../../statics/imgs/community/post/location.png" mode="widthFix"></image>
-                        <text>{{post.location}}</text>
+                        <text>{{post.ip}}</text>
                     </view>
                 </view>
             </view>
@@ -51,16 +49,18 @@
         <view class="make-comment ml-med mr-med mb-max">
             <view class="search">
                 <view class="search_in">
-                    <image src="../../statics/imgs/community/avatar2.jpg" mode="widthFix"></image>
-
-                    <input type="text" placeholder="发表评论"  placeholder-class="mid-make-comment"/>
+                    <image src="{{post.user_avatar}}" mode="widthFix"></image>
+                    <!-- <input type="text" placeholder="发表评论"  placeholder-class="mid-make-comment"  bindconfirm="onConfirmMakeComments"/> -->
+                    <input type="text" placeholder="发表评论"  placeholder-class="mid-make-comment"  bindtap="makeComments"  data-id="{{ 0 }}"/>
+                    
                 </view>
             </view>
         </view>
+        
 
         <!-- Comments -->
         <view class="comments ml-med mr-med mb-med">
-            <view wx:for="{{comments}}" wx:key="id" class="comment">
+            <view wx:for="{{comments}}" wx:key="id" class="comment" wx:for-index="outer_index">
                 <view class="parent-comment">
                     <view class="comment-avatar">
                         <image src="{{item.parent.user_avatar}}" mode="widthFix"></image>
@@ -70,25 +70,29 @@
                             <text>{{item.parent.user_name}}</text>
                         </view>
                         <view class="comment-upvotes mr-min">
-                            <image src="../../statics/imgs/community/post/upvote_selected.png" mode="widthFix"></image>
+                            <!-- <image src="../../statics/imgs/community/post/upvote_selected.png" mode="widthFix" data-commentid="{{ item.parent.id }}" bindtap="onTapCommentUpvote"></image> -->
+                            <image src="{{item.parent.is_upvoted? '../../statics/imgs/community/post/upvote_selected.png' : '../../statics/imgs/community/post/upvote.png'}}" mode="widthFix" data-pindex="{{ item.parent.id }}" data-cindex="" bindtap="onTapCommentUpvote"></image>
                             <text>{{item.parent.num_upvotes}}</text>
                         </view>
                     </view>
                     <view class="comment-content mb-min">
-                        <text>{{item.parent.content}}</text>
+                        <view class="text">{{item.parent.content}}</view>
                     </view>
                     <view class="comment-bottom">
                         <view class="comment-time">
                             <text>{{item.parent.time}}</text>
                         </view>
-                        <view class="comment-reply">
+                        <view class="comment-reply" data-parentcommentid="{{item.parent.id}}" data-replayusername="{{item.parent.user_name}}" bindtap="makeComments"  data-id="{{ 1 }}">
                             <text>Reply</text>
                         </view>
+                        <view class="comment-delete" data-parentcommentid="{{item.parent.id}}" data-childindex="" data-replayusername="{{item.user_name}}" bindtap="onTapDelete" wx:if="{{ item.parent.is_user }}">
+                                <text>Delete</text>
+                            </view>
                     </view>
                 </view>
 
                 <view class="child-comments">
-                    <view wx:for="{{item.children}}" wx:key="id" class="child-comment">
+                    <view wx:for="{{item.children}}" wx:key="id" class="child-comment" wx:for-index="inner_index">
                         <view class="comment-avatar">
                             <image src="{{item.user_avatar}}" mode="widthFix"></image>
                         </view>
@@ -97,19 +101,23 @@
                                 <text>{{item.user_name}}</text>
                             </view>
                             <view class="comment-upvotes mr-min">
-                                <image src="../../statics/imgs/community/post/upvote_selected.png" mode="widthFix"></image>
+                                <!-- <image src="../../statics/imgs/community/post/upvote_selected.png" mode="widthFix" data-commentid="{{ item.id }}" bindtap="onTapCommentUpvote"></image> -->
+                                <image src="{{item.is_upvoted? '../../statics/imgs/community/post/upvote_selected.png' : '../../statics/imgs/community/post/upvote.png'}}" mode="widthFix" data-pindex="{{ item.parentid }}" data-cindex="{{ inner_index }}" bindtap="onTapCommentUpvote"></image>
                                 <text>{{item.num_upvotes}}</text>
                             </view>
                         </view>
                         <view class="comment-content mb-min">
-                            <text>{{item.content}}</text>
+                            <view class="text">{{item.content}}</view>
                         </view>
                         <view class="comment-bottom">
                             <view class="comment-time">
                                 <text>{{item.time}}</text>
                             </view>
-                            <view class="comment-reply">
+                            <view class="comment-reply" data-parentcommentid="{{item.parentid}}" data-replayusername="{{item.user_name}}" bindtap="makeComments"  data-id="{{ 1 }}">
                                 <text>Reply</text>
+                            </view>
+                            <view class="comment-delete" data-parentcommentid="{{item.parentid}}" data-childindex="{{ inner_index }}" data-replayusername="{{item.user_name}}" bindtap="onTapDelete" wx:if="{{ item.is_user }}">
+                                <text>Delete</text>
                             </view>
                         </view>
                     </view>
@@ -120,27 +128,37 @@
         <view class="main-body-padding"></view>
     </view>
 
-    <view class="tabbar_box" style="background-color:{{tabbar.backgroundColor}}">
+    <view class="tabbar_box" style="background-color:{{tabbar.backgroundColor}}"  wx:if="{{!inputBoxShow}}">
         <view class="tabbar_nav ml-med mr-med" hover-class="none" open-type="switchTab">
             <view class="tabbar-comment">
                 <view class="tabbar-comment_in">
-                    <input type="text" placeholder="发表评论" placeholder-class="tabbar-make-comment"/>
+                    <!-- <input type="text" placeholder="发表评论" placeholder-class="tabbar-make-comment" bindconfirm="onConfirmMakeComments"/> -->
+                    <input type="text" placeholder="发表评论" placeholder-class="tabbar-make-comment" bindtap="makeComments" data-id="{{ 0 }}" />
                 </view>
             </view>
 
             <view class="tabbar-reaction-box">
                 <view class="tabbar-reaction-item ">
-                    <image src="../../statics/imgs/community/post/upvote_selected.png" mode="widthFix"></image>
+                    <!-- <image src="../../statics/imgs/community/post/upvote_selected.png" mode="widthFix"></image> -->
+                    <image src="{{upvoted? '../../statics/imgs/community/post/upvote_selected.png' : '../../statics/imgs/community/post/upvote.png'}}" mode="widthFix" bindtap="onTapPostReaction" id="num_upvotes"></image>
                     <text>{{post.num_upvotes}}</text>
                 </view>
                 <view class="tabbar-reaction-item">
-                    <image src="../../statics/imgs/community/post/comment.png" mode="widthFix"></image>
-                    <text>{{post.num_comments}}</text>
-                </view>
-                <view class="tabbar-reaction-item">
-                    <image src="../../statics/imgs/community/post/star.png" mode="widthFix"></image>
+                    <image src="{{stared? '../../statics/imgs/community/post/star_selected.png' : '../../statics/imgs/community/post/star.png'}}" mode="widthFix" bindtap="onTapPostReaction" id="num_stars"></image>
+                    <!-- <image src="../../statics/imgs/community/post/star.png" mode="widthFix"></image> -->
                     <text>{{post.num_stars}}</text>
                 </view>
+            </view>
+        </view>
+    </view>
+
+    <view class='model' wx:if="{{inputBoxShow}}">
+        <!-- invisible_model view 用于点击隐藏model评论框 -->
+        <view class='invisible_model' catchtap='invisible'  style="background-color: {{ maskColor }};"></view>
+        <view class='input-box' wx:if="{{inputBoxShow && commentShow}}">
+            <textarea class="textarea" placeholder="有何高见？欢迎对线" placeholder-style="font-size: var(--fontsize-h5);" cursor-spacing="{{65}}" show-confirm-bar="{{false}}" adjust-position="{{true}}" auto-focus="{{true}}" bindinput="updateCommentContent" />
+            <view class='send'>
+                <view class="submit-btn mr-sm" bindtap="onConfirmMakeComments">分享Idea</view>
             </view>
         </view>
     </view>
