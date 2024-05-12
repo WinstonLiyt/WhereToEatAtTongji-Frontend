@@ -520,7 +520,10 @@ Component({
                         var tempComments = this.data.comments
                         if (child_comment_id < 0) {
                             tempComments.splice(parent_comment_index, 1)
+                        } else {
+                            tempComments[parent_comment_index].children.splice(child_array_index, 1)
                         }
+
         
                         this.setData({
                             comments: tempComments
@@ -530,17 +533,6 @@ Component({
                       // 请求失败时执行的操作
                       console.error("回复评论 null fail");
                     });
-        
-                    var tempComments = this.data.comments
-                    if (child_comment_id < 0) {
-                        tempComments.splice(parent_comment_index, 1)
-                    } else {
-                        tempComments[parent_comment_index].children.splice(child_array_index, 1)
-                    }
-        
-                    this.setData({
-                        comments: tempComments
-                    })
                   }
                 }
               })
