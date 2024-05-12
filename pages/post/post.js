@@ -488,60 +488,64 @@ Component({
         
         },
         onTapDelete(e) {
-            console.log(e);
-            var that = this
 
-            var parent_comment_id = e.currentTarget.dataset.parentcommentid
-            console.log(parent_comment_id)
-            var parent_comment_index = -1
-            var child_array_index = e.currentTarget.dataset.childindex
-            var child_comment_id = -1
 
-            for (var i = 0; i < this.data.comments.length; i++) {
-                if (this.data.comments[i].parent.id == parent_comment_id) {
-                    parent_comment_index = i
-                    if (child_array_index !== "") {
-                        child_comment_id = this.data.comments[i].children[child_array_index].id
+            wx.showModal({
+                title: '确认删除',
+                content: '确认删除该评论？',
+                complete: (res) => {
+                  if (res.cancel) {}
+                  if (res.confirm) {
+                    var parent_comment_id = e.currentTarget.dataset.parentcommentid
+                    console.log(parent_comment_id)
+                    var parent_comment_index = -1
+                    var child_array_index = e.currentTarget.dataset.childindex
+                    var child_comment_id = -1
+        
+                    for (var i = 0; i < this.data.comments.length; i++) {
+                        if (this.data.comments[i].parent.id == parent_comment_id) {
+                            parent_comment_index = i
+                            if (child_array_index !== "") {
+                                child_comment_id = this.data.comments[i].children[child_array_index].id
+                            }
+                        }
                     }
+                    utils.tjRequest({
+                        url: "/posts/delete_comment/",
+                        method: "delete",
+                        data: {
+                            id: (child_comment_id < 0)? parent_comment_id : child_comment_id
+                        }
+                    }).then(response => {
+                        var tempComments = this.data.comments
+                        if (child_comment_id < 0) {
+                            tempComments.splice(parent_comment_index, 1)
+                        } else {
+                            tempComments[parent_comment_index].children.splice(child_array_index, 1)
+                        }
+        
+                        this.setData({
+                            comments: tempComments
+                        })
+                      console.log("回复评论 success");
+                    }).catch(error => {
+                      // 请求失败时执行的操作
+                      console.error("回复评论 null fail");
+                    });
+        
+                    var tempComments = this.data.comments
+                    if (child_comment_id < 0) {
+                        tempComments.splice(parent_comment_index, 1)
+                    } else {
+                        tempComments[parent_comment_index].children.splice(child_array_index, 1)
+                    }
+        
+                    this.setData({
+                        comments: tempComments
+                    })
+                  }
                 }
-            }
-            console.log(parent_comment_index)
-            
-            
-            utils.tjRequest({
-                url: "/posts/delete_comment/",
-                method: "delete",
-                data: {
-                    id: (child_comment_id < 0)? parent_comment_id : child_comment_id
-                }
-            }).then(response => {
-                var tempComments = this.data.comments
-                if (child_comment_id < 0) {
-                    tempComments.splice(parent_comment_index, 1)
-                } else {
-                    tempComments[parent_comment_index].children.splice(child_array_index, 1)
-                }
-
-                this.setData({
-                    comments: tempComments
-                })
-              console.log("回复评论 success");
-            }).catch(error => {
-              // 请求失败时执行的操作
-              console.error("回复评论 null fail");
-            });
-
-            var tempComments = this.data.comments
-            if (child_comment_id < 0) {
-                tempComments.splice(parent_comment_index, 1)
-            } else {
-                tempComments[parent_comment_index].children.splice(child_array_index, 1)
-            }
-
-            this.setData({
-                comments: tempComments
-            })
-
+              })
         },
         onTapPostReaction(e) {
 
@@ -559,6 +563,7 @@ Component({
                 this.data.post.num_stars += (this.data.stared)? 1 : -1;
                 change = this.data.stared;
             }
+
 
 
         // 后端检查是否更改成功
@@ -603,6 +608,7 @@ Component({
                 inputBoxShow: false,
             })
         },
+        // 测试3
         updateCommentContent(e) {
             this.setData({
                 tempCommentContent: e.detail.value,

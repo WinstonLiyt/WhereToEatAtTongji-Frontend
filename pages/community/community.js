@@ -277,15 +277,6 @@ Page({
     var reaction_name = e.currentTarget.id;
     console.log(e)
     if (reaction_name == "num_comments") {
-        // wx.navigateTo({
-        //     url: '/pages/post/post?id=' + item.id,
-        //     success: function (res) {
-        //         // res.eventChannel.emit('postDetail', { data: postData })
-        //     }
-        // })
-
-        //url: '/pages/test/test?dataObj='+JSON.stringify(this.data.dataObj) 
-
         wx.navigateTo({
             url: '/pages/post/post?post_id=' + JSON.stringify({
                 post_id: e.currentTarget.dataset.postid, 
@@ -297,7 +288,6 @@ Page({
             }),
             fail: function(error) {
                 console.error('rfailed', error);
-
             }
         })
     }
@@ -351,8 +341,6 @@ Page({
         if (res.cancel) {
           
         }
-
-    
         if (res.confirm) {
             utils.tjRequest({
                 url: "/posts/delete/",
