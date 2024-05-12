@@ -11,10 +11,11 @@ Page({
     key: 0,//评分
     user_input:"",
     date:"",
-    storeId:14,
+    storeId:0,
     food:null,
     comment:null,
     base_url:"http://1.92.154.154:80",
+    avatar_url:"http://1.92.154.154:80/media/avatar/",
     // reply_time:"",
   },
   replyInput: function(e) {

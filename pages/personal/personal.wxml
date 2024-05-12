@@ -13,11 +13,11 @@
   <view class="userinfo-card">
     <view class="userinfo-content">
       <view class="userinfo-row">
-        <text class="userinfo-label">名称:</text>
-        <text class="userinfo-value">{{name}}</text>
+        <text class="userinfo-label">店铺名称:</text>
+        <text class="userinfo-value">{{ store_name }}</text>
       </view>
       <view class="userinfo-row">
-        <text class="userinfo-label">地址:</text>
+        <text class="userinfo-label">店铺地址:</text>
         <text class="userinfo-value">{{location}}</text>
       </view>
       <view class="userinfo-row">
@@ -33,7 +33,7 @@
         <text class="userinfo-value">{{description}}</text>
       </view>
       <view class="userinfo-row">
-        <text class="userinfo-label">标签:</text>
+        <text class="userinfo-label">店铺标签:</text>
         <view class="tag-container">
           <text class="tag" wx:for="{{tags}}" wx:key="{{item}}">{{item}}</text>
         </view>
@@ -99,7 +99,8 @@
     <view class="background-container">
       <!-- 循环展示现有背景图 -->
       <view wx:for="{{backgroundImages}}" wx:key="index" class="background-item">
-        <image src="{{'http://1.92.154.154:80/media/' + item}}" class="background-image"></image>
+      <!-- <text>{{item.image}}</text> -->
+        <image src="{{'http://1.92.154.154:80/' + item.image}}" class="background-image"></image>
         <view class="delete-btn" bindtap="deleteBackground" data-index="{{index}}">删除</view>
       </view>
       <!-- 上传背景图按钮 -->

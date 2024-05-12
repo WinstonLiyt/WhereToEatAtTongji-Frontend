@@ -352,3 +352,13 @@ page{
   max-width:6%;
   max-height:25%;
 }
+.delete_comment{
+  position: absolute;
+  left:90%;
+  width: 40rpx;
+  aspect-ratio: 1 / 1;
+}
+.delete_comment image{
+  max-width:100%;
+  max-height:100%;
+}

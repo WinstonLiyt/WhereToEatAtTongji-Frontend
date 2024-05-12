@@ -24,7 +24,7 @@ Component({
           "selectedIconPath": "/statics/imgs/tabBar/recommend_selected.png"
       },
       {
-        "pagePath": "/pages/personal-student/personal-student",
+        "pagePath": "/pages/personal-student/personal-student/personal-student",
           "text": "个人信息",
           "iconPath": "/statics/imgs/tabBar/personal.png",
           "selectedIconPath": "/statics/imgs/tabBar/personal_selected.png"

@@ -1,26 +1,69 @@
+const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
+
+const { tjRequest, tjFileUpLoad, base_url } = require('../../utils/util');
+
 Page({
   data: {
-    image: '../../statics/imgs/business/store_kfc.png',
-    name: '肯德基',
-    address: '曹安公路4800号5幢1区A100室',
-    telephone: '13651962636',
-    business_time: '06:00-22:00',
-    remark: '疯狂星期四，vivo50！', 
+    image: '',
+    name: '',
+    store_name: ' ',
+    address: '',
+    telephone: '',
+    business_time: '',
+    remark: '', 
     wxlogin: true,
     tagOptions: [
-      { value: 'noodles', label: '面食' },
-      { value: 'desserts', label: '甜点' },
-      { value: 'drinks', label: '饮品' },
-      { value: 'breakfast', label: '早点' },
-      { value: 'fruits', label: '水果' },
-      { value: 'bbq', label: '烧烤' },
-      { value: 'western', label: '西餐' },
-      { value: 'stir-fry', label: '炒菜' }
+      { value: 'noodles', label: '面食' , checked: false},
+      { value: 'desserts', label: '甜点' , checked: false},
+      { value: 'drinks', label: '饮品' , checked: false},
+      { value: 'breakfast', label: '早点' , checked: false},
+      { value: 'fruits', label: '水果' , checked: false},
+      { value: 'bbq', label: '烧烤' , checked: false},
+      { value: 'western', label: '西餐' , checked: false},
+      { value: 'stir-fry', label: '炒菜' , checked: false}
     ],
-    slicedTagOptions: [], // 用于存储从第三个元素开始的切片数组  
     selectedTags: [], // 用户选择的标签
     showDropdown: false, // 控制下拉展开状态
     tagRows: []
+  },
+
+  getData(url) {
+    tjRequest({
+      url:'/restaurant/',
+    }).then(res=>{
+      if (res.data) {
+        const restaurantData = res.data;
+        console.log(restaurantData);
+        // 提取标签名称到一个tagNames
+        const tagNames = restaurantData.tags.map(tag => tag.name);
+        const updatedTagOptions = this.data.tagOptions.map(option => ({
+          ...option,
+          checked: tagNames.includes(option.label)  // Set checked true if included in tagNames
+        }));
+        
+        console.log(updatedTagOptions);
+        this.setData({
+          store_name: restaurantData.name,
+          address: restaurantData.location,
+          telephone: restaurantData.phone_number,
+          business_time: restaurantData.time,
+          remark: restaurantData.description,
+          selectedTags: tagNames,
+          tagOptions: updatedTagOptions
+        })
+      }
+    }).catch(err=>{
+      console.error("Failed to retrieve name from backend.");
+    })
+
+    tjRequest({
+      url:'/user/getInfo'
+    }).then(res => {
+      this.setData({
+        image: base_url + '/media/avatar/' + res.data.avatar_url,
+        name: res.data.name
+      })
+    })
   },
 
   /* 计算标签的行与列 */
@@ -37,48 +80,43 @@ Page({
 
   /* 保存信息 */
   submitData: function() {
-    const { name, address, telephone, business_time, remark, selectedTags, uploadedImageName } = this.data;
+    const { store_name, address, telephone, business_time, remark, selectedTags, uploadedImageName } = this.data;
   
-    wx.request({
-        url: 'http://1.92.154.154:80/restaurant/14/update/', // Update with your actual backend URL
-        method: 'PUT',
-        data: {
-            name: name,
-            location: address,
-            phone_number: telephone,
-            description: remark,
-            // business_hours: business_time,
-            time: business_time,
-            tags: selectedTags.map(index => this.data.tagOptions.find(option => option.value === index).label),
-            images: [uploadedImageName]
-        },
-        header: {
-            'content-type': 'application/json' // Assuming your server expects JSON
-        },
-        success: function(res) {
-            if (res.statusCode === 200) {
-                console.log('Success:', res.data);
-                wx.showToast({
-                    title: 'Restaurant updated!',
-                    icon: 'success'
-                });
-            } else {
-                wx.showToast({
-                    title: 'Failed to update restaurant',
-                    icon: 'error'
-                });
-                console.error('Backend error:', res);
-            }
-        },
-        fail: function(error) {
-            console.error('Request failed:', error);
-            wx.showToast({
-                title: 'Network error',
-                icon: 'none'
-            });
-        }
+    tjRequest({
+      url: '/restaurant/update/',
+      method: 'PUT',
+      data: {
+        name: store_name,
+        location: address,
+        phone_number: telephone,
+        description: remark,
+        time: business_time,
+        tags: selectedTags.map(index => this.data.tagOptions.find(option => option.value === index).label),
+        images: [uploadedImageName]
+      },
+    }).then(res => {
+      if (res.statusCode === 200) {
+        console.log('Success:', res.data);
+        wx.showToast({
+          title: 'Restaurant updated!',
+          icon: 'success'
+        });
+      } else {
+        wx.showToast({
+          title: 'Failed to update restaurant',
+          icon: 'error'
+        });
+        console.error('Backend error:', res);
+      }
+    }).catch(err => {
+      console.error('Request failed:', err);
+      wx.showToast({
+        title: 'Network error',
+        icon: 'none'
+      });
     });
   },
+  
 
   inputChange: function(e) {
     var field = e.currentTarget.dataset.field;  // 获取绑定的数据字段名称
@@ -89,14 +127,15 @@ Page({
   },
   
 
-
   onLoad: function() {  
     // 在页面加载时，从第三个元素开始切片数组  
-    this.setData({  
-      slicedTagOptions: this.data.tagOptions.slice(2) // 索引从0开始，所以2表示第三个元素  
-    });  
     this.processTagRows();
+    this.getData();         // 加载数据
   },  
+
+  onShow: function () {
+    this.getData();
+  },
   
   /* 取标签的值 */
   handleTagChange: function(e) {
@@ -124,14 +163,6 @@ Page({
     });
 },
 
-
-
-  toggleDropdown: function () {
-    this.setData({
-      showDropdown: !this.data.showDropdown
-    });
-  },  
-
   /* 更换照片 */
   changeImage: function() {
     var that = this;  // 获取当前页面的实例
@@ -141,35 +172,33 @@ Page({
       sourceType: ['album', 'camera'],  // 可选择来源是相册还是相机
       success: function(res) {
         const newImage = res.tempFilePaths[0];  // 获取选中图片的临时文件路径
-        that.setData({
-          image: newImage  // 更新页面数据，从而更新图片
-        });
+        console.log(newImage);
 
         // 将新图像上传到后端
-        wx.uploadFile({
-          url: 'http://1.92.154.154:80/image/', // Update with your actual backend image upload endpoint
+        tjFileUpLoad({
+          url: '/user/uploadAvatar',
           filePath: newImage,
-          name: 'file', // Name of the file parameter expected by the backend
-          header: {
-              'content-type': 'multipart/form-data' // Ensure the correct content type for file upload
-          },
-          formData: {}, // Any additional form data required by the backend
-          success: function(uploadRes) {
-            let data = JSON.parse(uploadRes.data); // Assuming the response is in JSON format
+        }).then(uploadRes => {
+          let data = JSON.parse(uploadRes.data);
+          if (data && data.newname) {
+            // 只有在成功上传并接收到新URL后更新显示的图片
             that.setData({
-                uploadedImageName: data.new_name // Assuming 'new_name' is the key in the response containing the new image name
+              image: base_url + '/media/avatar/' + data.newname // 更新图片地址
             });
-            console.log('Image uploaded successfully:', data.new_name);
-          },
-          fail: function(error) {
-              // Handle failed upload
-              console.error('Image upload failed:', error);
-              wx.showToast({
-                  title: 'Failed to upload image',
-                  icon: 'error'
-              });
+            wx.showToast({
+              title: 'Image uploaded successfully',
+              icon: 'success'
+            });
+          } else {
+            throw new Error("Invalid response data");
           }
-      });
+        }).catch(err => {
+          console.error('Image upload failed:', err);
+          wx.showToast({
+            title: 'Failed to upload image',
+            icon: 'error'
+          });
+        });
       }
     });
   },

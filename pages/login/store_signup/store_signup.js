@@ -4,7 +4,8 @@ const util = require('../../../utils/util.js')
 const defaultAvatarUrl = util.base_url + '/media/avatar/default.jpg'
 Page({
   data: {
-    avatarUrl: defaultAvatarUrl
+    showUrl: defaultAvatarUrl,
+    avatarUrl: null
   },
   onLoad() {
   },
@@ -21,7 +22,8 @@ Page({
       filePath: avatarUrl,
     }).then(res=>{
       this.setData({
-        avatarUrl: res.new_name
+        avatarUrl: JSON.parse(res.data).newname,
+        showUrl: util.base_url + '/media/avatar/' + JSON.parse(res.data).newname,
       })
     }).catch(err=>{
     })
@@ -43,6 +45,8 @@ Page({
           }
         }).then(res=>{
           console.log(res)
+          wx.setStorage({key:'role', data:'store'})
+          wx.setStorage({key:'token', data:res.data.token})
           wx.switchTab({
             url: '/pages/browse/store_list/store_list',
           })

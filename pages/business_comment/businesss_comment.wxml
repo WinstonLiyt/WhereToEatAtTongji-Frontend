@@ -54,7 +54,8 @@
       <!-- 用户信息和评论 -->
         <view class="user">
           <view class="user_image">
-            <image src="{{base_url}}{{item.user.avatar_url}}" mode="aspectFill"></image>
+          <!-- <text>{{item.user.avatar_url}}</text> -->
+            <image src="{{avatar_url}}{{item.user.avatar_url}}" mode="aspectFill"></image>
           </view>
           <text>{{item.user.nickname}}</text>       
         </view>

@@ -34,7 +34,7 @@
         </view>
       </view>
 
-      <block class="" wx:if="{{store}}" wx:for="{{storelist}}" wx:key="key">
+      <block class="" wx:if="{{!store_fail&&store}}" wx:for="{{storelist}}" wx:key="key">
       <view class="store" mark:storeid="{{item.id}}" bindtap="next_store" id="{{item.id}}">
         <view class="store_image">
           <image src="{{base_url}}{{item.images[0].image}}" mode="aspectFill"></image>
@@ -52,7 +52,15 @@
       </view>
       </block>
 
-      <block class="" wx:if="{{!store}}" wx:for="{{foodlist}}" wx:key="key">
+      <view class = "store_fail" wx:if="{{store_fail&&store}}">
+        <image src="../../../statics/pic_tool/fail2.png"  mode="aspectFit"></image>
+        <h1>暂无搜索结果</h1>
+      </view> 
+      <view class = "food_fail" wx:if="{{food_fail&&!store}}">
+        <image src="../../../statics/pic_tool/fail2.png"  mode="aspectFit"></image>
+        <h1>暂无搜索结果</h1>
+      </view> 
+      <block class="" wx:if="{{!food_fail&&!store}}" wx:for="{{foodlist}}" wx:key="key">
         <view class="food" mark:foodid="{{item.id}}" mark:storeid="{{item.restaurant.id}}" bindtap="next_dishes" id="{{item.id}}"> 
           <view class="food_image">
             <image src="{{item.imgSrc}}" mode="aspectFill"></image>

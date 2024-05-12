@@ -50,9 +50,12 @@
     </view>
     <view class="comment_list"  wx:for="{{comment.data}}" wx:key="key">
       <view class="comment">
+        <view class="delete_comment" wx:if="{{item.user.id == userID}}" bindtap="delete_content" mark:evalid="{{item.id}}" >
+          <image src="/statics/pic_tool/delete.png"></image>
+        </view>
         <view class="user">
           <view class="user_image">
-            <image src="{{base_url}}{{item.user.avatar_url}}" mode="aspectFill"></image>
+            <image src="{{avatar_url}}{{item.user.avatar_url}}" mode="aspectFill"></image>
           </view>
           <text>{{item.user.nickname}}</text>       
         </view>
@@ -63,9 +66,11 @@
         <view class="comment_time">
           <text>{{item.time}}</text>
         </view>
+
         <view class="comment_content">
           <text>{{item.comment}}</text>
         </view>
+
         <view class="reply" wx:if="{{item.reply != null}}">
           <text>商家回复：{{item.reply}}</text>
         </view>

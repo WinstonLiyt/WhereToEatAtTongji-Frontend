@@ -35,8 +35,24 @@ const tjRequest = (options) =>{
       success: res=>{
         if(res.statusCode === 200)
           resolve(res)
-        else
+        else{
+          if(res.statusCode === 403){
+            wx.showModal({
+              title: '登录提醒',
+              content: '该功能需注册使用，是否注册？',
+              complete: (res) => {
+                if (res.cancel) {
+                }
+                if (res.confirm) {
+                  wx.redirectTo({
+                    url: '/pages/login/user_role_choice/user_role_choice',
+                  })
+                }
+              }
+            })
+          }
           reject(res)
+        }
       },
       fail: reject
     })
