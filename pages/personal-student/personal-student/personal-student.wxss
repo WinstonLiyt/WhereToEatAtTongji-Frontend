@@ -142,11 +142,11 @@ page {
 }
 
 .yellow{
-  background-color: rgb(230, 229, 153);
+  background-color: rgb(240, 218, 159);
 }
 
 .dark-yellow{
-  color: rgb(109, 85, 50);
+  color: rgb(110, 91, 55);
 }
 
 .experience-progress{

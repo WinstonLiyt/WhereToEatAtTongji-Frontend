@@ -3,7 +3,7 @@ const util = require('../../../utils/util')
 Page({
   data: {
     tokenCardName: ['', '绿牌', '蓝牌', '黄牌'],
-    tokenCardColor: ['', 'rgb(50, 109, 74)', 'rgb(50, 64, 109)', 'rgb(109, 85, 50)'],
+    tokenCardColor: ['', 'rgb(50, 109, 74)', 'rgb(50, 64, 109)', 'rgb(110, 91, 55)'],
     tokenCardClass: ['', 'green', 'blue', 'yellow'],
     tokenCardDesc: ['', '仅能浏览帖子，无法进行评价', '普通用户，享有小程序所有功能', '深度用户，优先推荐您的内容'],
     username: "游客用户",
