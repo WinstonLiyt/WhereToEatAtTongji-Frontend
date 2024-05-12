@@ -71,7 +71,7 @@ Page({
     else{
       //提交菜品评价信息
       const option_2 = {
-        url: '/eval/'+ this.data.userID +'/' + this.data.foodId + '/create/',
+        url: '/eval/'+ this.data.foodId + '/create/',
         method: 'post', // 请求方法，默认为 'get'
         data: {
           score: this.data.key,
