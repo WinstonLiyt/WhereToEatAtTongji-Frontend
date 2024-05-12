@@ -31,6 +31,7 @@ Page({
   formSubmit(e){
     let util = require('../../../utils/util.js')
 
+    let that = this
     wx.login({
       success: (res) => {
         util.tjRequest({
@@ -48,7 +49,7 @@ Page({
           wx.setStorage({key:'role', data:'store'})
           wx.setStorage({key:'token', data:res.data.token})
           wx.switchTab({
-            url: '/pages/browse/store_list/store_list',
+            url: '/pages/business_menu/business_menu',
           })
         }).catch(err=>{
           console.log(err)
