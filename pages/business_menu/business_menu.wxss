@@ -184,6 +184,7 @@ page{
 .food_left{
   display: flex;
   width: 60%;
+  /* background-color: red; */
   height: 100%;
   align-items: center;
 }
@@ -200,12 +201,15 @@ page{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 30%;
+  width: calc(100% - 200rpx);
   height: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 .food_name{
-
+  /* background-color: blue; */
+  /* width:220rpx; */
 }
 
 .food_name text{
@@ -225,23 +229,26 @@ page{
 }
 
 .food_right{
-  width: 40%;
+  width: 35%;
   height: 100%;
-  padding-right: 25rpx;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding-right: 25rpx;
 }
 
 .food_price{
-
+  /* max-width: 150px; */
+  width: 150px;
+  overflow-x: auto;
 }
 
 .food_price text{
   font-size: 17px;
   letter-spacing: 1px;
   font-weight:bold;
+  white-space: nowrap;
 }
 
 .turn{
@@ -447,5 +454,48 @@ button {
   border-radius: 5px;
 }
 
+
+.error-modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+}
+
+.error-modal-content {
+  background-color: #fff;
+  width: 60%;
+  border-radius: 10px;
+  padding: 20rpx;
+  text-align: center;
+}
+
+.error-modal-header text {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.error-modal-body {
+  margin-top: 20rpx;
+  font-size: 16px;
+}
+
+.error-modal-footer {
+  margin-top: 20rpx;
+}
+
+.error-modal-footer button {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 10rpx;
+  border-radius: 5px;
+}
 
 

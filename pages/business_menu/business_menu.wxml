@@ -105,3 +105,18 @@
     </view>
   </view>
 </view>
+
+<!-- 错误消息弹窗 -->
+<view class="error-modal" hidden="{{!errorModalVisible}}">
+  <view class="error-modal-content">
+    <view class="error-modal-header">
+      <text>错误</text>
+    </view>
+    <view class="error-modal-body">
+      <text>{{errorMessage}}</text>
+    </view>
+    <view class="error-modal-footer">
+      <button bindtap="closeErrorModal">关闭</button>
+    </view>
+  </view>
+</view>

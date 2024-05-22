@@ -11,6 +11,8 @@ Page({
     modalVisible: false,
     image: null,
     isEditing: false,
+    errorMessage: '', // 新增错误信息
+    errorModalVisible: false, // 错误消息弹窗的可见性
   },
 
   onLoad: function(options) {
@@ -34,7 +36,6 @@ Page({
   },
 
   fetchStoreInfo: function() {
-
     tjRequest({
       url:'/user/getInfo'
     }).then(res => {
@@ -51,8 +52,6 @@ Page({
       this.setData({
         store: res.data
       })
-      // console.log(this.data.store);
-      
     }).catch(err => {
       console.error('Failed to retrieve store information:', err);
     });
@@ -98,7 +97,8 @@ Page({
       name: '',
       price: '',
       description: '',
-      image: null
+      image: null,
+      errorMessage: '' // 清空错误信息
     });
   },
 
@@ -116,12 +116,48 @@ Page({
       price: food.price,
       description: food.description,
       image: food.image,
-      editingId: id
+      editingId: id,
+      errorMessage: '' // 清空错误信息
     });
+  },
+
+  validateForm: function(name, price, description, image) {
+    if (!name) {
+      return '菜品名称不能为空';
+    }
+    if (name.length > 8) {
+      return '菜品名称不能超过8个字';
+    }
+    if (!price || !/^\d+(\.\d+)?$/.test(price)) {
+      return '菜品价格必须是有效的小数';
+    }
+    if (!description) {
+      return '菜品名称不能为空';
+    }
+    if (description.length > 15) {
+      return '菜品描述不能超过15个字';
+    }
+    if (!image) {
+      return '菜品图片不能为空';
+    }
+    const validExtensions = ['.jpg', '.jpeg', '.png'];
+    const imageExtension = image.substring(image.lastIndexOf('.')).toLowerCase();
+    if (!validExtensions.includes(imageExtension)) {
+      return '菜品图片格式不正确，请上传.jpg或.png格式的图片';
+    }
+    return '';
   },
 
   submitFood: function() {
     const { name, price, description, image, editingId, isEditing } = this.data;
+    const errorMessage = this.validateForm(name, price, description, image);
+    if (errorMessage) {
+      this.setData({
+        errorMessage,
+        errorModalVisible: true // 显示错误消息弹窗
+      });
+      return;
+    }
     const url = isEditing ? `/dish/${editingId}/update/` : `/dish/create/`;
     tjRequest({
       url: url,
@@ -129,7 +165,7 @@ Page({
       data: { name, price, description, image }
     }).then(res => {
       if (res.statusCode === 200) {
-        this.setData({modalVisible: false})
+        this.setData({ modalVisible: false });
         wx.showToast({ title: isEditing ? '菜品更新成功' : '菜品添加成功', icon: 'success' });
         this.fetchFoods();
       } else {
@@ -138,6 +174,12 @@ Page({
     }).catch(err => {
       wx.showToast({ title: '网络错误', icon: 'none' });
       console.error('Request failed:', err);
+    });
+  },
+
+  closeErrorModal: function() {
+    this.setData({
+      errorModalVisible: false
     });
   },
 
@@ -158,7 +200,7 @@ Page({
           }).then(res => {
             if (res.statusCode === 200) {
               const newFoods = this.data.foods.filter(food => food.id !== id);
-              this.setData({ foods: newFoods, modalVisible: false});
+              this.setData({ foods: newFoods, modalVisible: false });
               wx.showToast({ title: '删除成功', icon: 'success' });
             } else {
               wx.showToast({ title: '删除失败，请稍后重试', icon: 'error' });
@@ -177,6 +219,17 @@ Page({
     wx.chooseImage({
       success: function(res) {
         const imagePath = res.tempFilePaths[0];
+        const validExtensions = ['.jpg', '.jpeg', '.png'];
+        const imageExtension = imagePath.substring(imagePath.lastIndexOf('.')).toLowerCase();
+        
+        if (!validExtensions.includes(imageExtension)) {
+          that.setData({
+            errorMessage: '图片格式不正确，请上传.jpg或.png格式的图片',
+            errorModalVisible: true // 显示错误消息弹窗
+          });
+          return;
+        }
+  
         tjFileUpLoad({
           url: '/image/',
           filePath: imagePath
@@ -184,16 +237,21 @@ Page({
           const data = JSON.parse(uploadRes.data);
           if (uploadRes.statusCode === 200 && data.new_name) {
             that.setData({ image: data.new_name });
-            // console.log(data.new_name);
             wx.showToast({ title: '图片上传成功', icon: 'success' });
           } else {
-            wx.showToast({ title: '图片上传失败', icon: 'error' });
+            that.setData({
+              errorMessage: '图片上传失败',
+              errorModalVisible: true // 显示错误消息弹窗
+            });
           }
         }).catch(err => {
-          wx.showToast({ title: '上传错误', icon: 'none' });
+          that.setData({
+            errorMessage: '上传错误',
+            errorModalVisible: true // 显示错误消息弹窗
+          });
           console.error('Upload failed:', err);
         });
       }
     });
-  },
+  },  
 });

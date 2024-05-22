@@ -131,6 +131,7 @@ page{
   max-width:5%;
   max-height:40%;
 }
+
 .food{
   margin-top:20px;
   width:100%;
@@ -146,6 +147,7 @@ page{
 .food_left{
   display: flex;
   width: 60%;
+  /* background-color: red; */
   height: 100%;
   align-items: center;
 }
@@ -153,7 +155,7 @@ page{
 .food_image{
   margin-left: 35rpx;
   margin-right: 35rpx;
-  border-radius: 20rpx;
+  border-radius: 100rpx;
   height: 100rpx;
   width: 100rpx;
 }
@@ -162,12 +164,15 @@ page{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 30%;
+  width: calc(100% - 200rpx);
   height: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 .food_name{
-
+  /* background-color: blue; */
+  /* width:220rpx; */
 }
 
 .food_name text{
@@ -187,19 +192,26 @@ page{
 }
 
 .food_right{
-  width: 40%;
+  width: 35%;
   height: 100%;
-  padding-right: 25rpx;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding-right: 25rpx;
+}
+
+.food_price{
+  /* max-width: 150px; */
+  width: 150px;
+  overflow-x: auto;
 }
 
 .food_price text{
   font-size: 17px;
   letter-spacing: 1px;
   font-weight:bold;
+  white-space: nowrap;
 }
 
 .turn{

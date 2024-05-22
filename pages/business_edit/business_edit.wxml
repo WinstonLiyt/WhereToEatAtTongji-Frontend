@@ -1,10 +1,10 @@
 <!-- 用户卡 -->
 <view class="userinfo">
   <image class="bg" src="../../statics/imgs/personal/NEWTOM.svg"></image>
-  <view  class="avatar">
-		<image class="userinfo-avatar" src="{{image}}" background-size="cover" bindtap="changeImage"></image>
-		<text class="userinfo-nickname">{{ name }}</text>
-	</view>
+  <view class="avatar">
+    <image class="userinfo-avatar" src="{{image}}" background-size="cover" bindtap="changeImage"></image>
+    <text class="userinfo-nickname">{{ name }}</text>
+  </view>
 </view>
 
 <!-- 店铺信息 -->
@@ -35,13 +35,9 @@
     </view>
     <view class="userinfo-row">
       <text class="userinfo-label">店铺标签:</text>
-      <checkbox-group class="tags-container" bindchange="handleTagChange">
-          <view wx:for="{{tagRows}}" wx:key="index" class="tag-row">
-              <view wx:for="{{item}}" wx:key="index" class="tag">
-                  <checkbox value="{{item.value}}" checked="{{item.checked}}">{{item.label}}</checkbox>
-              </view>
-          </view>
-      </checkbox-group>
+      <picker mode="selector" value="{{selectedTagIndex}}" range="{{tagOptions}}" range-key="label" bindchange="handleTagChange">
+        <view class="userinfo-input">{{selectedTagLabel}}</view>
+      </picker>
     </view>
   </view>
 </view>

@@ -4,6 +4,7 @@ const { tjRequest, tjFileUpLoad, base_url } = require('../../utils/util');
 
 Page({
   data: {
+    initialData: {},
     image: '',
     name: '',
     store_name: ' ',
@@ -13,44 +14,49 @@ Page({
     remark: '', 
     wxlogin: true,
     tagOptions: [
-      { value: 'noodles', label: '面食' , checked: false},
-      { value: 'desserts', label: '甜点' , checked: false},
-      { value: 'drinks', label: '饮品' , checked: false},
-      { value: 'breakfast', label: '早点' , checked: false},
-      { value: 'fruits', label: '水果' , checked: false},
-      { value: 'bbq', label: '烧烤' , checked: false},
-      { value: 'western', label: '西餐' , checked: false},
-      { value: 'stir-fry', label: '炒菜' , checked: false}
+      { value: 'noodles', label: '面食' },
+      { value: 'desserts', label: '甜点' },
+      { value: 'drinks', label: '饮品' },
+      { value: 'breakfast', label: '早点' },
+      { value: 'fruits', label: '水果' },
+      { value: 'bbq', label: '烧烤' },
+      { value: 'western', label: '西餐' },
+      { value: 'stir-fry', label: '炒菜' }
     ],
-    selectedTags: [], // 用户选择的标签
-    showDropdown: false, // 控制下拉展开状态
-    tagRows: []
+    selectedTagIndex: 0,
+    selectedTagLabel: '',
+    showDropdown: false
   },
 
-  getData(url) {
+  getData() {
+    const that = this;
     tjRequest({
       url:'/restaurant/',
     }).then(res=>{
       if (res.data) {
         const restaurantData = res.data;
         console.log(restaurantData);
-        // 提取标签名称到一个tagNames
         const tagNames = restaurantData.tags.map(tag => tag.name);
-        const updatedTagOptions = this.data.tagOptions.map(option => ({
-          ...option,
-          checked: tagNames.includes(option.label)  // Set checked true if included in tagNames
-        }));
-        
-        console.log(updatedTagOptions);
+        const selectedTag = tagNames[0];
+        const selectedTagIndex = this.data.tagOptions.findIndex(option => option.label === selectedTag);
+
         this.setData({
           store_name: restaurantData.name,
           address: restaurantData.location,
           telephone: restaurantData.phone_number,
           business_time: restaurantData.time,
           remark: restaurantData.description,
-          selectedTags: tagNames,
-          tagOptions: updatedTagOptions
-        })
+          selectedTagIndex,
+          selectedTagLabel: selectedTag,
+          initialData: {
+            store_name: restaurantData.name,
+            address: restaurantData.location,
+            telephone: restaurantData.phone_number,
+            business_time: restaurantData.time,
+            remark: restaurantData.description,
+            selectedTagIndex
+          }
+        });
       }
     }).catch(err=>{
       console.error("Failed to retrieve name from backend.");
@@ -61,26 +67,50 @@ Page({
     }).then(res => {
       this.setData({
         image: base_url + '/media/avatar/' + res.data.avatar_url,
-        name: res.data.name
+        name: res.data.name,
+        'initialData.image': base_url + '/media/avatar/' + res.data.avatar_url,
+        'initialData.name': res.data.name
       })
     })
   },
 
-  /* 计算标签的行与列 */
-  processTagRows: function() {
-    const rows = [];
-    const { tagOptions } = this.data;
-    for (let i = 0; i < tagOptions.length; i += 4) {
-      rows.push(tagOptions.slice(i, i + 4));
+  submitData: function() {
+    const { store_name, address, telephone, business_time, remark, selectedTagIndex, tagOptions, image, name } = this.data;
+    const selectedTag = tagOptions[selectedTagIndex].label;
+    const initialData = this.data.initialData;
+    const changes = [];
+
+    if (image !== initialData.image) changes.push('图像');
+    if (name !== initialData.name) changes.push('名称');
+    if (store_name !== initialData.store_name) changes.push('店铺名称');
+    if (address !== initialData.address) changes.push('店铺地址');
+    if (telephone !== initialData.telephone) changes.push('联系方式');
+    if (business_time !== initialData.business_time) changes.push('营业时间');
+    if (remark !== initialData.remark) changes.push('店铺简介');
+    if (selectedTagIndex !== initialData.selectedTagIndex) changes.push('店铺标签');
+
+    if (changes.length > 0) {
+      const changesList = changes.join('，');
+      wx.showModal({
+        title: '确认修改',
+        content: `您修改了${changesList}，是否确认提交？`,
+        success: (res) => {
+          if (res.confirm) {
+            this.submitDataToServer();
+          }
+        }
+      });
+    } else {
+      wx.showToast({
+        title: '没有任何修改',
+        icon: 'none'
+      });
     }
-    this.setData({
-      tagRows: rows
-    });
   },
 
-  /* 保存信息 */
-  submitData: function() {
-    const { store_name, address, telephone, business_time, remark, selectedTags, uploadedImageName } = this.data;
+  submitDataToServer: function() {
+    const { store_name, address, telephone, business_time, remark, selectedTagIndex, tagOptions, uploadedImageName } = this.data;
+    const selectedTag = tagOptions[selectedTagIndex].label;
   
     tjRequest({
       url: '/restaurant/update/',
@@ -91,7 +121,7 @@ Page({
         phone_number: telephone,
         description: remark,
         time: business_time,
-        tags: selectedTags.map(index => this.data.tagOptions.find(option => option.value === index).label),
+        tags: [selectedTag],
         images: [uploadedImageName]
       },
     }).then(res => {
@@ -117,51 +147,32 @@ Page({
     });
   },
   
-
   inputChange: function(e) {
-    var field = e.currentTarget.dataset.field;  // 获取绑定的数据字段名称
-    var value = e.detail.value;  // 获取输入的新值
+    var field = e.currentTarget.dataset.field;
+    var value = e.detail.value;
     var change = {};
-    change[field] = value;  // 创建一个对象来存储新的字段值
-    this.setData(change);  // 更新数据
+    change[field] = value;
+    this.setData(change);
   },
-  
 
   onLoad: function() {  
-    // 在页面加载时，从第三个元素开始切片数组  
-    this.processTagRows();
-    this.getData();         // 加载数据
-  },  
+    this.getData();
+  },
 
   onShow: function () {
     this.getData();
   },
   
-  /* 取标签的值 */
   handleTagChange: function(e) {
-    const currentSelectedTags = this.data.selectedTags; // 当前已选中的标签
-    const newSelectedTags = e.detail.value; // 获取当前复选框组的选中情况
+    const selectedTagIndex = e.detail.value;
+    const selectedTagLabel = this.data.tagOptions[selectedTagIndex].label;
 
-    // 如果用户尝试选中超过两个标签
-    if (newSelectedTags.length > 2) {
-        wx.showToast({
-            title: '最多只能选择两个标签',
-            icon: 'none',
-            duration: 2000
-        });
-
-        // 强制界面复选框回到最后有效的状态，不更新数据
-        this.setData({
-            selectedTags: currentSelectedTags // 保持原来的选择不变
-        });
-        return; // 阻止函数继续执行
-    }
-
-    // 用户选择的标签数不超过两个，更新selectedTags数据
     this.setData({
-        selectedTags: newSelectedTags
+      selectedTagIndex,
+      selectedTagLabel
     });
-},
+  },
+
 
   /* 更换照片 */
   changeImage: function() {

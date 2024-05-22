@@ -172,3 +172,18 @@ page {
   flex: 1; /* 每个标签占据相同的空间 */
   margin-right: 2px; /* 调整标签之间的间距 */
 }
+
+/* 标签选择器 */
+.userinfo-row .picker {
+  flex: 1;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 15px;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+.picker .weui-picker__item {
+  font-size: 20px; /* 增加文字大小 */
+}
