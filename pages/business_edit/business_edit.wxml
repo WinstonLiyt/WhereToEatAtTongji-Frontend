@@ -2,7 +2,8 @@
 <view class="userinfo">
   <image class="bg" src="../../statics/imgs/personal/NEWTOM.svg"></image>
   <view class="avatar">
-    <image class="userinfo-avatar" src="{{image}}" background-size="cover" bindtap="changeImage"></image>
+    <!-- <image class="userinfo-avatar" src="{{image}}" background-size="cover" bindtap="changeImage"></image> -->
+    <image class="userinfo-avatar" src="{{image}}" background-size="cover" ></image>
     <text class="userinfo-nickname">{{ name }}</text>
   </view>
 </view>

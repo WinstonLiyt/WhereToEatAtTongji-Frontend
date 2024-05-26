@@ -131,6 +131,9 @@ Page({
     if (!price || !/^\d+(\.\d+)?$/.test(price)) {
       return '菜品价格必须是有效的小数';
     }
+    if (parseFloat(price) < 0 || parseFloat(price) > 999.99) {
+      return '菜品价格必须在0到999.99之间';
+    }
     if (!description) {
       return '菜品名称不能为空';
     }

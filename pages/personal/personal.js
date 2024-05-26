@@ -95,8 +95,16 @@ Page({
             count: 1,  // 允许选择多张图片
             success: function(res) {
               const imagePath = res.tempFilePaths[0];
-              // 处理每张图片
-              
+              const validExtensions = ['.jpg', '.jpeg', '.png'];
+              const imageExtension = imagePath.substring(imagePath.lastIndexOf('.')).toLowerCase();
+
+              if (!validExtensions.includes(imageExtension)) {
+                wx.showToast({
+                  title: '图片格式不正确，请上传.jpg或.png格式的图片',
+                  icon: 'none'
+                });
+                return;
+              }
                 // 上传图片到服务器
                 tjFileUpLoad({
                   url:'/image/',

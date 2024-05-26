@@ -37,6 +37,14 @@ Page({
       });
       return;
     }
+    if (replyContent.length > 20) {
+      wx.showToast({
+        title: '回复内容不能超过20个字',
+        icon: 'none',
+        duration: 1000
+      });
+      return;
+    }
     // 发送回复
     const option = {
       url: `/eval/${commentId}/reply/`,

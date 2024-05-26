@@ -56,7 +56,7 @@
       <view class="menu" bindtap="openPopup">
         <view class="title">
           <image class="icon1" src="../../statics/imgs/personal/photo.png"></image>
-          <view class="name">管理背景图</view>
+          <view class="name">管理店铺背景</view>
         </view>
         <image class="icon2" src="../../statics/imgs/personal/next.svg"></image>
       </view>
@@ -73,7 +73,7 @@
       </view>
     </navigator>
     <view class="line"></view>
-    <navigator url="">
+    <!-- <navigator url="">
       <view class="menu">
         <view class="title">
           <image class="icon1" src="../../statics/imgs/personal/cancel.png"></image>
@@ -81,13 +81,12 @@
         </view>
         <image class="icon2" src="../../statics/imgs/personal/next.svg"></image>
       </view>
-    </navigator>
+    </navigator> -->
   </view>
 
 
   <view class="modal" hidden="{{!showPopup}}">
     <view class="background-container">
-      <!-- 循环展示现有背景图 -->
       <view wx:for="{{backgroundImages}}" wx:key="index" class="background-item">
       <!-- <text>{{item.image}}</text> -->
         <image src="{{'http://1.92.154.154:80/' + item.image}}" class="background-image"></image>

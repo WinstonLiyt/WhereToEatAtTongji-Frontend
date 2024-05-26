@@ -35,7 +35,6 @@ Page({
     }).then(res=>{
       if (res.data) {
         const restaurantData = res.data;
-        console.log(restaurantData);
         const tagNames = restaurantData.tags.map(tag => tag.name);
         const selectedTag = tagNames[0];
         const selectedTagIndex = this.data.tagOptions.findIndex(option => option.label === selectedTag);
@@ -48,13 +47,15 @@ Page({
           remark: restaurantData.description,
           selectedTagIndex,
           selectedTagLabel: selectedTag,
-          initialData: {
+          initialData: { // 正确保存初始数据
             store_name: restaurantData.name,
             address: restaurantData.location,
             telephone: restaurantData.phone_number,
             business_time: restaurantData.time,
             remark: restaurantData.description,
-            selectedTagIndex
+            selectedTagIndex,
+            image: this.data.image,
+            name: this.data.name
           }
         });
       }
@@ -74,11 +75,44 @@ Page({
     })
   },
 
+  validateForm: function() {
+    const { store_name, address, telephone, business_time, remark } = this.data;
+    const mobilePhoneRegex = /^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-79])|(?:5[0-35-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1589]))\d{8}$/;
+    const landlinePhoneRegex = /^(?:\d{3,4}-\d{7,8}|\d{8})$/;
+    const timeRegex = /^([01]\d|2[0-3]):[0-5]\d-([01]\d|2[0-3]):[0-5]\d$/;
+
+    if (store_name.length > 10) {
+      return '店铺名称不能超过10个字';
+    }
+    if (address.length > 20) {
+      return '店铺地址不能超过20个字';
+    }
+    if (remark.length > 20) {
+      return '店铺简介不能超过20个字';
+    }
+    if (!mobilePhoneRegex.test(telephone) && !landlinePhoneRegex.test(telephone)) {
+      return '联系方式不合法';
+    }
+    if (!timeRegex.test(business_time)) {
+      return '营业时间必须是hh:mm-hh:mm的格式';
+    }
+    return '';
+  },
+
   submitData: function() {
     const { store_name, address, telephone, business_time, remark, selectedTagIndex, tagOptions, image, name } = this.data;
     const selectedTag = tagOptions[selectedTagIndex].label;
     const initialData = this.data.initialData;
     const changes = [];
+
+    const validationError = this.validateForm();
+    if (validationError) {
+      wx.showToast({
+        title: validationError,
+        icon: 'none'
+      });
+      return;
+    }
 
     if (image !== initialData.image) changes.push('图像');
     if (name !== initialData.name) changes.push('名称');
@@ -109,7 +143,7 @@ Page({
   },
 
   submitDataToServer: function() {
-    const { store_name, address, telephone, business_time, remark, selectedTagIndex, tagOptions, uploadedImageName } = this.data;
+    const { store_name, address, telephone, business_time, remark, selectedTagIndex, tagOptions, image } = this.data;
     const selectedTag = tagOptions[selectedTagIndex].label;
   
     tjRequest({
@@ -122,7 +156,7 @@ Page({
         description: remark,
         time: business_time,
         tags: [selectedTag],
-        images: [uploadedImageName]
+        images: [image]
       },
     }).then(res => {
       if (res.statusCode === 200) {
@@ -131,6 +165,7 @@ Page({
           title: 'Restaurant updated!',
           icon: 'success'
         });
+        this.navigateToHome(); // 成功提交后返回主页
       } else {
         wx.showToast({
           title: 'Failed to update restaurant',
@@ -172,7 +207,6 @@ Page({
       selectedTagLabel
     });
   },
-
 
   /* 更换照片 */
   changeImage: function() {
