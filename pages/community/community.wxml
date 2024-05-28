@@ -1,5 +1,8 @@
 <!--pages/index/index.wxml-->
 <view class="main">
+    <view bindtap="testNotification">
+        <image src="../../statics/imgs/community/add_post.png" mode="widthFix" class="avatar"></image>
+    </view>
     <view class="top mb-med">
         <view class="search">
             <view class="search_in">

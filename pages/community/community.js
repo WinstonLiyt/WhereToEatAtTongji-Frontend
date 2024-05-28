@@ -31,7 +31,6 @@ Page({
             user_id: 1
         }
     }).then(response => {
-        
         for (var i = 0;i < response.data.posts.length; i++) {
             response.data.posts[i].user_avatar = utils.base_image_url + "avatar/" + response.data.posts[i].user_avatar
             response.data.posts[i].time = this.datetimeConverter(response.data.posts[i].time)
@@ -389,5 +388,14 @@ Page({
 
         const formattedDate = `${year}-${month}-${day}`;
         return formattedDate
+    },
+    testNotification(e) {
+        wx.navigateTo({
+          url: '/pages/notification/notification',
+          success: function (res) {
+            // 通过eventChannel向被打开页面传送数据
+            // res.eventChannel.emit('postDetail', { data: postData })
+          }
+        })
     }
 })

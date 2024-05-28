@@ -1,0 +1,23 @@
+<!--pages/notification/notification.wxml-->
+
+<view class='main'>
+    <view class="posts ml-med mr-med mb-max mt-max">
+        <view class="post-item  bdr-max" wx:for="{{notifications}}" wx:key="id">
+            <view class="icon-box">
+                <image class="avatar" src="{{item.user_avatar}}" mode="widthFix"></image>
+                <image class="icon" src="{{ item.category == 0 ?  '../../statics/imgs/community/post/upvote_selected.png': item.category == 1 ? '../../statics/imgs/community/post/star_selected.png': '../../statics/imgs/community/post/comment_selected.png'}}" mode="widthFix"></image>
+            </view>
+
+            <view class="reaction-content">
+                <view style="display: flex; ">
+                    <text class="mr-min" style="display: inline-block; max-width: 280rpx; overflow:hidden;  white-space: nowrap; text-overflow:ellipsis;">用户 {{item.user_name}} </text> <text style="color: var(--secondary-color); font-weight: var(--fontweight-bold);">  {{ item.category == 0 ?  '给你点赞': item.category == 1 ? '收藏了你的帖子': '回复了你'}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class='model' wx:if="{{inputBoxShow}}">
+        <!-- invisible_model view 用于点击隐藏model评论框 -->
+        <view class='invisible_model' catchtap='invisible'  style="background-color: {{ maskColor }};"></view>
+    </view>
+</view>

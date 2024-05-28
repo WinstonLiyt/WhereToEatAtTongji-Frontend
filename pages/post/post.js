@@ -146,11 +146,6 @@ Component({
                 console.log(error)
                 console.error("浏览帖子详细信息  fail");
               });
-
-            
-            
-            
-
         },
 
         /**
@@ -276,7 +271,8 @@ Component({
         return std;
       },
         /* 对评论进行评论 */
-        onTapReply(parentcommentid, replayusername, content, replyToParent) {
+        onTapReply(parentcommentid, replayusername, content, replyToParent, notif_id) {
+            console.log(notif_id)
             var that = this;
 
             console.log(((replyToParent == 2)? '@' + replayusername + " ": "") + content)
@@ -285,8 +281,8 @@ Component({
                 method: "post",
                 data: {
                     parent_comment_id: parentcommentid,
-                    content: ((replyToParent == 2)? '@' + replayusername + " ": "") + content
-                    // content: '@' + replayusername + " " + content
+                    content: ((replyToParent == 2)? '@' + replayusername + " ": "") + content,
+                    replied_id: notif_id
                 }
             }).then(response => {
                 var tempComments = this.data.comments
@@ -348,7 +344,9 @@ Component({
                 this.data.tempOthers.parentcommentid,
                 this.data.tempOthers.replayusername,
                 content,
-                this.data.tempCommentType
+                this.data.tempCommentType,
+                this.data.tempOthers.notif_id
+                
             )
           }
           else if (this.data.tempCommentType == 0) {
@@ -488,8 +486,6 @@ Component({
         
         },
         onTapDelete(e) {
-
-
             wx.showModal({
                 title: '确认删除',
                 content: '确认删除该评论？',
@@ -510,11 +506,16 @@ Component({
                             }
                         }
                     }
+
+                    // var rpy = 
+
+                    // console.log(child_comment_id < 0? this.post_id : e.currentTarget.dataset.notif)
                     utils.tjRequest({
                         url: "/posts/delete_comment/",
                         method: "delete",
                         data: {
-                            id: (child_comment_id < 0)? parent_comment_id : child_comment_id
+                            id: (child_comment_id < 0)? parent_comment_id : child_comment_id,
+                            replied_id: (child_comment_id < 0)? -1 * this.data.post_id : e.currentTarget.dataset.notif
                         }
                     }).then(response => {
                         var tempComments = this.data.comments
@@ -586,6 +587,7 @@ Component({
             if (e.currentTarget.dataset.id > 0) {
                 others["parentcommentid"] = e.currentTarget.dataset.parentcommentid
                 others["replayusername"] = e.currentTarget.dataset.replayusername
+                others["notif_id"] = e.currentTarget.dataset.notif
             }
             this.setData({
                 inputBoxShow: true,

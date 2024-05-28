@@ -18,7 +18,8 @@
     "pages/business_edit/business_edit",
     "pages/business_menu/business_menu",
     "pages/business_show/business_show",
-    "pages/business_comment/businesss_comment"
+    "pages/business_comment/businesss_comment",
+    "pages/notification/notification"
   ],
   "tabBar": {
     "custom": true,

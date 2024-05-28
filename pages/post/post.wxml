@@ -82,12 +82,12 @@
                         <view class="comment-time">
                             <text>{{item.parent.time}}</text>
                         </view>
-                        <view class="comment-reply" data-parentcommentid="{{item.parent.id}}" data-replayusername="{{item.parent.user_name}}" bindtap="makeComments"  data-id="{{ 1 }}">
+                        <view class="comment-reply" data-notif='{{item.parent.id}}' data-parentcommentid="{{item.parent.id}}" data-replayusername="{{item.parent.user_name}}" bindtap="makeComments"  data-id="{{ 1 }}">
                             <text>回复</text>
                         </view>
-                        <view class="comment-delete" data-parentcommentid="{{item.parent.id}}" data-childindex="" data-replayusername="{{item.user_name}}" bindtap="onTapDelete" wx:if="{{ item.parent.is_user }}">
-                                <text>删除</text>
-                            </view>
+                        <view class="comment-delete" data-notif='{{item.parent.id}}' data-parentcommentid="{{item.parent.id}}" data-childindex="" data-replayusername="{{item.user_name}}" bindtap="onTapDelete" wx:if="{{ item.parent.is_user }}">
+                            <text>删除</text>
+                        </view>
                     </view>
                 </view>
 
@@ -113,10 +113,10 @@
                             <view class="comment-time">
                                 <text>{{item.time}}</text>
                             </view>
-                            <view class="comment-reply" data-parentcommentid="{{item.parentid}}" data-replayusername="{{item.user_name}}" bindtap="makeComments"  data-id="{{ 2 }}">
+                            <view class="comment-reply" data-notif='{{item.id}}' data-parentcommentid="{{item.parentid}}" data-replayusername="{{item.user_name}}" bindtap="makeComments"  data-id="{{ 2 }}">
                                 <text>回复</text>
                             </view>
-                            <view class="comment-delete" data-parentcommentid="{{item.parentid}}" data-childindex="{{ inner_index }}" data-replayusername="{{item.user_name}}" bindtap="onTapDelete" wx:if="{{ item.is_user }}">
+                            <view class="comment-delete" data-notif='{{item.id}}' data-parentcommentid="{{item.parentid}}" data-childindex="{{ inner_index }}" data-replayusername="{{item.user_name}}" bindtap="onTapDelete" wx:if="{{ item.is_user }}">
                                 <text>删除</text>
                             </view>
                         </view>

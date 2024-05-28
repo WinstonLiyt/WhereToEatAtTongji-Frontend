@@ -1,0 +1,110 @@
+// pages/notification/notification.js
+// pages/community/community.js
+var utils = require('../../utils/util');
+Component({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    "notifications": [
+    ],
+    "message": "string",
+    "inputBoxShow": false,
+    maskColor: "#fff2d9"
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+
+   methods: {
+        onLoad(options) {
+            wx.showLoading({
+                title: '加载中',
+                mask: true,
+                success: () => {
+                    this.setData({
+                        inputBoxShow: true,
+                        commentShow: false,
+                        maskColor: "#fff2d9"
+                    })
+                }
+            })
+
+            utils.tjRequest({
+                url: "/posts/load_msg/",
+                method: "get"
+            }).then(response => {
+                console.log(response.data);
+                // http://1.92.154.154:80/media/avatar/
+                this.setData({
+                    notifications: response.data.notifications
+                })
+
+                wx.hideLoading({
+                    success: () => {
+                        this.setData({
+                            inputBoxShow: false,
+                            commentShow: true,
+                            maskColor: "rgba(0, 0, 0, 0.5)"
+                        })
+                    }
+                })  
+            })
+
+            
+        },
+    
+        /**
+         * 生命周期函数--监听页面初次渲染完成
+         */
+        onReady() {},
+    
+        /**
+         * 生命周期函数--监听页面显示
+         */
+        onShow() {},
+    
+        /**
+         * 生命周期函数--监听页面隐藏
+         */
+        onHide() {},
+    
+        /**
+         * 生命周期函数--监听页面卸载
+         */
+        onUnload() {
+            console.log("ooo")
+            utils.tjRequest({
+                url: "/posts/delete_msg/",
+                method: "delete"
+            }).then(response => {
+                console.log(response)
+            }).catch(error => {
+                // 请求失败时执行的操作
+                console.error("Search content fail");
+            });
+        },
+    
+        /**
+         * 页面相关事件处理函数--监听用户下拉动作
+         */
+        onPullDownRefresh() {
+    
+        },
+    
+        /**
+         * 页面上拉触底事件的处理函数
+         */
+        onReachBottom() {
+        },
+    
+        /**
+         * 用户点击右上角分享
+         */
+        onShareAppMessage() {
+    
+        }
+   }
+})
