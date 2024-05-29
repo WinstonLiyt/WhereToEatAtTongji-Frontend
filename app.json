@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/launch/launch",
+    "pages/personal-student/modify-info/modify-info",
     "pages/login/store_signup/store_signup",
     "pages/login/student_signup/student_signup",
     "pages/login/user_role_choice/user_role_choice",
@@ -14,7 +15,6 @@
     "pages/recommend/recommend",
     "pages/personal/personal",
     "pages/personal-student/personal-student/personal-student",
-    "pages/personal-student/modify-info/modify-info",
     "pages/business_edit/business_edit",
     "pages/business_menu/business_menu",
     "pages/business_show/business_show",

@@ -78,5 +78,14 @@ Page({
         url: '../modify-info/modify-info',
       })
     }
-  }
+  },
+  testNotification(e) {
+    wx.navigateTo({
+      url: '/pages/notification/notification',
+      success: function (res) {
+        // 通过eventChannel向被打开页面传送数据
+        // res.eventChannel.emit('postDetail', { data: postData })
+      }
+    })
+}
 });

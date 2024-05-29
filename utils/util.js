@@ -86,10 +86,13 @@ const tjFileUpLoad = (options) =>{
   })
 }
 
+const sensitiveWords = ["badword1", "badword2", "badword3"];
+
 module.exports = {
   formatTime,
   base_url,
   base_image_url,
   tjRequest,
-  tjFileUpLoad
+  tjFileUpLoad,
+  sensitiveWords
 }

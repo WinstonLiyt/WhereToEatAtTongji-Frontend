@@ -39,20 +39,20 @@ Page({
              }
              response.data.posts[i]["imageDisplay"] = response.data.posts[i].images.slice(0, Math.min(2, response.data.posts[i].images.length))
              response.data.posts[i]["hasLabel"] = (response.data.posts[i].label === "")? false : true;
-             console.log(response.data.posts[i]["hasLabel"])
+            //  console.log(response.data.posts[i]["hasLabel"])
         }
-        console.log(response.data.posts)
+        // console.log(response.data.posts)
         this.setData({
             posts: response.data.posts
         })
-        console.log(response.data.posts)
+        // console.log(response.data.posts)
         console.log("Search content success");
     }).catch(error => {
         // 请求失败时执行的操作
         console.error("Search content fail");
     });
 
-    console.log(this.data.posts)
+    // console.log(this.data.posts)
   },
 
   /**
@@ -89,7 +89,7 @@ Page({
              response.data.posts[i]["imageDisplay"] = response.data.posts[i].images.slice(0, Math.min(2, response.data.posts[i].images.length))
              response.data.posts[i]["hasLabel"] = (response.data.posts[i].label === "")? false : true;
         }
-        console.log(response.data.posts)
+        // console.log(response.data.posts)
         this.setData({
             posts: response.data.posts
         })
@@ -388,14 +388,6 @@ Page({
 
         const formattedDate = `${year}-${month}-${day}`;
         return formattedDate
-    },
-    testNotification(e) {
-        wx.navigateTo({
-          url: '/pages/notification/notification',
-          success: function (res) {
-            // 通过eventChannel向被打开页面传送数据
-            // res.eventChannel.emit('postDetail', { data: postData })
-          }
-        })
     }
+    
 })
