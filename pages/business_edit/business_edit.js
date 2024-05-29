@@ -36,27 +36,30 @@ Page({
       if (res.data) {
         const restaurantData = res.data;
         const tagNames = restaurantData.tags.map(tag => tag.name);
-        const selectedTag = tagNames[0];
+        // const selectedTag = tagNames[0];
+        const selectedTag = tagNames[0] || this.data.tagOptions[0].label;
         const selectedTagIndex = this.data.tagOptions.findIndex(option => option.label === selectedTag);
 
         this.setData({
-          store_name: restaurantData.name,
-          address: restaurantData.location,
-          telephone: restaurantData.phone_number,
-          business_time: restaurantData.time,
-          remark: restaurantData.description,
-          selectedTagIndex,
-          selectedTagLabel: selectedTag,
-          initialData: { // 正确保存初始数据
-            store_name: restaurantData.name,
-            address: restaurantData.location,
-            telephone: restaurantData.phone_number,
-            business_time: restaurantData.time,
-            remark: restaurantData.description,
-            selectedTagIndex,
-            image: this.data.image,
-            name: this.data.name
-          }
+          store_name: restaurantData.name || '',
+        address: restaurantData.location || '',
+        telephone: restaurantData.phone_number || '',
+        business_time: restaurantData.time || '',
+        remark: restaurantData.description || '',
+        selectedTagIndex: selectedTagIndex !== -1 ? selectedTagIndex : 0,
+        selectedTagLabel: selectedTag,
+        initialData: { // 正确保存初始数据
+          store_name: restaurantData.name || '',
+          address: restaurantData.location || '',
+          telephone: restaurantData.phone_number || '',
+          business_time: restaurantData.time || '',
+          remark: restaurantData.description || '',
+          selectedTagIndex: selectedTagIndex !== -1 ? selectedTagIndex : 0,
+          image: this.data.image,
+          name: this.data.name,
+          backgroundImage: restaurantData.images && restaurantData.images[0] ? restaurantData.images[0] : ''
+
+        }
         });
       }
     }).catch(err=>{
@@ -81,26 +84,26 @@ Page({
     const landlinePhoneRegex = /^(?:\d{3,4}-\d{7,8}|\d{8})$/;
     const timeRegex = /^([01]\d|2[0-3]):[0-5]\d-([01]\d|2[0-3]):[0-5]\d$/;
 
-    if (store_name.length > 10) {
+    if (!store_name || store_name.length > 10) {
       return '店铺名称不能超过10个字';
     }
-    if (address.length > 20) {
+    if (!address || address.length > 20) {
       return '店铺地址不能超过20个字';
     }
-    if (remark.length > 20) {
+    if (!remark || remark.length > 20) {
       return '店铺简介不能超过20个字';
     }
-    if (!mobilePhoneRegex.test(telephone) && !landlinePhoneRegex.test(telephone)) {
+    if (!telephone || (!mobilePhoneRegex.test(telephone) && !landlinePhoneRegex.test(telephone))) {
       return '联系方式不合法';
     }
-    if (!timeRegex.test(business_time)) {
+    if (!business_time || !timeRegex.test(business_time)) {
       return '营业时间必须是hh:mm-hh:mm的格式';
     }
     return '';
   },
 
   submitData: function() {
-    const { store_name, address, telephone, business_time, remark, selectedTagIndex, tagOptions, image, name } = this.data;
+    const { store_name, address, telephone, business_time, remark, selectedTagIndex, tagOptions, name, backgroundImage } = this.data;
     const selectedTag = tagOptions[selectedTagIndex].label;
     const initialData = this.data.initialData;
     const changes = [];
@@ -114,7 +117,14 @@ Page({
       return;
     }
 
-    if (image !== initialData.image) changes.push('图像');
+    // 如果标签为空，设置默认标签
+    if (!selectedTag) {
+    this.setData({
+      selectedTagIndex: 0,
+      selectedTagLabel: this.data.tagOptions[0].label
+    });
+  }
+    // if (image !== initialData.image) changes.push('图像');
     if (name !== initialData.name) changes.push('名称');
     if (store_name !== initialData.store_name) changes.push('店铺名称');
     if (address !== initialData.address) changes.push('店铺地址');
@@ -143,7 +153,7 @@ Page({
   },
 
   submitDataToServer: function() {
-    const { store_name, address, telephone, business_time, remark, selectedTagIndex, tagOptions, image } = this.data;
+    const { store_name, address, telephone, business_time, remark, selectedTagIndex, tagOptions, backgroundImage } = this.data;
     const selectedTag = tagOptions[selectedTagIndex].label;
   
     tjRequest({
@@ -156,7 +166,7 @@ Page({
         description: remark,
         time: business_time,
         tags: [selectedTag],
-        images: [image]
+        images: [backgroundImage]
       },
     }).then(res => {
       if (res.statusCode === 200) {
@@ -205,46 +215,6 @@ Page({
     this.setData({
       selectedTagIndex,
       selectedTagLabel
-    });
-  },
-
-  /* 更换照片 */
-  changeImage: function() {
-    var that = this;  // 获取当前页面的实例
-    wx.chooseImage({
-      count: 1,  // 允许用户选择的图片数量
-      sizeType: ['original', 'compressed'],  // 可选择原图或压缩图
-      sourceType: ['album', 'camera'],  // 可选择来源是相册还是相机
-      success: function(res) {
-        const newImage = res.tempFilePaths[0];  // 获取选中图片的临时文件路径
-        console.log(newImage);
-
-        // 将新图像上传到后端
-        tjFileUpLoad({
-          url: '/user/uploadAvatar',
-          filePath: newImage,
-        }).then(uploadRes => {
-          let data = JSON.parse(uploadRes.data);
-          if (data && data.newname) {
-            // 只有在成功上传并接收到新URL后更新显示的图片
-            that.setData({
-              image: base_url + '/media/avatar/' + data.newname // 更新图片地址
-            });
-            wx.showToast({
-              title: 'Image uploaded successfully',
-              icon: 'success'
-            });
-          } else {
-            throw new Error("Invalid response data");
-          }
-        }).catch(err => {
-          console.error('Image upload failed:', err);
-          wx.showToast({
-            title: 'Failed to upload image',
-            icon: 'error'
-          });
-        });
-      }
     });
   },
 
