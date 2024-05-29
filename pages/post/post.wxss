@@ -258,7 +258,7 @@ page {
 }
 
 .child-comment .comment-user-info .comment-upvotes image {
-    width: 30rpx;
+    width: 40rpx;
 }
 
 .parent-comment .comment-user-info .comment-username,
@@ -367,7 +367,7 @@ page {
     left: 0;
     z-index: 999;
     width: 100%;
-    height: 125rpx;
+    height: 150rpx;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
 }
 
@@ -503,9 +503,25 @@ page {
 .model .textarea {  
     width: 100%;  
     padding: 30rpx 20rpx 20rpx 20rpx;  
-    height: 500rpx;  
+    height: 600rpx;  
     font-size: var(--fontsize-h5);  
     position: static;
+}
+
+.model .send {
+    position: absolute;
+    display: flex;
+    top: -70rpx;
+    right: 35rpx;
+    background-color: var(--secondary-color);
+    border-radius: 100rpx;
+    padding: 30rpx 30rpx;
+    align-self: center;
+    justify-content: center;
+}
+
+.model .send image {
+    width: 80rpx;
 }
 
 
@@ -517,7 +533,6 @@ page {
     padding: 15rpx 30rpx 15rpx 30rpx;
     border-radius: 20rpx;
     float: right;  
-    position: static;
 }
 
 .model .invisible_model{  

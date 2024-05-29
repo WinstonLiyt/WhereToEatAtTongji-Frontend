@@ -157,8 +157,9 @@
         <view class='invisible_model' catchtap='invisible'  style="background-color: {{ maskColor }};"></view>
         <view class='input-box' wx:if="{{inputBoxShow && commentShow}}">
             <textarea class="textarea" placeholder="输入你的评论" placeholder-style="font-size: var(--fontsize-h5);" cursor-spacing="{{65}}" show-confirm-bar="{{false}}" adjust-position="{{true}}" auto-focus="{{true}}" bindinput="updateCommentContent" />
-            <view class='send'>
-                <view class="submit-btn mr-sm" bindtap="onConfirmMakeComments">分享Idea</view>
+            <view class='send'   bindtap="onConfirmMakeComments">
+                <!-- <view class="submit-btn mr-sm" bindtap="onConfirmMakeComments">分享Idea</view> -->
+                <image src="../../statics/imgs/community/send.png" mode="widthFix"></image>
             </view>
         </view>
     </view>
