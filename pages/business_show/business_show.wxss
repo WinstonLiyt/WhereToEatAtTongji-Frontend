@@ -170,6 +170,8 @@ page{
   white-space: nowrap;
 }
 
+
+
 .food_name text{
   font-size: 17px;
   letter-spacing: 1px;

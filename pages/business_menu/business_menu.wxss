@@ -137,7 +137,7 @@ page{
 
 .add_button {
   position:relative;
-  top:60px;
+  top:50px;
   height:80rpx;
   margin-top:10rpx;
   width:90%;
