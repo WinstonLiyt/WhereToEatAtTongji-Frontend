@@ -82,6 +82,16 @@
         <image class="icon2" src="../../statics/imgs/personal/next.svg"></image>
       </view>
     </navigator> -->
+
+    <navigator url="../../pages/notification/notification">
+      <view class="menu">
+        <view class="title">
+          <image class="icon1" src="../../statics/imgs/personal/notif.png"></image>
+          <view class="name">通知信息</view>
+        </view>
+        <image class="icon2" src="../../statics/imgs/personal/next.svg"></image>
+      </view>
+    </navigator>
   </view>
 
 

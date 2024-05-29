@@ -299,3 +299,27 @@ page {
   justify-content: center; /* 水平居中 */
   text-align: center; /* 文字居中 */
 }
+
+/* .notification {
+  display: flex;
+  gap: 50rpx;
+  background-color: rgb(240, 218, 159);
+  padding: 40rpx 40rpx;
+}
+
+.notification image {
+  height: 70rpx;
+  width: 70rpx;
+}
+
+.notification .content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notification .content text {
+  font-weight: var(--fontweight-bold);
+  font-size: var(--fontsize-h5);
+  color: rgb(110, 91, 55);
+} */
