@@ -511,8 +511,8 @@ page {
 .model .send {
     position: absolute;
     display: flex;
-    top: -30rpx;
-    right: 30rpx;
+    top: -70rpx;
+    right: 35rpx;
     background-color: var(--secondary-color);
     border-radius: 100rpx;
     padding: 30rpx 30rpx;
