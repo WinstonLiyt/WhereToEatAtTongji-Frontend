@@ -41,6 +41,15 @@ Page({
     })
   },
   submit(){
+    /* 检查用户名和签名合法性 */
+    var input_name = this.data.username;
+    var signature = this.data.signature;
+    if (!this.checkUsernameValidity(input_name) || !this.checkSignatureValidity(signature)) {
+        return;
+    }
+    if (signature === "") {
+        signature = "这个用户很神秘~";
+    }
     util.tjRequest({
       url:'/user/setInfo',
       method:'post',
@@ -61,5 +70,53 @@ Page({
         duration: 2000
       })
     })
+  },
+  checkUsernameValidity(username) {
+    // 敏感词列表
+    // const sensitiveWords = ["badword1", "badword2", "badword3"];
+    // 检查长度
+    if (username.length < 1 || username.length > 16) {
+        this.popover('错误', '用户名必须为小于16个字符', false);
+        return false;
+    }
+    // 检查是否包含空格
+    if (/\s/.test(username)) {
+        this.popover('错误', '用户名不能含有空格', false);
+        return false;
+    }
+    // 检查是否包含非法字符（这里只允许中文、字母、数字和下划线）
+    if (/[^a-zA-Z0-9\u4e00-\u9fa5\s,.!?，。！？]/.test(username)) {
+        this.popover('错误', '用户名只能包含字母、数字和下划线', false);
+        return false;
+    }
+
+    // 检查是否包含敏感词汇
+    for (let i = 0; i < util.sensitiveWords.length; i++) {
+        if (username.includes(util.sensitiveWords[i])) {
+            this.popover('错误', `用户名包含敏感词汇`, false);
+            return false;
+        }
+    }
+    return true;
+  },
+  checkSignatureValidity(username) {
+    // 敏感词列表
+    // const sensitiveWords = ["badword1", "badword2", "badword3"];
+
+    // 检查是否包含敏感词汇
+    for (let i = 0; i < util.sensitiveWords.length; i++) {
+        if (username.includes(util.sensitiveWords[i])) {
+            this.popover('错误', `签名包含敏感词汇`, false);
+            return false;
+        }
+    }
+    return true;
+  },
+  popover(title, content, showLabel) {
+    wx.showModal({
+        title: title,
+        content: content,
+        showCancel: showLabel
+    });
   }
 })

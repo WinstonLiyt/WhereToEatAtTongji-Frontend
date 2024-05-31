@@ -136,7 +136,13 @@ Component({
                             maskColor: "rgba(0, 0, 0, 0.5)"
                         })
                     }
-                })  
+                }) 
+
+                this.setData({
+                    inputBoxShow: false,
+                    commentShow: true,
+                    maskColor: "rgba(0, 0, 0, 0.5)"
+                })
                   
                   console.log("浏览帖子详细信息 success");
                 })
@@ -147,7 +153,7 @@ Component({
                 console.error("浏览帖子详细信息  fail");
               });
         },
-
+    
         /**
          * 生命周期函数--监听页面初次渲染完成
          */

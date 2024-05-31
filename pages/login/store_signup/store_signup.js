@@ -31,6 +31,17 @@ Page({
   formSubmit(e){
     let util = require('../../../utils/util.js')
 
+    /* 用户昵称检查 */
+    var input_name = e.detail.value.nickname;
+    var location = e.detail.value.location;
+    var phone = e.detail.value.telephone;
+    if (!this.checkUsernameValidity(input_name) || 
+        !this.checkAddressValidity(location) || 
+        !this.checkPhoneNumberValidity(phone)) {
+        return;
+    }
+    /* ************** */
+
     let that = this
     wx.login({
       success: (res) => {
@@ -39,10 +50,10 @@ Page({
           method:'post',
           data:{
             code: res.code,
-            name: e.detail.value.nickname,
+            name: input_name,
             avatar_url: this.data.avatarUrl,
-            location: e.detail.value.location,
-            phone: e.detail.value.telephone,
+            location: location,
+            phone: phone,
           }
         }).then(res=>{
           console.log(res)
@@ -56,5 +67,86 @@ Page({
         })
       },
     })
+  },
+  checkUsernameValidity(username) {
+    // 敏感词列表
+    // const sensitiveWords = ["badword1", "badword2", "badword3"];
+    // 检查长度
+    if (username.length < 1 || username.length > 16) {
+        this.popover('错误', '用户名必须为小于16个字符', false);
+        return false;
+    }
+    // 检查是否包含空格
+    if (/\s/.test(username)) {
+        this.popover('错误', '用户名不能含有空格', false);
+        return false;
+    }
+    // 检查是否包含非法字符（这里只允许中文、字母、数字和下划线）
+    if (/[^a-zA-Z0-9\u4e00-\u9fa5\s,.!?，。！？]/.test(username)) {
+        this.popover('错误', '用户名只能包含字母、数字和下划线', false);
+        return false;
+    }
+
+    // 检查是否包含敏感词汇
+    for (let i = 0; i < util.sensitiveWords.length; i++) {
+        if (username.includes( util.sensitiveWords[i])) {
+            this.popover('错误', `用户名包含敏感词汇`, false);
+            return false;
+        }
+    }
+    return true;
+  },
+  checkAddressValidity(address) {
+    // 检查地址是否为空
+    if (address.trim() === "") {
+        this.popover('错误', '地址不能为空', false);
+        return false;
+    }
+
+    // 检查地址长度
+    if (address.length < 10 || address.length > 100) {
+        this.popover('错误', '地址长度应为10到100个字符', false);
+        return false;
+    }
+
+    // 检查是否包含非法字符（只允许中文、英文、数字、空格和常用标点）
+    if (/[^a-zA-Z0-9\u4e00-\u9fa5\s,.!?，。！？]/.test(address)) {
+        this.popover('错误', '地址包含非法字符', false);
+        return false;
+    }
+
+    // 检查是否包含敏感词汇
+    for (let i = 0; i < util.sensitiveWords.length; i++) {
+        if (address.includes( util.sensitiveWords[i])) {
+            this.popover('错误', `地址包含敏感词汇`, false);
+            return false;
+        }
+    }
+
+    // 所有检查通过
+    return true;
+  },
+  checkPhoneNumberValidity(phoneNumber) {
+        // 检查电话长度
+        if (phoneNumber.length !== 11) {
+            this.popover('错误', '电话号码长度应为11位', false);
+            return false;
+        }
+
+        // 检查是否为有效的中国大陆手机号码
+        const phoneRegex = /^1[3-9]\d{9}$/;
+        if (!phoneRegex.test(phoneNumber)) {
+            this.popover('错误', '电话号码无效，请输入有效的中国大陆手机号码', false);
+            return false;
+        }
+        // 所有检查通过
+        return true;
+  },
+  popover(title, content, showLabel) {
+    wx.showModal({
+        title: title,
+        content: content,
+        showCancel: showLabel
+    });
   }
 })

@@ -37,3 +37,10 @@
   <progress class="experience-progress" percent="{{progRatio}}" color="{{tokenCardColor[tokenCardType]}}" stroke-width="5" />
 </view>
 
+<view bindtap="testNotification" class="notification mr-max ml-max bdr-max">
+    <image src="../../../statics/imgs/personal/notif.png" mode="widthFix" class="avatar"></image>
+    <view class="content">
+        <text> 通知信息 </text>
+    </view>
+</view>
+
