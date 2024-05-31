@@ -102,7 +102,6 @@ Page({
       success: function (res) {
           if (res.confirm) {
               console.log('确定');
-                //删除菜品信息
               _delete_ = true;
               console.log(_delete_);
               const option = {

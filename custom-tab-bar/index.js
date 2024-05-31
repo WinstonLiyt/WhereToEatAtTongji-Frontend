@@ -48,7 +48,13 @@ Component({
           "text": "商户信息",
           "iconPath": "/statics/imgs/tabBar/personal.png",
           "selectedIconPath": "/statics/imgs/tabBar/personal_selected.png"
-      }]
+      }],
+      [{
+        "pagePath": "/pages/administrator/user_list/user_list",
+        "text": "用户管理",
+        "iconPath":"/statics/imgs/tabBar/personal.png",
+        "selectedIconPath": "/statics/imgs/tabBar/personal_selected.png"
+      }],
     ],
     list: []
   },
@@ -66,14 +72,19 @@ Component({
     },
     setList(){
       const role = wx.getStorageSync('role')
-      if (role != "store") {
+      if (role != "store" && role != "admin") {
         this.setData({
           list: this.data.allList[0]
         })
       }
-      else{
+      else if(role == "store"){
         this.setData({
           list: this.data.allList[1]
+        })
+      }
+      else if(role == "admin"){
+        this.setData({
+          list: this.data.allList[2]
         })
       }
     }

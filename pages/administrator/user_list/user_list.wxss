@@ -1,0 +1,410 @@
+/* pages/administrator/user_list/user_list.wxss */
+page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* background-color: #fff2d9; */
+  background-color:var(--tertiary-color);
+}
+.circle1{
+  position:absolute;
+  border-radius: 50px;
+  background-color: rgb(138, 62, 62);
+  top:10rpx;
+  width:40rpx;
+  height: 40rpx;
+  left:50rpx;
+}
+.circle2{
+  position:absolute;
+  border-radius: 50px;
+  background-color: rgb(111, 139, 121);
+  top:10rpx;
+  width:40rpx;
+  height: 40rpx;
+  left:100rpx;
+}
+.circle3{
+  position:absolute;
+  border-radius: 50px;
+  background-color: rgb(139, 128, 111);
+  top:10rpx;
+  width:40rpx;
+  height: 40rpx;
+  left:150rpx;
+}
+.wave{
+  position: absolute;
+  top: 10rpx;
+	width: 200rpx;
+	height: 200rpx;
+	border-radius: 50%;
+}
+.wave:before,.wave:after{
+	content: "";
+	position: absolute;
+	width: 800rpx;
+	height: 800rpx;
+	top: 320%;
+	left: 50%;
+	background-color: rgba(255, 255, 255, .4);
+	border-radius: 45%;
+	transform: translate(-50%, -70%) rotate(0);
+	animation: rotate 6s linear infinite;
+}
+.wave:after {
+	border-radius: 47%;
+	background-color: rgba(255, 255, 255, .7);
+	transform: translate(-50%, -70%) rotate(0);
+	animation: rotate 10s linear -5s infinite;
+}
+@keyframes rotate {
+	50% {
+		transform: translate(-50%, -73%) rotate(180deg);
+	} 100% {
+		transform: translate(-50%, -70%) rotate(360deg);
+	}
+}
+.wave_1{
+  position: absolute;
+  top: 530rpx;
+  left: 45%;
+	width: 10rpx;
+	height: 10rpx;
+	background-color: rgb(60, 108, 250);
+	border-radius: 50%;
+}
+.wave_1:before,.wave_1:after{
+	content: "";
+	position: absolute;
+	width: 600rpx;
+	height: 600rpx;
+	top: 320%;
+	left: 50%;
+	background-color: rgba(255, 255, 255, .2);
+	border-radius: 45%;
+	transform: translate(-50%, -70%) rotate(0);
+	animation: rotate 4s linear infinite;
+}
+.wave_1:after {
+	border-radius: 47%;
+	background-color: rgba(255, 255, 255, .8);
+	transform: translate(-50%, -70%) rotate(0);
+	animation: rotate 6s linear -5s infinite;
+}
+.wave_2{
+  position: absolute;
+  top: 540rpx;
+  left: 80%;
+	width: 10rpx;
+	height: 10rpx;
+	background-color: rgb(60, 108, 250);
+	border-radius: 50%;
+}
+.wave_2:before,.wave_2:after{
+	content: "";
+	position: absolute;
+	width: 600rpx;
+	height: 600rpx;
+	top: 320%;
+	left: 50%;
+	background-color: rgba(255, 255, 255, .3);
+	border-radius: 43%;
+	transform: translate(-50%, -70%) rotate(0);
+	animation: rotate 8s linear infinite;
+}
+.wave_2:after {
+	border-radius: 47%;
+	background-color: rgba(255, 255, 255, .8);
+	transform: translate(-50%, -70%) rotate(0);
+	animation: rotate 20s linear -5s infinite;
+}
+.user_board{
+  position:absolute;
+  top:300rpx;
+  width:100%;
+  height: max-content;
+  background-color: rgba(255, 255, 255, 0.829);
+}
+.user_list{
+  width:100%;
+  height:fit-content;
+  /* position: absolute; */
+  top:50rpx;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left:2%;
+  padding-right:2%;
+  margin-bottom: 180rpx;
+}
+.user{
+  height:350rpx;
+  box-shadow: 0 4px 8px rgba(78, 78, 78, 0.2); /* 设置阴影 */
+  border-radius: 10px; /* 可选：设置圆角 */
+  background-color: white;
+  width:38%;
+  margin-left:5%;
+  margin-right: 5%;
+  margin-top:30rpx;
+  margin-bottom:35rpx;
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-wrap: wrap; */
+}
+.user_image{
+  position: relative;
+  width:80rpx;
+  height:80rpx;
+  top:-30rpx;
+  left:35%;
+}
+.user_image image{
+  width: 100%;
+  height: 100%;
+}
+.edit{
+  position: relative;
+  width:50rpx;
+  height:50rpx;
+  top:-80rpx;
+  left:80%;
+}
+.edit image{
+  width: 100%;
+  height: 100%;
+}
+.user_name{
+  position: relative;
+  top:-40rpx;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.user_name text{
+  font-size: 15px;
+  color:rgb(70, 70, 70);
+}
+.user_type{
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width:70%;
+  left:15%;
+  top:-5%;
+  border-radius: 20px;
+  height: 50rpx;
+  background-color: rgb(230, 224, 214);
+}
+.user_type text{
+  font-size: 15px;
+  letter-spacing: 1px;
+  color:rgb(0, 0, 0);
+}
+.user_state{
+  position:relative;
+  justify-content: center;
+  align-items: center;
+  display:flex;
+  text-align: center;
+  top:5%;
+  left:25%;
+  border-radius: 20px;
+  height: 60rpx;
+  width:50%;
+  box-shadow: 0 5px 10px rgba(78, 78, 78, 0.2); /* 设置阴影 */
+  /* background-color: rgb(146, 80, 69); */
+  /* background-color: rgb(111, 139, 121); */
+}
+.user_state text{
+  font-size: 15px;
+  letter-spacing: 1px;
+  color:rgb(255, 255, 255);
+}
+.user_edit{
+  position: fixed;
+  background-color: rgb(255, 255, 255);
+  width:80%;
+  left:10%;
+  height:750rpx;
+  border-radius: 30px;
+  /* border-top-left-radius: 50%;
+  border-top-right-radius: 50%; */
+  top:250rpx;
+  border:2px rgb(138, 133, 123) dashed;
+}
+.user_avatar{
+  width:150rpx;
+  height:150rpx;
+  position: absolute;
+  top:50rpx;
+  left:38%;
+  border-radius: 50px;
+}
+.user_avatar image{
+  width:100%;
+  height: 100%;
+  border-radius: 50px;
+}
+.user_signature{
+  width:100%;
+  height:150rpx;
+  position: absolute;
+  top:290rpx;
+  justify-content: center;
+  /* align-items: center; */
+  display:flex;
+  text-align: center;
+}
+.user_signature text{
+  font-size:18px;
+  color:rgb(65, 65, 65);
+  letter-spacing: 1px;
+}
+.user_status{
+  width:100%;
+  height:150rpx;
+  position: absolute;
+  top:350rpx;
+  justify-content: center;
+  /* align-items: center; */
+  display:flex;
+  text-align: center;
+}
+.user_status text{
+  font-size:18px;
+  letter-spacing: 1px;
+  color:rgb(65, 65, 65);
+}
+.username{
+  width:100%;
+  height:150rpx;
+  position: absolute;
+  top:200rpx;
+  justify-content: center;
+  /* align-items: center; */
+  display:flex;
+  text-align: center;
+}
+.username text{
+  font-size:18px;
+  letter-spacing: 1px;
+  color:rgb(65, 65, 65);
+}
+.user_credits{
+  width:100%;
+  height:150rpx;
+  position: absolute;
+  top:420rpx;
+  justify-content: center;
+  /* align-items: center; */
+  display:flex;
+  text-align: center;
+}
+.user_credits text{
+  font-size:18px;
+  letter-spacing: 1px;
+  color:rgb(65, 65, 65);
+}
+.edit_credits{
+  justify-content: center;
+  align-items: center;
+  display:flex;
+  text-align: center;
+  width:250rpx;
+  height:100rpx;
+  position:absolute;
+  top:550rpx;
+  left:30rpx;
+  background-color: rgb(160, 172, 138);
+  border-radius: 25px;
+  box-shadow: 0 5px 10px rgba(78, 78, 78, 0.2); /* 设置阴影 */
+}
+.edit_credits text{
+  font-size:16px;
+  letter-spacing: 1px;
+  color:rgb(65, 65, 65);
+}
+.close_user{
+  justify-content: center;
+  align-items: center;
+  display:flex;
+  text-align: center;
+  width:250rpx;
+  height:100rpx;
+  position:absolute;
+  top:550rpx;
+  left:330rpx;
+  background-color: rgb(185, 147, 131);
+  border-radius: 25px;
+  box-shadow: 0 5px 10px rgba(78, 78, 78, 0.2); /* 设置阴影 */
+}
+.edit_credits text{
+  font-size:16px;
+  letter-spacing: 1px;
+  color:rgb(65, 65, 65);
+}
+.credits_edit{
+  width:70%;
+  height:300rpx;
+  left:15%;
+  right:15%;
+  background-color: rgb(248, 232, 202);
+  position: fixed;
+  top:500rpx;
+  border-radius: 30px;
+}
+.input_credit{
+  width:80%;
+  left:10%;
+  position: relative;
+  top:50rpx;
+}
+input {
+  width: 100%;
+  height: 90rpx;
+  border-radius: 20px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  background-color: white;
+}
+._cancle{
+  justify-content: center;
+  align-items: center;
+  display:flex;
+  text-align: center;
+  width:150rpx;
+  height:80rpx;
+  position:absolute;
+  top:180rpx;
+  left:300rpx;
+  background-color: rgb(185, 147, 131);
+  border-radius: 25px;
+  box-shadow: 0 5px 10px rgba(78, 78, 78, 0.2); /* 设置阴影 */
+}
+._cancle text{
+  font-size:16px;
+  letter-spacing: 1px;
+  color:rgb(65, 65, 65);
+}
+.confirm{
+  justify-content: center;
+  align-items: center;
+  display:flex;
+  text-align: center;
+  width:150rpx;
+  height:80rpx;
+  position:absolute;
+  top:180rpx;
+  left:80rpx;
+  background-color: rgb(161, 185, 131);
+  border-radius: 25px;
+  box-shadow: 0 5px 10px rgba(78, 78, 78, 0.2); /* 设置阴影 */
+}
+.confirm text{
+  font-size:16px;
+  letter-spacing: 1px;
+  color:rgb(65, 65, 65);
+}
