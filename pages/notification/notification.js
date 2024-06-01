@@ -11,7 +11,8 @@ Component({
     ],
     "message": "string",
     "inputBoxShow": false,
-    maskColor: "#fff2d9"
+    maskColor: "#fff2d9",
+    "isEmpty": "block"
   },
 
   /**
@@ -39,7 +40,8 @@ Component({
                 console.log(response.data);
                 // http://1.92.154.154:80/media/avatar/
                 this.setData({
-                    notifications: response.data.notifications
+                    notifications: response.data.notifications,
+                    isEmpty: response.data.notifications.length > 0? "none": "block"
                 })
 
                 wx.hideLoading({

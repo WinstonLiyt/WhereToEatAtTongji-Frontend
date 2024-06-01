@@ -61,3 +61,16 @@ page {
     display: flex;
     align-items: center;
 }
+
+
+.no-content {
+    position: absolute;
+    top: 40%;
+    left: 30%;
+}
+
+.no-content text {
+    font-size: var(--fontweight-bold);
+    font-size: var(--fontsize-h3);
+    color: var(--secondary-color);
+}

@@ -21,3 +21,7 @@
         <view class='invisible_model' catchtap='invisible'  style="background-color: {{ maskColor }};"></view>
     </view>
 </view>
+
+<view class="no-content" style="display: {{ isEmpty }};">
+    <text>通知空空如也~</text>
+</view>
