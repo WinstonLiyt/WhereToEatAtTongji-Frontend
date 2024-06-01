@@ -54,8 +54,8 @@ Page({
       url:'/user/setInfo',
       method:'post',
       data:{
-        nickname: this.data.username,
-        signature: this.data.signature,
+        nickname: input_name,
+        signature: signature,
         avatar_url: this.data.avatarUrl
       }
     }).then(res=>{
