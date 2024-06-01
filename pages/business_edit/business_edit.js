@@ -84,21 +84,46 @@ Page({
     const landlinePhoneRegex = /^(?:\d{3,4}-\d{7,8}|\d{8})$/;
     const timeRegex = /^([01]\d|2[0-3]):[0-5]\d-([01]\d|2[0-3]):[0-5]\d$/;
 
-    if (!store_name || store_name.length > 10) {
+    if (!store_name) {
+      return '店铺名称不能为空';
+    }
+
+    if (store_name.length > 10) {
       return '店铺名称不能超过10个字';
     }
-    if (!address || address.length > 20) {
+
+    if (!address) {
+      return '店铺地址不能为空';
+    }
+
+    if (address.length > 20) {
       return '店铺地址不能超过20个字';
     }
-    if (!remark || remark.length > 20) {
-      return '店铺简介不能超过20个字';
+
+    if (!telephone) {
+      return '联系方式不能为空';
     }
-    if (!telephone || (!mobilePhoneRegex.test(telephone) && !landlinePhoneRegex.test(telephone))) {
+    
+    if ((!mobilePhoneRegex.test(telephone) && !landlinePhoneRegex.test(telephone))) {
       return '联系方式不合法';
     }
-    if (!business_time || !timeRegex.test(business_time)) {
+
+    if (!business_time) {
+      return '营业时间不能为空';
+    }
+
+    if (!timeRegex.test(business_time)) {
       return '营业时间必须是hh:mm-hh:mm的格式';
     }
+
+    if (!remark) {
+      return '店铺简介不能为空';
+    }
+
+    if (remark.length > 20) {
+      return '店铺简介不能超过20个字';
+    }
+
     return '';
   },
 
