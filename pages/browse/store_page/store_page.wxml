@@ -27,7 +27,7 @@
     <block wx:for="{{foodlist}}" wx:key="id">
       <view class="food" bindtap="next_calculator" mark:foodid="{{item.id}}">
         <view class="food_left">
-          <image class="food_image"  mode='aspectFit' src="{{'http://1.92.154.154:80/' + item.image}}" mode="aspectFill"></image>
+          <image class="food_image"  mode='aspectFit' src="{{base_url}}{{item.image}}" mode="aspectFill"></image>
           <view class="food_text">
             <view class="food_name">
               <text>{{item.name}}</text>
@@ -48,28 +48,6 @@
       </view>
     </block>
   </view>
-
-
-  <!-- <view class="food_list">
-    <view class="food"  wx:for="{{foodlist}}" wx:key="key" mark:foodid="{{item.id}}" 
-    bindtap="next_calculator" id="{{item.id}}"> 
-      <view class="food_image">
-        <image src="{{base_url}}{{item.image}}" mode="aspectFill"></image>
-      </view>
-      <view class="food_name">
-        <text >{{item.name}}</text>
-      </view>
-      <view class="food_price">
-        <text >￥{{item.price}}</text>
-      </view>
-      <view class="other">
-        <text decode="true">{{item.description}}</text>
-      </view>
-      <view class="turn">
-        <image src="/statics/pic_tool/turn.png"></image>
-      </view>
-    </view>
-  </view> -->
   <view class="telephone">
     <text>联系方式：{{store.phone_number}}</text>
   </view>

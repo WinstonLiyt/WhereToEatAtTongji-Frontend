@@ -1,0 +1,57 @@
+<view class="background_view">
+  <view class='wave'></view>
+  <view class='wave_1'></view>
+  <view class='wave_2'></view>
+  <view class="circle1"></view>
+  <view class="circle2"></view>
+  <view class="circle3"></view>
+</view>
+<view class="user_board">
+  <view class="user_list" >
+      <view class="user"wx:for="{{userlist}}" wx:key="key" id="{{item.id}}">
+        <view class="user_image"><image src="../../../statics/admin/user.png" mode="aspectFill"></image></view>
+
+        <view class="edit" mark:userid="{{item.id}}" bindtap="If_edit"><image src="../../../statics/admin/edit.png" mode="aspectFill"></image></view>
+
+        <view class="user_name"><text>{{item.nickname}}</text></view>
+
+        <view class="user_type" style="background-color: {{item.type == 1 ? 'rgb(204, 198, 187)' : (item.type == 2 ? 'rgb(230, 224, 214)' : 'rgb(155, 150, 141)')}}">
+          <text>{{item.type == 1 ? '学生' : (item.type == 2 ? '商家' : '管理员')}}</text>
+        </view>
+
+        <view class="user_state" style="background-color: {{item.status == 1 ? 'rgb(146, 80, 69)' : 'rgb(111, 139, 121)'}}" mark:userid="{{item.id}}"  mark:status="{{item.status}}"bindtap="set_status">
+          <text>{{item.status == 1 ? '禁用' :'激活'}}</text>
+        </view>
+      </view>
+  </view>
+</view>
+<view class="user_edit" wx:if="{{if_edit}}">
+  <view class="user_avatar">
+    <image src="{{avatar_url}}{{user.avatar_url}}" mode="aspectFill"></image>  
+  </view>
+  <view class="username">
+    <text>{{user.name}}</text>
+  </view>
+  <view class="user_signature">
+    <text>签名：{{user.signature != null ? '{{user.signature}}':'空'}}</text>
+  </view>
+  <view class="user_status">
+    <text>状态：{{user.status == 1 ? '激活' :'禁用'}}</text>
+  </view>
+  <view class="user_credits">
+    <text>经验值：{{user.credits}}</text>
+  </view>
+  <view class="edit_credits" bindtap="edit_credits">
+    <text>修改经验值</text>
+  </view>
+  <view class="close_user" bindtap="close_edit">
+    <text>关闭</text>
+  </view>
+</view>
+<view class="credits_edit" wx:if="{{edit_credits}}">
+  <view class="input_credit">
+    <input type="number" placeholder="请输入经验值" name="value" bindinput="input_credit"/>
+  </view>
+  <view class="confirm" bindtap="confirm_credit">确认</view>
+  <view class="_cancle" bindtap="close_credit">关闭</view>
+</view>

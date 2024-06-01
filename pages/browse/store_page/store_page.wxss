@@ -179,8 +179,10 @@ page{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 60%;
+  width: calc(100% - 200rpx);
   height: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 .food_name text{
   font-size: 17px;
@@ -199,7 +201,7 @@ page{
 }
 
 .food_right{
-  width: 40%;
+  width: 35%;
   height: 100%;
   padding-right: 25rpx;
   display: flex;
@@ -207,11 +209,16 @@ page{
   justify-content: space-between;
   align-items: center;
 }
-
+.food_price{
+  /* max-width: 150px; */
+  width: 150px;
+  overflow-x: auto;
+}
 .food_price text{
   font-size: 17px;
   letter-spacing: 1px;
   font-weight:bold;
+  white-space: nowrap;
 }
 
 .turn{

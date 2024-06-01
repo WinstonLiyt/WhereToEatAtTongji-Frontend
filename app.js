@@ -14,10 +14,13 @@ App({
           }
         }).then(res=>{
           wx.setStorage({key:'token', data:res.data.token})
-          if(res.data.role === 1)
+          if(res.data.role === 3)
+            wx.setStorage({key:'role', data:'admin'})
+          else if(res.data.role === 1)
             wx.setStorage({key:'role', data:'student'})
-          else if(res.data.role % 1000 / 100 === 2)
+          else if(reds.data.role % 1000 / 100 === 2)
             wx.setStorage({key:'role', data:'store'})
+ 
         }).catch(err=>{
           wx.setStorage({key:'token', data:''})
           if(err.statusCode===404){

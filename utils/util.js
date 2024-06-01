@@ -14,8 +14,12 @@ const formatNumber = n => {
   return n[1] ? n : `0${n}`
 }
 
-const base_url = "http://1.92.154.154:80"
-const base_image_url = 'http://1.92.154.154:80/media/'
+// const base_url = "http://1.92.154.154:80"
+// const base_image_url = 'http://1.92.154.154:80/media/'
+
+const base_url = "http://tjeatwhat.cn"
+const base_image_url = 'http://tjeatwhat.cn/media/'
+
 const tjRequest = (options) =>{
   return new Promise((resolve, reject) => {
     let token
