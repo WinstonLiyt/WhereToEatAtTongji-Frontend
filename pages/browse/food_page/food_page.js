@@ -15,8 +15,8 @@ Page({
     storeId:null,
     food:null,
     comment:null,
-    base_url:"http://1.92.154.154:80",
-    avatar_url:"http://1.92.154.154:80/media/avatar/",
+    base_url:"https://tjeatwhat.cn",
+    avatar_url:"https://tjeatwhat.cn/media/avatar/",
   },  
   selectServer: function (e) {//服务态度评分
     var key = e.currentTarget.dataset.key

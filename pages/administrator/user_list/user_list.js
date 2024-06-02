@@ -8,7 +8,7 @@ Page({
    */
   data: {
     userlist:null,
-    avatar_url:"http://1.92.154.154:80/media/avatar/",
+    avatar_url:"https://tjeatwhat.cn/media/avatar/",
     user:null,
     userID:null,
     if_edit:false,

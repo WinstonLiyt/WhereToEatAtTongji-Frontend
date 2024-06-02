@@ -14,7 +14,7 @@ Page({
     bbq_filter:false,
     western_filter:false,
     rice_filter:false,
-    base_url:"http://1.92.154.154:80",
+    base_url:"https://tjeatwhat.cn",
     Data:null,
     storelist:null
   },

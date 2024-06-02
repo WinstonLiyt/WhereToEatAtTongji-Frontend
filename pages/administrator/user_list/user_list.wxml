@@ -33,7 +33,7 @@
     <text>{{user.name}}</text>
   </view>
   <view class="user_signature">
-    <text>签名：{{user.signature != null ? '{{user.signature}}':'空'}}</text>
+    <text>签名：{{user.signature != null ? user.signature:'空'}}</text>
   </view>
   <view class="user_status">
     <text>状态：{{user.status == 1 ? '激活' :'禁用'}}</text>

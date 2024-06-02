@@ -6,7 +6,7 @@ Page({
     storeid:0,
     store:null,
     foodlist:null,
-    base_url:"http://1.92.154.154:80",
+    base_url:"https://tjeatwhat.cn",
   },
   next_calculator:function(options){
     wx.navigateTo({
