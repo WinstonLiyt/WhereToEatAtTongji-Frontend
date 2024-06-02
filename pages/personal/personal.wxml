@@ -99,7 +99,7 @@
     <view class="background-container">
       <view wx:for="{{backgroundImages}}" wx:key="index" class="background-item">
       <!-- <text>{{item.image}}</text> -->
-        <image src="{{'http://1.92.154.154:80/' + item.image}}" class="background-image"></image>
+        <image src="{{'https://tjeatwhat.cn' + item.image}}" class="background-image"></image>
       </view>
       <!-- 上传背景图按钮 -->
       <view class="button-container">

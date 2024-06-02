@@ -1,5 +1,5 @@
 <view class="top_pic">
-  <image src="{{base_url}}{{food.image}}" mode="aspectFill"></image>
+  <image src="{{'https://tjeatwhat.cn' + food.image}}" mode="aspectFill"></image>
 </view>
 <view class="food_block">
   <view class="title">
@@ -55,7 +55,8 @@
         <view class="user">
           <view class="user_image">
           <!-- <text>{{item.user.avatar_url}}</text> -->
-            <image src="{{avatar_url}}{{item.user.avatar_url}}" mode="aspectFill"></image>
+            <image src="{{'https://tjeatwhat.cn/media/avatar/' + item.user.avatar_url}}" mode="aspectFill"></image>
+
           </view>
           <text>{{item.user.nickname}}</text>       
         </view>

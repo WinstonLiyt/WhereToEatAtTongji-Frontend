@@ -4,13 +4,13 @@ const { tjRequest, tjFileUpLoad, base_url } = require('../../utils/util');
 
 Page({
   data: {
-    storeid:0,
-    store:null,
-    foods:null,
+    storeid: 0,
+    store: null,
+    foods: null,
     user_image: null,
-    base_url:"http://1.92.154.154:80",
+    // base_url: "https://1.92.154.154:80",
   },
-  next_calculator:function(options){
+  next_calculator: function (options) {
     console.log(options);
     console.log('here');
     //var foodId = event.currentTarget.dataset.foodid; // 通过 dataset 获取 foodid
@@ -19,9 +19,9 @@ Page({
     })
   },
 
-  onLoad: function() {
+  onLoad: function () {
     tjRequest({
-      url:'/user/getInfo'
+      url: '/user/getInfo'
     }).then(res => {
       this.setData({
         user_image: base_url + '/media/avatar/' + res.data.avatar_url,
@@ -33,13 +33,13 @@ Page({
         storeid: res.data.id
       }, () => {
         console.log("New store ID set:", this.data.storeid); // Ensure storeid is set
-  
+
         // Now fetch foods, ensuring this happens after storeid is set
         const foodOption = {
           url: '/restaurant/' + this.data.storeid + '/all_dish/',
           method: 'get'
         };
-  
+
         tjRequest(foodOption).then(res => {
           console.log("Foods data:", res.data);
           this.setData({
@@ -48,13 +48,13 @@ Page({
         }).catch(error => {
           console.error('Failed to fetch foods:', error);
         });
-  
+
         // Fetch store information
         const storeOption = {
           url: '/restaurant/',
           method: 'get'
         };
-  
+
         tjRequest(storeOption).then(res => {
           console.log("Store data:", res.data);
           this.setData({
@@ -63,12 +63,12 @@ Page({
         }).catch(error => {
           console.error('Failed to fetch store information:', error);
         });
-  
+
       });
     }).catch(err => {
       console.error('Failed to retrieve store ID:', err);
     });
   }
-  
+
 }
 )

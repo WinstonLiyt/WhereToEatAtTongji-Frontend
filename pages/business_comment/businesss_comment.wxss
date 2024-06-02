@@ -269,8 +269,8 @@ page{
   margin-right: 60rpx;
 }
 .user_image image{
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 100%;
+  max-height: 100%;
 }
 .user text{
   font-size: 16px;

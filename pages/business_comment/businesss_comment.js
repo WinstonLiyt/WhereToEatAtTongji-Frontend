@@ -1,7 +1,7 @@
 // food_page.js
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 
-const { tjRequest } = require('../../utils/util');
+const { tjRequest, tjFileUpLoad, base_url } = require('../../utils/util');
 Page({
   data: {
     foodId:null,
@@ -14,8 +14,10 @@ Page({
     storeId:0,
     food:null,
     comment:null,
-    base_url:"http://1.92.154.154:80",
-    avatar_url:"http://1.92.154.154:80/media/avatar/",
+    // base_url:"http://1.92.154.154:80",
+    // avatar_url:"http://1.92.154.154:80/media/avatar/",
+    base_url: "https://tjeatwhat.cn",
+    base_image_url: 'https://tjeatwhat.cn/media/',
     // reply_time:"",
   },
   replyInput: function(e) {

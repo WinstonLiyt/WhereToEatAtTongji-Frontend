@@ -1,5 +1,5 @@
 <view class="top_pic">
-  <image src="{{'http://1.92.154.154:80' + store.images[0].image}}" mode="aspectFill"></image>
+  <image src="{{'https://tjeatwhat.cn' + store.images[0].image}}" mode="aspectFill"></image>
   <text> {{store.images[0].image}}></text>
 </view>
 <view class="store_block">
@@ -33,7 +33,7 @@
     <!-- <text>{{item.id}}</text> -->
       <view class="food" bindtap="next_calculator">
         <view class="food_left">
-          <image class="food_image"  mode='aspectFit' src="{{'http://1.92.154.154:80/' + item.image}}" mode="aspectFill"></image>
+          <image class="food_image"  mode='aspectFit' src="{{'https://tjeatwhat.cn' + item.image}}" mode="aspectFill"></image>
           <view class="food_text">
             <view class="food_name">
               <text>{{item.name}}</text>
@@ -92,7 +92,7 @@
           <text>上传菜品图片</text>
         </view>
         <!-- <text>{{'http://1.92.154.154:80' + image}}</text> -->
-        <image src="{{'http://1.92.154.154:80' + image}}" class="uploaded-image" hidden="{{!image}}"></image>
+        <image src="{{'https://tjeatwhat.cn' + image}}" class="uploaded-image" hidden="{{!image}}"></image>
         <!-- <text>{{image.includes('media/')}}</text>
         <image src="{{image.includes('media/') ? 'http://1.92.154.154:80/' + image : 'http://1.92.154.154:80/media/' + image}}" class="uploaded-image" hidden="{{!image}}"></image> -->
 

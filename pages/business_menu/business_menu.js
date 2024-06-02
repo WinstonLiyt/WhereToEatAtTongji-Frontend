@@ -135,7 +135,7 @@ Page({
       return '菜品价格必须在0到999.99之间';
     }
     if (!description) {
-      return '菜品名称不能为空';
+      return '菜品描述不能为空';
     }
     if (description.length > 15) {
       return '菜品描述不能超过15个字';
@@ -243,13 +243,13 @@ Page({
             wx.showToast({ title: '图片上传成功', icon: 'success' });
           } else {
             that.setData({
-              errorMessage: '图片上传失败',
+              errorMessage: '图片过大，请压缩后上传',
               errorModalVisible: true // 显示错误消息弹窗
             });
           }
         }).catch(err => {
           that.setData({
-            errorMessage: '上传错误',
+            errorMessage: '图片过大，请压缩后上传',
             errorModalVisible: true // 显示错误消息弹窗
           });
           console.error('Upload failed:', err);

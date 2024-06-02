@@ -1,5 +1,5 @@
 <view class="top_pic">
-  <image src="{{'http://1.92.154.154:80' + store.images[0].image}}" mode="aspectFill"></image>
+  <image src="{{'https://tjeatwhat.cn' + store.images[0].image}}" mode="aspectFill"></image>
 </view>
 <view class="store_block">
   <view class="title">
@@ -54,7 +54,7 @@
     <block wx:for="{{foods}}" wx:key="id">
       <view class="food" bindtap="next_calculator" mark:foodid="{{item.id}}">
         <view class="food_left">
-          <image class="food_image"  mode='aspectFit' src="{{'http://1.92.154.154:80/' + item.image}}" mode="aspectFill"></image>
+          <image class="food_image"  mode='aspectFit' src="{{'https://tjeatwhat.cn' + item.image}}" mode="aspectFill"></image>
           <view class="food_text">
             <view class="food_name">
               <text>{{item.name}}</text>

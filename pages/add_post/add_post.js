@@ -23,7 +23,8 @@ Component({
       tempImageUrl: [],
       tempContentJson: {},
       tempImageUrlChanged:[],
-      labelLegal: true
+      labelLegal: true,
+      fileTooLarge: false
     },
     /**
      * 组件生命周期
@@ -118,6 +119,13 @@ Component({
         await this.updateImageNames(this.data.images)
         console.log(this.data.tempImageUrlChanged)
 
+        if (this.data.fileTooLarge) {
+          this.setData({
+            fileTooLarge: false
+          })
+          return;
+        }
+
         if (this.data.title == "") {
             wx.showToast({
                 title: '标题不能为空',
@@ -132,9 +140,6 @@ Component({
               })
               return;
         }
-
-        
-
         var contentJson = {
             images:this.data.tempImageUrlChanged,
             ip: this.data.location,
@@ -168,7 +173,13 @@ Component({
             const newName = JSON.parse(response.data).new_name;
             tempImageUrlChanged.push(newName);
           } catch (error) {
-            console.log("Upload File failed");
+            wx.showToast({
+                title: '图片过大',
+                icon: "error"
+              })
+              this.setData({
+                  fileTooLarge: true
+              })
           }
         }
         this.setData({
