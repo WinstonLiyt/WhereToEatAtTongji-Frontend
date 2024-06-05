@@ -47,7 +47,7 @@ Page({
     if (!this.checkUsernameValidity(input_name) || !this.checkSignatureValidity(signature)) {
         return;
     }
-    if (signature === "") {
+    if (signature === "" || signature === null) {
         signature = "这个用户很神秘~";
     }
     util.tjRequest({
