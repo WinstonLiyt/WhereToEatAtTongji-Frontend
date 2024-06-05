@@ -18,7 +18,7 @@ App({
             wx.setStorage({key:'role', data:'admin'})
           else if(res.data.role === 1)
             wx.setStorage({key:'role', data:'student'})
-          else if(res.data.role % 1000 / 100 === 2)
+          else if(res.data.role === 2)
             wx.setStorage({key:'role', data:'store'})
  
         }).catch(err=>{
