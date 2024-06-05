@@ -44,18 +44,21 @@ Page({
     /* 检查用户名和签名合法性 */
     var input_name = this.data.username;
     var signature = this.data.signature;
+
+    if (!signature || signature === "") {
+      signature = "暂未填写个性签名";
+    }
+
     if (!this.checkUsernameValidity(input_name) || !this.checkSignatureValidity(signature)) {
         return;
     }
-    if (signature === "" || signature === null) {
-        signature = "这个用户很神秘~";
-    }
+
     util.tjRequest({
       url:'/user/setInfo',
       method:'post',
       data:{
-        nickname: input_name,
-        signature: signature,
+        nickname: this.data.username,
+        signature: this.data.signature,
         avatar_url: this.data.avatarUrl
       }
     }).then(res=>{
