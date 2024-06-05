@@ -21,9 +21,9 @@ Page({
           wx.switchTab({url:'/pages/personal/personal'})
         else
           wx.switchTab({url:'/pages/administrator/user_list/user_list'})
-      })
-  })
-},
+      }, 2000)
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
