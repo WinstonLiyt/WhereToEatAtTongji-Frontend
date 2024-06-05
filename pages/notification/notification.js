@@ -52,10 +52,10 @@ Component({
                             maskColor: "rgba(0, 0, 0, 0.5)"
                         })
                     }
-                })  
+                })
+            }).catch(err => {
+              wx.navigateBack({delta:1})
             })
-
-            
         },
     
         /**
