@@ -82,7 +82,7 @@ Page({
     const { store_name, address, telephone, business_time, remark } = this.data;
     const mobilePhoneRegex = /^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-79])|(?:5[0-35-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1589]))\d{8}$/;
     const landlinePhoneRegex = /^(?:\d{3,4}-\d{7,8}|\d{8})$/;
-    const timeRegex = /^([01]\d|2[0-3]):[0-5]\d-([01]\d|2[0-3]):[0-5]\d$/;
+    const timeRegex = /^([01]\d|2[0-3]):[0-5]\d-(次日)?([01]\d|2[0-3]):[0-5]\d$/;
 
     if (!store_name) {
       return '店铺名称不能为空';
@@ -113,8 +113,35 @@ Page({
     }
 
     if (!timeRegex.test(business_time)) {
-      return '营业时间必须是hh:mm-hh:mm的格式';
+      return '营业时间必须是hh:mm-hh:mm或hh:mm-次日hh:mm的格式';
     }
+
+    if (!timeRegex.test(business_time)) {
+      return '营业时间必须是hh:mm-hh:mm或hh:mm-次日hh:mm的格式';
+    }
+  
+    const timeParts = business_time.split(/-|次日/);
+    if (timeParts.length < 2) {
+      return '营业时间格式不正确';
+    }
+  
+    const [start, end] = timeParts;
+    const [startHour, startMinute] = start.split(':').map(Number);
+    const [endHour, endMinute] = end.split(':').map(Number);
+  
+    const startTime = startHour * 60 + startMinute;
+    const endTime = endHour * 60 + endMinute;
+  
+    if (business_time.includes('次日')) {
+      if (startTime <= endTime) {
+        return '营业时间第一个hh:mm必须大于次日hh:mm';
+      }
+    } else {
+      if (startTime >= endTime) {
+        return '营业时间第一个hh:mm必须小于第二个hh:mm';
+      }
+    }
+  
 
     if (!remark) {
       return '店铺简介不能为空';
