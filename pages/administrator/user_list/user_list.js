@@ -13,7 +13,7 @@ Page({
     userID:null,
     if_edit:false,
     edit_credits:false,
-    credit:0,
+    credit:"",
   },
   input_credit(e) {
     this.setData({
@@ -26,27 +26,45 @@ Page({
     });
   },
   confirm_credit(){
-    var that = this;
-    const option_ = {
-      url: '/user/setInfoByManager/',
-      method: 'post', // 请求方法，默认为 'get'
-      data: {
-        userid: this.data.userID,
-        credits:this.data.credit
-      },
-    };
-    // 调用 tjRequest 函数发起请求
-    tjRequest(option_).then(
-      res => {
-        console.log('Success:', res.data);
-        that.reload_credit();
-        this.setData({
-          edit_credits: false
-        });
-      }).catch(error => {
-        // 请求失败的处理逻辑
-        console.error('禁用用户失败：', error);
-    })
+    console.log(this.data.credit)
+    if(this.data.credit == ""){
+      wx.showToast({
+        title: '经验值不能为空',
+        icon: 'none',
+        duration: 1000
+      })
+    }
+    else if(parseInt(this.data.credit)> 1000){
+      wx.showToast({
+        title: '经验值不能超过1000',
+        icon: 'none',
+        duration: 1000
+      })
+    }
+    else{
+      var that = this;
+      const option_ = {
+        url: '/user/setInfoByManager/',
+        method: 'post', // 请求方法，默认为 'get'
+        data: {
+          userid: this.data.userID,
+          credits:this.data.credit
+        },
+      };
+      // 调用 tjRequest 函数发起请求
+      tjRequest(option_).then(
+        res => {
+          console.log('Success:', res.data);
+          that.reload_credit();
+          this.setData({
+            edit_credits: false
+          });
+        }).catch(error => {
+          // 请求失败的处理逻辑
+          console.error('修改用户值失败：', error);
+      })
+    }
+
   },
   reload_credit(){
     const option = {

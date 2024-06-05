@@ -205,31 +205,126 @@ h1{
   letter-spacing: 1px;
   font-weight:bold;
 }
-.other{
+.store .other{
   position:absolute;
   top:60%;
   left:90px;
   margin-left: 10px;
 }
-.other text{
+.store .other text{
   font-size: 12px;
   letter-spacing: 1px;
   font-weight:100;
   color:rgb(121, 121, 121);
 }
 
-.turn{
+.store .turn{
   position:absolute;
   top:40px;
   left:90%;
   width:20px;
   height: 20px;
 }
-.turn image{
+.store .turn image{
   max-width: 100%;
   max-height: 100%;
 }
+/* .food{
+  margin-top:20px;
+  width:100%;
+  height:90px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: visible; 
+} */
 .food{
+  position:relative;
+  margin-top:20rpx;
+  margin-bottom:40rpx;
+  width:95%;
+  height:90px;
+  background-color: var(--card-background);
+  border-radius: 15px;
+  display: flex;
+  border-bottom: 5rpx solid var(--primary-color);
+  box-shadow: 0 2rpx 5rpx rgb(187, 175, 159);
+  justify-content: space-between;
+  align-items: center;
+  overflow: visible; 
+}
+.food_left{
+  display: flex;
+  width: 60%;
+  height: 100%;
+  align-items: center;
+}
+.food_image{
+  margin-left: 35rpx;
+  margin-right: 35rpx;
+  border-radius: 20rpx;
+  height: 100rpx;
+  width: 100rpx;
+}
+.food_text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: calc(100% - 200rpx);
+  height: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.food_name text{
+  font-size: 17px;
+  letter-spacing: 1px;
+  font-weight:bold;
+}
+
+.food .other{
+  display: flex;
+}
+.food .other text{
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-weight:100;
+  color:rgb(148, 148, 148);
+}
+
+.food_right{
+  width: 35%;
+  height: 100%;
+  padding-right: 25rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.food_price{
+  /* max-width: 150px; */
+  width: 150px;
+  overflow-x: auto;
+}
+.food_price text{
+  font-size: 17px;
+  letter-spacing: 1px;
+  font-weight:bold;
+  white-space: nowrap;
+}
+
+.food .turn{
+  top:40px;
+  left:90%;
+  width:20px;
+  height: 20px;
+}
+.food .turn image{
+  max-width: 100%;
+  max-height: 100%;
+}
+/*.food{
   position:relative;
   margin-top:20rpx;
   margin-bottom:40rpx;
@@ -239,7 +334,7 @@ h1{
   border-radius: 15px;
   display: flex;
   border-bottom: 5rpx solid var(--primary-color);
-  /* box-shadow: 0 2rpx 5rpx rgb(187, 175, 159); */
+  box-shadow: 0 2rpx 5rpx rgb(187, 175, 159);
   overflow: hidden;
 }
 
@@ -259,14 +354,13 @@ h1{
   max-width: 100%;
   max-height: 100%;
   object-fit: cover;
-  object-position: center top; /* 图片在容器中水平居中，垂直顶部对齐 */
-}
+  object-position: center top; 
 
 .food_name{
   position: absolute;
   margin-left: 10px;
   top:20%;
-  left:90px;
+  left:85px;
   max-width: 50%;
   overflow: hidden;
   max-height: 30%;
@@ -289,7 +383,7 @@ h1{
 .other{
   position:absolute;
   top:60%;
-  left:90px;
+  left:85px;
   margin-left: 10px;
   display: flex;
 }
@@ -309,7 +403,7 @@ h1{
 .turn image{
   max-width: 100%;
   max-height: 100%;
-}
+} */
 .store_fail{
   width:100%;
   height:300px;

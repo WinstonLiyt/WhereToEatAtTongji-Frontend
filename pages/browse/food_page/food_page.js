@@ -83,8 +83,15 @@ Page({
         res => {
           console.log('Success:', res.data);
         }).catch(error => {
+          if (error.statusCode === 500) {
+            wx.showToast({
+                title: '含非法字符',
+                icon: 'error',
+                duration: 2000
+              })
+        }
           // 请求失败的处理逻辑
-          console.error('请求用户个人信息失败：', error);
+          console.error('上传保存评论失败：', error);
       })
       wx.redirectTo({
         url: '/pages/browse/food_page/food_page?storeid=' + this.data.storeId +'&foodid=' + this.data.foodId

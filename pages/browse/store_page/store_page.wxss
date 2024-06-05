@@ -132,15 +132,6 @@ page{
   max-height:40%;
 }
 .food{
-  /* position:relative;
-  margin-top:20px;
-  width:100%;
-  height:170rpx;
-  background-color: rgb(255, 255, 255);
-  border-radius: 15px;
-  display: flex;
-  overflow: hidden; */
-
   margin-top:20px;
   width:100%;
   height:90px;

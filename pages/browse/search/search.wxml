@@ -62,6 +62,27 @@
       </view> 
       <block class="" wx:if="{{!food_fail&&!store}}" wx:for="{{foodlist}}" wx:key="key">
         <view class="food" mark:foodid="{{item.id}}" mark:storeid="{{item.restaurant.id}}" bindtap="next_dishes" id="{{item.id}}"> 
+          <view class="food_left">
+            <image class="food_image"  mode='aspectFit' src="{{base_url}}{{item.image}}" mode="aspectFill"></image>
+            <view class="food_text">
+              <view class="food_name">
+                <text>{{item.name}}({{item.restaurant.name}})</text>
+              </view>
+              <view class="other">
+                <text decode="true">{{item.description}}</text>
+              </view>
+            </view>
+          </view>
+          <view class="food_right">
+            <view class="food_price">
+              <text>￥{{item.price}}</text>
+            </view>
+            <view class="turn">
+              <image src="/statics/pic_tool/turn.png"></image>
+            </view>
+          </view>
+        </view>
+        <!-- <view class="food" mark:foodid="{{item.id}}" mark:storeid="{{item.restaurant.id}}" bindtap="next_dishes" id="{{item.id}}"> 
           <view class="food_image">
             <image src="{{base_url}}{{item.image}}" mode="aspectFill"></image>
           </view>
@@ -77,7 +98,7 @@
           <view class="turn">
             <image src="/statics/pic_tool/turn.png"></image>
           </view>
-        </view>
+        </view> -->
       </block>
   </view>
 </view>

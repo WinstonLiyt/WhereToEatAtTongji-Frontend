@@ -17,11 +17,13 @@ Page({
         let role = wx.getStorageSync('role')
         if(role == "student")
           wx.switchTab({url:'/pages/browse/store_list/store_list'})
-        else
+        else if(role == "store")
           wx.switchTab({url:'/pages/personal/personal'})
-      }, 2000)
-    })
-  },
+        else
+          wx.switchTab({url:'/pages/administrator/user_list/user_list'})
+      })
+  })
+},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
