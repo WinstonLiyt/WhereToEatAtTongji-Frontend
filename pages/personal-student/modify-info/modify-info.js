@@ -45,9 +45,8 @@ Page({
     var input_name = this.data.username;
     var signature = this.data.signature;
 
-    if (!signature || signature === "") {
+    if (!signature || signature === "") 
       signature = "暂未填写个性签名";
-    }
 
     if (!this.checkUsernameValidity(input_name) || !this.checkSignatureValidity(signature)) {
         return;
