@@ -321,6 +321,13 @@ Component({
                 console.log("回复评论 success");
             }).catch(error => {
                 // 请求失败时执行的操作
+                if (error.statusCode === 500) {
+                    wx.showToast({
+                        title: '含非法字符',
+                        icon: 'error',
+                        duration: 2000
+                      })
+                }
                 console.error("回复评论 null fail");
             });
     
@@ -394,6 +401,13 @@ Component({
                 // 请求失败时执行的操作
                 console.log(error)
                 console.error("评论帖子 fail");
+                if (error.statusCode === 500) {
+                    wx.showToast({
+                        title: '含非法字符',
+                        icon: 'error',
+                        duration: 2000
+                      })
+                }
               });
           }
 
