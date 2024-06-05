@@ -104,8 +104,8 @@ Page({
     }
 
     // 检查地址长度
-    if (address.length < 10 || address.length > 100) {
-        this.popover('错误', '地址长度应为10到100个字符', false);
+    if (address.length < 1 || address.length > 20) {
+        this.popover('错误', '地址长度应为1到20个字符', false);
         return false;
     }
 
