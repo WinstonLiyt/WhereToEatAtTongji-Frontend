@@ -264,6 +264,14 @@ Page({
   },
 
   addPost() {
+    if (wx.getStorageSync('token') === "" || wx.getStorageSync('token') === null) {
+      wx.showToast({
+        title: '游客无权限',
+        icon: 'error',
+        duration: 1800
+      })
+      return;
+    }
     wx.navigateTo({
         url: '/pages/add_post/add_post',
         fail: function(error) {
