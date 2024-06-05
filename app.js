@@ -28,9 +28,6 @@ App({
               url: '/pages/login/user_role_choice/user_role_choice',
             })
           }
-          else{
-            
-          }
         })
       }
     })

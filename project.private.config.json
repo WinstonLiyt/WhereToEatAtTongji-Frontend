@@ -3,7 +3,8 @@
   "projectname": "TJ%E4%BB%8A%E5%A4%A9%E5%90%83%E4%BB%80%E4%B9%882",
   "setting": {
     "compileHotReLoad": true,
-    "urlCheck": false
+    "urlCheck": false,
+    "preloadBackgroundData": true
   },
   "libVersion": "2.30.4"
 }
