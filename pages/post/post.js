@@ -53,7 +53,8 @@ Component({
     maskColor: "#fff2d9",
     noImage: "50%",
     hasLocation: true,
-    hasLabel: true
+    hasLabel: true,
+    disableBackgroundInput: true
   },
 
   /**
