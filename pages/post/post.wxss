@@ -290,10 +290,12 @@ page {
 }
 
 .parent-comment .comment-content .text {
+    word-wrap: break-word;
     max-width: 100% !important;
 }
 
 .child-comment .comment-content .text {
+    word-wrap: break-word;
     max-width: 96% !important;
 }
 
