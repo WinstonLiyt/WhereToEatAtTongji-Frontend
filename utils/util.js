@@ -40,7 +40,7 @@ const tjRequest = (options) =>{
         if(res.statusCode === 200 || res.statusCode == 204)
           resolve(res)
         else{
-          if(res.statusCode === 403){
+          if(res.statusCode === 401){
             wx.showModal({
               title: '登录提醒',
               content: '该功能需注册使用，是否注册？',
@@ -52,6 +52,14 @@ const tjRequest = (options) =>{
                     url: '/pages/login/user_role_choice/user_role_choice',
                   })
                 }
+              }
+            })
+          }
+          else if(res.statusCode === 403){
+            wx.showModal({
+              title: '警告',
+              content: '您的账号已被管理员封禁！',
+              complete: (res) => {
               }
             })
           }

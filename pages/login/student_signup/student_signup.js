@@ -13,6 +13,7 @@ Page({
   },
   onChooseAvatar(e) {
     const { avatarUrl } = e.detail 
+
     this.setData({
       avatarUrl,
     })
