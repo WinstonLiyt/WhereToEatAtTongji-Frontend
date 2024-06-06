@@ -109,8 +109,8 @@ Page({
         return false;
     }
 
-    // 检查是否包含非法字符（只允许中文、英文、数字、空格和常用标点）
-    if (/[^a-zA-Z0-9\u4e00-\u9fa5\s,.!?，。！？]/.test(address)) {
+    // 检查是否包含非法字符
+    if (/[^a-zA-Z0-9\u4e00-\u9fa5,.!?，。！？]/.test(address)) {
         this.popover('错误', '地址包含非法字符', false);
         return false;
     }
