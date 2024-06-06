@@ -160,7 +160,7 @@ Component({
             // 请求失败时执行的操作
               wx.showToast({
                   title: '标题或内容含非法字符',
-                  icon: 'error',
+                  icon: 'none',
                   duration: 2000
                 })
           
