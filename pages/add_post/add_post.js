@@ -158,6 +158,12 @@ Component({
             wx.navigateBack({})
           }).catch(error => {
             // 请求失败时执行的操作
+              wx.showToast({
+                  title: '标题或内容含非法字符',
+                  icon: 'error',
+                  duration: 2000
+                })
+          
             console.error("Create post fail");
           });
       },
