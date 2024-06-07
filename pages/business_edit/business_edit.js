@@ -28,6 +28,19 @@ Page({
     showDropdown: false
   },
 
+  validateIllegalCharacters: function(text) {
+    // 只允许中文、字母、数字和特定的标点符号
+    const illegalCharRegex = /[^a-zA-Z0-9\u4e00-\u9fa5,.!?，。！？]/;
+
+    return !illegalCharRegex.test(text);
+  },
+
+  validateIllegalCharacters_t: function(text) {
+    // 只允许中文、字母、数字和特定的标点符号
+    const illegalCharRegex = /[^a-zA-Z0-9\u4e00-\u9fa5,.!?，。！？:-]/;;
+    return !illegalCharRegex.test(text);
+  },
+
   getData() {
     const that = this;
     tjRequest({
@@ -88,12 +101,20 @@ Page({
       return '店铺名称不能为空';
     }
 
+    if (!this.validateIllegalCharacters(store_name)) {
+      return '店铺名称包含非法字符';
+    }
+
     if (store_name.length > 10) {
       return '店铺名称不能超过10个字';
     }
 
     if (!address) {
       return '店铺地址不能为空';
+    }
+
+    if (!this.validateIllegalCharacters(address)) {
+      return '店铺地址包含非法字符';
     }
 
     if (address.length > 20) {
@@ -103,6 +124,10 @@ Page({
     if (!telephone) {
       return '联系方式不能为空';
     }
+
+    if (!this.validateIllegalCharacters(telephone)) {
+      return '联系方式包含非法字符';
+    }
     
     if ((!mobilePhoneRegex.test(telephone) && !landlinePhoneRegex.test(telephone))) {
       return '联系方式不合法';
@@ -110,6 +135,10 @@ Page({
 
     if (!business_time) {
       return '营业时间不能为空';
+    }
+
+    if (!this.validateIllegalCharacters_t(business_time)) {
+      return '营业时间包含非法字符';
     }
 
     if (!timeRegex.test(business_time)) {
@@ -142,9 +171,12 @@ Page({
       }
     }
   
-
     if (!remark) {
       return '店铺简介不能为空';
+    }
+
+    if (!this.validateIllegalCharacters(remark)) {
+      return '店铺简介包含非法字符';
     }
 
     if (remark.length > 20) {

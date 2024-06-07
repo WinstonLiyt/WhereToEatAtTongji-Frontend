@@ -28,12 +28,25 @@ Page({
     });
   },
 
+  validateIllegalCharacters: function (text) {
+    const illegalCharRegex = /[^a-zA-Z0-9\u4e00-\u9fa5,.!?，。！？]/;
+    return !illegalCharRegex.test(text);
+  },
+
   sendReply: function(e) {
     let commentId = e.currentTarget.dataset.id;
     let replyContent = this.data.replyContent[commentId];
     if (!replyContent) {
       wx.showToast({
         title: '回复内容不能为空',
+        icon: 'none',
+        duration: 1000
+      });
+      return;
+    }
+    if (!this.validateIllegalCharacters(replyContent)) {
+      wx.showToast({
+        title: '回复内容包含非法字符',
         icon: 'none',
         duration: 1000
       });

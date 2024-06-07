@@ -121,12 +121,20 @@ Page({
     });
   },
 
+  validateIllegalCharacters: function(text) {
+    const illegalCharRegex = /[^a-zA-Z0-9\u4e00-\u9fa5,.!?，。！？]/;
+    return !illegalCharRegex.test(text);
+  },
+
   validateForm: function(name, price, description, image) {
     if (!name) {
       return '菜品名称不能为空';
     }
     if (name.length > 8) {
       return '菜品名称不能超过8个字';
+    }
+    if (!this.validateIllegalCharacters(name)) {
+      return '菜品名称包含非法字符';
     }
     if (!price || !/^\d+(\.\d+)?$/.test(price)) {
       return '菜品价格必须是有效的小数';
@@ -136,6 +144,9 @@ Page({
     }
     if (!description) {
       return '菜品描述不能为空';
+    }
+    if (!this.validateIllegalCharacters(description)) {
+      return '菜品描述包含非法字符';
     }
     if (description.length > 15) {
       return '菜品描述不能超过15个字';
