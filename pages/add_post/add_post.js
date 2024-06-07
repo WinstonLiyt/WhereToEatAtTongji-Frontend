@@ -17,7 +17,7 @@ Component({
       images: [],
       title: '', 
       thoughts: '',
-      label: "", 
+      label: '', 
       imgid: 0,
       realList: [],
       tempImageUrl: [],
@@ -41,6 +41,61 @@ Component({
      * 组件的方法列表
      */
     methods: {
+      onLoad() {
+        utils.tjRequest({
+            url: "/posts/get_draft/",
+            method: "get",
+        }).then(response => {
+          console.log(response)
+          for (var i = 0;i < response.data.images.length; i++) {
+            response.data.images[i] = utils.base_url + response.data.images[i];
+          }
+          this.setData({
+            thoughts: response.data.content,
+            label: response.data.label,
+            title: response.data.title,
+            location: response.data.ip,
+            images: response.data.images
+        })
+          
+        }).catch(error => {
+          // 请求失败时执行的操作
+            wx.showToast({
+                title: '加载草稿失败',
+                icon: 'none',
+                duration: 2000
+              })
+          console.error("Load draft fail");
+        });
+      },
+      async onUnload() {
+        //   console.log("hhh")
+        await this.updateImageNames(this.data.images)
+        var draftJson = {
+            images:this.data.tempImageUrlChanged,
+            ip: this.data.location,
+            title: this.data.title,
+            content: this.data.thoughts,
+            label: this.data.label
+          };
+          console.log(draftJson)
+        
+        utils.tjRequest({
+            url: "/posts/save_draft/",
+            method: "post",
+            data: draftJson
+        }).then(response => {
+          console.log("存储草稿成功")
+        }).catch(error => {
+          // 请求失败时执行的操作
+            wx.showToast({
+                title: '存储草稿失败',
+                icon: 'none',
+                duration: 2000
+              })
+          console.error("Save draft fail");
+        });
+      },
       post(){
         var that = this;
         /**
@@ -92,21 +147,21 @@ Component({
             // 使用正则表达式匹配所有以#开头的标签
             let trimmedStr = value.trim();
 
-            if (trimmedStr[0] !== "#") {
-                wx.showToast({
-                  title: '请以 # 开头',
-                  icon: "error"
-                })
-                this.data.labelLegal = false;
-            }
-            else {
-                this.data.labelLegal = true;
-            }
+            // if (trimmedStr[0] !== "#") {
+            //     wx.showToast({
+            //       title: '请以 # 开头',
+            //       icon: "error"
+            //     })
+            //     this.data.labelLegal = false;
+            // }
+            // else {
+            //     this.data.labelLegal = true;
+            // }
 
-            let splitStr = trimmedStr.split("#").filter(Boolean).map(s => s.trim());
-            console.log(splitStr)
+            // let splitStr = trimmedStr.split("#").filter(Boolean).map(s => s.trim());
+            // console.log(splitStr)
             this.setData({
-                [id]: splitStr[0]
+                label: trimmedStr
             });
         } else {
             // 更新标题或想法
@@ -133,13 +188,13 @@ Component({
               })
               return;
         }
-        if (!this.data.labelLegal) {
-            wx.showToast({
-                title: '标签以 # 开头',
-                icon: "error"
-              })
-              return;
-        }
+        // if (!this.data.labelLegal) {
+        //     wx.showToast({
+        //         title: '标签以 # 开头',
+        //         icon: "error"
+        //       })
+        //       return;
+        // }
         var contentJson = {
             images:this.data.tempImageUrlChanged,
             ip: this.data.location,
