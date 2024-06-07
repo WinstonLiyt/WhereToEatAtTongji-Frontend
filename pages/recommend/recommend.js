@@ -41,6 +41,12 @@ Page({
     const combinedList = [...first, ...shuffledList]; // 拼接到目标列表并截取指定数量元素
     return combinedList;
   },
+  linkFood(){
+    console.log(this.demo)
+    wx.navigateTo({
+      url: '/pages/browse/food_page/food_page?storeid=' + 0 +'&foodid=' + this.data.demo.id
+    })
+  },
   getRandomRecommend(){
     this.reset('storeAnimationData');
     setTimeout(()=>{
