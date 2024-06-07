@@ -23,8 +23,8 @@
                 <text class="title">{{item.title}}</text>
             </view>
 
-            <view class="image-box ml-med mr-med mb-med" wx:if="{{item.images.length > 0}}" >
-                <image mode='aspectFit' wx:for="{{item.imageDisplay}}" src="{{item}}" wx:key="url" class="bdr-med" bindtap="ViewImage" data-current="{{item}}"></image>
+            <view class="image-box ml-med mr-med mb-med" wx:if="{{item.images.length > 0}}" bindtap="onTapPostDetail" data-postid="{{ item.id }}" data-isuser="{{ item.is_user }}" data-upvoted="{{ item.upvoted }}" data-stared="{{ item.stared }}"  data-numupvotes="{{ item.num_upvotes }}" data-numstars = "{{ item.num_stars }}">
+                <image mode='aspectFit' wx:for="{{item.imageDisplay}}" src="{{item}}" wx:key="url" class="bdr-med" catchtap="ViewImage" data-current="{{item}}"></image>
             </view>
 
             <view class="bottom-box ml-med mr-med mb-med">

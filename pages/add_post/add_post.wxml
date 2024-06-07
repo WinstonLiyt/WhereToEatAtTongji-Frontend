@@ -3,13 +3,13 @@
     <view>
         <view class='edit-footer mb-max' style="padding: 60rpx 60rpx 0 60rpx;">
             <view class='footer-row'>
-                <textarea class='edit-title' placeholder='输入你的标题...' placeholder-style="color: var(--secondary-color)" bindinput="getInputValue" value="{{content}}" id="title"></textarea>
+                <textarea class='edit-title' placeholder='输入你的标题...' placeholder-style="color: var(--secondary-color)" bindinput="getInputValue" value="{{title}}" id="title"></textarea>
             </view>
         </view>
         <view class='edit-main' style="padding: 0rpx 60rpx 75rpx 60rpx;">
-            <textarea class='edit-text mb-max' placeholder='这一刻的想法...'  placeholder-style="color: var(--secondary-color)" bindinput="getInputValue" value="{{content}}" id="thoughts"></textarea>
-            <input class='edit-label mb-max' placeholder='输入一个标签(以#开头)...' placeholder-class="placeholderInput" bindinput="getInputValue" value="{{content}}" id="label"></input>
-            <input class='edit-label mb-max' placeholder='输入地址...' placeholder-class="placeholderInput" bindinput="getInputValue" value="{{content}}" id="location"></input>
+            <textarea class='edit-text mb-max' placeholder='这一刻的想法...'  placeholder-style="color: var(--secondary-color)" bindinput="getInputValue" value="{{thoughts}}" id="thoughts"></textarea>
+            <input class='edit-label mb-max' placeholder='输入一个标签(以#开头)...' placeholder-class="placeholderInput" bindinput="getInputValue" value="{{label}}" id="label"></input>
+            <input class='edit-label mb-max' placeholder='输入地址...' placeholder-class="placeholderInput" bindinput="getInputValue" value="{{location}}" id="location"></input>
             <view class='edit-img mb-max'>
                 <view wx:for="{{images}}"  wx:key="index"  data-url="{{images[index]}}">
                     <view class="image-box" style="position: relative; max-width: 210rpx;">

@@ -53,7 +53,8 @@ Component({
     maskColor: "#fff2d9",
     noImage: "50%",
     hasLocation: true,
-    hasLabel: true
+    hasLabel: true,
+    disableBackgroundInput: true
   },
 
   /**
@@ -100,6 +101,9 @@ Component({
                 postData.time = this.datetimeConverter(postData.time)
 
                 for (var j = 0; j < postData.images.length; j++) {
+                    if (postData.images[j].startsWith("https://tjeatwhat.cn/media/images/")) {
+                        continue;
+                    }
                     postData.images[j] = utils.base_url + postData.images[j]
                  }
 

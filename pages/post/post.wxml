@@ -51,7 +51,7 @@
                 <view class="search_in">
                     <image src="{{post.user_avatar}}" mode="widthFix"></image>
                     <!-- <input type="text" placeholder="发表评论"  placeholder-class="mid-make-comment"  bindconfirm="onConfirmMakeComments"/> -->
-                    <input type="text" placeholder="发表评论"  placeholder-class="mid-make-comment"  bindtap="makeComments"  data-id="{{ 0 }}"/>
+                    <input type="text" placeholder="发表评论"  placeholder-class="mid-make-comment"  bindtap="makeComments"  data-id="{{ 0 }}"  disabled="{{disableBackgroundInput}}"/>
                     
                 </view>
             </view>
@@ -133,7 +133,7 @@
             <view class="tabbar-comment">
                 <view class="tabbar-comment_in">
                     <!-- <input type="text" placeholder="发表评论" placeholder-class="tabbar-make-comment" bindconfirm="onConfirmMakeComments"/> -->
-                    <input type="text" placeholder="发表评论" placeholder-class="tabbar-make-comment" bindtap="makeComments" data-id="{{ 0 }}" />
+                    <input type="text" placeholder="发表评论" placeholder-class="tabbar-make-comment" bindtap="makeComments" data-id="{{ 0 }}"  disabled="{{disableBackgroundInput}}"/>
                 </view>
             </view>
 
