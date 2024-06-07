@@ -32,16 +32,21 @@ Page({
         }
     }).then(response => {
         for (var i = 0;i < response.data.posts.length; i++) {
+            
             response.data.posts[i].user_avatar = utils.base_image_url + "avatar/" + response.data.posts[i].user_avatar
             response.data.posts[i].time = this.datetimeConverter(response.data.posts[i].time)
             for (var j = 0; j < response.data.posts[i].images.length; j++) {
+                // console.log(response.data.posts[i].images[j])
+                if (response.data.posts[i].images[j].startsWith("https://tjeatwhat.cn/media/images/")) {
+                    continue;
+                }
                 response.data.posts[i].images[j] = utils.base_url + response.data.posts[i].images[j]
              }
              response.data.posts[i]["imageDisplay"] = response.data.posts[i].images.slice(0, Math.min(2, response.data.posts[i].images.length))
              response.data.posts[i]["hasLabel"] = (response.data.posts[i].label === "")? false : true;
             //  console.log(response.data.posts[i]["hasLabel"])
         }
-        // console.log(response.data.posts)
+        console.log(response.data.posts)
         this.setData({
             posts: response.data.posts
         })
@@ -84,6 +89,9 @@ Page({
             response.data.posts[i].user_avatar = utils.base_image_url + "avatar/" + response.data.posts[i].user_avatar
             response.data.posts[i].time = this.datetimeConverter(response.data.posts[i].time)
             for (var j = 0; j < response.data.posts[i].images.length; j++) {
+                if (response.data.posts[i].images[j].startsWith("https://tjeatwhat.cn/media/images/")) {
+                    continue;
+                }
                 response.data.posts[i].images[j] = utils.base_url + response.data.posts[i].images[j]
              }
              response.data.posts[i]["imageDisplay"] = response.data.posts[i].images.slice(0, Math.min(2, response.data.posts[i].images.length))
@@ -205,6 +213,9 @@ Page({
             response.data.posts[i].user_avatar = utils.base_image_url + "avatar/" + response.data.posts[i].user_avatar
             response.data.posts[i].time = this.datetimeConverter(response.data.posts[i].time)
             for (var j = 0; j < response.data.posts[i].images.length; j++) {
+                if (response.data.posts[i].images[j].startsWith("https://tjeatwhat.cn/media/images/")) {
+                    continue;
+                }
                 response.data.posts[i].images[j] = utils.base_url + response.data.posts[i].images[j]
              }
              response.data.posts[i]["imageDisplay"] = response.data.posts[i].images.slice(0, Math.min(2, response.data.posts[i].images.length))
@@ -235,6 +246,9 @@ Page({
           response.data.posts[i].user_avatar = utils.base_image_url + "avatar/" + response.data.posts[i].user_avatar
           response.data.posts[i].time = this.datetimeConverter(response.data.posts[i].time)
           for (var j = 0; j < response.data.posts[i].images.length; j++) {
+            if (response.data.posts[i].images[j].startsWith("https://tjeatwhat.cn/media/images/")) {
+                continue;
+            }
             response.data.posts[i].images[j] = utils.base_url + response.data.posts[i].images[j]
          }
          response.data.posts[i]["imageDisplay"] = response.data.posts[i].images.slice(0, Math.min(2, response.data.posts[i].images.length))

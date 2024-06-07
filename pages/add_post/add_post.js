@@ -48,6 +48,9 @@ Component({
         }).then(response => {
           console.log(response)
           for (var i = 0;i < response.data.images.length; i++) {
+              if (response.data.images[i].startsWith("https://tjeatwhat.cn/media/images/")) {
+                  continue
+              }
             response.data.images[i] = utils.base_url + response.data.images[i];
           }
           this.setData({
@@ -171,7 +174,9 @@ Component({
         }
       },
       async onTapShare() {
+          console.log(this.data.images)
         await this.updateImageNames(this.data.images)
+        // console.log(this.data.tempImageUrlChanged)
         console.log(this.data.tempImageUrlChanged)
 
         if (this.data.fileTooLarge) {
@@ -202,6 +207,7 @@ Component({
             content: this.data.thoughts,
             label: this.data.label
           };
+          console.log(contentJson)
 
           // 测试创造帖子！！！！！！！！
           utils.tjRequest({
@@ -227,12 +233,19 @@ Component({
         let tempImageUrlChanged = [];
         for (const src of imagePaths) {
           try {
-            const response = await utils.tjFileUpLoad({
-              url: "/image/",
-              filePath: src,
-            });
-            const newName = JSON.parse(response.data).new_name;
-            tempImageUrlChanged.push(newName);
+              console.log(src)
+              if (src.startsWith("https://tjeatwhat.cn/media/images/")) {
+                tempImageUrlChanged.push(src);
+              }
+              else {
+                const response = await utils.tjFileUpLoad({
+                    url: "/image/",
+                    filePath: src,
+                  });
+                  const newName = JSON.parse(response.data).new_name;
+                  tempImageUrlChanged.push(newName);
+              }
+            
           } catch (error) {
             wx.showToast({
                 title: '图片过大',
