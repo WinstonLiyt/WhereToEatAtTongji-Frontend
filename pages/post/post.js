@@ -188,6 +188,7 @@ Component({
             //获取上一个页面的所有的方法和data中的数据
             var lastpage = pages[pages.length - 2]
             //改变上一个页面中的data中的数据
+            console.log()
             for (var i  = 0; i < lastpage.data.posts.length; i++) {
                 if (lastpage.data.posts[i].id == this.data.post_id) {
                     var temp = lastpage.data.posts
@@ -327,7 +328,7 @@ Component({
                 // 请求失败时执行的操作
                 if (error.statusCode === 500) {
                     wx.showToast({
-                        title: '含非法字符',
+                        title: '发布评论失败',
                         icon: 'error',
                         duration: 2000
                       })
@@ -355,6 +356,17 @@ Component({
         }
 
           var content = this.data.tempCommentContent
+
+          if (!this.checkVdility(content)) {
+            console.log("yyyyyyyyyyyyyyyyyyyy")
+            wx.showToast({
+                title: '内容含有非法字符',
+                icon: 'none',
+                duration: 2000
+              })
+            return;
+        }
+
           if (this.data.tempCommentType > 0) {
             // 对评论的评论
             this.onTapReply(
@@ -367,6 +379,7 @@ Component({
             )
           }
           else if (this.data.tempCommentType == 0) {
+            
              // 对post的评论
              utils.tjRequest({
                  url: "/posts/comment/",
@@ -407,7 +420,7 @@ Component({
                 console.error("评论帖子 fail");
                 if (error.statusCode === 500) {
                     wx.showToast({
-                        title: '含非法字符',
+                        title: '发布评论失败',
                         icon: 'error',
                         duration: 2000
                       })
@@ -548,8 +561,6 @@ Component({
                         } else {
                             tempComments[parent_comment_index].children.splice(child_array_index, 1)
                         }
-
-        
                         this.setData({
                             comments: tempComments
                         })
@@ -563,7 +574,6 @@ Component({
               })
         },
         onTapPostReaction(e) {
-
             var reaction_name = e.currentTarget.id;
             console.log(e)
 
@@ -578,8 +588,6 @@ Component({
                 this.data.post.num_stars += (this.data.stared)? 1 : -1;
                 change = this.data.stared;
             }
-
-
 
         // 后端检查是否更改成功
             utils.tjRequest({
@@ -648,6 +656,12 @@ Component({
                 current: e.currentTarget.dataset.current
             });
         },
+        checkVdility(str) {
+            if (/[^a-zA-Z0-9\u4e00-\u9fa5,.!?，。！？]/.test(str)) {
+                return false;
+            }
+            return true;
+          }
     }
     
 })

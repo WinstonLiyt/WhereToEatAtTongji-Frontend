@@ -87,5 +87,23 @@ Page({
         // res.eventChannel.emit('postDetail', { data: postData })
       }
     })
-}
+},
+    testStarList() {
+        wx.navigateTo({
+            url: '/pages/starlist/starlist',
+            success: function (res) {
+              // 通过eventChannel向被打开页面传送数据
+              // res.eventChannel.emit('postDetail', { data: postData })
+            }
+          })
+    },
+    testPostList() {
+        wx.navigateTo({
+            url: '/pages/postlist/postlist',
+            success: function (res) {
+              // 通过eventChannel向被打开页面传送数据
+              // res.eventChannel.emit('postDetail', { data: postData })
+            }
+          })
+    }
 });

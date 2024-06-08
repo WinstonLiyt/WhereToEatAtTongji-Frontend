@@ -20,6 +20,8 @@
     "pages/business_show/business_show",
     "pages/business_comment/businesss_comment",
     "pages/notification/notification",
+    "pages/starlist/starlist",
+    "pages/postlist/postlist",
     "pages/administrator/user_list/user_list"
   ],
   "tabBar": {

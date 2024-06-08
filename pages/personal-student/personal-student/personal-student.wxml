@@ -37,10 +37,24 @@
   <progress class="experience-progress" percent="{{progRatio}}" color="{{tokenCardColor[tokenCardType]}}" stroke-width="5" />
 </view>
 
-<view bindtap="testNotification" class="notification mr-max ml-max bdr-max">
+<view bindtap="testNotification" class="notification mr-max ml-max bdr-max mb-max">
     <image src="../../../statics/imgs/personal/notif.png" mode="widthFix" class="avatar"></image>
     <view class="content">
         <text> 通知信息 </text>
+    </view>
+</view>
+
+<view bindtap="testStarList" class="notification mr-max ml-max bdr-max mb-max">
+    <image src="../../../statics/imgs/community/post/star_selected.png" mode="widthFix" class="avatar"></image>
+    <view class="content">
+        <text> 收藏列表 </text>
+    </view>
+</view>
+
+<view bindtap="testPostList" class="notification mr-max ml-max bdr-max">
+    <image src="../../../statics/imgs/community/post/location.png" mode="widthFix" class="avatar"></image>
+    <view class="content">
+        <text> 个人帖子 </text>
     </view>
 </view>
 
