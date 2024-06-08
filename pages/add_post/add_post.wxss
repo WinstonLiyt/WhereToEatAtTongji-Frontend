@@ -101,7 +101,7 @@ page {
     font-size: 13pt;
 }
 
-.footer-row textarea {
+.footer-row input {
     height: 100rpx;
     width: 100%;
 
