@@ -78,7 +78,7 @@ Page({
     // const sensitiveWords = ["badword1", "badword2", "badword3"];
     // 检查长度
     if (username.length < 1 || username.length > 16) {
-        this.popover('错误', '用户名必须为小于16个字符', false);
+        this.popover('错误', '用户名必须介于1到16个字符间', false);
         return false;
     }
     // 检查是否包含非法字符（这里只允许中文、字母、数字和下划线）
@@ -96,13 +96,18 @@ Page({
     }
     return true;
   },
-  checkSignatureValidity(username) {
+  checkSignatureValidity(signature) {
     // 敏感词列表
     // const sensitiveWords = ["badword1", "badword2", "badword3"];
 
+    if (/[^a-zA-Z0-9\u4e00-\u9fa5,.!?，。！？]/.test(signature)) {
+      this.popover('错误', '签名包含非法字符', false);
+      return false;
+    }
+
     // 检查是否包含敏感词汇
     for (let i = 0; i < util.sensitiveWords.length; i++) {
-        if (username.includes(util.sensitiveWords[i])) {
+        if (signature.includes(util.sensitiveWords[i])) {
             this.popover('错误', `签名包含敏感词汇`, false);
             return false;
         }
