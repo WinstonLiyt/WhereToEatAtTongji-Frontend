@@ -79,6 +79,7 @@ const tjFileUpLoad = (options) =>{
     } catch{
       token = null
     }
+
     wx.uploadFile({
       url: base_url + options.url,
       filePath: options.filePath || '',

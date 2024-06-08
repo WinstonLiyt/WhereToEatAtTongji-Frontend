@@ -41,6 +41,13 @@ Page({
         duration: 1000
       })
     }
+    else if(parseInt(this.data.credit)< 0){
+      wx.showToast({
+        title: '经验值不能小于0',
+        icon: 'none',
+        duration: 1000
+      })
+    }
     else{
       var that = this;
       const option_ = {
