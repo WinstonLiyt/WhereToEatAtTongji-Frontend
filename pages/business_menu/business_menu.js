@@ -159,6 +159,12 @@ Page({
     if (!validExtensions.includes(imageExtension)) {
       return '菜品图片格式不正确，请上传.jpg或.png格式的图片';
     }
+    // Check for duplicate name
+    const { foods, isEditing, editingId } = this.data;
+    const duplicate = foods.some(food => food.name === name && (!isEditing || food.id !== editingId));
+    if (duplicate) {
+        return '菜品名称不能重复';
+    }
     return '';
   },
 
