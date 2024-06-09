@@ -5,7 +5,7 @@
         <view class="post-item  bdr-max" wx:for="{{notifications}}" wx:key="id" bindtap="toPost" data-postid="{{item.post_id}}" data-upvoted="{{item.upvoted}}" data-stared="{{item.stared}}" >
             <view class="icon-box">
                 <image class="avatar" src="{{item.user_avatar}}" mode="widthFix"></image>
-                <image class="icon" src="../../statics/imgs/community/post/star_selected.png" mode="widthFix"></image>
+                <!-- <image class="icon" src="../../statics/imgs/community/post/star_selected.png" mode="widthFix"></image> -->
             </view>
 
             <view class="reaction-content">

@@ -66,7 +66,8 @@ page {
 .no-content {
     position: absolute;
     top: 40%;
-    left: 30%;
+    left: 0%;
+    width: 100%;
 }
 
 .no-content text {
@@ -74,3 +75,15 @@ page {
     font-size: var(--fontsize-h3);
     color: var(--secondary-color);
 }
+
+.floating-btn {
+    position: fixed;
+    bottom: 5%; /* 距离底部的距离 */
+    right: 5%; /* 距离右侧的距离 */
+    width: 75rpx; /* 圆的直径 */
+    height: 75rpx; /* 圆的直径 */
+    border-radius: 50%; /* 圆形 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

@@ -40,6 +40,7 @@ page {
   .search input {
     margin-left: 25rpx;
     width: 80%;
+    height: 100%;
   }
   .search_in .search_btn {
     height: 80rpx;

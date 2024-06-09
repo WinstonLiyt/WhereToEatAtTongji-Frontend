@@ -7,7 +7,6 @@
                 <image class="avatar" src="{{item.user_avatar}}" mode="widthFix"></image>
                 <image class="icon" src="{{ item.category == 0 ?  '../../statics/imgs/community/post/upvote_selected.png': item.category == 1 ? '../../statics/imgs/community/post/star_selected.png': '../../statics/imgs/community/post/comment_selected.png'}}" mode="widthFix"></image>
             </view>
-
             <view class="reaction-content">
                 <view style="display: flex; ">
                     <text class="mr-min" style="display: inline-block; max-width: 280rpx; overflow:hidden;  white-space: nowrap; text-overflow:ellipsis;">用户 {{item.user_name}} </text> <text style="color: var(--secondary-color); font-weight: var(--fontweight-bold);">  {{ item.category == 0 ?  '给你点赞': item.category == 1 ? '收藏了你的帖子': '回复了你'}}</text>
@@ -23,5 +22,10 @@
 </view>
 
 <view class="no-content" style="display: {{ isEmpty }};">
-    <text>通知空空如也~</text>
+    <view style="display: flex; justify-content: center; width: 100%; height: 100%;" ><text>通知空空如也~</text></view>
+    <view style="display: flex; justify-content: center; width: 100%; height: 100%;"><text>(只展示未查看的消息)</text></view>
 </view>
+
+<view class="floating-btn" bindtap="helper" hidden="{{btnHidden}}">
+    <image src="../../statics/imgs/community/question.png" mode="widthFix" class="avatar"></image>
+  </view>
