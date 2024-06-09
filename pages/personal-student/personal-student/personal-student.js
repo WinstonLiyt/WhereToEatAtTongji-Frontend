@@ -5,7 +5,7 @@ Page({
     tokenCardName: ['', '绿牌', '蓝牌', '黄牌'],
     tokenCardColor: ['', 'rgb(50, 109, 74)', 'rgb(50, 64, 109)', 'rgb(110, 91, 55)'],
     tokenCardClass: ['', 'green', 'blue', 'yellow'],
-    tokenCardDesc: ['', '仅能浏览帖子，无法进行评价', '普通用户，享有小程序所有功能', '深度用户，优先推荐您的内容'],
+    tokenCardDesc: ['', '游客，仅能浏览帖子', '普通用户，享有所有功能', '深度用户，优先推荐内容'],
     username: "游客用户",
     avatar: util.base_url + '/media/avatar/default.jpg',
     signature: "注册使用个性签名",
@@ -87,5 +87,23 @@ Page({
         // res.eventChannel.emit('postDetail', { data: postData })
       }
     })
-}
+},
+    testStarList() {
+        wx.navigateTo({
+            url: '/pages/starlist/starlist',
+            success: function (res) {
+              // 通过eventChannel向被打开页面传送数据
+              // res.eventChannel.emit('postDetail', { data: postData })
+            }
+          })
+    },
+    testPostList() {
+        wx.navigateTo({
+            url: '/pages/postlist/postlist',
+            success: function (res) {
+              // 通过eventChannel向被打开页面传送数据
+              // res.eventChannel.emit('postDetail', { data: postData })
+            }
+          })
+    }
 });

@@ -32,7 +32,6 @@ Page({
         }
     }).then(response => {
         for (var i = 0;i < response.data.posts.length; i++) {
-            
             response.data.posts[i].user_avatar = utils.base_image_url + "avatar/" + response.data.posts[i].user_avatar
             response.data.posts[i].time = this.datetimeConverter(response.data.posts[i].time)
             for (var j = 0; j < response.data.posts[i].images.length; j++) {
@@ -54,6 +53,13 @@ Page({
         console.log("Search content success");
     }).catch(error => {
         // 请求失败时执行的操作
+        if (error.statusCode === 500) {
+            wx.showToast({
+                title: '含非法字符',
+                icon: 'error',
+                duration: 2000
+              })
+            }
         console.error("Search content fail");
     });
 
@@ -70,6 +76,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+      console.log("onShow INVOKED")
+      console.log(this.data.search_value)
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({
@@ -82,7 +90,7 @@ Page({
         url: "/posts/search/",
         method: "post",
         data: {
-            content: ""
+            content: this.data.search_value
         }
     }).then(response => {
         for (var i = 0;i < response.data.posts.length; i++) {
@@ -104,6 +112,14 @@ Page({
       console.log("Search content success");
     }).catch(error => {
       // 请求失败时执行的操作
+      if (error.statusCode === 500) {
+        wx.showToast({
+            title: '含非法字符',
+            icon: 'error',
+            duration: 2000
+          })
+    }
+      
       console.error("Search content fail");
     });
   },
@@ -228,6 +244,13 @@ Page({
         console.log("Search content success");
       }).catch(error => {
         // 请求失败时执行的操作
+        if (error.statusCode === 500) {
+            wx.showToast({
+                title: '含非法字符',
+                icon: 'error',
+                duration: 2000
+              })
+            }
         console.error("Search content fail");
       });
   },
@@ -260,6 +283,13 @@ Page({
       console.log("Search content success");
     }).catch(error => {
       // 请求失败时执行的操作
+      if (error.statusCode === 500) {
+        wx.showToast({
+            title: '含非法字符',
+            icon: 'error',
+            duration: 2000
+          })
+        }
       console.error("Search content fail");
     });
   },

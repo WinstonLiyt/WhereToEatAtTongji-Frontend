@@ -34,7 +34,7 @@ Component({
             })
 
             utils.tjRequest({
-                url: "/posts/load_msg/",
+                url: "/posts/load_starlist/",
                 method: "get"
             }).then(response => {
                 console.log(response.data);
@@ -77,16 +77,16 @@ Component({
          * 生命周期函数--监听页面卸载
          */
         onUnload() {
-            console.log("ooo")
-            utils.tjRequest({
-                url: "/posts/delete_msg/",
-                method: "delete"
-            }).then(response => {
-                console.log(response)
-            }).catch(error => {
-                // 请求失败时执行的操作
-                console.error("Search content fail");
-            });
+            // console.log("ooo")
+            // utils.tjRequest({
+            //     url: "/posts/delete_msg/",
+            //     method: "delete"
+            // }).then(response => {
+            //     console.log(response)
+            // }).catch(error => {
+            //     // 请求失败时执行的操作
+            //     console.error("Search content fail");
+            // });
         },
     
         /**
@@ -107,6 +107,23 @@ Component({
          */
         onShareAppMessage() {
     
+        },
+        toPost(e) {
+            console.log("toPost")
+            var targetPostId = e.currentTarget.dataset.postid;
+            var upvoted = e.currentTarget.dataset.upvoted;
+            var stared = e.currentTarget.dataset.stared;
+            wx.navigateTo({
+                url: '/pages/post/post?post_id=' + JSON.stringify({
+                    post_id: targetPostId, 
+                    is_user: false,
+                    upvoted: upvoted,
+                    stared: true,
+                }),
+                fail: function(error) {
+                    console.error('rfailed', error);
+                }
+            })
         }
    }
 })

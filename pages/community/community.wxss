@@ -8,8 +8,8 @@ page {
 }
 
 .main {
-  height: calc(100% - 60px - const(safe-area-inset-bottom));
-  height: calc(100% - 60px - env(safe-area-inset-bottom));
+  height: calc(100% - 120rpx - const(safe-area-inset-bottom));
+  height: calc(100% - 120rpx - env(safe-area-inset-bottom));
   overflow: scroll;
   width: 100%;
 }

@@ -24,7 +24,8 @@ Component({
       tempContentJson: {},
       tempImageUrlChanged:[],
       labelLegal: true,
-      fileTooLarge: false
+      fileTooLarge: false,
+      isPosted: false
     },
     /**
      * 组件生命周期
@@ -72,32 +73,73 @@ Component({
         });
       },
       async onUnload() {
-        //   console.log("hhh")
-        await this.updateImageNames(this.data.images)
-        var draftJson = {
-            images:this.data.tempImageUrlChanged,
-            ip: this.data.location,
-            title: this.data.title,
-            content: this.data.thoughts,
-            label: this.data.label
-          };
-          console.log(draftJson)
-        
-        utils.tjRequest({
-            url: "/posts/save_draft/",
-            method: "post",
-            data: draftJson
-        }).then(response => {
-          console.log("存储草稿成功")
-        }).catch(error => {
-          // 请求失败时执行的操作
+        if (!this.checkVdility(this.data.location)) {
             wx.showToast({
-                title: '存储草稿失败',
+                title: '位置信息含非法字符，存储位置信息失败',
                 icon: 'none',
                 duration: 2000
               })
-          console.error("Save draft fail");
-        });
+            // return;
+        }
+
+        if (!this.checkVdility(this.data.title)) {
+            wx.showToast({
+                title: '标题含非法字符，存储标题失败',
+                icon: 'none',
+                duration: 2000
+              })
+            // return;
+        }
+
+        if (!this.checkVdility(this.data.thoughts)) {
+            wx.showToast({
+                title: '内容含非法字符，存储内容失败',
+                icon: 'none',
+                duration: 2000
+              })
+            // return;
+        }
+
+        console.log(this.data.label)
+        if (!this.checkVdility(this.data.label)) {
+            console.log("yyyyyyyyyyyyyyyyyyyy")
+            wx.showToast({
+                title: '标签含非法字符，存储标签失败',
+                icon: 'none',
+                duration: 2000
+              })
+            // return;
+        }
+        
+          if (!this.data.isPosted) {
+            await this.updateImageNames(this.data.images)
+            var draftJson = {
+                images:this.data.tempImageUrlChanged,
+                ip: this.checkVdility(this.data.location)? this.data.location: "",
+                title: this.checkVdility(this.data.title)? this.data.title: "",
+                content: this.checkVdility(this.data.thoughts)? this.data.thoughts: "",
+                label: this.checkVdility(this.data.label)? this.data.label: ""
+              };
+              console.log(draftJson)
+            
+            utils.tjRequest({
+                url: "/posts/save_draft/",
+                method: "post",
+                data: draftJson
+            }).then(response => {
+              console.log("存储草稿成功")
+            }).catch(error => {
+              // 请求失败时执行的操作
+                wx.showToast({
+                    title: '存储草稿失败',
+                    icon: 'none',
+                    duration: 2000
+                  })
+              console.error("Save draft fail");
+            });
+          }
+        //   console.log("hhh")
+        
       },
       post(){
         var that = this;
@@ -193,6 +235,44 @@ Component({
               })
               return;
         }
+
+        if (!this.checkVdility(this.data.location)) {
+            wx.showToast({
+                title: '位置信息含非法字符，发布位置信息失败',
+                icon: 'none',
+                duration: 2000
+              })
+            return;
+        }
+
+        if (!this.checkVdility(this.data.title)) {
+            wx.showToast({
+                title: '标题含非法字符，发布标题失败',
+                icon: 'none',
+                duration: 2000
+              })
+            return;
+        }
+
+        if (!this.checkVdility(this.data.thoughts)) {
+            wx.showToast({
+                title: '内容含非法字符，发布内容失败',
+                icon: 'none',
+                duration: 2000
+              })
+            return;
+        }
+
+        console.log(this.data.label)
+        if (!this.checkVdility(this.data.label)) {
+            console.log("yyyyyyyyyyyyyyyyyyyy")
+            wx.showToast({
+                title: '标签含非法字符，发布标签失败',
+                icon: 'none',
+                duration: 2000
+              })
+            return;
+        }
         // if (!this.data.labelLegal) {
         //     wx.showToast({
         //         title: '标签以 # 开头',
@@ -216,11 +296,14 @@ Component({
               data: contentJson,
           }).then(response => {
             console.log("Create post success");
+            this.setData({
+                isPosted: true
+            })
             wx.navigateBack({})
           }).catch(error => {
             // 请求失败时执行的操作
               wx.showToast({
-                  title: '标题或内容含非法字符',
+                  title: '发布失败',
                   icon: 'none',
                   duration: 2000
                 })
@@ -259,6 +342,12 @@ Component({
         this.setData({
           tempImageUrlChanged: tempImageUrlChanged,
         });
+      },
+      checkVdility(str) {
+        if (/[^a-zA-Z0-9\u4e00-\u9fa5,.!?，。！？\n]/.test(str)) {
+            return false;
+        }
+        return true;
       }
     }
   })

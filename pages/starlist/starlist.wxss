@@ -1,0 +1,76 @@
+/* pages/notification/notification.wxss */
+page {
+    background-color: var(--tertiary-color);
+    height: 100%;
+    z-index: 0;
+}
+
+.main {
+    /* height: 100%; */
+    z-index: 5;
+    position: absolute;
+    width: 100%;
+}
+
+
+.posts {
+    display: flex;
+    flex-direction: column;
+    gap: 40rpx;
+    height: 100%;
+    background-color: var(--tertiary-color);
+}
+.posts .post-item {
+    background-color: var(--card-background);
+    /* width: 100%; */
+
+    display: flex;
+
+    gap: 40rpx;
+    box-shadow:0 3rpx 3rpx 3rpx var(--primary-color);
+
+    padding: 30rpx 30rpx;
+
+}
+
+
+/* icon */
+
+.icon-box {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.icon-box .avatar {
+    width: 100rpx;
+    border-radius: 100rpx;
+}
+
+.icon-box .icon {
+    width: 40rpx;
+    position: absolute;
+    right: -10rpx;
+    bottom: 0;
+}
+
+
+
+/* content */
+.reaction-content {
+    display: flex;
+    align-items: center;
+}
+
+
+.no-content {
+    position: absolute;
+    top: 40%;
+    left: 30%;
+}
+
+.no-content text {
+    font-size: var(--fontweight-bold);
+    font-size: var(--fontsize-h3);
+    color: var(--secondary-color);
+}

@@ -1,46 +1,62 @@
-<view class="userinfo">
-  <view class="userinfo-left">
-    <image class="userinfo-avatar" src="{{avatar}}" mode="aspectFit"></image>
-    <view class="userinfo-text">
-      <text class="userinfo-nickname">{{username}}</text>
-      <text class="userinfo-signature">{{signature}}</text>
+<view class="main">
+  <view class="userinfo">
+    <view class="userinfo-left">
+      <image class="userinfo-avatar" src="{{avatar}}" mode="aspectFit"></image>
+      <view class="userinfo-text">
+        <text class="userinfo-nickname">{{username}}</text>
+        <text class="userinfo-signature">{{signature}}</text>
+      </view>
     </view>
+    <image bindtap="modify" src="/statics/pic_tool/turn.png" class="userinfo-arrow"></image>
   </view>
-  <image bindtap="modify" src="/statics/pic_tool/turn.png" class="userinfo-arrow"></image>
-</view>
-<!-- <view class="account">
-  <view class='item'>
-    <view class="num">{{post}}</view>
-    <view class="unit">帖子</view>
-  </view>
-  <view class="line"></view>
-  <view class='item'>
-    <view class="num">{{follow}}</view>
-    <view class="unit">关注</view>
-  </view>
-  <view class="line"></view>
-  <view class='item'>
-    <view class="num">{{fan}}</view>
-    <view class="unit">粉丝</view>
-  </view> 
-</view>-->
-<view class="experience-card {{tokenCardClass[tokenCardType]}}">
-  <view class="experience-upper-box">
-    <view class="experience-title-box">
-      <text class="experience-title dark-{{tokenCardClass[tokenCardType]}}}">{{tokenCardName[tokenCardType]}}</text>
-      <text> {{tokenCardDesc[tokenCardType]}} </text>
+  <!-- <view class="account">
+    <view class='item'>
+      <view class="num">{{post}}</view>
+      <view class="unit">帖子</view>
     </view>
-    <view>
-      {{progDesc}}
+    <view class="line"></view>
+    <view class='item'>
+      <view class="num">{{follow}}</view>
+      <view class="unit">关注</view>
     </view>
+    <view class="line"></view>
+    <view class='item'>
+      <view class="num">{{fan}}</view>
+      <view class="unit">粉丝</view>
+    </view> 
+  </view>-->
+  <view class="experience-card {{tokenCardClass[tokenCardType]}}">
+    <view class="experience-upper-box">
+      <view class="experience-title-box">
+        <text class="experience-title dark-{{tokenCardClass[tokenCardType]}}}">{{tokenCardName[tokenCardType]}}</text>
+        <text style="font-size:28rpx;"> {{tokenCardDesc[tokenCardType]}} </text>
+      </view>
+      <view style="font-size:28rpx;">
+        {{progDesc}}
+      </view>
+    </view>
+    <progress class="experience-progress" percent="{{progRatio}}" color="{{tokenCardColor[tokenCardType]}}" stroke-width="5" />
   </view>
-  <progress class="experience-progress" percent="{{progRatio}}" color="{{tokenCardColor[tokenCardType]}}" stroke-width="5" />
-</view>
 
-<view bindtap="testNotification" class="notification mr-max ml-max bdr-max">
-    <image src="../../../statics/imgs/personal/notif.png" mode="widthFix" class="avatar"></image>
-    <view class="content">
-        <text> 通知信息 </text>
-    </view>
+  <view bindtap="testNotification" class="notification mr-max ml-max bdr-max mb-max">
+      <image src="../../../statics/imgs/personal/notif.png" mode="widthFix" class="avatar"></image>
+      <view class="content">
+          <text> 通知信息 </text>
+      </view>
+  </view>
+
+  <view bindtap="testStarList" class="notification mr-max ml-max bdr-max mb-max">
+      <image src="../../../statics/imgs/community/post/star_selected.png" mode="widthFix" class="avatar"></image>
+      <view class="content">
+          <text> 收藏列表 </text>
+      </view>
+  </view>
+
+  <view bindtap="testPostList" class="notification mr-max ml-max bdr-max">
+      <image src="../../../statics/imgs/community/post/location.png" mode="widthFix" class="avatar"></image>
+      <view class="content">
+          <text> 个人帖子 </text>
+      </view>
+  </view>
 </view>
 

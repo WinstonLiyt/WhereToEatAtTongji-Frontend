@@ -48,6 +48,7 @@ page{
 
 .weui-input{
   flex: 6;
+  height: auto;
 }
 
 .submit{
@@ -58,6 +59,7 @@ page{
   padding: 0;
   background-color: var(--secondary-color);
   color: var(--primary-color);
+  font-size: 28rpx;
 }
 
 h1{

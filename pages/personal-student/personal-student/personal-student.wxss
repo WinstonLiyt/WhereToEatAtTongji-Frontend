@@ -1,5 +1,6 @@
 page {
   width: 100%;
+  height: 100%;
   background-color: var(--tertiary-color);
 }
 
@@ -50,6 +51,13 @@ page {
 
 .userinfo-signature{
   color: var(--secondary-color);
+  font-size:28rpx;
+}
+
+.main{
+  height: calc(100% - 120rpx - const(safe-area-inset-bottom));
+  height: calc(100% - 120rpx - env(safe-area-inset-bottom));
+  overflow: scroll;
 }
 
 /* -------------------------------------------- */
@@ -150,7 +158,7 @@ page {
 }
 
 .experience-progress{
-  margin: 10px 0;
+  margin: 20rpx 0;
 }
 
 .notification {

@@ -76,14 +76,10 @@ Page({
         this.popover('错误', '用户名必须为小于16个字符', false);
         return false;
     }
-    // 检查是否包含空格
-    if (/\s/.test(username)) {
-        this.popover('错误', '用户名不能含有空格', false);
-        return false;
-    }
-    // 检查是否包含非法字符（这里只允许中文、字母、数字和下划线）
+
+    // 检查是否包含非法字符
     if (/[^a-zA-Z0-9\u4e00-\u9fa5\s,.!?，。！？]/.test(username)) {
-        this.popover('错误', '用户名只能包含字母、数字和下划线', false);
+        this.popover('错误', '用户名包含非法字符', false);
         return false;
     }
 
@@ -105,7 +101,7 @@ Page({
 
     // 检查地址长度
     if (address.length < 1 || address.length > 20) {
-        this.popover('错误', '地址长度应为1到20个字符', false);
+        this.popover('错误', '地址长度应介于1到20个字符之间', false);
         return false;
     }
 

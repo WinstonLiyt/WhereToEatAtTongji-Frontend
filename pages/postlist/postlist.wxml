@@ -1,0 +1,27 @@
+<!--pages/notification/notification.wxml-->
+
+<view class='main'>
+    <view class="posts ml-med mr-med mb-max mt-max">
+        <view class="post-item  bdr-max" wx:for="{{notifications}}" wx:key="id" bindtap="toPost" data-postid="{{item.post_id}}" data-upvoted="{{item.upvoted}}" data-stared="{{item.stared}}" >
+            <view class="icon-box">
+                <image class="avatar" src="{{item.user_avatar}}" mode="widthFix"></image>
+                <image class="icon" src="../../statics/imgs/community/post/star_selected.png" mode="widthFix"></image>
+            </view>
+
+            <view class="reaction-content">
+                <view style="display: flex; ">
+                    <text class="mr-min" style="display: inline-block; max-width: 280rpx; overflow:hidden;  white-space: nowrap; text-overflow:ellipsis;">{{item.title}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class='model' wx:if="{{inputBoxShow}}">
+        <!-- invisible_model view 用于点击隐藏model评论框 -->
+        <view class='invisible_model' catchtap='invisible'  style="background-color: {{ maskColor }};"></view>
+    </view>
+</view>
+
+<view class="no-content" style="display: {{ isEmpty }};">
+    <text>帖子列表空空如也~</text>
+</view>

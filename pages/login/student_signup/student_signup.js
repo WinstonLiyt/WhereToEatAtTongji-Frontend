@@ -65,7 +65,7 @@ Page({
     // const sensitiveWords = ["badword1", "badword2", "badword3"];
     // 检查长度
     if (username.length < 1 || username.length > 16) {
-        this.popover('错误', '用户名必须为小于16个字符', false);
+        this.popover('错误', '用户名长度必须介于1到16个字符之间', false);
         return false;
     }
     // 检查是否包含非法字符
