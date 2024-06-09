@@ -21,20 +21,20 @@ page {
   margin-left: 10%;
 }
 h1{
-  font-size: 30px;
-  letter-spacing: 1px;
+  font-size: 60rpx;
+  letter-spacing: 2rpx;
   font-weight: var(--fontweight-bold);
   color: var(--secondary-color);
 }
 
 .list_bar{
   position: relative;
-  top:60px;
+  top:120rpx;
   padding-left: 5%;
   width:95%;
   height:max-content;
   background-color: #fcf9e9;
-  border-radius:40px 40px 0 0;
+  border-radius:80rpx 80rpx 0 0;
   padding-bottom: 20rpx;
   border-top: 6rpx dashed rgb(230, 220, 205); 
 }
@@ -42,13 +42,13 @@ h1{
 .title{
   width:65%;
   height: 90rpx;
-  border-radius: 30px;
+  border-radius: 60rpx;
   /* background-color: #ffffff;
   box-shadow: 0 2px 4px #a5a5a5; */
   background-color: var(--card-background);
-  box-shadow: 0 2px 4px #c7c7c7;
+  box-shadow: 0 4px 8px #c7c7c7;
   position: relative;
-  top:-25px;
+  top:-50rpx;
   left:2%;
   display:flex;
   overflow: hidden;
@@ -59,7 +59,7 @@ h1{
   aspect-ratio: 1 / 1;
   height: 75%;
   border-radius: 100%;
-  border: 2px solid rgb(199, 199, 199);
+  border: 4rpx solid rgb(199, 199, 199);
   position:relative;
   left:2%; 
   display:flex;
@@ -77,25 +77,25 @@ h1{
   margin-left: 8%;
 }
 .title_name text{
-  font-size:17px;
+  font-size:30rpx;
   font-weight: bold;
-  letter-spacing: 1.5px;
+  letter-spacing: 3px;
 }
 .store_dishes{
   display: flex;
   flex-wrap: nowrap;
   position: relative;
-  padding-bottom: 10px;
-  padding-top:30px;
+  padding-bottom: 20rpx;
+  padding-top:60rpx;
 }
 .btn_click{
   width:35%;
   height: 90rpx;
-  border-radius: 10px;
+  border-radius: 20rpx;
   /* background-color: #ffffff;
   box-shadow: 0 2px 4px #a5a5a5; */
   background-color: rgb(223, 209, 183);
-  box-shadow: 0 2px 4px #c7c7c7;
+  box-shadow: 0 4rpx 8rpx #c7c7c7;
   position: relative;
   left:2%;
   display:flex;
@@ -107,11 +107,11 @@ h1{
 .store_btn{
   width:35%;
   height: 90rpx;
-  border-radius: 10px;
+  border-radius: 20rpx;
   /* background-color: #ffffff;
   box-shadow: 0 2px 4px #a5a5a5; */
   background-color: var(--card-background);
-  box-shadow: 0 2px 4px #c7c7c7;
+  box-shadow: 0 4rpx 8rpx #c7c7c7;
   position: relative;
   left:2%;
   display:flex;
@@ -123,12 +123,12 @@ h1{
 .dishes_btn{
   width:35%;
   height: 90rpx;
-  border-radius: 10px;
+  border-radius: 20rpx;
   /* background-color: #ffffff;
   box-shadow: 0 2px 4px #a5a5a5; */
   background-color: var(--card-background);
   /* background-color: rgb(221, 206, 178); */
-  box-shadow: 0 2px 4px #c7c7c7;
+  box-shadow: 0 4rpx 8rpx #c7c7c7;
   position: relative;
   display:flex;
   overflow: hidden;
@@ -157,9 +157,9 @@ h1{
   margin-left: 15%;
 }
 .btn_name text{
-  font-size:17px;
+  font-size:28rpx;
   font-weight: bold;
-  letter-spacing: 1.5px;
+  letter-spacing: 3rpx;
 }
 .store{
   position:relative;
@@ -168,7 +168,7 @@ h1{
   width:95%;
   height:170rpx;
   background-color: var(--card-background);
-  border-radius: 15px;
+  border-radius: 30rpx;
   display: flex;
   border-bottom: 5rpx solid var(--primary-color);
   /* box-shadow: 0 2rpx 5rpx rgb(187, 175, 159); */
@@ -177,14 +177,14 @@ h1{
 
 .store_image{
   display: flex;
-  border-radius: 10px;
+  border-radius: 20rpx;
   position:absolute;
   top:13%;
   left:3%;
   height:130rpx;
   width:130rpx;
   overflow: hidden;
-  margin-right: 5px;
+  margin-right: 10rpx;
 }
 
 .store_image image{
@@ -196,58 +196,47 @@ h1{
 
 .store_name{
   position: absolute;
-  margin-left: 10px;
+  margin-left: 20rpx;
   top:20%;
-  left:90px;
+  left:180rpx;
 }
 .store_name text{
-  font-size: 17px;
-  letter-spacing: 1px;
+  font-size: 30rpx;
+  letter-spacing: 2rpx;
   font-weight:bold;
 }
 .store .other{
   position:absolute;
   top:60%;
-  left:90px;
-  margin-left: 10px;
+  left:180rpx;
+  margin-left: 20rpx;
 }
 .store .other text{
-  font-size: 12px;
-  letter-spacing: 1px;
+  font-size: 20rpx;
+  letter-spacing: 2rpx;
   font-weight:100;
   color:rgb(121, 121, 121);
 }
 
 .store .turn{
   position:absolute;
-  top:40px;
+  top:80rpx;
   left:90%;
-  width:20px;
-  height: 20px;
+  width:40rpx;
+  height: 40rpx;
 }
 .store .turn image{
   max-width: 100%;
   max-height: 100%;
 }
-/* .food{
-  margin-top:20px;
-  width:100%;
-  height:90px;
-  background-color: rgb(255, 255, 255);
-  border-radius: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  overflow: visible; 
-} */
 .food{
   position:relative;
-  margin-top:20rpx;
+  margin-top:40rpx;
   margin-bottom:40rpx;
   width:95%;
-  height:90px;
+  height:180rpx;
   background-color: var(--card-background);
-  border-radius: 15px;
+  border-radius: 30rpx;
   display: flex;
   border-bottom: 5rpx solid var(--primary-color);
   box-shadow: 0 2rpx 5rpx rgb(187, 175, 159);
@@ -278,8 +267,8 @@ h1{
   white-space: nowrap;
 }
 .food_name text{
-  font-size: 17px;
-  letter-spacing: 1px;
+  font-size: 30rpx;
+  letter-spacing: 2rpx;
   font-weight:bold;
 }
 
@@ -287,8 +276,8 @@ h1{
   display: flex;
 }
 .food .other text{
-  font-size: 12px;
-  letter-spacing: 1px;
+  font-size: 20rpx;
+  letter-spacing: 2rpx;
   font-weight:100;
   color:rgb(148, 148, 148);
 }
@@ -304,109 +293,30 @@ h1{
 }
 .food_price{
   /* max-width: 150px; */
-  width: 150px;
+  width: 300rpx;
   overflow-x: auto;
 }
 .food_price text{
-  font-size: 17px;
-  letter-spacing: 1px;
+  font-size: 30rpx;
+  letter-spacing: 2rpx;
   font-weight:bold;
   white-space: nowrap;
 }
 
 .food .turn{
-  top:40px;
+  top:80rpx;
   left:90%;
-  width:20px;
-  height: 20px;
+  width:40rpx;
+  height: 40rpx;
 }
 .food .turn image{
   max-width: 100%;
   max-height: 100%;
 }
-/*.food{
-  position:relative;
-  margin-top:20rpx;
-  margin-bottom:40rpx;
-  width:95%;
-  height:170rpx;
-  background-color: var(--card-background);
-  border-radius: 15px;
-  display: flex;
-  border-bottom: 5rpx solid var(--primary-color);
-  box-shadow: 0 2rpx 5rpx rgb(187, 175, 159);
-  overflow: hidden;
-}
 
-.food_image{
-  display: flex;
-  border-radius: 10px;
-  position:absolute;
-  top:13%;
-  left:3%;
-  height:130rpx;
-  width:130rpx;
-  overflow: hidden;
-  margin-right: 5px;
-}
-
-.food_image image{
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover;
-  object-position: center top; 
-
-.food_name{
-  position: absolute;
-  margin-left: 10px;
-  top:20%;
-  left:85px;
-  max-width: 50%;
-  overflow: hidden;
-  max-height: 30%;
-}
-.food_name text{
-  font-size: 17px;
-  letter-spacing: 1px;
-  font-weight:bold;
-}
-.food_price{
-  position:absolute;
-  top:20%;
-  left:75%;
-}z
-.food_price text{
-  font-size: 17px;
-  letter-spacing: 1px;
-  font-weight:bold;
-}
-.other{
-  position:absolute;
-  top:60%;
-  left:85px;
-  margin-left: 10px;
-  display: flex;
-}
-.other text{
-  font-size: 12px;
-  letter-spacing: 1px;
-  font-weight:100;
-  color:rgb(148, 148, 148);
-}
-.turn{
-  position:absolute;
-  top:40px;
-  left:90%;
-  width:20px;
-  height: 20px;
-}
-.turn image{
-  max-width: 100%;
-  max-height: 100%;
-} */
 .store_fail{
   width:100%;
-  height:300px;
+  height:600rpx;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -419,15 +329,15 @@ h1{
   margin-left: 0;
 }
 .store_fail h1{
-  font-size: 20px;
-  letter-spacing: 1px;
+  font-size: 40rpx;
+  letter-spacing: 2rpx;
   margin-left: -8%;
   font-weight: var(--fontweight-bold);
   color: var(--secondary-color);
 }
 .food_fail{
   width:100%;
-  height:300px;
+  height:600rpx;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -440,8 +350,8 @@ h1{
   margin-left: 0;
 }
 .food_fail h1{
-  font-size: 20px;
-  letter-spacing: 1px;
+  font-size: 40rpx;
+  letter-spacing: 2rpx;
   margin-left: -8%;
   font-weight: var(--fontweight-bold);
   color: var(--secondary-color);

@@ -6,7 +6,7 @@ page{
   display: flex;
   overflow: hidden;
   width: 100%;
-  height: 350px;
+  height: 500rpx;
 }
 
 .top_pic image{
@@ -21,18 +21,18 @@ page{
   height:max-content;
   background-color: #fcf9e9;
   position:relative;
-  top:-25px;
-  border-radius:30px 30px 0 0;
+  top:-50rpx;
+  border-radius:60rpx 60rpx 0 0;
 }
 
 .store_block .title{
   width:65%;
   height: 90rpx;
-  border-radius: 30px;
+  border-radius: 60rpx;
   background-color: #ffffff;
-  box-shadow: 0 2px 4px #a5a5a5;
+  box-shadow: 0 4rpx 8rpx #a5a5a5;
   position: absolute;
-  top:-20px;
+  top:-40rpx;
   left:5%;
   display:flex;
 }
@@ -41,7 +41,7 @@ page{
   aspect-ratio: 1 / 1;
   height: 75%;
   border-radius: 100%;
-  border: 2px solid rgb(199, 199, 199);
+  border: 4rpx solid rgb(199, 199, 199);
   position:relative;
   top:7.5%;
   left:3%; 
@@ -63,9 +63,9 @@ page{
   overflow: hidden;
 }
 .title_name text{
-  font-size:18px;
+  font-size:32rpx;
   font-weight: bold;
-  letter-spacing: 1px;
+  letter-spacing: 2rpx;
   white-space: nowrap; /* 不换行 */
   overflow: hidden; /* 隐藏超出部分 */
 }
@@ -78,12 +78,12 @@ page{
   width:max-content;
   height:max-content;
   position:relative;
-  top:50px;
+  top:100rpx;
   left:8%;
 }
 .store_block .description_title text{
-  font-size:19px;
-  letter-spacing: 0.5px;
+  font-size:24rpx;
+  letter-spacing: 1rpx;
 }
 
 .store_block .description{
@@ -92,11 +92,11 @@ page{
   position:relative;
   margin-left: 8%;
   margin-right: 8%;
-  top:60px;
+  top:120rpx;
 }
 .store_block .description text{
-  font-size:15px;
-  letter-spacing: 0.5px;
+  font-size:20rpx;
+  letter-spacing: 1rpx;
   color:#a5a5a5;
 }
 .food_list{
@@ -105,14 +105,14 @@ page{
   padding-right: 5%;
   position:relative;
   height:max-content;
-  top:50px;
+  top:100rpx;
   background-color: #fcf9e9;
-  padding-bottom:50px;
-  margin-bottom: 40px;
+  padding-bottom:100rpx;
+  margin-bottom: 80rpx;
 }
 .place{
   position:relative;
-  top:60px;
+  top:120rpx;
   height:80rpx;
   margin-top:10rpx;
   width:90%;
@@ -123,8 +123,8 @@ page{
   align-items: center; /* 垂直居中 */
 }
 .place text{
-  font-size: 13px;
-  letter-spacing: 1px;
+  font-size: 18rpx;
+  letter-spacing: 3rpx;
   color:rgb(49, 49, 49);
 }
 .place image{
@@ -132,11 +132,11 @@ page{
   max-height:40%;
 }
 .food{
-  margin-top:20px;
+  margin-top:40rpx;
   width:100%;
-  height:90px;
+  height:180rpx;
   background-color: rgb(255, 255, 255);
-  border-radius: 15px;
+  border-radius: 30rpx;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -176,8 +176,8 @@ page{
   white-space: nowrap;
 }
 .food_name text{
-  font-size: 17px;
-  letter-spacing: 1px;
+  font-size: 30rpx;
+  letter-spacing: 2px;
   font-weight:bold;
 }
 
@@ -185,8 +185,8 @@ page{
   display: flex;
 }
 .other text{
-  font-size: 12px;
-  letter-spacing: 1px;
+  font-size: 20rpx;
+  letter-spacing: 2rpx;
   font-weight:100;
   color:rgb(148, 148, 148);
 }
@@ -202,89 +202,36 @@ page{
 }
 .food_price{
   /* max-width: 150px; */
-  width: 150px;
+  width: 300rpx;
   overflow-x: auto;
 }
 .food_price text{
-  font-size: 17px;
-  letter-spacing: 1px;
+  font-size: 28rpx;
+  letter-spacing: 2px;
   font-weight:bold;
   white-space: nowrap;
 }
 
 .turn{
-  top:40px;
+  top:80rpx;
   left:90%;
-  width:20px;
-  height: 20px;
+  width:40rpx;
+  height: 40rpx;
 }
 .turn image{
   max-width: 100%;
   max-height: 100%;
 }
-/* .food_image image{
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover;
-  object-position: center top; /* 图片在容器中水平居中，垂直顶部对齐 */
-/* }
-
-.food_name{
-  position: absolute;
-  margin-left: 10px;
-  top:20%;
-  left:90px;
-}
-.food_name text{
-  font-size: 17px;
-  letter-spacing: 1px;
-  font-weight:bold;
-}
-.food_price{
-  position:absolute;
-  top:20%;
-  left:75%;
-}z
-.food_price text{
-  font-size: 17px;
-  letter-spacing: 1px;
-  font-weight:bold;
-}
-.other{
-  position:absolute;
-  top:60%;
-  left:90px;
-  margin-left: 10px;
-  display: flex;
-}
-.other text{
-  font-size: 12px;
-  letter-spacing: 1px;
-  font-weight:100;
-  color:rgb(148, 148, 148);
-}
-.turn{
-  position:absolute;
-  top:40px;
-  left:90%;
-  width:20px;
-  height: 20px;
-}
-.turn image{
-  max-width: 100%;
-  max-height: 100%;
-} */ 
-
 .telephone{
   position: relative;
   display:flex;
   overflow: hidden;
   justify-content: center; /* 水平居中 */
   align-items: center; /* 垂直居中 */
-  height:50px;
+  height:100rpx;
 }
 .telephone text{
-  font-size: 11px;
+  font-size: 20rpx;
   color:#747474;
-  letter-spacing: 1px;
+  letter-spacing: 2rpx;
 }
