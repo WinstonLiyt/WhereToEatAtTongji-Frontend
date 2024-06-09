@@ -8,9 +8,9 @@ page {
 }
 
 .main{
-  height: calc(100% - 120rpx - const(safe-area-inset-bottom));
-  height: calc(100% - 120rpx - env(safe-area-inset-bottom));
-  overflow: scroll;
+  height: calc(100% - 120rpx - const(safe-area-inset-bottom));
+  height: calc(100% - 120rpx - env(safe-area-inset-bottom));
+  overflow: scroll;
 }
 
 .search {

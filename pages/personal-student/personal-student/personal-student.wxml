@@ -52,7 +52,7 @@
       </view>
   </view>
 
-  <view bindtap="testPostList" class="notification mr-max ml-max bdr-max">
+  <view bindtap="testPostList" class="notification mr-max ml-max bdr-max" style="margin-bottom: 20rpx;">
       <image src="../../../statics/imgs/community/post/location.png" mode="widthFix" class="avatar"></image>
       <view class="content">
           <text> 个人帖子 </text>
