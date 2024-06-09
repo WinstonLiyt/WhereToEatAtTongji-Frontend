@@ -26,10 +26,10 @@
       <text class="userinfo-label">联系方式:</text>
       <input class="userinfo-input" value="{{telephone}}" bindinput="inputChange" data-field="telephone" placeholder="请输入联系方式"/>
     </view>
-    <view class="userinfo-row">
+    <!-- <view class="userinfo-row">
       <text class="userinfo-label">营业时间:</text>
       <input class="userinfo-input" value="{{business_time}}" bindinput="inputChange" data-field="business_time" placeholder="请输入营业时间"/>
-    </view>
+    </view> -->
     <view class="userinfo-row">
       <text class="userinfo-label">店铺简介:</text>
       <input class="userinfo-input" value="{{remark}}" bindinput="inputChange" data-field="remark" placeholder="请输入备注信息"/>

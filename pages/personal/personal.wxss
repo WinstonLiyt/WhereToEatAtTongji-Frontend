@@ -38,7 +38,7 @@ page {
 .userinfo .avatar .userinfo-nickname {
   margin-top: 20rpx;
   /* margin-left: 60px; */
-  font-size: 22px;
+  font-size: 44rpx;
   align-items: center;
   color:black;
   letter-spacing: 0;
@@ -93,52 +93,52 @@ page {
   background-color: var(--secondary-color);
   border-radius: 15%;
   width: max-content;
-  padding: 0 10px; /* 设置左右填充，看起来更好 */
-  font-size: 18px;
+  padding: 0 20rpx; /* 设置左右填充，看起来更好 */
+  font-size: 36rpx;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: white;
   font-weight: bold;
-  margin-bottom: -20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-left: 10px;
-  margin-top: 30px;
+  margin-bottom: -40rpx;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+  margin-left: 20rpx;
+  margin-top: 60rpx;
 }
 
 .userinfo-card {
   background-color:#FCF9E8;
-  padding: 10px;
-  padding-left: 10px;
-  border-radius: 4px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20rpx;
+  padding-left: 20rpx;
+  border-radius: 8rpx;
+  box-shadow: 0 0 20rpx rgba(0, 0, 0, 0.1);
   border-radius: 10%;
   width: 85%;
-  margin-left: 30px;
+  margin-left: 60rpx;
 }
 
 .userinfo-content {
   display: flex;
   flex-direction: column;
   border-radius: 15%;
-  margin-top: 20px;
-  margin-left: 10px;
+  margin-top: 40rpx;
+  margin-left: 20rpx;
 }
 
 .userinfo-row {
   display: flex;
-  margin-bottom: 5px;
+  margin-bottom: 10rpx;
 }
 
 .userinfo-label {
   color: var(--secondary-color);
-  font-size: 16px;
+  font-size: 32rpx;
   font-weight: bold;
-  width: 100px;
+  width: 200rpx;
 }
 
 .userinfo-value {
   flex: 1;
   color: var(--secondary-color);
-  font-size: 15px;
+  font-size: 30rpx;
 }
 
 .tag-container {
@@ -149,20 +149,21 @@ page {
 .tag {
   background-color:  var(--secondary-color);
   color: white;
-  border-radius: 20px;
-  padding: 0px 10px; 
-  margin-right: 5px;
-  margin-bottom: 5px;
+  border-radius: 40rpx;
+  padding: 0rpx 20rpx; 
+  margin-right: 10rpx;
+  margin-bottom: 10rpx;
+  font-size: 30rpx;
 }
 
 /* -------------------------------------------- */
 .edit_info {
   width: 90%;
-  margin-top: 30px;
+  margin-top: 60rpx;
   background-color: #FCF9E8;
-  margin-left: 30px;
+  margin-left: 60rpx;
   border-radius: 10%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20rpx rgba(0, 0, 0, 0.1);
 }
 
 .edit_info .menu {
@@ -231,14 +232,14 @@ page {
 
 .background-container {
   background:var(--tertiary-color);
-  padding: 20px;
+  padding: 40rpx;
   height: 100%;
   width: 90%; /* 控制宽度不超过屏幕宽度的90% */
-  max-width: 500px; /* 最大宽度，避免在大屏幕上显示过大 */
-  border-radius: 10px;
+  max-width: 1000rpx; /* 最大宽度，避免在大屏幕上显示过大 */
+  border-radius: 20rpx;
   overflow: auto; /* 如果内容过多，允许滚动 */
   position: relative; /* 相对定位，方便放置关闭按钮 */
-  border: 2px solid #ccc; /* 添加边框，2px宽度，灰色 */
+  border: 4rpx solid #ccc; /* 添加边框，2px宽度，灰色 */
   flex-direction: column; /* 新添加的，让内容垂直排列 */
   display: grid;
   place-items: center; /* 在网格容器中水平垂直居中 */
@@ -246,28 +247,28 @@ page {
 
 .background-item {
   position: relative;
-  margin-top: 20px;
-  margin-bottom:10px;
-  border-radius: 10px;
+  margin-top: 40rpx;
+  margin-bottom:20rpx;
+  border-radius: 20rpx;
   flex-shrink: 0; /* 防止被压缩 */
 }
 
 .background-image {
-  width: 200px;
-  height: 200px;
-  border-radius: 10px;
+  width: 400rpx;
+  height: 400rpx;
+  border-radius: 20rpx;
 }
 
 .delete-btn {
   position: absolute;
-  top: -5px;
-  right: -20px;
+  top: -10rpx;
+  right: -40rpx;
   background-color:var(--secondary-color);
   color: white;
-  width: 32px;
-  height: 25px;
+  width: 64rpx;
+  height: 50rpx;
   border-radius: 20%; 
-  padding: 5px; /* 设置删除按钮内边距 */
+  padding: 10rpx; /* 设置删除按钮内边距 */
   justify-content: center; /* 水平居中 */
   text-align: center; /* 文字居中 */
 }
@@ -276,24 +277,24 @@ page {
 .upload-btn {
   background-color: var(--secondary-color);
   color: white;
-  padding: 10px;
-  width: 100px;
+  padding: 20rpx;
+  width: 200rpx;
   cursor: pointer;
   border: none;
-  border-radius: 5px;
-  margin-top: 10px;
+  border-radius: 10rpx;
+  margin-top: 20rpx;
 }
 
 .modal-close-btn {
   position: absolute;
-  top: -18px;
-  right: 2px;
-  width:40px;
+  top: -36rpx;
+  right: 4rpx;
+  width:80rpx;
   color: white;
   background-color: var(--secondary-color);
-  padding: 5px;
+  padding: 10rpx;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 20rpx;
   display: flex; /* 使用 flexbox 对齐子元素 */
   /* align-items: center; 垂直居中 */
   justify-content: center; /* 水平居中 */

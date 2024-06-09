@@ -30,14 +30,14 @@ Page({
 
   validateIllegalCharacters: function(text) {
     // 只允许中文、字母、数字和特定的标点符号
-    const illegalCharRegex = /[^a-zA-Z0-9\u4e00-\u9fa5,.!?，。！？]/;
+    const illegalCharRegex = /[^a-zA-Z0-9\u4e00-\u9fa5,.!?，。！？\n]/;
 
     return !illegalCharRegex.test(text);
   },
 
   validateIllegalCharacters_t: function(text) {
     // 只允许中文、字母、数字和特定的标点符号
-    const illegalCharRegex = /[^a-zA-Z0-9\u4e00-\u9fa5,.!?，。！？:-]/;;
+    const illegalCharRegex = /[^a-zA-Z0-9\u4e00-\u9fa5,.!?，。！？: - \n]/;;
     return !illegalCharRegex.test(text);
   },
 
@@ -139,10 +139,6 @@ Page({
 
     if (!this.validateIllegalCharacters_t(business_time)) {
       return '营业时间包含非法字符';
-    }
-
-    if (!timeRegex.test(business_time)) {
-      return '营业时间必须是hh:mm-hh:mm或hh:mm-次日hh:mm的格式';
     }
 
     if (!timeRegex.test(business_time)) {
