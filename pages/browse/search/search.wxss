@@ -209,7 +209,12 @@ h1{
   position:absolute;
   top:60%;
   left:180rpx;
+  flex-direction: column;
   margin-left: 20rpx;
+  width: calc(100% - 300rpx);
+  height: 100%;
+  overflow-x: auto;
+  white-space:nowrap;  
 }
 .store .other text{
   font-size: 20rpx;

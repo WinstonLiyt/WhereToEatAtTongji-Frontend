@@ -126,7 +126,7 @@ input[type="text"] {
   height:max-content;
   background-color: #fcf9e9;
   border-radius:60rpx 60rpx 0 0;
-  padding-bottom: 20rpx;
+  padding-bottom: 50rpx;
   /* border-top: 6rpx dashed rgb(230, 220, 205);  */
 }
 
@@ -223,7 +223,12 @@ input[type="text"] {
   position:absolute;
   top:60%;
   left:180rpx;
+  flex-direction: column;
   margin-left: 10rpx;
+  width: calc(100% - 300rpx);
+  height: 100%;
+  overflow-x: auto;
+  white-space:nowrap;  
 }
 .other text{
   font-size: 25rpx;
