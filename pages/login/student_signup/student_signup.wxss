@@ -48,6 +48,7 @@ page{
 
 .weui-input{
   flex: 6;
+  height: auto;
 }
 
 .submit{
@@ -56,6 +57,7 @@ page{
   line-height: 100rpx;
   border-radius: 50rpx;
   padding: 0;
+  font-size: 28rpx;
   background-color: var(--secondary-color);
   color: var(--primary-color);
 }
