@@ -8,7 +8,7 @@ page {
 }
 .circle1{
   position:absolute;
-  border-radius: 50px;
+  border-radius: 100rpx;
   background-color: rgb(138, 62, 62);
   top:10rpx;
   width:40rpx;
@@ -17,7 +17,7 @@ page {
 }
 .circle2{
   position:absolute;
-  border-radius: 50px;
+  border-radius: 100rpx;
   background-color: rgb(111, 139, 121);
   top:10rpx;
   width:40rpx;
@@ -26,7 +26,7 @@ page {
 }
 .circle3{
   position:absolute;
-  border-radius: 50px;
+  border-radius: 100rpx;
   background-color: rgb(139, 128, 111);
   top:10rpx;
   width:40rpx;
@@ -139,19 +139,14 @@ page {
 }
 .user{
   height:350rpx;
-  box-shadow: 0 4px 8px rgba(78, 78, 78, 0.2); /* 设置阴影 */
-  border-radius: 10px; /* 可选：设置圆角 */
+  box-shadow: 0 8rpx 16rpx rgba(78, 78, 78, 0.2); /* 设置阴影 */
+  border-radius: 20rpx; /* 可选：设置圆角 */
   background-color: white;
   width:38%;
   margin-left:5%;
   margin-right: 5%;
   margin-top:30rpx;
   margin-bottom:35rpx;
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  flex-wrap: wrap; */
 }
 .user_image{
   position: relative;
@@ -183,7 +178,7 @@ page {
   text-align: center;
 }
 .user_name text{
-  font-size: 15px;
+  font-size: 25rpx;
   color:rgb(70, 70, 70);
 }
 .user_type{
@@ -194,13 +189,13 @@ page {
   width:70%;
   left:15%;
   top:-5%;
-  border-radius: 20px;
+  border-radius: 40rpx;
   height: 50rpx;
   background-color: rgb(230, 224, 214);
 }
 .user_type text{
-  font-size: 15px;
-  letter-spacing: 1px;
+  font-size: 25rpx;
+  letter-spacing: 2rpx;
   color:rgb(0, 0, 0);
 }
 .user_state{
@@ -211,16 +206,16 @@ page {
   text-align: center;
   top:5%;
   left:25%;
-  border-radius: 20px;
+  border-radius: 40rpx;
   height: 60rpx;
   width:50%;
-  box-shadow: 0 5px 10px rgba(78, 78, 78, 0.2); /* 设置阴影 */
+  box-shadow: 0 10rpx 20rpx rgba(78, 78, 78, 0.2); /* 设置阴影 */
   /* background-color: rgb(146, 80, 69); */
   /* background-color: rgb(111, 139, 121); */
 }
 .user_state text{
-  font-size: 15px;
-  letter-spacing: 1px;
+  font-size: 25rpx;
+  letter-spacing: 2rpx;
   color:rgb(255, 255, 255);
 }
 .user_edit{
@@ -228,11 +223,11 @@ page {
   background-color: rgb(255, 255, 255);
   width:80%;
   left:10%;
-  height:750rpx;
-  border-radius: 30px;
+  height:70%;
+  border-radius: 60rpx;
   /* border-top-left-radius: 50%;
   border-top-right-radius: 50%; */
-  top:250rpx;
+  top:15%;
   border:2px rgb(138, 133, 123) dashed;
 }
 .user_avatar{
@@ -241,12 +236,12 @@ page {
   position: absolute;
   top:50rpx;
   left:38%;
-  border-radius: 50px;
+  border-radius: 100rpx;
 }
 .user_avatar image{
   width:100%;
   height: 100%;
-  border-radius: 50px;
+  border-radius: 100rpx;
 }
 .user_signature{
   width:100%;
@@ -259,9 +254,9 @@ page {
   text-align: center;
 }
 .user_signature text{
-  font-size:18px;
+  font-size:29rpx;
   color:rgb(65, 65, 65);
-  letter-spacing: 1px;
+  letter-spacing: 2rpx;
 }
 .user_status{
   width:100%;
@@ -274,8 +269,8 @@ page {
   text-align: center;
 }
 .user_status text{
-  font-size:18px;
-  letter-spacing: 1px;
+  font-size:29rpx;
+  letter-spacing: 2rpx;
   color:rgb(65, 65, 65);
 }
 .username{
@@ -289,8 +284,8 @@ page {
   text-align: center;
 }
 .username text{
-  font-size:18px;
-  letter-spacing: 1px;
+  font-size:29rpx;
+  letter-spacing: 2rpx;
   color:rgb(65, 65, 65);
 }
 .user_credits{
@@ -304,8 +299,8 @@ page {
   text-align: center;
 }
 .user_credits text{
-  font-size:18px;
-  letter-spacing: 1px;
+  font-size:29rpx;
+  letter-spacing: 2rpx;
   color:rgb(65, 65, 65);
 }
 .edit_credits{
@@ -319,12 +314,12 @@ page {
   top:550rpx;
   left:30rpx;
   background-color: rgb(160, 172, 138);
-  border-radius: 25px;
-  box-shadow: 0 5px 10px rgba(78, 78, 78, 0.2); /* 设置阴影 */
+  border-radius: 50rpx;
+  box-shadow: 0 10rpx 20rpx rgba(78, 78, 78, 0.2); /* 设置阴影 */
 }
 .edit_credits text{
-  font-size:16px;
-  letter-spacing: 1px;
+  font-size:26rpx;
+  letter-spacing: 2rpx;
   color:rgb(65, 65, 65);
 }
 .close_user{
@@ -338,12 +333,12 @@ page {
   top:550rpx;
   left:330rpx;
   background-color: rgb(185, 147, 131);
-  border-radius: 25px;
-  box-shadow: 0 5px 10px rgba(78, 78, 78, 0.2); /* 设置阴影 */
+  border-radius: 50rpx;
+  box-shadow: 0 10rpx 20rpx rgba(78, 78, 78, 0.2); /* 设置阴影 */
 }
-.edit_credits text{
-  font-size:16px;
-  letter-spacing: 1px;
+.close_user text{
+  font-size:26rpx;
+  letter-spacing: 2rpx;
   color:rgb(65, 65, 65);
 }
 .credits_edit{
@@ -354,7 +349,7 @@ page {
   background-color: rgb(248, 232, 202);
   position: fixed;
   top:500rpx;
-  border-radius: 30px;
+  border-radius: 60rpx;
 }
 .input_credit{
   width:80%;
@@ -365,8 +360,8 @@ page {
 input {
   width: 100%;
   height: 90rpx;
-  border-radius: 20px;
-  padding: 0 10px;
+  border-radius: 40rpx;
+  padding: 0 20rpx;
   box-sizing: border-box;
   background-color: white;
 }
@@ -381,12 +376,12 @@ input {
   top:180rpx;
   left:300rpx;
   background-color: rgb(185, 147, 131);
-  border-radius: 25px;
-  box-shadow: 0 5px 10px rgba(78, 78, 78, 0.2); /* 设置阴影 */
+  border-radius: 50rpx;
+  box-shadow: 0 10rpx 20rpx rgba(78, 78, 78, 0.2); /* 设置阴影 */
 }
 ._cancle text{
-  font-size:16px;
-  letter-spacing: 1px;
+  font-size:26rpx;
+  letter-spacing: 2rpx;
   color:rgb(65, 65, 65);
 }
 .confirm{
@@ -400,11 +395,11 @@ input {
   top:180rpx;
   left:80rpx;
   background-color: rgb(161, 185, 131);
-  border-radius: 25px;
-  box-shadow: 0 5px 10px rgba(78, 78, 78, 0.2); /* 设置阴影 */
+  border-radius: 50rpx;
+  box-shadow: 0 10rpx 20rpx rgba(78, 78, 78, 0.2); /* 设置阴影 */
 }
 .confirm text{
-  font-size:16px;
-  letter-spacing: 1px;
+  font-size:26rpx;
+  letter-spacing: 2rpx;
   color:rgb(65, 65, 65);
 }

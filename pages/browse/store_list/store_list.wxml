@@ -1,5 +1,5 @@
 <!--store_list.wxml-->
-<view class="main" style="width: 750rpx; height: 1289rpx; display: block; box-sizing: border-box">
+<view class="main">
   <view class="search">
         <view class="search_in">
           <input type="text" placeholder="请输入搜索内容" name="value" bindinput="user_content"/>
