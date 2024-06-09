@@ -39,7 +39,7 @@
   </view>
 
   <view bindtap="testNotification" class="notification mr-max ml-max bdr-max mb-max">
-      <image src="../../../statics/imgs/personal/notif.png" mode="widthFix" class="avatar"></image>
+      <image src="../../../statics/imgs/personal/notif2.png" mode="widthFix" class="avatar"></image>
       <view class="content">
           <text> 通知信息 </text>
       </view>
@@ -53,7 +53,7 @@
   </view>
 
   <view bindtap="testPostList" class="notification mr-max ml-max bdr-max" style="margin-bottom: 20rpx;">
-      <image src="../../../statics/imgs/community/post/location.png" mode="widthFix" class="avatar"></image>
+      <image src="../../../statics/imgs/tabBar/community_selected.png" mode="widthFix" class="avatar"></image>
       <view class="content">
           <text> 个人帖子 </text>
       </view>
