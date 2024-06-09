@@ -122,7 +122,7 @@ Page({
   },
 
   validateIllegalCharacters: function(text) {
-    const illegalCharRegex = /[^a-zA-Z0-9\u4e00-\u9fa5,.!?，。！？]/;
+    const illegalCharRegex = /[^a-zA-Z0-9\u4e00-\u9fa5,.!?，。！？\n]/;
     return !illegalCharRegex.test(text);
   },
 

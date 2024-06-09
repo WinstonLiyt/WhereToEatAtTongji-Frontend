@@ -24,10 +24,10 @@
         <text class="userinfo-label">联系方式:</text>
         <text class="userinfo-value">{{tele}}</text>
       </view>
-      <view class="userinfo-row">
+      <!-- <view class="userinfo-row">
         <text class="userinfo-label">营业时间:</text>
         <text class="userinfo-value">{{time}}</text>
-      </view>
+      </view> -->
       <view class="userinfo-row">
         <text class="userinfo-label">店铺简介:</text>
         <text class="userinfo-value">{{description}}</text>
