@@ -56,8 +56,8 @@ h1{
 }
 
 .title_pic{
-  aspect-ratio: 1 / 1;
-  height: 75%;
+  height: 70rpx;
+  width: 70rpx;
   border-radius: 100%;
   border: 4rpx solid rgb(199, 199, 199);
   position:relative;
@@ -137,8 +137,8 @@ h1{
   margin-right: 30rpx;
 }
 .btn_pic{
-  aspect-ratio: 1 / 1;
-  height: 55%;
+  height:50rpx;
+  width:50rpx;
   border-radius: 100%;
   /* border: 2px solid rgb(199, 199, 199); */
   position:relative;

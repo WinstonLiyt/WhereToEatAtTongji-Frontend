@@ -37,8 +37,8 @@ page{
   display:flex;
 }
 .title .title_pic{
-  aspect-ratio: 1 / 1;
-  height: 75%;
+  height: 70rpx;
+  width: 70rpx;
   border-radius: 100%;
   border: 4rpx solid rgb(199, 199, 199);
   position:relative;
@@ -261,7 +261,6 @@ input[type="text"] {
   /* height: 90%; */
   width: 90rpx;
   height: 90rpx;
-  aspect-ratio: 1 / 1;
   position:relative;
   top:25rpx;
   left:30rpx; 
@@ -367,7 +366,7 @@ input[type="text"] {
   left:90%;
   width: 40rpx;
   top:-5rpx;
-  aspect-ratio: 1 / 1;
+  height:40rpx;
 }
 .delete_comment image{
   max-width:100%;
