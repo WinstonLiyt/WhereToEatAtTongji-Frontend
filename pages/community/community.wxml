@@ -3,7 +3,7 @@
     <view class="top mb-med">
         <view class="search">
             <view class="search_in">
-                <input type="text" placeholder="请输入搜索内容" bindinput="onInputSearch"  bindconfirm="onConfirmSearch" search_value="{{search_value}}"/>
+                <input type="text" placeholder="请输入搜索内容" bindinput="onInputSearch"  bindconfirm="onConfirmSearch" search_value="{{search_value}}" style="font-size: 28rpx;"/>
                 <view class="search_btn" bindtap="onTapSearchBtn">
                     <image src="../../statics/imgs/community/search.png"></image>
                 </view>

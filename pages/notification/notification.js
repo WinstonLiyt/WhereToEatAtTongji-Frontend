@@ -107,6 +107,21 @@ Component({
          */
         onShareAppMessage() {
     
+        },
+        helper(e) {
+            wx.showModal({
+              title: '小贴士',
+              content: '这里展示的是未查看过的消息，退出后通知列表将被清空',
+              complete: (res) => {
+                if (res.cancel) {
+                  
+                }
+            
+                if (res.confirm) {
+                  
+                }
+              }
+            })
         }
    }
 })

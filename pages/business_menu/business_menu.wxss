@@ -6,7 +6,7 @@ page{
   display: flex;
   overflow: hidden;
   width: 100%;
-  height: 350px;
+  height: 500rpx;
 }
 
 .top_pic image{
@@ -21,18 +21,18 @@ page{
   height:max-content;
   background-color: #fcf9e9;
   position:relative;
-  top:-25px;
-  border-radius:30px 30px 0 0;
+  top:-50rpx;
+  border-radius:60rpx 60rpx 0 0;
 }
 
 .store_block .title{
   width: 65%;
   height: 90rpx;
-  border-radius: 30px;
+  border-radius: 60rpx;
   background-color: #ffffff;
-  box-shadow: 0 2px 4px #a5a5a5;
+  box-shadow: 0 4rpx 8rpx #a5a5a5;
   position: absolute;
-  top:-20px;
+  top:-40rpx;
   left:5%;
   display:flex;
 }
@@ -41,7 +41,7 @@ page{
   aspect-ratio: 1 / 1;
   height: 75%;
   border-radius: 100%;
-  border: 2px solid rgb(199, 199, 199);
+  border: 4rpx solid rgb(199, 199, 199);
   position:relative;
   top:7.5%;
   left:3%; 
@@ -51,8 +51,8 @@ page{
   align-items: center; /* 垂直居中 */
 }
 .title_pic image{
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 90%;
+  max-height: 90%;
 }
 
 .store_block .title_name{
@@ -63,9 +63,9 @@ page{
   overflow: hidden;
 }
 .store_block .title_name text{
-  font-size:18px;
+  font-size:32rpx;
   font-weight: bold;
-  letter-spacing: 1px;
+  letter-spacing: 2rpx;
   white-space: nowrap; /* 不换行 */
   overflow: hidden; /* 隐藏超出部分 */
 }
@@ -80,12 +80,12 @@ page{
   width:max-content;
   height:max-content;
   position:relative;
-  top:50px;
+  top:100rpx;
   left:8%;
 }
 .store_block .description_title text{
-  font-size:19px;
-  letter-spacing: 0.5px;
+  font-size:24rpx;
+  letter-spacing: 1rpx;
 }
 
 .store_block .description{
@@ -94,11 +94,11 @@ page{
   position:relative;
   margin-left: 8%;
   margin-right: 8%;
-  top:60px;
+  top:120rpx;
 }
 .store_block .description text{
-  font-size:15px;
-  letter-spacing: 0.5px;
+  font-size:20rpx;
+  letter-spacing: 1rpx;
   color:#a5a5a5;
 }
 .food_list{
@@ -107,14 +107,14 @@ page{
   padding-right: 5%;
   position:relative;
   height:max-content;
-  top:50px;
+  top:100rpx;
   background-color: #fcf9e9;
-  padding-bottom:50px;
-  margin-bottom: 40px;
+  padding-bottom:100rpx;
+  margin-bottom: 80rpx;
 }
 .place{
   position:relative;
-  top:60px;
+  top:120rpx;
   height:80rpx;
   margin-top:10rpx;
   width:90%;
@@ -125,10 +125,10 @@ page{
   align-items: center; /* 垂直居中 */
 }
 .place text{
-  font-size: 13px;
-  letter-spacing: 1px;
+  font-size: 18rpx;
+  letter-spacing: 3rpx;
   color:rgb(49, 49, 49);
-  padding-left: 10px;
+  padding-left: 20rpx;
 }
 .place image{
   max-width:5%;
@@ -137,7 +137,7 @@ page{
 
 .add_button {
   position:relative;
-  top:50px;
+  top:100rpx;
   height:80rpx;
   margin-top:10rpx;
   width:90%;
@@ -151,17 +151,17 @@ page{
 .add_button button {
   background-color: var(--primary-color);
   color: black;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.3);
   width:fit-content;
-  padding: 8px 15px;
+  padding: 16rpx 30rpx;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
+  font-size: 32rpx;
+  margin: 8rpx 4rpx;
   transition-duration: 0.4s; /* 过渡动画 */
   cursor: pointer; /* 鼠标手形 */
-  border-radius: 5px; /* 圆角边框 */
+  border-radius: 10rpx; /* 圆角边框 */
 }
 
 .add_button button:hover {
@@ -170,11 +170,11 @@ page{
 }
 
 .food{
-  margin-top:20px;
+  margin-top:40rpx;
   width:100%;
-  height:90px;
+  height:180rpx;
   background-color: rgb(255, 255, 255);
-  border-radius: 15px;
+  border-radius: 30rpx;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -213,8 +213,8 @@ page{
 }
 
 .food_name text{
-  font-size: 17px;
-  letter-spacing: 1px;
+  font-size: 34rpx;
+  letter-spacing: 2rpx;
   font-weight:bold;
 }
 
@@ -222,9 +222,9 @@ page{
   display: flex;
 }
 .other text{
-  font-size: 12px;
-  letter-spacing: 1px;
-  font-weight:100;
+  font-size: 24rpx;
+  letter-spacing: 2rpx;
+  font-weight: 100;
   color:rgb(148, 148, 148);
 }
 
@@ -240,23 +240,23 @@ page{
 
 .food_price{
   /* max-width: 150px; */
-  width: 150px;
+  width: 300rpx;
   overflow-x: auto;
 }
 
 .food_price text{
-  font-size: 17px;
-  letter-spacing: 1px;
+  font-size: 28rpx;
+  letter-spacing: 2rpx;
   font-weight:bold;
   white-space: nowrap;
 }
 
 .turn{
   position:absolute;
-  top:40px;
+  top:80rpx;
   left:90%;
-  width:20px;
-  height: 20px;
+  width:40rpx;
+  height: 40rpx;
 }
 .turn image{
   max-width: 100%;
@@ -269,12 +269,12 @@ page{
   overflow: hidden;
   justify-content: center; /* 水平居中 */
   align-items: center; /* 垂直居中 */
-  height:50px;
+  height:100rpx;
 }
 .telephone text{
-  font-size: 11px;
+  font-size: 22rpx;
   color:#747474;
-  letter-spacing: 1px;
+  letter-spacing: 2rpx;
 }
 
 .food_button{
@@ -294,8 +294,8 @@ page{
   width: 80rpx;
   height: 45rpx;
   border-radius: 15rpx;
-  font-size: 12px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  font-size: 24rpx;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.3);
 }
 
 .delete_btn {
@@ -307,8 +307,8 @@ page{
   width: 80rpx;
   height: 45rpx;
   border-radius: 15rpx;
-  font-size: 12px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  font-size: 24rpx;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.3);
 }
 
 .modal {
@@ -328,7 +328,7 @@ page{
   background-color: #fff;
   width: 80%; /* 适配屏幕宽度 */
   height: 60%;
-  border-radius: 10px;
+  border-radius: 20rpx;
   padding: 30rpx;
   overflow-y: scroll;
   color: var(--secondary-color);
@@ -337,35 +337,35 @@ page{
 
 .modal-header {
   text-align: center;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 20rpx;
+  border-bottom: 2rpx solid #f0f0f0;
 }
 
 .modal-header text {
-  font-size: 18px;
+  font-size: 36rpx;
   font-weight: bold;
 }
 
 .modal-body {
-  padding: 20px;
+  padding: 40rpx;
   display: flex;
   flex-direction: column;
 }
 
 .input-icon {
-  width: 25px;
-  height: 25px;
+  width: 50rpx;
+  height: 50rpx;
   vertical-align: middle;
-  padding: 5px;
-  margin-bottom: 15px;
+  padding: 10rpx;
+  margin-bottom: 30rpx;
 }
 
 .input-icon-meal {
-  width: 25px;
-  height: 25px;
+  width: 50rpx;
+  height: 50rpx;
   vertical-align: middle;
-  margin-bottom: 10px;
-  padding-left: 10px;
+  margin-bottom: 20rpx;
+  padding-left: 20rpx;
 }
 
 .modal-name {
@@ -381,54 +381,59 @@ page{
 }
 
 input[type='text'], textarea {
-  margin-bottom: 15px;
-  padding: 5px;
-  margin-left: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  margin-bottom: 30rpx;
+  padding: 10rpx;
+  margin-left: 10rpx;
+  border: 2rpx solid #ccc;
+  border-radius: 10rpx;
   width:100%;
+  height: 40rpx;
+  font-size: 18rpx;
 }
 
 textarea {
-  height: 60px;
+  height: 120rpx;
+  font-size: 18rpx;
 }
 
 button {
-  margin-top: 10px;
+  margin-top: 20rpx;
   background-color: var(--secondary-color);
   color: white;
   border: none;
-  padding: 10px;
-  border-radius: 5px;
+  padding: 20rpx;
+  border-radius: 10rpx;
 }
 
 .modal-footer {
   display: flex;
   justify-content: space-around;
-  padding-top: 10px;
+  padding-top: 20rpx;
 }
 
 .modal-footer button {
   flex-grow: 1;
-  margin: 0 5px;
+  margin: 0 10rpx;
   width: 100%;
 }
 
 .modal-submit{
   background-color: var(--secondary-color);
   color: #f8f8f8;
+  font-size: 18rpx;
 }
 
 .modal-close{
   background-color: #f8f8f8;
   color: var(--secondary-color);
+  font-size: 18rpx;
 }
 
 .add_menu {
-  width: 80px;
-  border-radius: 30px;
+  width: 160rpx;
+  border-radius: 60rpx;
   background-color: #ffffff;
-  box-shadow: 0 2px 4px #a5a5a5;
+  box-shadow: 0 4rpx 8rpx #a5a5a5;
 }
 
 .upload-btn {
@@ -436,22 +441,24 @@ button {
   justify-content: center;
   align-items: center;
   background-color: #f0f0f0;
-  border: 2px dashed #ccc;
-  height: 100px;
+  border: 4rpx dashed #ccc;
+  height: 200rpx;
   width:100%;
+  font-size: 18rpx;
 }
 
 .uploaded-image {
   object-fit: contain;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 2rpx solid #ccc;
+  border-radius: 10rpx;
 }
 
 .image-upload-btn {
   display: flex;
-  margin-bottom: 10px;
+  margin-bottom: 20rpx;
   width:100%;
-  border-radius: 5px;
+  border-radius: 10rpx;
+  font-size: 18rpx;
 }
 
 
@@ -477,13 +484,13 @@ button {
 }
 
 .error-modal-header text {
-  font-size: 18px;
+  font-size: 36rpx;
   font-weight: bold;
 }
 
 .error-modal-body {
   margin-top: 20rpx;
-  font-size: 16px;
+  font-size: 32rpx;
 }
 
 .error-modal-footer {
@@ -495,7 +502,7 @@ button {
   color: white;
   border: none;
   padding: 10rpx;
-  border-radius: 5px;
+  border-radius: 10rpx;
 }
 
 

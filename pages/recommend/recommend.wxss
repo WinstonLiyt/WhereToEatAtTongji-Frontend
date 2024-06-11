@@ -11,8 +11,6 @@ page{
 }
 
 .container {
-  height: calc(100% - 120rpx - const(safe-area-inset-bottom));
-  height: calc(100% - 120rpx - env(safe-area-inset-bottom));
   width: 100%;
   display: flex;
   flex-direction: column;
