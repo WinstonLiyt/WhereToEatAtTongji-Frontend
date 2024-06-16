@@ -37,8 +37,8 @@ page{
   display:flex;
 }
 .title .title_pic{
-  aspect-ratio: 1 / 1;
-  height: 75%;
+  height: 70rpx;
+  width: 70rpx;
   border-radius: 100%;
   border: 4rpx solid rgb(199, 199, 199);
   position:relative;

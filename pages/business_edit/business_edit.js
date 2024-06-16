@@ -133,39 +133,39 @@ Page({
       return '联系方式不合法';
     }
 
-    if (!business_time) {
-      return '营业时间不能为空';
-    }
+    // if (!business_time) {
+    //   return '营业时间不能为空';
+    // }
 
-    if (!this.validateIllegalCharacters_t(business_time)) {
-      return '营业时间包含非法字符';
-    }
+    // if (!this.validateIllegalCharacters_t(business_time)) {
+    //   return '营业时间包含非法字符';
+    // }
 
-    if (!timeRegex.test(business_time)) {
-      return '营业时间必须是hh:mm-hh:mm或hh:mm-次日hh:mm的格式';
-    }
+    // if (!timeRegex.test(business_time)) {
+    //   return '营业时间必须是hh:mm-hh:mm或hh:mm-次日hh:mm的格式';
+    // }
   
-    const timeParts = business_time.split(/-|次日/);
-    if (timeParts.length < 2) {
-      return '营业时间格式不正确';
-    }
+    // const timeParts = business_time.split(/-|次日/);
+    // if (timeParts.length < 2) {
+    //   return '营业时间格式不正确';
+    // }
   
-    const [start, end] = timeParts;
-    const [startHour, startMinute] = start.split(':').map(Number);
-    const [endHour, endMinute] = end.split(':').map(Number);
+    // const [start, end] = timeParts;
+    // const [startHour, startMinute] = start.split(':').map(Number);
+    // const [endHour, endMinute] = end.split(':').map(Number);
   
-    const startTime = startHour * 60 + startMinute;
-    const endTime = endHour * 60 + endMinute;
+    // const startTime = startHour * 60 + startMinute;
+    // const endTime = endHour * 60 + endMinute;
   
-    if (business_time.includes('次日')) {
-      if (startTime <= endTime) {
-        return '营业时间第一个hh:mm必须大于次日hh:mm';
-      }
-    } else {
-      if (startTime >= endTime) {
-        return '营业时间第一个hh:mm必须小于第二个hh:mm';
-      }
-    }
+    // if (business_time.includes('次日')) {
+    //   if (startTime <= endTime) {
+    //     return '营业时间第一个hh:mm必须大于次日hh:mm';
+    //   }
+    // } else {
+    //   if (startTime >= endTime) {
+    //     return '营业时间第一个hh:mm必须小于第二个hh:mm';
+    //   }
+    // }
   
     if (!remark) {
       return '店铺简介不能为空';
