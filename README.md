@@ -1,4 +1,4 @@
-## README for "TJ 今天吃什么"
+## TJ 今天吃什么 🍜
 
 Welcome to "TJ 今天吃什么" 🍜, a WeChat mini-program designed to help Tongji University students and nearby residents decide what to eat! You can find our frontend code [here](https://github.com/WinstonLiyt/WhereToEatAtTongji-Frontend) and backend code [here](https://github.com/WinstonLiyt/WhereToEatAtTongji-Backend).
 
